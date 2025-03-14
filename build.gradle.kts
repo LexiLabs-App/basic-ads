@@ -18,7 +18,7 @@ dependencies {
 
 allprojects {
     group = "app.lexilabs.basic"
-    version = "0.2.5"
+    version = "0.2.6"
 
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
@@ -64,27 +64,28 @@ allprojects {
 
                 pom {
                     name.set("Basic")
-                    description.set("Integrate basic features across all your Kotlin Multiplatform apps with a single library")
+                    description.set("Easily integrate Google Ads (AdMob) into your Kotlin Multiplatform Mobile (KMP / KMM) project")
                     licenses {
                         license {
                             name.set("MIT License")
-                            url.set("https://basic.lexilabs.app/LICENSE")
+                            url.set("https://raw.githubusercontent.com/LexiLabs-App/basic-ads/refs/heads/main/LICENSE")
                         }
                     }
-                    url.set("https://github.com/LexiLabs-App/basic")
+                    url.set("https://github.com/LexiLabs-App/basic-ads")
                     issueManagement {
                         system.set("Github")
-                        url.set("https://github.com/LexiLabs-App/basic/issues")
+                        url.set("https://github.com/LexiLabs-App/basic-ads/issues")
                     }
                     scm {
-                        connection.set("https://github.com/LexiLabs-App/basic.git")
-                        url.set("https://github.com/LexiLabs-App/basic")
+                        connection.set("https://github.com/LexiLabs-App/basic-ads.git")
+                        url.set("https://github.com/LexiLabs-App/basic-ads")
                     }
                     developers {
                         developer {
                             id.set("rjamison")
                             name.set("Robert Jamison")
                             email.set("rjamison@lexilabs.app")
+                            url.set("https://ads.basic.lexilabs.app")
                         }
                     }
                 }
