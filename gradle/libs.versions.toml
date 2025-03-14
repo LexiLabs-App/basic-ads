@@ -1,0 +1,28 @@
+[versions]
+kotlin = "2.1.10"
+agp = "8.7.3"
+bcv = "0.17.0"
+dokka = "2.0.0"
+compose = "1.7.3"
+google-play-services-ads = "24.0.0"
+annotations = "1.9.1"
+ios-deploymentTarget = "13.0"
+adMob-cocoapods = "11.9.0"
+kover = "0.9.1"
+lexilabs = "0.2.4"
+
+[libraries]
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
+annotations = { module = "androidx.annotation:annotation", version.ref = "annotations"}
+lexilabs-basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "lexilabs" }
+
+[plugins]
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv"}
+kotlinx-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
+native-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
