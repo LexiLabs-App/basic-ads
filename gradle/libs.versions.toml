@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.1.10"
-agp = "8.7.3"
+agp = "8.9.0"
 bcv = "0.17.0"
 dokka = "2.0.0"
 compose = "1.7.3"
