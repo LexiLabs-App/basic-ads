@@ -147,4 +147,4 @@ Here's a list of the dependency versions for each release after 0.2.0:
 3. Click `File` > `Invalidate Caches...`, check all boxes and hit `invalidate and restart`
 4. Click `Sync` for gradle if banner exists. Ignore the flood of warning lights and klaxons.
 5. Click `Build` > `Clean Cache`.  Ignore the plethora of errors
-   6.Once complete, click `Build` > `Rebuild Project`. NOTE: Despite religious preference, prayer is encouraged.
+6. Once complete, click `Build` > `Rebuild Project`. NOTE: Despite religious preference, prayer is encouraged.
