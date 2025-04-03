@@ -37,7 +37,7 @@ lexilabs-basic = "+" # gets the latest version
 google-play-services-ads = "+" # you did this during the preparation step
 
 [libraries]
-lexilabs-basic-images = { module = "app.lexilabs.basic:basic-ads", version.ref = "lexilabs-basic"}
+lexilabs-basic-ads = { module = "app.lexilabs.basic:basic-ads", version.ref = "lexilabs-basic"}
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
 
 [plugins] # make sure you're using the JetBrains plugin to import your composables
