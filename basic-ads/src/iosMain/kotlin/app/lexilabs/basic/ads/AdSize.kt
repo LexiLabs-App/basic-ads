@@ -31,6 +31,8 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
         public actual val WIDE_SKYSCRAPER: AdSize get() = GADAdSizeSkyscraper.toCommon()
         public actual val FLUID: AdSize get() = GADAdSizeFluid.toCommon()
         public actual val INVALID: AdSize get() = GADAdSizeInvalid.toCommon()
+
+        public actual fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize = iosAdSize
     }
     public fun toIos(): GADAdSize {
         return when(this) {
@@ -45,8 +47,6 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
             else -> GADAdSizeFluid
         }
     }
-
-    public actual fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize = iosAdSize
 }
 
 @OptIn(ExperimentalForeignApi::class)

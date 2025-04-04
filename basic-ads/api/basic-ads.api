@@ -20,12 +20,12 @@ public final class app/lexilabs/basic/ads/AdSize {
 	public static final field $stable I
 	public static final field Companion Lapp/lexilabs/basic/ads/AdSize$Companion;
 	public fun <init> (II)V
-	public final fun autoSelect (Lapp/lexilabs/basic/ads/AdSize;Lapp/lexilabs/basic/ads/AdSize;)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getHeight ()I
 	public final fun getWidth ()I
 }
 
 public final class app/lexilabs/basic/ads/AdSize$Companion {
+	public final fun autoSelect (Lapp/lexilabs/basic/ads/AdSize;Lapp/lexilabs/basic/ads/AdSize;)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getAUTO_HEIGHT ()I
 	public final fun getBANNER ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getFLUID ()Lapp/lexilabs/basic/ads/AdSize;
