@@ -40,6 +40,7 @@ public expect class AdLoader() {
         activity: Any?,
         adUnitId: String,
         onLoaded: () -> Unit = {},
+        onFailedToLoad: (Long) -> Unit = {},
     )
 
     /**
@@ -78,6 +79,7 @@ public expect class AdLoader() {
         activity: Any?,
         adUnitId: String,
         onLoaded: () -> Unit = {},
+        onFailedToLoad: (Long) -> Unit = {},
     )
 
     /**
@@ -120,6 +122,7 @@ public expect class AdLoader() {
         activity: Any?,
         adUnitId: String,
         onLoaded: () -> Unit = {},
+        onFailedToLoad: (Long) -> Unit = {},
     )
 
     /**

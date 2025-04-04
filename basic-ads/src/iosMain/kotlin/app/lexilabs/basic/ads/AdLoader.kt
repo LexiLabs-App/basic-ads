@@ -39,6 +39,7 @@ public actual class AdLoader {
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
         onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         interstitialAdId = adUnitId
         GADInterstitialAd.loadWithAdUnitID(
@@ -53,6 +54,7 @@ public actual class AdLoader {
                     }
                     p2?.let {
                         Log.e(tag, "loadInterstitialAd:failure:$it")
+                        onFailedToLoad(it.code)
                     }
                 }
             }
@@ -118,6 +120,7 @@ public actual class AdLoader {
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
         onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         rewardedInterstitialAdId = adUnitId
         GADRewardedInterstitialAd.loadWithAdUnitID(
@@ -132,6 +135,7 @@ public actual class AdLoader {
                     }
                     p2?.let {
                         Log.e(tag, "loadRewardedInterstitialAd:failure:$it")
+                        onFailedToLoad(it.code)
                     }
                 }
             }
@@ -206,6 +210,7 @@ public actual class AdLoader {
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
         onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         rewardedAdId = adUnitId
         GADRewardedAd.loadWithAdUnitID(
@@ -220,6 +225,7 @@ public actual class AdLoader {
                     }
                     p2?.let {
                         Log.e(tag, "loadRewardedAd:failure:$it")
+                        onFailedToLoad(it.code)
                     }
                 }
             }
