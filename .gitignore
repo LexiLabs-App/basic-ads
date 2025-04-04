@@ -5,6 +5,7 @@ build/
 # Local configuration file (sdk path, etc)
 local.properties
 .kotlin
+docs
 
 # Log/OS Files
 *.log
