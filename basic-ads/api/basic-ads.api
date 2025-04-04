@@ -20,6 +20,7 @@ public final class app/lexilabs/basic/ads/AdSize {
 	public static final field $stable I
 	public static final field Companion Lapp/lexilabs/basic/ads/AdSize$Companion;
 	public fun <init> (II)V
+	public final fun autoSelect (Lapp/lexilabs/basic/ads/AdSize;Lapp/lexilabs/basic/ads/AdSize;)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getHeight ()I
 	public final fun getWidth ()I
 }
