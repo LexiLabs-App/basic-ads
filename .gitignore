@@ -31,3 +31,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Kotlin Multiplatform specific
+.kotlin/
+docs/
