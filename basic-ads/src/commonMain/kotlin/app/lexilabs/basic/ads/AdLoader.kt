@@ -36,7 +36,11 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see showInterstitialAd
      */
-    public fun loadInterstitialAd(activity: Any?, adUnitId: String, onLoaded: () -> Unit = {})
+    public fun loadInterstitialAd(
+        activity: Any?,
+        adUnitId: String,
+        onLoaded: () -> Unit = {},
+    )
 
     /**
      * Shows a fullscreen AdMob ad and notifies when the user closes the ad via [onDismissed] lambda.
@@ -70,7 +74,11 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see showRewardedInterstitialAd
      */
-    public fun loadRewardedInterstitialAd(activity: Any?, adUnitId: String, onLoaded: () -> Unit = {})
+    public fun loadRewardedInterstitialAd(
+        activity: Any?,
+        adUnitId: String,
+        onLoaded: () -> Unit = {},
+    )
 
     /**
      * Shows a rewarded and fullscreen AdMob ad.
@@ -108,7 +116,11 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see showRewardedAd
      */
-    public fun loadRewardedAd(activity: Any?, adUnitId: String, onLoaded: () -> Unit = {})
+    public fun loadRewardedAd(
+        activity: Any?,
+        adUnitId: String,
+        onLoaded: () -> Unit = {},
+    )
 
     /**
      * Shows a rewarded and fullscreen AdMob ad.

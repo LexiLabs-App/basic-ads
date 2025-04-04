@@ -25,7 +25,7 @@ public actual class AdLoader {
     public actual fun loadInterstitialAd(
         activity: Any?,
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
     ) {
         Log.d(tag, "loadInterstitialAd: Loading")
         interstitialAdUnitId = adUnitId
@@ -110,7 +110,7 @@ public actual class AdLoader {
     public actual fun loadRewardedInterstitialAd(
         activity: Any?,
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
     ) {
         rewardedInterstitialAdUnitId = adUnitId
         com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
@@ -198,7 +198,7 @@ public actual class AdLoader {
     public actual fun loadRewardedAd(
         activity: Any?,
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
     ) {
         rewardedAdUnitId = adUnitId
         com.google.android.gms.ads.rewarded.RewardedAd

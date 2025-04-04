@@ -38,7 +38,7 @@ public actual class AdLoader {
     public actual fun loadInterstitialAd(
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
     ) {
         interstitialAdId = adUnitId
         GADInterstitialAd.loadWithAdUnitID(
@@ -51,7 +51,9 @@ public actual class AdLoader {
                         interstitialAd = it
                         onLoaded()
                     }
-                    p2?.let { Log.e(tag, "loadInterstitialAd:failure:$it") }
+                    p2?.let {
+                        Log.e(tag, "loadInterstitialAd:failure:$it")
+                    }
                 }
             }
         )
@@ -115,7 +117,7 @@ public actual class AdLoader {
     public actual fun loadRewardedInterstitialAd(
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
     ) {
         rewardedInterstitialAdId = adUnitId
         GADRewardedInterstitialAd.loadWithAdUnitID(
@@ -128,7 +130,9 @@ public actual class AdLoader {
                         rewardedInterstitialAd = it
                         onLoaded()
                     }
-                    p2?.let { Log.e(tag, "loadRewardedInterstitialAd:failure:$it") }
+                    p2?.let {
+                        Log.e(tag, "loadRewardedInterstitialAd:failure:$it")
+                    }
                 }
             }
         )
@@ -201,7 +205,7 @@ public actual class AdLoader {
     public actual fun loadRewardedAd(
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
     ) {
         rewardedAdId = adUnitId
         GADRewardedAd.loadWithAdUnitID(
@@ -214,7 +218,9 @@ public actual class AdLoader {
                         rewardedAd = it
                         onLoaded()
                     }
-                    p2?.let { Log.e(tag, "loadRewardedAd:failure:$it") }
+                    p2?.let {
+                        Log.e(tag, "loadRewardedAd:failure:$it")
+                    }
                 }
             }
         )
