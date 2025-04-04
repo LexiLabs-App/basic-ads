@@ -18,4 +18,6 @@ public actual class AdSize public actual constructor(public actual val width: In
         public actual val FLUID: AdSize = com.google.android.gms.ads.AdSize.FLUID.toCommon()
         public actual val INVALID: AdSize = com.google.android.gms.ads.AdSize.INVALID.toCommon()
     }
+
+    public actual fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize = androidAdSize
 }
