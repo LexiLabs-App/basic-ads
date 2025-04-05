@@ -21,7 +21,7 @@ public expect object BasicAds {
      * @see DependsOnGoogleMobileAds
      * @see BasicAds
      */
-    public val errorDomain: String
+    public val errorDomain: String?
 
     /**
      * The [RequestConfiguration] for the instantiation of AdMob
