@@ -91,32 +91,19 @@ allprojects {
     }
 
     val publishing = extensions.getByType<PublishingExtension>()
-
-    val tasks = gradle.startParameter.taskNames
-    when {
-        tasks.any { it.contains("publish", ignoreCase = true) } -> {
-            extensions.configure<SigningExtension> {
-                useInMemoryPgpKeys(
-                    gradleLocalProperties(rootDir, providers).getProperty("gpgKeyId"),
-                    gradleLocalProperties(rootDir, providers).getProperty("gpgKeySecret"),
-                    gradleLocalProperties(rootDir, providers).getProperty("gpgKeyPassword")
-                )
-                sign(publishing.publications)
-            }
-        }
-        // tasks.any { it.contains("publishToMavenLocal", ignoreCase = true) } -> {
-        //    extensions.configure<SigningExtension> {
-        //        useGpgCmd()
-        //        sign(publishing.publications)
-        //    }
-        // }
-        else -> {
-            extensions.configure<SigningExtension> {
-                useGpgCmd()
-                sign(publishing.publications)
-            }
-        }
+    extensions.configure<SigningExtension> {
+        useInMemoryPgpKeys(
+            gradleLocalProperties(rootDir, providers).getProperty("gpgKeyId"),
+            gradleLocalProperties(rootDir, providers).getProperty("gpgKeySecret"),
+            gradleLocalProperties(rootDir, providers).getProperty("gpgKeyPassword")
+        )
+        sign(publishing.publications)
     }
+
+//    extensions.configure<SigningExtension> {
+//        useGpgCmd()
+//        sign(publishing.publications)
+//    }
 
     // remove after https://youtrack.jetbrains.com/issue/KT-46466 is fixed
     project.tasks.withType(AbstractPublishToMaven::class.java).configureEach {
