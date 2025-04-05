@@ -15,8 +15,7 @@ import platform.Foundation.NSNumber
 @OptIn(ExperimentalForeignApi::class)
 public actual object BasicAds {
 
-    public actual val errorDomain: String
-        get() = GADErrorDomain
+    public actual val errorDomain: String = GADErrorDomain
 
     @DependsOnGoogleMobileAds
     public actual var configuration: RequestConfiguration
