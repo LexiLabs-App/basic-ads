@@ -34,7 +34,8 @@ public actual class AdLoader {
     public actual fun loadInterstitialAd(
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         interstitialAdId = adUnitId
         GADInterstitialAd.loadWithAdUnitID(
@@ -47,7 +48,10 @@ public actual class AdLoader {
                         interstitialAd = it
                         onLoaded()
                     }
-                    p2?.let { Log.e(tag, "loadInterstitialAd:failure:$it") }
+                    p2?.let {
+                        Log.e(tag, "loadInterstitialAd:failure:$it")
+                        onFailedToLoad(it.code)
+                    }
                 }
             }
         )
@@ -79,7 +83,8 @@ public actual class AdLoader {
     public actual fun loadRewardedInterstitialAd(
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         rewardedInterstitialAdId = adUnitId
         GADRewardedInterstitialAd.loadWithAdUnitID(
@@ -92,7 +97,10 @@ public actual class AdLoader {
                         rewardedInterstitialAd = it
                         onLoaded()
                     }
-                    p2?.let { Log.e(tag, "loadRewardedInterstitialAd:failure:$it") }
+                    p2?.let {
+                        Log.e(tag, "loadRewardedInterstitialAd:failure:$it")
+                        onFailedToLoad(it.code)
+                    }
                 }
             }
         )
@@ -130,7 +138,8 @@ public actual class AdLoader {
     public actual fun loadRewardedAd(
         activity: Any?, /* This variable is unused, but necessary for Android */
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         rewardedAdId = adUnitId
         GADRewardedAd.loadWithAdUnitID(
@@ -143,7 +152,10 @@ public actual class AdLoader {
                         rewardedAd = it
                         onLoaded()
                     }
-                    p2?.let { Log.e(tag, "loadRewardedAd:failure:$it") }
+                    p2?.let {
+                        Log.e(tag, "loadRewardedAd:failure:$it")
+                        onFailedToLoad(it.code)
+                    }
                 }
             }
         )

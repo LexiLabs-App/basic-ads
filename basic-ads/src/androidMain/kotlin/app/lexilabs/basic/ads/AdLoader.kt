@@ -25,7 +25,8 @@ public actual class AdLoader {
     public actual fun loadInterstitialAd(
         activity: Any?,
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         Log.d(tag, "loadInterstitialAd: Loading")
         interstitialAdUnitId = adUnitId
@@ -38,6 +39,7 @@ public actual class AdLoader {
             override fun onAdFailedToLoad(adError: com.google.android.gms.ads.LoadAdError) {
                 super.onAdFailedToLoad(adError)
                 Log.d(tag, "loadInterstitialAd:failure:$adError")
+                onFailedToLoad(adError.code.toLong())
             }
 
             override fun onAdLoaded(ad: com.google.android.gms.ads.interstitial.InterstitialAd) {
@@ -110,7 +112,8 @@ public actual class AdLoader {
     public actual fun loadRewardedInterstitialAd(
         activity: Any?,
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         rewardedInterstitialAdUnitId = adUnitId
         com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
@@ -122,6 +125,7 @@ public actual class AdLoader {
                     override fun onAdFailedToLoad(adError: com.google.android.gms.ads.LoadAdError) {
                         super.onAdFailedToLoad(adError)
                         Log.d(tag, "loadRewardedInterstitialAd:failure:$adError")
+                        onFailedToLoad(adError.code.toLong())
                     }
 
                     override fun onAdLoaded(ad: com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd) {
@@ -198,7 +202,8 @@ public actual class AdLoader {
     public actual fun loadRewardedAd(
         activity: Any?,
         adUnitId: String,
-        onLoaded: () -> Unit
+        onLoaded: () -> Unit,
+        onFailedToLoad: (Long) -> Unit,
     ) {
         rewardedAdUnitId = adUnitId
         com.google.android.gms.ads.rewarded.RewardedAd
@@ -210,6 +215,7 @@ public actual class AdLoader {
                     override fun onAdFailedToLoad(adError: com.google.android.gms.ads.LoadAdError) {
                         super.onAdFailedToLoad(adError)
                         Log.d(tag, "loadRewardedInterstitialAd:failure:$adError")
+                        onFailedToLoad(adError.code.toLong())
                     }
 
                     override fun onAdLoaded(ad: com.google.android.gms.ads.rewarded.RewardedAd) {
