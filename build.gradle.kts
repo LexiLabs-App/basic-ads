@@ -92,8 +92,9 @@ allprojects {
 
     val publishing = extensions.getByType<PublishingExtension>()
 
-    gradle.taskGraph.whenReady {
-        if (hasTask(":publish")) {
+    val tasks = gradle.startParameter.taskNames
+    when {
+        tasks.any { it.contains("publish", ignoreCase = true) } -> {
             extensions.configure<SigningExtension> {
                 useInMemoryPgpKeys(
                     gradleLocalProperties(rootDir, providers).getProperty("gpgKeyId"),
@@ -102,7 +103,14 @@ allprojects {
                 )
                 sign(publishing.publications)
             }
-        } else if (hasTask(":publishToMavenLocal")) {
+        }
+        // tasks.any { it.contains("publishToMavenLocal", ignoreCase = true) } -> {
+        //    extensions.configure<SigningExtension> {
+        //        useGpgCmd()
+        //        sign(publishing.publications)
+        //    }
+        // }
+        else -> {
             extensions.configure<SigningExtension> {
                 useGpgCmd()
                 sign(publishing.publications)
