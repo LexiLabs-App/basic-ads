@@ -5,7 +5,6 @@ import cocoapods.Google_Mobile_Ads_SDK.GADErrorDomain
 import cocoapods.Google_Mobile_Ads_SDK.GADMobileAds
 import cocoapods.Google_Mobile_Ads_SDK.GADPublisherPrivacyPersonalizationState
 import cocoapods.Google_Mobile_Ads_SDK.GADRequestConfiguration
-import cocoapods.Google_Mobile_Ads_SDK.GADVersionNumber
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import platform.Foundation.NSNumber
@@ -15,7 +14,7 @@ import platform.Foundation.NSNumber
 @OptIn(ExperimentalForeignApi::class)
 public actual object BasicAds {
 
-    public actual val errorDomain: String = GADErrorDomain
+    public actual val errorDomain: String? = GADErrorDomain
 
     @DependsOnGoogleMobileAds
     public actual var configuration: RequestConfiguration

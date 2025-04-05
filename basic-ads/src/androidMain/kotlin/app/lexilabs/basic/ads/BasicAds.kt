@@ -10,8 +10,7 @@ public typealias AdView = com.google.android.gms.ads.AdView
 
 public actual object BasicAds {
 
-    public actual val errorDomain: String
-        get() = com.google.android.gms.ads.MobileAds.ERROR_DOMAIN
+    public actual val errorDomain: String? = com.google.android.gms.ads.MobileAds.ERROR_DOMAIN
 
     @DependsOnGoogleMobileAds
     public actual var configuration: RequestConfiguration
