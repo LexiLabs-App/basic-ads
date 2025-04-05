@@ -25,6 +25,7 @@ public final class app/lexilabs/basic/ads/AdSize {
 }
 
 public final class app/lexilabs/basic/ads/AdSize$Companion {
+	public final fun autoSelect (Lapp/lexilabs/basic/ads/AdSize;Lapp/lexilabs/basic/ads/AdSize;)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getAUTO_HEIGHT ()I
 	public final fun getBANNER ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getFLUID ()Lapp/lexilabs/basic/ads/AdSize;

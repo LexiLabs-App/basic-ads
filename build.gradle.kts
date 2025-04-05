@@ -1,7 +1,4 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import com.android.utils.TraceUtils.simpleId
-import org.gradle.internal.impldep.org.bouncycastle.openpgp.PGPKeyRing
-import org.gradle.internal.impldep.org.bouncycastle.openpgp.PGPSecretKeyRing
 
 plugins {
     alias(libs.plugins.multiplatform).apply(false)
@@ -18,7 +15,7 @@ dependencies {
 
 allprojects {
     group = "app.lexilabs.basic"
-    version = "0.2.5"
+    version = "0.2.6-Beta01"
 
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
@@ -64,27 +61,28 @@ allprojects {
 
                 pom {
                     name.set("Basic")
-                    description.set("Integrate basic features across all your Kotlin Multiplatform apps with a single library")
+                    description.set("Easily integrate Google Ads (AdMob) into your Kotlin Multiplatform Mobile (KMP / KMM) project")
                     licenses {
                         license {
                             name.set("MIT License")
-                            url.set("https://basic.lexilabs.app/LICENSE")
+                            url.set("https://raw.githubusercontent.com/LexiLabs-App/basic-ads/refs/heads/main/LICENSE")
                         }
                     }
-                    url.set("https://github.com/LexiLabs-App/basic")
+                    url.set("https://github.com/LexiLabs-App/basic-ads")
                     issueManagement {
                         system.set("Github")
-                        url.set("https://github.com/LexiLabs-App/basic/issues")
+                        url.set("https://github.com/LexiLabs-App/basic-ads/issues")
                     }
                     scm {
-                        connection.set("https://github.com/LexiLabs-App/basic.git")
-                        url.set("https://github.com/LexiLabs-App/basic")
+                        connection.set("https://github.com/LexiLabs-App/basic-ads.git")
+                        url.set("https://github.com/LexiLabs-App/basic-ads")
                     }
                     developers {
                         developer {
                             id.set("rjamison")
                             name.set("Robert Jamison")
                             email.set("rjamison@lexilabs.app")
+                            url.set("https://ads.basic.lexilabs.app")
                         }
                     }
                 }
@@ -93,20 +91,24 @@ allprojects {
     }
 
     val publishing = extensions.getByType<PublishingExtension>()
-    extensions.configure<SigningExtension> {
-        useInMemoryPgpKeys(
-            gradleLocalProperties(rootDir, providers).getProperty("gpgKeyId"),
-            gradleLocalProperties(rootDir, providers).getProperty("gpgKeySecret"),
-            gradleLocalProperties(rootDir, providers).getProperty("gpgKeyPassword")
-        )
-        sign(publishing.publications)
-    }
 
-//    val publishing = extensions.getByType<PublishingExtension>()
-//    extensions.configure<SigningExtension> {
-//        useGpgCmd()
-//        sign(publishing.publications)
-//    }
+    gradle.taskGraph.whenReady {
+        if (hasTask(":publish")) {
+            extensions.configure<SigningExtension> {
+                useInMemoryPgpKeys(
+                    gradleLocalProperties(rootDir, providers).getProperty("gpgKeyId"),
+                    gradleLocalProperties(rootDir, providers).getProperty("gpgKeySecret"),
+                    gradleLocalProperties(rootDir, providers).getProperty("gpgKeyPassword")
+                )
+                sign(publishing.publications)
+            }
+        } else if (hasTask(":publishToMavenLocal")) {
+            extensions.configure<SigningExtension> {
+                useGpgCmd()
+                sign(publishing.publications)
+            }
+        }
+    }
 
     // remove after https://youtrack.jetbrains.com/issue/KT-46466 is fixed
     project.tasks.withType(AbstractPublishToMaven::class.java).configureEach {
