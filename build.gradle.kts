@@ -1,7 +1,4 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import com.android.utils.TraceUtils.simpleId
-import org.gradle.internal.impldep.org.bouncycastle.openpgp.PGPKeyRing
-import org.gradle.internal.impldep.org.bouncycastle.openpgp.PGPSecretKeyRing
 
 plugins {
     alias(libs.plugins.multiplatform).apply(false)
@@ -18,7 +15,7 @@ dependencies {
 
 allprojects {
     group = "app.lexilabs.basic"
-    version = "0.2.6"
+    version = "0.2.6-Beta01"
 
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
