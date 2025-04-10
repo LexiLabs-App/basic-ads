@@ -9,17 +9,20 @@ import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeLargeBanner
 import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeLeaderboard
 import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeMediumRectangle
 import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeSkyscraper
+import cocoapods.Google_Mobile_Ads_SDK.GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.useContents
 import platform.CoreGraphics.CGRect
 import platform.CoreGraphics.CGRectMake
+import platform.UIKit.UIScreen
 
 @OptIn(ExperimentalForeignApi::class)
 public actual class AdSize actual constructor(public actual val width: Int, public actual val height: Int) {
 
     public actual companion object {
-        public actual val FULL_WIDTH: Int get() = -1 // Value from Android implementation
-        public actual val AUTO_HEIGHT: Int get() = -2 // Value from Android implementation
+        public actual val FULL_WIDTH: Int get() = UIScreen.mainScreen.bounds.width()
+        public actual val AUTO_HEIGHT: Int get() = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(this.FULL_WIDTH.toDouble()).toAdSize().height
         public actual val BANNER: AdSize get() = GADAdSizeBanner.toCommon()
         public actual val FULL_BANNER: AdSize get() = GADAdSizeFullBanner.toCommon()
         public actual val LARGE_BANNER: AdSize get() = GADAdSizeLargeBanner.toCommon()
@@ -28,6 +31,8 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
         public actual val WIDE_SKYSCRAPER: AdSize get() = GADAdSizeSkyscraper.toCommon()
         public actual val FLUID: AdSize get() = GADAdSizeFluid.toCommon()
         public actual val INVALID: AdSize get() = GADAdSizeInvalid.toCommon()
+
+        public actual fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize = iosAdSize
     }
     public fun toIos(): GADAdSize {
         return when(this) {
@@ -69,4 +74,30 @@ public fun AdSize.toCGRectCValue(): CValue<CGRect> {
         width = this.width.toDouble(),
         height = this.height.toDouble()
     )
+}
+
+@OptIn(ExperimentalForeignApi::class)
+public fun CValue<CGRect>.width(): Int = this.useContents { return size.width.toInt() }
+
+@OptIn(ExperimentalForeignApi::class)
+public fun CValue<CGRect>.height(): Int = this.useContents { return size.height.toInt() }
+
+@OptIn(ExperimentalForeignApi::class)
+public fun CValue<CGRect>.toAdSize(): AdSize {
+    this.useContents {
+        return AdSize(
+            width = size.width.toInt(),
+            height = size.height.toInt()
+        )
+    }
+}
+
+@OptIn(ExperimentalForeignApi::class)
+public fun CValue<GADAdSize>.toAdSize(): AdSize {
+    this.useContents {
+        return AdSize(
+            width = size.width.toInt(),
+            height = size.width.toInt()
+        )
+    }
 }
