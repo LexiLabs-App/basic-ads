@@ -11,11 +11,42 @@ permissions:
   id-token: write
 
 jobs:
+  # Delete this task after the XCode 16 bug is fixed in Kotlin v2.1.21
+  dump-api:
+    name: HOTFIX for Xcode 16 to Dump the API
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build API
+        uses: ./gradlew apiDump
+
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "${{user.id}}+${{user.login}}@users.noreply.github.com"
+          git add .
+          git commit -m "HOTFIX - generated api dump"
+          git push
+
   check:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
+    needs: dump-api
     steps:
       - uses: actions/checkout@v3
       - name: Setup JDK 17
@@ -24,19 +55,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Write test variable to local.properties
-        if: ${{ github.event_name != 'pull_request' }}
-        run: |
-          echo test="${TEST}" >> local.properties
-        env:
-          TEST: ${{ vars.TEST }}
-
       - name: Setup gradle
         uses: gradle/gradle-build-action@v2
-
-        # Delete this task after XCode 16 bug is resolved
-      - name: Build API
-        uses: ./gradlew apiDump
 
       - name: Check API
         run: ./gradlew apiCheck
