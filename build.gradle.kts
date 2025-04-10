@@ -15,7 +15,7 @@ dependencies {
 
 allprojects {
     group = "app.lexilabs.basic"
-    version = "0.2.6-Beta01"
+    version = "0.2.6-beta02"
 
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
@@ -91,19 +91,22 @@ allprojects {
     }
 
     val publishing = extensions.getByType<PublishingExtension>()
-    extensions.configure<SigningExtension> {
-        useInMemoryPgpKeys(
-            gradleLocalProperties(rootDir, providers).getProperty("gpgKeyId"),
-            gradleLocalProperties(rootDir, providers).getProperty("gpgKeySecret"),
-            gradleLocalProperties(rootDir, providers).getProperty("gpgKeyPassword")
-        )
-        sign(publishing.publications)
-    }
 
-//    extensions.configure<SigningExtension> {
-//        useGpgCmd()
-//        sign(publishing.publications)
-//    }
+    if (gradle.startParameter.taskNames.any { it == "publish" }) {
+        extensions.configure<SigningExtension> {
+            useInMemoryPgpKeys(
+                gradleLocalProperties(rootDir, providers).getProperty("gpgKeyId"),
+                gradleLocalProperties(rootDir, providers).getProperty("gpgKeySecret"),
+                gradleLocalProperties(rootDir, providers).getProperty("gpgKeyPassword")
+            )
+            sign(publishing.publications)
+        }
+    } else {
+        extensions.configure<SigningExtension> {
+            useGpgCmd()
+            sign(publishing.publications)
+        }
+    }
 
     // remove after https://youtrack.jetbrains.com/issue/KT-46466 is fixed
     project.tasks.withType(AbstractPublishToMaven::class.java).configureEach {
