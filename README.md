@@ -37,7 +37,7 @@ lexilabs-basic = "+" # gets the latest version
 google-play-services-ads = "+" # you did this during the preparation step
 
 [libraries]
-lexilabs-basic-images = { module = "app.lexilabs.basic:basic-ads", version.ref = "lexilabs-basic"}
+lexilabs-basic-ads = { module = "app.lexilabs.basic:basic-ads", version.ref = "lexilabs-basic"}
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
 
 [plugins] # make sure you're using the JetBrains plugin to import your composables
@@ -140,6 +140,8 @@ Here's a list of the dependency versions for each release after 0.2.0:
 |         0.2.3         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |
 |         0.2.4         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |
 |         0.2.5         |   2.1.10    |         1.7.3          |    1.9.1    |      24.0.0       |    12.1.0     |
+|     0.2.6-beta01      |   2.1.20    |         1.7.3          |    1.9.1    |      24.1.0       |    12.2.0     |
+|     0.2.6-beta02      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
 
 ### \[Advanced Users Only\] How to deal with building this garbage
 1. Find a large cup. It must exist in the real world.
@@ -147,4 +149,7 @@ Here's a list of the dependency versions for each release after 0.2.0:
 3. Click `File` > `Invalidate Caches...`, check all boxes and hit `invalidate and restart`
 4. Click `Sync` for gradle if banner exists. Ignore the flood of warning lights and klaxons.
 5. Click `Build` > `Clean Cache`.  Ignore the plethora of errors
-   6.Once complete, click `Build` > `Rebuild Project`. NOTE: Despite religious preference, prayer is encouraged.
+6. Once complete, click `Build` > `Rebuild Project`. NOTE: Despite religious preference, prayer is encouraged.
+
+### Known Issues:
+* [Can't compile using Xcode 16.3 due to breaking changes](https://youtrack.jetbrains.com/issue/KT-76460)

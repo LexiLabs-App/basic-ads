@@ -1,15 +1,15 @@
 [versions]
 kotlin = "2.1.20"
-agp = "8.7.3"
+agp = "8.9.1"
 bcv = "0.17.0"
 dokka = "2.0.0"
 compose = "1.7.3"
-google-play-services-ads = "24.0.0"
+google-play-services-ads = "24.2.0"
 annotations = "1.9.1"
 ios-deploymentTarget = "13.0"
-adMob-cocoapods = "11.9.0"
+adMob-cocoapods = "12.2.0"
 kover = "0.9.1"
-lexilabs = "0.2.4"
+lexilabs = "0.2.6-beta01"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }

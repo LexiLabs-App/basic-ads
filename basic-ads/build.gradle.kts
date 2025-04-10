@@ -16,6 +16,7 @@ plugins {
 kotlin {
 
     // FORCES CHECK OF PUBLIC API DECLARATIONS
+    // DON'T FORGET TO RUN `./gradlew apiDump`
     explicitApi()
 
     listOf(

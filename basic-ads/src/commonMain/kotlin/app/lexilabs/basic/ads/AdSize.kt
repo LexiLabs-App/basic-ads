@@ -14,7 +14,6 @@ package app.lexilabs.basic.ads
  * @see WIDE_SKYSCRAPER
  * @see FLUID
  * @see INVALID
- * @see SEARCH
  */
 @DependsOnGoogleMobileAds
 public expect class AdSize public constructor(width: Int, height: Int) {
@@ -40,5 +39,7 @@ public expect class AdSize public constructor(width: Int, height: Int) {
         public val WIDE_SKYSCRAPER: AdSize
         public val FLUID: AdSize
         public val INVALID: AdSize
+
+        public fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize
     }
 }
