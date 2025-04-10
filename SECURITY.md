@@ -2,13 +2,13 @@
 
 ## Supported Versions
 
-| Version      | Supported          |
-|--------------| ------------------ |
-| 0.2.5 and up | :white_check_mark: |
+|    Version     |      Supported       |
+|:--------------:|:--------------------:|
+|  0.2.5 and up  |  :white_check_mark:  |
 
 ## Reporting a Vulnerability
 
-You can submit a vulnerability by [creating a new issue](https://github.com/LexiLabs-App/basic/issues/new).
+You can submit a vulnerability by [creating a new issue](https://github.com/LexiLabs-App/basic-ads/issues/new).
 Please include the following information:
 * CVE ID (if it exists)
 * What the vulnerability does within the app

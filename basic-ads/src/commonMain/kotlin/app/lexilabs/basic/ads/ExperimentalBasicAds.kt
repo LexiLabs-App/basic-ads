@@ -6,6 +6,6 @@ package app.lexilabs.basic.ads
 @RequiresOptIn(message = "This API is experimental, unstable, and will definitely change.")
 @Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY)
-public annotation class ExperimentalBasicAds()
+public annotation class ExperimentalBasicAds
 
 
