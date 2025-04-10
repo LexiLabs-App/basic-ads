@@ -2,7 +2,7 @@ name: Publish
 
 on:
   push:
-    branches: [main, publishing]
+    branches: [publishing]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -34,7 +34,11 @@ jobs:
       - name: Setup gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: Check api
+        # Delete this task after XCode 16 bug is resolved
+      - name: Build API
+        uses: ./gradlew apiDump
+
+      - name: Check API
         run: ./gradlew apiCheck
 
       - name: Generate kover coverage report
