@@ -16,7 +16,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    needs: dump-api
     steps:
       - uses: actions/checkout@v3
       - name: Setup JDK 17
