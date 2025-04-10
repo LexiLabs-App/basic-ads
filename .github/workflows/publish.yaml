@@ -16,7 +16,7 @@ jobs:
     name: HOTFIX for Xcode 16 to Dump the API
     runs-on: macos-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - name: Setup JDK 17
