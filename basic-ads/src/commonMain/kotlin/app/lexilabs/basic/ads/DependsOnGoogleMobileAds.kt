@@ -18,4 +18,4 @@ package app.lexilabs.basic.ads
 @RequiresOptIn(message = "Depends on Google Mobile Ads library for Android and iOS")
 @Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY)
-public annotation class DependsOnGoogleMobileAds()
+public annotation class DependsOnGoogleMobileAds

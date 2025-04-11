@@ -1,12 +1,17 @@
 # Basic-Ads
-<img src="images/basic.png" alt="basic" height="240" align="right"/> 
+<img src="images/basic_240.png" alt="basic" height="240" align="right"/> 
 
-[Basic-Ads](https://basic.lexilabs.app/basic-ads) [![Maven Central](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
+![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
+![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
+[![Maven Central](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
 ![badge-android](http://img.shields.io/badge/android-full_support-65c663.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/ios-full_support-65c663.svg?style=flat)
+![badge-wasm](https://img.shields.io/badge/wasm-compile_only-yellow.svg?style=flat)
+![badge-wasm](https://img.shields.io/badge/wasm-compile_only-yellow.svg?style=flat)
 
 ### How it works
 Basic-Ads uses the existing Android and iOS Google AdMob libraries to display ads as `Composables`.
@@ -31,13 +36,14 @@ Add your dependencies from Maven
 ```toml
 # in your 'libs.versions.toml' file
 [versions]
-kotlin = "2.1.0"
+kotlin = "+" # gets the latest version
 compose = "+" # gets the latest version
-lexilabs-basic = "+" # gets the latest version
+basic = "+" # gets the latest version
 google-play-services-ads = "+" # you did this during the preparation step
 
 [libraries]
-lexilabs-basic-ads = { module = "app.lexilabs.basic:basic-ads", version.ref = "lexilabs-basic"}
+basic-ads = { module = "app.lexilabs.basic:basic-ads", version.ref = "basic"}
+basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "basic"}
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
 
 [plugins] # make sure you're using the JetBrains plugin to import your composables
@@ -140,8 +146,9 @@ Here's a list of the dependency versions for each release after 0.2.0:
 |         0.2.3         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |
 |         0.2.4         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |
 |         0.2.5         |   2.1.10    |         1.7.3          |    1.9.1    |      24.0.0       |    12.1.0     |
-|     0.2.6-beta01      |   2.1.20    |         1.7.3          |    1.9.1    |      24.1.0       |    12.2.0     |
+|     0.2.6-Beta01      |   2.1.20    |         1.7.3          |    1.9.1    |      24.1.0       |    12.2.0     |
 |     0.2.6-beta02      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
+|     0.2.6-beta03      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
 
 ### \[Advanced Users Only\] How to deal with building this garbage
 1. Find a large cup. It must exist in the real world.

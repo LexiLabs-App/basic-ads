@@ -9,7 +9,7 @@ annotations = "1.9.1"
 ios-deploymentTarget = "13.0"
 adMob-cocoapods = "12.2.0"
 kover = "0.9.1"
-lexilabs = "0.2.6-beta01"
+lexilabs = "0.2.6-beta02"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
