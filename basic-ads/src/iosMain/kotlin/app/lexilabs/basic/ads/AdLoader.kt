@@ -132,7 +132,7 @@ public actual class AdLoader {
                     onRewardEarned = { onRewardEarned() }
                 )
             )
-        } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
+        } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
     }
 
     public actual fun loadRewardedAd(
@@ -187,7 +187,7 @@ public actual class AdLoader {
                     onRewardEarned = { onRewardEarned() }
                 )
             )
-        } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
+        } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")
     }
 
 }
