@@ -174,15 +174,15 @@ public actual class AdLoader {
         checkNotNull(viewController) { "Root ViewController is null" }
 
         rewardedAd?.let {
-            rewardedInterstitialAd?.fullScreenContentDelegate = FullScreenContentDelegate(
+            rewardedAd?.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
                 onFailure = onFailure,
                 onImpression = onImpression,
                 onShown = onShown
             )
-            rewardedInterstitialAd?.presentFromRootViewController(
-                viewController = viewController,
+            rewardedAd?.presentFromRootViewController(
+                rootViewController = viewController,
                 userDidEarnRewardHandler = UserDidEarnRewardHandler(
                     onRewardEarned = { onRewardEarned() }
                 )
