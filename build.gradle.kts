@@ -60,7 +60,7 @@ allprojects {
                 outputDirectory = file("${projectDir.parent}/docs/${project.name}")
                 moduleName = project.name
                 moduleVersion = project.version.toString()
-                customAssets = listOf(file("${projectDir.parent}/dokka/logo-icon.svg"))
+                customAssets = listOf(file("${projectDir.parent}/images/logo-icon.svg"))
                 // Need to create a cool looking theme at some point
                 //customStyleSheets = listOf(file("${projectDir.parent}/dokka/styles.css"))
                 footerMessage = "(c) 2025 LexiLabs"
@@ -70,16 +70,6 @@ allprojects {
                 offlineMode = false
             }
         }
-//        tasks.dokkaHtml {
-//            dependsOn("clearDokkaHtml")
-//            outputDirectory.set(file("${projectDir.parent}/docs/${project.name}"))
-//            moduleName.set(project.name)
-//            moduleVersion.set(project.version.toString())
-//            failOnWarning.set(false)
-//            suppressObviousFunctions.set(true)
-//            suppressInheritedMembers.set(false)
-//            offlineMode.set(false)
-//        }
 
         publications {
             withType<MavenPublication> {
