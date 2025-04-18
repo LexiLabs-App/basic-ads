@@ -13,9 +13,16 @@ dependencies {
     kover(project(":basic-ads"))
 }
 
+buildscript {
+    dependencies {
+        classpath(libs.dokka.base)
+    }
+}
+
+
 allprojects {
     group = "app.lexilabs.basic"
-    version = "0.2.6-beta03"
+    version = "0.2.6-beta04"
 
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
@@ -44,6 +51,9 @@ allprojects {
         tasks.register<Delete>("clearDokkaHtml") {
             delete("${projectDir.parent}/docs/${project.name}")
         }
+//        tasks.withType<DokkaTask>().configureEach{
+//            pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {  }
+//        }
         tasks.dokkaHtml {
             dependsOn("clearDokkaHtml")
             outputDirectory.set(file("${projectDir.parent}/docs/${project.name}"))

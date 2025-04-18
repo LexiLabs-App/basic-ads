@@ -149,6 +149,7 @@ Here's a list of the dependency versions for each release after 0.2.0:
 |     0.2.6-Beta01      |   2.1.20    |         1.7.3          |    1.9.1    |      24.1.0       |    12.2.0     |
 |     0.2.6-beta02      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
 |     0.2.6-beta03      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
+|     0.2.6-beta04      |  2.1.21-RC  |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
 
 ### \[Advanced Users Only\] How to deal with building this garbage
 1. Find a large cup. It must exist in the real world.
@@ -159,4 +160,4 @@ Here's a list of the dependency versions for each release after 0.2.0:
 6. Once complete, click `Build` > `Rebuild Project`. NOTE: Despite religious preference, prayer is encouraged.
 
 ### Known Issues:
-* [Can't compile using Xcode 16.3 due to breaking changes](https://youtrack.jetbrains.com/issue/KT-76460)
+* [Can't compile using Xcode 16.3 due to breaking changes](https://youtrack.jetbrains.com/issue/KT-76460) ***FIXED IN 0.2.6-beta04+***
