@@ -1,4 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
     alias(libs.plugins.multiplatform).apply(false)
@@ -51,19 +54,32 @@ allprojects {
         tasks.register<Delete>("clearDokkaHtml") {
             delete("${projectDir.parent}/docs/${project.name}")
         }
-//        tasks.withType<DokkaTask>().configureEach{
-//            pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {  }
-//        }
-        tasks.dokkaHtml {
-            dependsOn("clearDokkaHtml")
-            outputDirectory.set(file("${projectDir.parent}/docs/${project.name}"))
-            moduleName.set(project.name)
-            moduleVersion.set(project.version.toString())
-            failOnWarning.set(false)
-            suppressObviousFunctions.set(true)
-            suppressInheritedMembers.set(false)
-            offlineMode.set(false)
+        tasks.withType<DokkaTask>().configureEach{
+            pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+                dependsOn("clearDokkaHtml")
+                outputDirectory = file("${projectDir.parent}/docs/${project.name}")
+                moduleName = project.name
+                moduleVersion = project.version.toString()
+                customAssets = listOf(file("${projectDir.parent}/dokka/logo-icon.svg"))
+                // Need to create a cool looking theme at some point
+                //customStyleSheets = listOf(file("${projectDir.parent}/dokka/styles.css"))
+                footerMessage = "(c) 2025 LexiLabs"
+                failOnWarning = false
+                suppressObviousFunctions = true
+                suppressInheritedMembers = false
+                offlineMode = false
+            }
         }
+//        tasks.dokkaHtml {
+//            dependsOn("clearDokkaHtml")
+//            outputDirectory.set(file("${projectDir.parent}/docs/${project.name}"))
+//            moduleName.set(project.name)
+//            moduleVersion.set(project.version.toString())
+//            failOnWarning.set(false)
+//            suppressObviousFunctions.set(true)
+//            suppressInheritedMembers.set(false)
+//            offlineMode.set(false)
+//        }
 
         publications {
             withType<MavenPublication> {
