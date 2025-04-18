@@ -16,8 +16,7 @@ A Kotlin Multiplatform library to rapidly get Google AdMob running on Android an
 
 ![badge-android](http://img.shields.io/badge/android-full_support-65c663.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/ios-full_support-65c663.svg?style=flat)
-![badge-wasm](https://img.shields.io/badge/wasm-compile_only-yellow.svg?style=flat)
-![badge-wasm](https://img.shields.io/badge/wasm-compile_only-yellow.svg?style=flat)
+![badge-wasm](https://img.shields.io/badge/wasm-empty_compile-red.svg?style=flat)
 
 ### How it works
 Basic-Ads uses the existing Android and iOS Google AdMob libraries to display ads as `Composables`.
