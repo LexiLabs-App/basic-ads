@@ -4,9 +4,13 @@
 ![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
 ![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
 
-[![Latest Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Maven Central](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
+Stable:
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Latest Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
+
+Latest:
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21--RC-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Maven Central](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
