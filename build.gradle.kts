@@ -52,12 +52,12 @@ allprojects {
 
         /** dokka generation **/
         tasks.register<Delete>("clearDokkaHtml") {
-            delete("${projectDir.parent}/docs/${project.name}")
+            delete("${projectDir.parent}/docs")
         }
         tasks.withType<DokkaTask>().configureEach{
             pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
                 dependsOn("clearDokkaHtml")
-                outputDirectory = file("${projectDir.parent}/docs/${project.name}")
+                outputDirectory = file("${projectDir.parent}/docs")
                 moduleName = project.name
                 moduleVersion = project.version.toString()
                 customAssets = listOf(file("${projectDir.parent}/images/logo-icon.svg"))
