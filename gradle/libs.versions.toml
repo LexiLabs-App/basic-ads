@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.1.20"
+kotlin = "2.1.21-RC"
 agp = "8.9.1"
 bcv = "0.17.0"
 dokka = "2.0.0"
@@ -13,6 +13,7 @@ lexilabs = "0.2.6-beta02"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
 annotations = { module = "androidx.annotation:annotation", version.ref = "annotations"}
 lexilabs-basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "lexilabs" }

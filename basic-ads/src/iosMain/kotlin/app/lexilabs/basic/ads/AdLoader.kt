@@ -68,15 +68,15 @@ public actual class AdLoader {
         val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
         checkNotNull(viewController) { "Root ViewController is null" }
 
-        interstitialAd?.let {
-            interstitialAd?.fullScreenContentDelegate = FullScreenContentDelegate(
+        interstitialAd?.let { ad ->
+            ad.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = { onClick() },
                 onImpression = { onImpression() },
                 onDismissed = { onDismissed() },
                 onFailure = { onFailure() },
                 onShown = { onShown() }
             )
-            interstitialAd?.presentFromRootViewController(viewController)
+            ad.presentFromRootViewController(viewController)
         } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
     }
 
@@ -118,21 +118,21 @@ public actual class AdLoader {
         val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
         checkNotNull(viewController) { "Root ViewController is null" }
 
-        rewardedInterstitialAd?.let {
-            rewardedInterstitialAd?.fullScreenContentDelegate = FullScreenContentDelegate(
+        rewardedInterstitialAd?.let { ad ->
+            ad.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
                 onFailure = onFailure,
                 onImpression = onImpression,
                 onShown = onShown
             )
-            rewardedInterstitialAd?.presentFromRootViewController(
+            ad.presentFromRootViewController(
                 viewController = viewController,
                 userDidEarnRewardHandler = UserDidEarnRewardHandler(
                     onRewardEarned = { onRewardEarned() }
                 )
             )
-        } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
+        } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
     }
 
     public actual fun loadRewardedAd(
@@ -173,21 +173,21 @@ public actual class AdLoader {
         val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
         checkNotNull(viewController) { "Root ViewController is null" }
 
-        rewardedAd?.let {
-            rewardedInterstitialAd?.fullScreenContentDelegate = FullScreenContentDelegate(
+        rewardedAd?.let { ad ->
+            ad.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
                 onFailure = onFailure,
                 onImpression = onImpression,
                 onShown = onShown
             )
-            rewardedInterstitialAd?.presentFromRootViewController(
-                viewController = viewController,
+            ad.presentFromRootViewController(
+                rootViewController = viewController,
                 userDidEarnRewardHandler = UserDidEarnRewardHandler(
                     onRewardEarned = { onRewardEarned() }
                 )
             )
-        } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
+        } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")
     }
 
 }

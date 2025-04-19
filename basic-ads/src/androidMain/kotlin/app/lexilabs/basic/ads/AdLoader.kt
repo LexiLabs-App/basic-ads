@@ -285,6 +285,6 @@ public actual class AdLoader {
             ) {
                 onRewardEarned()
             }
-        } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
+        } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")
     }
 }
