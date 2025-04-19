@@ -3,24 +3,19 @@
 
 ![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
 ![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
-
-Stable:
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
-[![Latest Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-
-Latest:
+[![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21--RC-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
-[![Maven Central](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
 ![badge-android](http://img.shields.io/badge/android-full_support-65c663.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/ios-full_support-65c663.svg?style=flat)
-![badge-wasm](https://img.shields.io/badge/wasm-empty_compile-red.svg?style=flat)
+![badge-wasmJs](https://img.shields.io/badge/wasmJs-empty_compile-red.svg?style=flat)
 
 ### How it works
-Basic-Ads uses the existing Android and iOS Google AdMob libraries to display ads as `Composables`.
-A [full walkthrough](https://medium.com/@robert.jamison/composable-ads-f8795924aa0d) is available on my Medium Blog,
+Basic-Ads uses the existing Android and iOS [Google AdMob](https://admob.google.com/) libraries to display ads as `Composables`.
+It does complile on wasmJs if you need to use [Google AdSense](https://adsense.google.com/), but that is all it does on wasmJs.
+A [full walkthrough](https://medium.com/@robert.jamison/composable-ads-f8795924aa0d) is available on Medium,
 and there's also [an easy-start template](https://github.com/LexiLabs-App/Example-Basic-Ads).
 
 ## Preparation
@@ -37,6 +32,12 @@ For **iOS**, complete the steps in AdMob's instructions:
 ***NOTE: For Xcode 13+, you can update your [Custom iOS Target Properties](https://useyourloaf.com/blog/xcode-13-missing-info.plist/).***
 
 ## Installation
+* [![Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+
+* [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21--RC-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+
 Add your dependencies from Maven
 ```toml
 # in your 'libs.versions.toml' file
@@ -73,7 +74,7 @@ sourceSets {
 ```
 
 ## Usage
-Call [BasicAds.initialize] in your `commonMain` before building ads.
+Call `BasicAds.initialize` in your `commonMain` before building ads.
 ***NOTE: You do not need to initialize within each platform.***
 
 ```kotlin
@@ -166,3 +167,4 @@ Here's a list of the dependency versions for each release after 0.2.0:
 
 ### Known Issues:
 * [Can't compile using Xcode 16.3 due to breaking changes](https://youtrack.jetbrains.com/issue/KT-76460) ***FIXED IN 0.2.6-beta04+***
+* [Doesn't support Native Ads (yet)](https://github.com/LexiLabs-App/basic-ads/issues/29)
