@@ -156,6 +156,7 @@ Here's a list of the dependency versions for each release after 0.2.0:
 |     0.2.6-beta02      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
 |     0.2.6-beta03      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
 |     0.2.6-beta04      |  2.1.21-RC  |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
+|     0.2.6-beta05      |  2.1.21-RC  |         1.8.0          |    1.9.1    |      24.2.0       |    12.3.0     |
 
 ### \[Advanced Users Only\] How to deal with building this garbage
 1. Find a large cup. It must exist in the real world.

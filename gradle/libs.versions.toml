@@ -1,22 +1,28 @@
 [versions]
+# BUILD INFO
+ads = "0.2.6-beta05"
+build-sdk-compile = "35"
+build-sdk-min = "24"
+build-sdk-target = "35"
+build-ios-target-deployment = "13.0"
 kotlin = "2.1.21-RC"
-agp = "8.9.1"
+agp = "8.9.2"
+# DEPENDENCIES
 bcv = "0.17.0"
 dokka = "2.0.0"
-compose = "1.7.3"
+compose = "1.8.0"
 google-play-services-ads = "24.2.0"
 annotations = "1.9.1"
-ios-deploymentTarget = "13.0"
-adMob-cocoapods = "12.2.0"
+cocoapods-admob = "12.3.0"
 kover = "0.9.1"
-lexilabs = "0.2.6-beta02"
+logging = "0.2.6-beta03"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
 annotations = { module = "androidx.annotation:annotation", version.ref = "annotations"}
-lexilabs-basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "lexilabs" }
+lexilabs-basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "logging" }
 
 [plugins]
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
