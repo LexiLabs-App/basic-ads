@@ -45,12 +45,15 @@ Add your dependencies from Maven
 kotlin = "+" # gets the latest version
 compose = "+" # gets the latest version
 basic = "+" # gets the latest version
+build-ios-target-deployment = "13.0" # required for cocoapods
 google-play-services-ads = "+" # you did this during the preparation step
+android-ump = "+"
 
 [libraries]
 basic-ads = { module = "app.lexilabs.basic:basic-ads", version.ref = "basic"}
 basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "basic"}
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
+android-ump = { module = "com.google.android.ump:user-messaging-platform", version.ref = "android-ump" }
 
 [plugins] # make sure you're using the JetBrains plugin to import your composables
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose" }
@@ -65,10 +68,31 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+cocoapods {
+    ios.deploymentTarget = libs.versions.build.ios.target.deployment.get()
+    framework {
+        baseName = "GoogleMobileAds"
+    }
+    noPodspec()
+    pod("Google-Mobile-Ads-SDK") {
+        moduleName = "GoogleMobileAds"
+        version = libs.versions.cocoapods.admob.get()
+        extraOpts += listOf("-compiler-option", "-fmodules")
+    }
+    pod("GoogleUserMessagingPlatform") {
+        moduleName = "GoogleUserMessagingPlatform"
+        version = libs.versions.cocoapods.ump.get()
+        extraOpts += listOf("-compiler-option", "-fmodules")
+    }
+}
+
 sourceSets {
     commonMain.dependencies {
         implementation(libs.lexilabs.basic.ads)
+    }
+    androidMain.dependencies {
         implementation(libs.google.play.services.ads)
+        implementation(libs.android.ump)
     }
 }
 ```
@@ -144,19 +168,19 @@ In case you need it, here's some [additional documentation](https://basic.lexila
 
 Here's a list of the dependency versions for each release after 0.2.0:
 
-| Basic-Ads<br/>Version |   Kotlin    | Compose<br/>Foundation | Annotations | AdMob<br/>Android | AdMob<br/>iOS |
-|:---------------------:|:-----------:|:----------------------:|:-----------:|:-----------------:|:-------------:|
-|         0.2.0         | 2.1.0-Beta1 |       1.7.0-rc01       |    1.8.2    |      23.4.0       |    11.9.0     |
-|         0.2.1         |  2.1.0-RC2  |         1.7.0          |    1.9.1    |      23.5.0       |    11.9.0     |
-|         0.2.2         |    2.1.0    |         1.7.1          |    1.9.1    |      23.5.0       |    11.9.0     |
-|         0.2.3         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |
-|         0.2.4         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |
-|         0.2.5         |   2.1.10    |         1.7.3          |    1.9.1    |      24.0.0       |    12.1.0     |
-|     0.2.6-Beta01      |   2.1.20    |         1.7.3          |    1.9.1    |      24.1.0       |    12.2.0     |
-|     0.2.6-beta02      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
-|     0.2.6-beta03      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
-|     0.2.6-beta04      |  2.1.21-RC  |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |
-|     0.2.6-beta05      |  2.1.21-RC  |         1.8.0          |    1.9.1    |      24.2.0       |    12.3.0     |
+| Basic-Ads<br/>Version |   Kotlin    | Compose<br/>Foundation | Annotations | AdMob<br/>Android | AdMob<br/>iOS |  UMP  |
+|:---------------------:|:-----------:|:----------------------:|:-----------:|:-----------------:|:-------------:|:-----:|
+|         0.2.0         | 2.1.0-Beta1 |       1.7.0-rc01       |    1.8.2    |      23.4.0       |    11.9.0     |   -   |
+|         0.2.1         |  2.1.0-RC2  |         1.7.0          |    1.9.1    |      23.5.0       |    11.9.0     |   -   |
+|         0.2.2         |    2.1.0    |         1.7.1          |    1.9.1    |      23.5.0       |    11.9.0     |   -   |
+|         0.2.3         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |   -   |
+|         0.2.4         |   2.0.21    |         1.7.1          |    1.9.1    |      23.6.0       |    11.9.0     |   -   |
+|         0.2.5         |   2.1.10    |         1.7.3          |    1.9.1    |      24.0.0       |    12.1.0     |   -   |
+|     0.2.6-Beta01      |   2.1.20    |         1.7.3          |    1.9.1    |      24.1.0       |    12.2.0     |   -   |
+|     0.2.6-beta02      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |   -   |
+|     0.2.6-beta03      |   2.1.20    |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |   -   |
+|     0.2.6-beta04      |  2.1.21-RC  |         1.7.3          |    1.9.1    |      24.2.0       |    12.2.0     |   -   |
+|     0.2.6-beta05      |  2.1.21-RC  |         1.8.0          |    1.9.1    |      24.2.0       |    12.3.0     | 3.1.0 |
 
 ### \[Advanced Users Only\] How to deal with building this garbage
 1. Find a large cup. It must exist in the real world.

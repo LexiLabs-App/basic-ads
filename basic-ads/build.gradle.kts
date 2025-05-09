@@ -67,6 +67,11 @@ kotlin {
             version = libs.versions.cocoapods.admob.get()
             extraOpts += listOf("-compiler-option", "-fmodules")
         }
+        pod("GoogleUserMessagingPlatform") {
+            moduleName = "GoogleUserMessagingPlatform"
+            version = libs.versions.cocoapods.ump.get()
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
     }
 
     sourceSets {
@@ -78,6 +83,8 @@ kotlin {
         }
         androidMain.dependencies {
             compileOnly(libs.google.play.services.ads)
+            compileOnly(libs.android.ump)
+            api(libs.android.ump)
         }
         iosMain.dependencies {}
     }
