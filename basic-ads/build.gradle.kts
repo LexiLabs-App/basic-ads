@@ -56,11 +56,6 @@ kotlin {
 
     cocoapods {
         ios.deploymentTarget = libs.versions.build.ios.target.deployment.get()
-        framework {
-            baseName = "GoogleMobileAds"
-            // Enable "isStatic", build, disable "isStatic", then build again.
-//            isStatic = true
-        }
         noPodspec()
         pod("Google-Mobile-Ads-SDK") {
             moduleName = "GoogleMobileAds"
@@ -68,7 +63,7 @@ kotlin {
             extraOpts += listOf("-compiler-option", "-fmodules")
         }
         pod("GoogleUserMessagingPlatform") {
-            moduleName = "GoogleUserMessagingPlatform"
+            moduleName = "UserMessagingPlatform"
             version = libs.versions.cocoapods.ump.get()
             extraOpts += listOf("-compiler-option", "-fmodules")
         }
