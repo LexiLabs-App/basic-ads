@@ -161,6 +161,49 @@ fun AdScreen() {
 
 In case you need it, here's some [additional documentation](https://basic.lexilabs.app/basic-ads)
 
+## [FOR GDPR COMPLIANCE ONLY] Consent Requests
+
+This topic can goe _very_ in-depth, so please begin by reading about [what GDPR is](https://gdpr.eu/) and [how AdMob complies with GDPR requirements](https://support.google.com/admob/answer/7666366?hl=en).
+
+Once you're familiar with the consent banner requirements, feel free to begin using the `Consent` features of Basic Ads:
+```kotlin
+// in your 'composeApp/src/commonMain/AdScreen.kt' file
+val consentInfo = Consent(activity) // Create a Consent object
+
+// Check what the app's consent requirements are
+consentInfo.requestConsentInfoUpdate(
+    onError = { error: Exception ->
+        Log.e(tag, error.message)
+    }
+)
+
+// Show the consent form
+consentInfo.loadAndShowConsentForm(
+    onError = { error: Exception ->
+        Log.e(tag, error.message)
+    }
+)
+
+// Check if privacy options are required
+if (consentInfo.isPrivacyOptionsRequired()) {
+    // Load and present the privacy form
+    consentInfo.showPrivacyOptionsForm(
+        onDismissed = {
+            Log.d(tag, "dismissed")
+        },
+        onError = { error: Exception ->
+            Log.e(tag, error.message)
+        }
+    )
+} 
+
+// Check if the user can see ads
+if (consentInfo.canRequestAds()) {
+    /** Logic to show your ads **/
+    AdScreen()
+}
+```
+
 ## Versioning
 
 Here's a list of the dependency versions for each release after 0.2.0:

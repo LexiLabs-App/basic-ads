@@ -73,9 +73,12 @@ public final class app/lexilabs/basic/ads/ComposablesKt {
 
 public final class app/lexilabs/basic/ads/Consent {
 	public static final field $stable I
-	public static final field INSTANCE Lapp/lexilabs/basic/ads/Consent;
-	public final fun loadAndShowConsentForm (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)V
-	public final fun requestConsentInfoUpdate (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun canRequestAds ()Z
+	public final fun isPrivacyOptionsRequired ()Z
+	public final fun loadAndShowConsentForm (Lkotlin/jvm/functions/Function1;)V
+	public final fun requestConsentInfoUpdate (Lkotlin/jvm/functions/Function1;)V
+	public final fun showPrivacyOptionsForm (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
 }
 
 public final class app/lexilabs/basic/ads/ConsentException : java/lang/Exception {
