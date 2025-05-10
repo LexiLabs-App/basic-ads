@@ -22,10 +22,9 @@ buildscript {
     }
 }
 
-
 allprojects {
     group = "app.lexilabs.basic"
-    version = "0.2.6-beta04"
+    version = rootProject.libs.versions.ads.get()
 
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "maven-publish")
@@ -52,12 +51,12 @@ allprojects {
 
         /** dokka generation **/
         tasks.register<Delete>("clearDokkaHtml") {
-            delete("${projectDir.parent}/docs/${project.name}")
+            delete("${projectDir.parent}/docs")
         }
         tasks.withType<DokkaTask>().configureEach{
             pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
                 dependsOn("clearDokkaHtml")
-                outputDirectory = file("${projectDir.parent}/docs/${project.name}")
+                outputDirectory = file("${projectDir.parent}/docs")
                 moduleName = project.name
                 moduleVersion = project.version.toString()
                 customAssets = listOf(file("${projectDir.parent}/images/logo-icon.svg"))

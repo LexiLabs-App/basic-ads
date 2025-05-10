@@ -25,14 +25,23 @@ public actual object BasicAds {
     @MainThread
     @RequiresPermission("android.permission.INTERNET")
     public actual fun initialize(context: Any?) {
+        require(context != null) {
+            "Context must be set to non-null value in Android"
+        }
         com.google.android.gms.ads.MobileAds.initialize(context as Context)
     }
 
     public actual fun disableMediationAdapterInitialization(context: Any?) {
+        require(context != null) {
+            "Context must be set to non-null value in Android"
+        }
         com.google.android.gms.ads.MobileAds.disableMediationAdapterInitialization(context as Context)
     }
 
     public actual fun openDebugMenu(context: Any?, adUnitId: String) {
+        require(context != null) {
+            "Context must be set to non-null value in Android"
+        }
         com.google.android.gms.ads.MobileAds.openDebugMenu(context as Context, adUnitId)
     }
 

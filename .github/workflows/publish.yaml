@@ -109,17 +109,12 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Generate api docs with dokka
-        run: ./gradlew dokkaHtmlMultiModule
-
-      - name: Move dokka api-doc to docs
-        run: |
-          sudo mkdir -p build/docs
-          sudo mv build/dokka/htmlMultiModule/* build/docs
+        run: ./gradlew dokkaHtml
 
       - name: Upload pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build/docs
+          path: docs
 
       - name: Release to GitHub Pages
         id: deployment

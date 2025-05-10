@@ -36,6 +36,9 @@ public actual fun InterstitialAd(
     onFailure: () -> Unit,
     onLoad: () -> Unit
 ) {
+    require(activity != null) {
+        "Activity Context must be set to non-null value in Android"
+    }
     val adLoader = AdLoader()
     adLoader.loadInterstitialAd(
         activity,
@@ -67,6 +70,9 @@ public actual fun RewardedAd(
     onFailure: () -> Unit,
     onLoad: () -> Unit
 ) {
+    require(activity != null) {
+        "Activity Context must be set to non-null value in Android"
+    }
     val adLoader = AdLoader()
     adLoader.loadRewardedAd(
         activity = activity,
@@ -99,6 +105,9 @@ public actual fun RewardedInterstitialAd(
     onFailure: () -> Unit,
     onLoad: () -> Unit
 ) {
+    require(activity != null) {
+        "Activity Context must be set to non-null value in Android"
+    }
     val adLoader = AdLoader()
     adLoader.loadRewardedInterstitialAd(
         activity = activity,
