@@ -28,6 +28,9 @@ public actual class AdLoader {
         onLoaded: () -> Unit,
         onFailedToLoad: (Long) -> Unit,
     ) {
+        require(activity != null) {
+            "Activity Context must be set to non-null value in Android"
+        }
         Log.d(tag, "loadInterstitialAd: Loading")
         interstitialAdUnitId = adUnitId
         com.google.android.gms.ads.interstitial.InterstitialAd
@@ -61,6 +64,9 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ){
+        require(activity != null) {
+            "Activity Context must be set to non-null value in Android"
+        }
 //        if (interstitialAd != null) {
         interstitialAd?.let {
             interstitialAd?.fullScreenContentCallback = object: com.google.android.gms.ads.FullScreenContentCallback() {
@@ -115,6 +121,9 @@ public actual class AdLoader {
         onLoaded: () -> Unit,
         onFailedToLoad: (Long) -> Unit,
     ) {
+        require(activity != null) {
+            "Activity Context must be set to non-null value in Android"
+        }
         rewardedInterstitialAdUnitId = adUnitId
         com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
             .load(
@@ -148,6 +157,9 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ){
+        require(activity != null) {
+            "Activity Context must be set to non-null value in Android"
+        }
         rewardedInterstitialAd?.let {
             rewardedInterstitialAd?.fullScreenContentCallback = object: com.google.android.gms.ads.FullScreenContentCallback() {
                 override fun onAdClicked() {
@@ -205,6 +217,9 @@ public actual class AdLoader {
         onLoaded: () -> Unit,
         onFailedToLoad: (Long) -> Unit,
     ) {
+        require(activity != null) {
+            "Activity Context must be set to non-null value in Android"
+        }
         rewardedAdUnitId = adUnitId
         com.google.android.gms.ads.rewarded.RewardedAd
             .load(
@@ -238,6 +253,9 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ){
+        require(activity != null) {
+            "Activity Context must be set to non-null value in Android"
+        }
         rewardedAd?.let {
             rewardedAd?.fullScreenContentCallback = object: com.google.android.gms.ads.FullScreenContentCallback() {
                 override fun onAdClicked() {
