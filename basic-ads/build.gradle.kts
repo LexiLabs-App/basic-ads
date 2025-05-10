@@ -55,16 +55,16 @@ kotlin {
     }
 
     cocoapods {
-        ios.deploymentTarget = libs.versions.ios.deploymentTarget.get()
-        framework {
-            baseName = "GoogleMobileAds"
-            // Enable "isStatic", build, disable "isStatic", then build again.
-//            isStatic = true
-        }
+        ios.deploymentTarget = libs.versions.build.ios.target.deployment.get()
         noPodspec()
         pod("Google-Mobile-Ads-SDK") {
             moduleName = "GoogleMobileAds"
-            version = libs.versions.adMob.cocoapods.get()
+            version = libs.versions.cocoapods.admob.get()
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
+        pod("GoogleUserMessagingPlatform") {
+            moduleName = "UserMessagingPlatform"
+            version = libs.versions.cocoapods.ump.get()
             extraOpts += listOf("-compiler-option", "-fmodules")
         }
     }
@@ -78,6 +78,8 @@ kotlin {
         }
         androidMain.dependencies {
             compileOnly(libs.google.play.services.ads)
+            compileOnly(libs.android.ump)
+            api(libs.android.ump)
         }
         iosMain.dependencies {}
     }
@@ -110,10 +112,13 @@ kotlin {
 
 android {
     namespace = "app.lexilabs.basic.ads"
-    compileSdk = 35
+    compileSdk = libs.versions.build.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.build.sdk.min.get().toInt()
+    }
+    testOptions {
+        targetSdk = libs.versions.build.sdk.target.get().toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
