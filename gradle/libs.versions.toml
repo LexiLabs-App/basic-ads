@@ -1,6 +1,6 @@
 [versions]
 # BUILD INFO
-ads = "0.2.6-beta05"
+ads = "0.2.6"
 build-sdk-compile = "35"
 build-sdk-min = "24"
 build-sdk-target = "35"
