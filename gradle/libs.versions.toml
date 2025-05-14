@@ -17,7 +17,7 @@ compose = "1.8.0"
 google-play-services-ads = "24.2.0"
 annotations = "1.9.1"
 kover = "0.9.1"
-logging = "0.2.6-beta03"
+logging = "0.2.6"
 android-ump = "3.2.0"
 
 [libraries]
