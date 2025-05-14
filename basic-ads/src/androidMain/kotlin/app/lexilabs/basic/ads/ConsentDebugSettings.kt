@@ -3,8 +3,7 @@ package app.lexilabs.basic.ads
 import android.app.Activity
 
 public actual class ConsentDebugSettings internal constructor(
-    internal val android: com.google.android.ump.ConsentDebugSettings =
-        com.google.android.ump.ConsentDebugSettings()
+    internal val android: com.google.android.ump.ConsentDebugSettings
 ){
     public actual fun getDebugGeography(): DebugGeography = DebugGeography.entries[android.debugGeography]
     public actual fun isTestDevice(): Boolean = android.isTestDevice
