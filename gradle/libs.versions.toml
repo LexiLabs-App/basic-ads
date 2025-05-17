@@ -6,7 +6,7 @@ build-sdk-min = "24"
 build-sdk-target = "35"
 build-ios-target-deployment = "13.0"
 kotlin = "2.1.21"
-agp = "8.9.2"
+agp = "8.10.0"
 # COCOAPODS DEPENDENCIES
 cocoapods-admob = "12.4.0"
 cocoapods-ump = "3.0.0"
@@ -17,7 +17,7 @@ compose = "1.8.0"
 google-play-services-ads = "24.2.0"
 annotations = "1.9.1"
 kover = "0.9.1"
-logging = "0.2.6-beta03"
+logging = "0.2.6"
 android-ump = "3.2.0"
 
 [libraries]
