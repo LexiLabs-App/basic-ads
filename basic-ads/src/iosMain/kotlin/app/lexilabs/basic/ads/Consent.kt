@@ -51,6 +51,35 @@ public actual class Consent actual constructor(activity: Any?) {
     }
 
     /**
+     * Gets the user's consent information
+     *
+     * You should request an update of the user's consent information at every app launch,
+     * using [requestConsentInfoUpdate]. This request checks the following:
+     *
+     * __Whether consent is required.__ For example, consent is required for
+     * the first time, or the previous consent decision expired.
+     *
+     * __Whether a privacy options entry point is required.__
+     * Some privacy messages require apps to allow users to modify their
+     * privacy options at any time.
+     * @param onError lambda which passes a [ConsentException] on failure
+     */
+    public actual fun requestConsentInfoUpdate(onError: (Exception) -> Unit, params: ConsentRequestParameters) {
+        UMPConsentInformation.sharedInstance().requestConsentInfoUpdateWithParameters(
+            parameters = params.ios,
+            completionHandler = { updateError ->
+                updateError?.let { onError(ConsentException(it.description)) }
+            }
+        )
+        UMPConsentForm.loadAndPresentIfRequiredFromViewController(
+            viewController = getCurrentViewController(),
+            completionHandler = { loadError ->
+                loadError?.let { onError(ConsentException(it.description)) }
+            }
+        )
+    }
+
+    /**
      * Load and present the privacy message form
      *
      * After you have received the most up-to-date consent status,
