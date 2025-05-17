@@ -85,33 +85,29 @@ public final class app/lexilabs/basic/ads/Consent {
 
 public final class app/lexilabs/basic/ads/ConsentDebugSettings {
 	public static final field $stable I
-	public static final field Companion Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion;
-	public final fun getDebugGeography ()Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
+	public final fun getDebugGeography ()Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
 	public final fun isTestDevice ()Z
 }
 
-public final class app/lexilabs/basic/ads/ConsentDebugSettings$Companion {
-}
-
-public final class app/lexilabs/basic/ads/ConsentDebugSettings$Companion$Builder {
+public final class app/lexilabs/basic/ads/ConsentDebugSettings$Builder {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;)V
 	public final fun addTestDeviceHashedId (Ljava/lang/String;)V
 	public final fun build ()Lapp/lexilabs/basic/ads/ConsentDebugSettings;
-	public final fun setDebugGeography (Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;)V
+	public final fun setDebugGeography (Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;)V
 	public final fun setForceTesting (Z)V
 }
 
-public final class app/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography : java/lang/Enum {
-	public static final field DEBUG_GEOGRAPHY_DISABLED Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
-	public static final field DEBUG_GEOGRAPHY_EEA Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
-	public static final field DEBUG_GEOGRAPHY_NOT_EEA Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
-	public static final field DEBUG_GEOGRAPHY_OTHER Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
-	public static final field DEBUG_GEOGRAPHY_REGULATED_US_STATE Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
+public final class app/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography : java/lang/Enum {
+	public static final field DEBUG_GEOGRAPHY_DISABLED Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_EEA Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_NOT_EEA Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_OTHER Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_REGULATED_US_STATE Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()I
-	public static fun valueOf (Ljava/lang/String;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
-	public static fun values ()[Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion$DebugGeography;
+	public static fun valueOf (Ljava/lang/String;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static fun values ()[Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
 }
 
 public final class app/lexilabs/basic/ads/ConsentException : java/lang/Exception {
@@ -121,16 +117,12 @@ public final class app/lexilabs/basic/ads/ConsentException : java/lang/Exception
 
 public final class app/lexilabs/basic/ads/ConsentRequestParameters {
 	public static final field $stable I
-	public static final field Companion Lapp/lexilabs/basic/ads/ConsentRequestParameters$Companion;
 	public fun <init> ()V
 	public final fun getConsentDebugSettings ()Lapp/lexilabs/basic/ads/ConsentDebugSettings;
 	public final fun getIsTagForUnderAgeOfConsent ()Z
 }
 
-public final class app/lexilabs/basic/ads/ConsentRequestParameters$Companion {
-}
-
-public final class app/lexilabs/basic/ads/ConsentRequestParameters$Companion$Builder {
+public final class app/lexilabs/basic/ads/ConsentRequestParameters$Builder {
 	public static final field $stable I
 	public fun <init> ()V
 	public final fun build ()Lapp/lexilabs/basic/ads/ConsentRequestParameters;

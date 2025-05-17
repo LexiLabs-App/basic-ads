@@ -12,19 +12,18 @@ public actual class ConsentRequestParameters internal constructor(
 
     public actual fun getIsTagForUnderAgeOfConsent(): Boolean = ios.tagForUnderAgeOfConsent
 
-    public actual companion object {
-        public actual class Builder actual constructor() {
-            internal val builder = UMPRequestParameters()
+    public actual class Builder actual constructor() {
+        @Suppress("MemberVisibilityCanBePrivate")
+        internal val builder = UMPRequestParameters()
 
-            public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings){
-                builder.debugSettings = debugSettings.ios
-            }
-            public actual fun setAdMobAppId(adMobAppId: String){ /* DO NOTHING */ }
-            public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean){
-                builder.setTagForUnderAgeOfConsent(underAgeOfConsent)
-            }
-            public actual fun build(): ConsentRequestParameters =
-                ConsentRequestParameters(builder)
+        public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings){
+            builder.debugSettings = debugSettings.ios
         }
+        public actual fun setAdMobAppId(adMobAppId: String){ /* DO NOTHING */ }
+        public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean){
+            builder.setTagForUnderAgeOfConsent(underAgeOfConsent)
+        }
+        public actual fun build(): ConsentRequestParameters =
+            ConsentRequestParameters(builder)
     }
 }

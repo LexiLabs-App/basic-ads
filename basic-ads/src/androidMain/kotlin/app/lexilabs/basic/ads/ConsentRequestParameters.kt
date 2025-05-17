@@ -10,21 +10,20 @@ public actual class ConsentRequestParameters internal constructor(
 
     public actual fun getIsTagForUnderAgeOfConsent(): Boolean = android.isTagForUnderAgeOfConsent
 
-    public actual companion object {
-        public actual class Builder actual constructor() {
-            internal val builder = AndroidConsentRequestParameters.Builder()
+    public actual class Builder actual constructor() {
+        @Suppress("MemberVisibilityCanBePrivate")
+        internal val builder = AndroidConsentRequestParameters.Builder()
 
-            public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings){
-                builder.setConsentDebugSettings(debugSettings.android)
-            }
-            public actual fun setAdMobAppId(adMobAppId: String){
-                builder.setAdMobAppId(adMobAppId)
-            }
-            public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean){
-                builder.setTagForUnderAgeOfConsent(underAgeOfConsent)
-            }
-            public actual fun build(): ConsentRequestParameters =
-                ConsentRequestParameters(builder.build())
+        public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings){
+            builder.setConsentDebugSettings(debugSettings.android)
         }
+        public actual fun setAdMobAppId(adMobAppId: String){
+            builder.setAdMobAppId(adMobAppId)
+        }
+        public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean){
+            builder.setTagForUnderAgeOfConsent(underAgeOfConsent)
+        }
+        public actual fun build(): ConsentRequestParameters =
+            ConsentRequestParameters(builder.build())
     }
 }
