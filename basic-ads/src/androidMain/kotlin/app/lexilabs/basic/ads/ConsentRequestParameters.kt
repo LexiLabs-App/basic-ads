@@ -3,7 +3,7 @@ package app.lexilabs.basic.ads
 import com.google.android.ump.ConsentRequestParameters as AndroidConsentRequestParameters
 
 public actual class ConsentRequestParameters internal constructor(
-    internal val android: AndroidConsentRequestParameters = AndroidConsentRequestParameters()
+    internal val android: AndroidConsentRequestParameters = AndroidConsentRequestParameters.Builder().build()
 ) {
     public actual fun getConsentDebugSettings(): ConsentDebugSettings? =
         android.consentDebugSettings?.let { ConsentDebugSettings(it) }
