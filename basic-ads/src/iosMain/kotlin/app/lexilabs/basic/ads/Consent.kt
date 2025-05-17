@@ -151,6 +151,18 @@ public actual class Consent actual constructor(activity: Any?) {
     public actual fun canRequestAds(): Boolean =
         UMPConsentInformation.sharedInstance.canRequestAds
 
+    /**
+     * Reset consent state
+     *
+     * When testing your app with the UMP SDK, you might find it helpful to reset
+     * the state of the SDK so that you can simulate a user's first install experience.
+     *
+     * All SDKs provide the reset() method to do this.
+     */
+    public actual fun reset(){
+        UMPConsentInformation.sharedInstance.reset()
+    }
+
     private fun getCurrentViewController(): UIViewController? {
         return UIApplication.sharedApplication().keyWindow()?.rootViewController?.presentedViewController ?:
         UIApplication.sharedApplication.keyWindow?.rootViewController
