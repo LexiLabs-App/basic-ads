@@ -42,13 +42,16 @@ public actual class Consent actual constructor(activity: Any?) {
         UMPConsentInformation.sharedInstance().requestConsentInfoUpdateWithParameters(
             parameters = null,
             completionHandler = { updateError ->
-                updateError?.let { onError(ConsentException(it.description)) }
-            }
-        )
-        UMPConsentForm.loadAndPresentIfRequiredFromViewController(
-            viewController = getCurrentViewController(),
-            completionHandler = { loadError ->
-                loadError?.let { onError(ConsentException(it.description)) }
+                if (updateError != null) {
+                    onError(ConsentException(updateError.description))
+                } else {
+                    UMPConsentForm.loadAndPresentIfRequiredFromViewController(
+                        viewController = getCurrentViewController(),
+                        completionHandler = { loadError ->
+                            loadError?.let { onError(ConsentException(it.description)) }
+                        }
+                    )
+                }
             }
         )
     }
@@ -71,13 +74,16 @@ public actual class Consent actual constructor(activity: Any?) {
         UMPConsentInformation.sharedInstance().requestConsentInfoUpdateWithParameters(
             parameters = params.ios,
             completionHandler = { updateError ->
-                updateError?.let { onError(ConsentException(it.description)) }
-            }
-        )
-        UMPConsentForm.loadAndPresentIfRequiredFromViewController(
-            viewController = getCurrentViewController(),
-            completionHandler = { loadError ->
-                loadError?.let { onError(ConsentException(it.description)) }
+                if (updateError != null) {
+                    onError(ConsentException(updateError.description))
+                } else {
+                    UMPConsentForm.loadAndPresentIfRequiredFromViewController(
+                        viewController = getCurrentViewController(),
+                        completionHandler = { loadError ->
+                            loadError?.let { onError(ConsentException(it.description)) }
+                        }
+                    )
+                }
             }
         )
     }
