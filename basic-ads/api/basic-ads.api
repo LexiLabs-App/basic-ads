@@ -77,8 +77,8 @@ public final class app/lexilabs/basic/ads/Consent {
 	public final fun canRequestAds ()Z
 	public final fun isPrivacyOptionsRequired ()Z
 	public final fun loadAndShowConsentForm (Lkotlin/jvm/functions/Function1;)V
+	public final fun requestConsentInfoUpdate (Lapp/lexilabs/basic/ads/ConsentRequestParameters;Lkotlin/jvm/functions/Function1;)V
 	public final fun requestConsentInfoUpdate (Lkotlin/jvm/functions/Function1;)V
-	public final fun requestConsentInfoUpdate (Lkotlin/jvm/functions/Function1;Lapp/lexilabs/basic/ads/ConsentRequestParameters;)V
 	public final fun reset ()V
 	public final fun showPrivacyOptionsForm (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
 }

@@ -42,7 +42,7 @@ public expect class Consent(activity: Any?) {
      * privacy options at any time.
      * @param onError lambda which passes a [ConsentException] on failure
      */
-    public fun requestConsentInfoUpdate(onError: (Exception) -> Unit, params: ConsentRequestParameters)
+    public fun requestConsentInfoUpdate(params: ConsentRequestParameters, onError: (Exception) -> Unit)
 
     /**
      * Load and present the privacy message form

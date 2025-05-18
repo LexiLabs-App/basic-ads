@@ -70,7 +70,7 @@ public actual class Consent actual constructor (activity: Any?) {
      * privacy options at any time.
      * @param onError lambda which passes a [ConsentException] on failure
      */
-    public actual fun requestConsentInfoUpdate(onError: (Exception) -> Unit, params: ConsentRequestParameters) {
+    public actual fun requestConsentInfoUpdate(params: ConsentRequestParameters, onError: (Exception) -> Unit) {
 
         consentInformation.requestConsentInfoUpdate(
             context,
