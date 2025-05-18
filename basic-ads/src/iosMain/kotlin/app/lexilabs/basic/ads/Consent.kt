@@ -180,24 +180,4 @@ public actual class Consent actual constructor(activity: Any?) {
         }
         return rootViewController
     }
-
-//    func getTopViewController(_ rootViewController: UIViewController? = UIApplication.shared.connectedScenes
-//    .compactMap { ($0 as? UIWindowScene)?.keyWindow }
-//    .first?.rootViewController) -> UIViewController? {
-//
-//        if let nav = rootViewController as? UINavigationController {
-//            return getTopViewController(nav.visibleViewController)
-//        }
-//
-//        if let tab = rootViewController as? UITabBarController,
-//        let selected = tab.selectedViewController {
-//            return getTopViewController(selected)
-//        }
-//
-//        if let presented = rootViewController?.presentedViewController {
-//            return getTopViewController(presented)
-//        }
-//
-//        return rootViewController
-//    }
 }
