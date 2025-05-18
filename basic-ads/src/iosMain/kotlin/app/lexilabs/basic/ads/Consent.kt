@@ -6,7 +6,10 @@ import cocoapods.GoogleUserMessagingPlatform.UMPPrivacyOptionsRequirementStatusR
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 import platform.UIKit.UIApplication
+import platform.UIKit.UINavigationController
+import platform.UIKit.UITabBarController
 import platform.UIKit.UIViewController
+import platform.UIKit.UIWindowScene
 
 /**
  * Create consent and privacy forms via the Google User Messaging Platform.
@@ -164,7 +167,37 @@ public actual class Consent actual constructor(activity: Any?) {
     }
 
     private fun getCurrentViewController(): UIViewController? {
-        return UIApplication.sharedApplication().keyWindow()?.rootViewController?.presentedViewController ?:
-        UIApplication.sharedApplication.keyWindow?.rootViewController
+        val rootViewController = UIApplication.sharedApplication.connectedScenes.map { (it as UIWindowScene).keyWindow }
+            .first()?.rootViewController
+        if (rootViewController is UINavigationController) {
+            return rootViewController.visibleViewController
+        }
+        if (rootViewController is UITabBarController) {
+            return rootViewController.selectedViewController
+        }
+        rootViewController?.presentedViewController?.let {
+            return it
+        }
+        return rootViewController
     }
+
+//    func getTopViewController(_ rootViewController: UIViewController? = UIApplication.shared.connectedScenes
+//    .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+//    .first?.rootViewController) -> UIViewController? {
+//
+//        if let nav = rootViewController as? UINavigationController {
+//            return getTopViewController(nav.visibleViewController)
+//        }
+//
+//        if let tab = rootViewController as? UITabBarController,
+//        let selected = tab.selectedViewController {
+//            return getTopViewController(selected)
+//        }
+//
+//        if let presented = rootViewController?.presentedViewController {
+//            return getTopViewController(presented)
+//        }
+//
+//        return rootViewController
+//    }
 }
