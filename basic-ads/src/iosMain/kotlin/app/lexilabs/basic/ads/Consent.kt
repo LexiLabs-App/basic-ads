@@ -5,11 +5,6 @@ import cocoapods.GoogleUserMessagingPlatform.UMPConsentInformation
 import cocoapods.GoogleUserMessagingPlatform.UMPPrivacyOptionsRequirementStatusRequired
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
-import platform.UIKit.UIApplication
-import platform.UIKit.UINavigationController
-import platform.UIKit.UITabBarController
-import platform.UIKit.UIViewController
-import platform.UIKit.UIWindowScene
 
 /**
  * Create consent and privacy forms via the Google User Messaging Platform.
@@ -170,20 +165,5 @@ public actual class Consent actual constructor(activity: Any?) {
      */
     public actual fun reset(){
         UMPConsentInformation.sharedInstance.reset()
-    }
-
-    private fun getCurrentViewController(): UIViewController? {
-        val rootViewController = UIApplication.sharedApplication.connectedScenes.map { (it as UIWindowScene).keyWindow }
-            .first()?.rootViewController
-        if (rootViewController is UINavigationController) {
-            return rootViewController.visibleViewController
-        }
-        if (rootViewController is UITabBarController) {
-            return rootViewController.selectedViewController
-        }
-        rootViewController?.presentedViewController?.let {
-            return it
-        }
-        return rootViewController
     }
 }

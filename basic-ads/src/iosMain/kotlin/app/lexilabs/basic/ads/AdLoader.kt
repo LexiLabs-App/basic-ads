@@ -10,7 +10,6 @@ import cocoapods.Google_Mobile_Ads_SDK.GADRewardedInterstitialAd
 import cocoapods.Google_Mobile_Ads_SDK.GADRewardedInterstitialAdLoadCompletionHandler
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
-import platform.UIKit.UIApplication
 
 @OptIn(ExperimentalForeignApi::class)
 public actual typealias AdRequest = GADRequest
@@ -65,7 +64,7 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ){
-        val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+        val viewController = getCurrentViewController() //UIApplication.sharedApplication.keyWindow?.rootViewController
         checkNotNull(viewController) { "Root ViewController is null" }
 
         interstitialAd?.let { ad ->
@@ -115,7 +114,7 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ) {
-        val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+        val viewController = getCurrentViewController() // UIApplication.sharedApplication.keyWindow?.rootViewController
         checkNotNull(viewController) { "Root ViewController is null" }
 
         rewardedInterstitialAd?.let { ad ->
@@ -168,7 +167,7 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ) {
-        val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+        val viewController = getCurrentViewController() // UIApplication.sharedApplication.keyWindow?.rootViewController
         checkNotNull(viewController) { "Root ViewController is null" }
 
         rewardedAd?.let { ad ->
