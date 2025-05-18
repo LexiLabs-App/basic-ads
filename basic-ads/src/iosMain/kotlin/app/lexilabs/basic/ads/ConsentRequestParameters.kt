@@ -16,12 +16,16 @@ public actual class ConsentRequestParameters internal constructor(
         @Suppress("MemberVisibilityCanBePrivate")
         internal val builder = UMPRequestParameters()
 
-        public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings){
+        public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings): Builder {
             builder.debugSettings = debugSettings.ios
+            return this
         }
-        public actual fun setAdMobAppId(adMobAppId: String){ /* DO NOTHING */ }
-        public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean){
+        public actual fun setAdMobAppId(adMobAppId: String): Builder {
+            return this
+        }
+        public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean): Builder {
             builder.setTagForUnderAgeOfConsent(underAgeOfConsent)
+            return this
         }
         public actual fun build(): ConsentRequestParameters =
             ConsentRequestParameters(builder)

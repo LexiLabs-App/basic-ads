@@ -5,9 +5,9 @@ public expect class ConsentRequestParameters {
     public fun getConsentDebugSettings(): ConsentDebugSettings?
     public fun getIsTagForUnderAgeOfConsent(): Boolean
     public class Builder() {
-        public fun setConsentDebugSettings(debugSettings: ConsentDebugSettings)
-        public fun setAdMobAppId(adMobAppId: String)
-        public fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean)
+        public fun setConsentDebugSettings(debugSettings: ConsentDebugSettings): Builder
+        public fun setAdMobAppId(adMobAppId: String): Builder
+        public fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean): Builder
         public fun build(): ConsentRequestParameters
     }
 }

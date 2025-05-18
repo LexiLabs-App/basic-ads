@@ -13,14 +13,17 @@ public actual class ConsentDebugSettings internal constructor(
         internal val builder =
             com.google.android.ump.ConsentDebugSettings.Builder(activity as Activity)
 
-        public actual fun setDebugGeography(geography: DebugGeography){
+        public actual fun setDebugGeography(geography: DebugGeography): Builder {
             builder.setDebugGeography(geography.value)
+            return this
         }
-        public actual fun addTestDeviceHashedId(hashedId: String){
+        public actual fun addTestDeviceHashedId(hashedId: String): Builder {
             builder.addTestDeviceHashedId(hashedId)
+            return this
         }
-        public actual fun setForceTesting(forceTesting: Boolean){
+        public actual fun setForceTesting(forceTesting: Boolean): Builder {
             builder.setForceTesting(forceTesting)
+            return this
         }
         public actual fun build(): ConsentDebugSettings = ConsentDebugSettings(builder.build())
     }

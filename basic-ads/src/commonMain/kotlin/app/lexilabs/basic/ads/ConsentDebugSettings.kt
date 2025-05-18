@@ -7,9 +7,9 @@ public expect class ConsentDebugSettings {
     public fun isTestDevice(): Boolean
 
     public class Builder(activity: Any?) {
-        public fun setDebugGeography(geography: DebugGeography)
-        public fun addTestDeviceHashedId(hashedId: String)
-        public fun setForceTesting(forceTesting: Boolean)
+        public fun setDebugGeography(geography: DebugGeography): Builder
+        public fun addTestDeviceHashedId(hashedId: String): Builder
+        public fun setForceTesting(forceTesting: Boolean): Builder
         public fun build(): ConsentDebugSettings
     }
 

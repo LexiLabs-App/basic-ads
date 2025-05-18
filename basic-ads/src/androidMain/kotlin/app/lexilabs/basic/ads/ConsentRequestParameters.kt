@@ -14,14 +14,17 @@ public actual class ConsentRequestParameters internal constructor(
         @Suppress("MemberVisibilityCanBePrivate")
         internal val builder = AndroidConsentRequestParameters.Builder()
 
-        public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings){
+        public actual fun setConsentDebugSettings(debugSettings: ConsentDebugSettings): Builder{
             builder.setConsentDebugSettings(debugSettings.android)
+            return this
         }
-        public actual fun setAdMobAppId(adMobAppId: String){
+        public actual fun setAdMobAppId(adMobAppId: String): Builder {
             builder.setAdMobAppId(adMobAppId)
+            return this
         }
-        public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean){
+        public actual fun setTagForUnderAgeOfConsent(underAgeOfConsent: Boolean): Builder {
             builder.setTagForUnderAgeOfConsent(underAgeOfConsent)
+            return this
         }
         public actual fun build(): ConsentRequestParameters =
             ConsentRequestParameters(builder.build())

@@ -92,10 +92,10 @@ public final class app/lexilabs/basic/ads/ConsentDebugSettings {
 public final class app/lexilabs/basic/ads/ConsentDebugSettings$Builder {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;)V
-	public final fun addTestDeviceHashedId (Ljava/lang/String;)V
+	public final fun addTestDeviceHashedId (Ljava/lang/String;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
 	public final fun build ()Lapp/lexilabs/basic/ads/ConsentDebugSettings;
-	public final fun setDebugGeography (Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;)V
-	public final fun setForceTesting (Z)V
+	public final fun setDebugGeography (Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
+	public final fun setForceTesting (Z)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
 }
 
 public final class app/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography : java/lang/Enum {
@@ -126,9 +126,9 @@ public final class app/lexilabs/basic/ads/ConsentRequestParameters$Builder {
 	public static final field $stable I
 	public fun <init> ()V
 	public final fun build ()Lapp/lexilabs/basic/ads/ConsentRequestParameters;
-	public final fun setAdMobAppId (Ljava/lang/String;)V
-	public final fun setConsentDebugSettings (Lapp/lexilabs/basic/ads/ConsentDebugSettings;)V
-	public final fun setTagForUnderAgeOfConsent (Z)V
+	public final fun setAdMobAppId (Ljava/lang/String;)Lapp/lexilabs/basic/ads/ConsentRequestParameters$Builder;
+	public final fun setConsentDebugSettings (Lapp/lexilabs/basic/ads/ConsentDebugSettings;)Lapp/lexilabs/basic/ads/ConsentRequestParameters$Builder;
+	public final fun setTagForUnderAgeOfConsent (Z)Lapp/lexilabs/basic/ads/ConsentRequestParameters$Builder;
 }
 
 public final class app/lexilabs/basic/ads/ConvertersKt {

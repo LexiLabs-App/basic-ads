@@ -19,13 +19,17 @@ public actual class ConsentDebugSettings internal constructor(
         @Suppress("MemberVisibilityCanBePrivate")
         internal val builder = UMPDebugSettings()
 
-        public actual fun setDebugGeography(geography: DebugGeography){
+        public actual fun setDebugGeography(geography: DebugGeography): Builder {
             builder.geography = geography.value
+            return this
         }
-        public actual fun addTestDeviceHashedId(hashedId: String){
+        public actual fun addTestDeviceHashedId(hashedId: String): Builder {
             builder.testDeviceIdentifiers = listOf(hashedId)
+            return this
         }
-        public actual fun setForceTesting(forceTesting: Boolean){/* DO NOTHING */ }
+        public actual fun setForceTesting(forceTesting: Boolean): Builder {
+            return this
+        }
         public actual fun build(): ConsentDebugSettings = ConsentDebugSettings(builder)
     }
     public actual enum class DebugGeography(public val value: Long) {
