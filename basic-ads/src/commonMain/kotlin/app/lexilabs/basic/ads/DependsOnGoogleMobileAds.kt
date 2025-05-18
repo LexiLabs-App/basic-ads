@@ -13,7 +13,6 @@ package app.lexilabs.basic.ads
  * Once complete, you'll need to call [BasicAds.initialize] in your `commonMain` before calling for ads.
  *
  * ***NOTE: You do not need to initialize within each platform.***
- * @throws ClassNotFoundException
  */
 @RequiresOptIn(message = "Depends on Google Mobile Ads library for Android and iOS")
 @Retention(AnnotationRetention.BINARY)

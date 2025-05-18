@@ -1,15 +1,12 @@
 package app.lexilabs.basic.ads
 
 import android.app.Activity
-import android.content.Context
 import androidx.annotation.MainThread
 import androidx.annotation.RequiresPermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-public actual typealias AdError = com.google.android.gms.ads.AdError
-//public actual typealias InitializationStatus = com.google.android.gms.ads.initialization.InitializationStatus
 public typealias AdView = com.google.android.gms.ads.AdView
 
 public actual object BasicAds {
@@ -58,7 +55,4 @@ public actual object BasicAds {
     public actual fun setAppVolume(volume: Float) {
         com.google.android.gms.ads.MobileAds.setAppVolume(volume)
     }
-
-//    public actual fun getInitializationStatus(): InitializationStatus? =
-//        com.google.android.gms.ads.MobileAds.getInitializationStatus()
 }
