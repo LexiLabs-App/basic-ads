@@ -43,6 +43,7 @@ public class FullScreenContentDelegate(
 
     override fun adWillDismissFullScreenContent(ad: GADFullScreenPresentingAdProtocol) {
         Log.d(tag, "ad being dismissed soon")
+        onDismissed()
     }
 
     override fun adWillPresentFullScreenContent(ad: GADFullScreenPresentingAdProtocol) {
