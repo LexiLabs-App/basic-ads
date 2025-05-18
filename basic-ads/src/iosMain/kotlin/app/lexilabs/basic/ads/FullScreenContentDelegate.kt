@@ -4,8 +4,9 @@ import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADFullScreenContentDelegateProtocol
 import cocoapods.Google_Mobile_Ads_SDK.GADFullScreenPresentingAdProtocol
 import kotlinx.cinterop.ExperimentalForeignApi
+import platform.Foundation.NSBundle
 import platform.Foundation.NSError
-import platform.darwin.NSObject
+import platform.UIKit.UIViewController
 
 @OptIn(ExperimentalForeignApi::class)
 public class FullScreenContentDelegate(
@@ -14,7 +15,7 @@ public class FullScreenContentDelegate(
     private val onImpression: () -> Unit,
     private val onClick: () -> Unit,
     private val onFailure: () -> Unit,
-): NSObject(), GADFullScreenContentDelegateProtocol {
+): UIViewController("FullScreenContentDelegate", NSBundle()), GADFullScreenContentDelegateProtocol {
 
     private val tag = "FullScreenContentDelegate"
 
