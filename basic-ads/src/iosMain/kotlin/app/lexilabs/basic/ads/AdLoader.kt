@@ -128,9 +128,7 @@ public actual class AdLoader {
             )
             ad.presentFromRootViewController(
                 viewController = viewController,
-                userDidEarnRewardHandler = UserDidEarnRewardHandler(
-                    onRewardEarned = { onRewardEarned() }
-                )
+                userDidEarnRewardHandler = { onRewardEarned() }
             )
         } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
     }
@@ -183,9 +181,7 @@ public actual class AdLoader {
             )
             ad.presentFromRootViewController(
                 rootViewController = viewController,
-                userDidEarnRewardHandler = UserDidEarnRewardHandler(
-                    onRewardEarned = { onRewardEarned() }
-                )
+                userDidEarnRewardHandler = { onRewardEarned() }
             )
         } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")
     }
