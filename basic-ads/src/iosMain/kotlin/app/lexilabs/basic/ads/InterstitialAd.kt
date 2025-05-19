@@ -1,5 +1,6 @@
 package app.lexilabs.basic.ads
 
+import androidx.annotation.MainThread
 import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADInterstitialAd
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
@@ -57,6 +58,7 @@ public actual class InterstitialAd actual constructor(activity: Any?) {
         interstitialAd?.fullScreenContentDelegate = delegate
     }
 
+    @MainThread
     public actual fun show() {
         Log.d(tag, "show:starting")
         require(interstitialAd != null) {

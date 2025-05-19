@@ -1,6 +1,7 @@
 package app.lexilabs.basic.ads
 
 import android.app.Activity
+import androidx.annotation.MainThread
 import app.lexilabs.basic.logging.Log
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -69,6 +70,7 @@ public actual class InterstitialAd actual constructor(
         } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
     }
 
+    @MainThread
     public actual fun show() {
         Log.d(tag, "show: Loading")
         require(activity != null) {
