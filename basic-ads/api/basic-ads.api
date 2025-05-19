@@ -150,6 +150,9 @@ public final class app/lexilabs/basic/ads/ConvertersKt {
 public abstract interface annotation class app/lexilabs/basic/ads/DependsOnGoogleMobileAds : java/lang/annotation/Annotation {
 }
 
+public abstract interface annotation class app/lexilabs/basic/ads/DependsOnGoogleUserMessagingPlatform : java/lang/annotation/Annotation {
+}
+
 public abstract interface annotation class app/lexilabs/basic/ads/ExperimentalBasicAds : java/lang/annotation/Annotation {
 }
 
