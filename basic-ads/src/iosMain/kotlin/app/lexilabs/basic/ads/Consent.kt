@@ -17,6 +17,7 @@ import platform.Foundation.NSError
  * @param activity [require] non-null Activity Context on Android. All other platforms can pass `null`
  */
 @OptIn(ExperimentalForeignApi::class)
+@DependsOnGoogleUserMessagingPlatform
 public actual class Consent actual constructor(activity: Any?) {
 
     /**

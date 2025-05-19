@@ -15,6 +15,8 @@ import com.google.android.ump.UserMessagingPlatform
  * The [Consent] class [require]s a non-null [Activity] on Android
  * @param activity [require] non-null [Activity] on Android. All other platforms can pass `null`
  */
+@ExperimentalBasicAds
+@DependsOnGoogleUserMessagingPlatform
 public actual class Consent actual constructor (activity: Any?) {
 
     private val context: Activity
