@@ -59,18 +59,15 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ){
-        val viewController = getCurrentViewController() //UIApplication.sharedApplication.keyWindow?.rootViewController
-        checkNotNull(viewController) { "Root ViewController is null" }
-
         interstitialAd?.let { ad ->
             ad.fullScreenContentDelegate = FullScreenContentDelegate(
-                onClick = { onClick() },
-                onImpression = { onImpression() },
-                onDismissed = { onDismissed() },
-                onFailure = { onFailure() },
-                onShown = { onShown() }
+                onClick = onClick,
+                onImpression = onImpression,
+                onDismissed = onDismissed,
+                onFailure = { _: Exception -> onFailure() },
+                onShown = onShown
             )
-            ad.presentFromRootViewController(viewController)
+            ad.presentFromRootViewController(null)
         } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
     }
 
@@ -107,19 +104,16 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ) {
-        val viewController = getCurrentViewController() // UIApplication.sharedApplication.keyWindow?.rootViewController
-        checkNotNull(viewController) { "Root ViewController is null" }
-
         rewardedInterstitialAd?.let { ad ->
             ad.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
-                onFailure = onFailure,
+                onFailure = { _: Exception -> onFailure() },
                 onImpression = onImpression,
                 onShown = onShown
             )
             ad.presentFromRootViewController(
-                viewController = viewController,
+                viewController = null,
                 userDidEarnRewardHandler = { onRewardEarned() }
             )
         } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
@@ -158,19 +152,16 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ) {
-        val viewController = getCurrentViewController() // UIApplication.sharedApplication.keyWindow?.rootViewController
-        checkNotNull(viewController) { "Root ViewController is null" }
-
         rewardedAd?.let { ad ->
             ad.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
-                onFailure = onFailure,
+                onFailure = { _: Exception -> onFailure() },
                 onImpression = onImpression,
                 onShown = onShown
             )
             ad.presentFromRootViewController(
-                rootViewController = viewController,
+                rootViewController = null,
                 userDidEarnRewardHandler = { onRewardEarned() }
             )
         } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")

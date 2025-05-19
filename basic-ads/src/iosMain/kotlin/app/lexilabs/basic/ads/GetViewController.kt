@@ -7,8 +7,7 @@ import platform.UIKit.UIViewController
 import platform.UIKit.UIWindowScene
 
 internal fun getCurrentViewController(): UIViewController? {
-    val rootViewController = UIApplication.sharedApplication.connectedScenes.map { (it as UIWindowScene).keyWindow }
-        .first()?.rootViewController
+    val rootViewController = getRootViewController()
     if (rootViewController is UINavigationController) {
         return rootViewController.visibleViewController
     }
@@ -20,3 +19,7 @@ internal fun getCurrentViewController(): UIViewController? {
     }
     return rootViewController
 }
+
+internal fun getRootViewController(): UIViewController? =
+    UIApplication.sharedApplication.connectedScenes.map { (it as UIWindowScene).keyWindow }
+        .first()?.rootViewController
