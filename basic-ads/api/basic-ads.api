@@ -1,3 +1,10 @@
+public final class app/lexilabs/basic/ads/AdException : java/lang/Exception {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
 public final class app/lexilabs/basic/ads/AdLoader {
 	public static final field $stable I
 	public fun <init> ()V
@@ -146,6 +153,26 @@ public abstract interface annotation class app/lexilabs/basic/ads/DependsOnGoogl
 public abstract interface annotation class app/lexilabs/basic/ads/ExperimentalBasicAds : java/lang/annotation/Annotation {
 }
 
+public final class app/lexilabs/basic/ads/FullscreenContentDelegate : com/google/android/gms/ads/FullScreenContentCallback {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public fun onAdClicked ()V
+	public fun onAdDismissedFullScreenContent ()V
+	public fun onAdFailedToShowFullScreenContent (Lcom/google/android/gms/ads/AdError;)V
+	public fun onAdImpression ()V
+	public fun onAdShowedFullScreenContent ()V
+}
+
+public final class app/lexilabs/basic/ads/InterstitialAd {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/InterstitialAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/InterstitialAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun show ()V
+}
+
 public final class app/lexilabs/basic/ads/RequestConfiguration {
 	public static final field $stable I
 	public static final field Companion Lapp/lexilabs/basic/ads/RequestConfiguration$Companion;
@@ -193,5 +220,25 @@ public final class app/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyP
 
 public final class app/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyPersonalizationState$Companion {
 	public final fun fromInt (I)Lapp/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyPersonalizationState;
+}
+
+public final class app/lexilabs/basic/ads/RewardedAd {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun show (Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class app/lexilabs/basic/ads/RewardedInterstitialAd {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun show (Lkotlin/jvm/functions/Function0;)V
 }
 
