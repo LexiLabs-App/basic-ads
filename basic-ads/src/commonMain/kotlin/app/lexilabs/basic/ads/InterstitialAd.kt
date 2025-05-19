@@ -3,7 +3,7 @@ package app.lexilabs.basic.ads
 public expect class InterstitialAd(activity: Any?) {
 
     public fun load(
-        adUnitId: String = AdUnitId.REWARDED_DEFAULT,
+        adUnitId: String = AdUnitId.INTERSTITIAL_DEFAULT,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     )
