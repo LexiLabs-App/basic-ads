@@ -38,6 +38,7 @@ import androidx.annotation.MainThread
  * @see setListeners
  * @see show
  */
+@DependsOnGoogleMobileAds
 public expect class InterstitialAd(activity: Any?) {
 
     /**

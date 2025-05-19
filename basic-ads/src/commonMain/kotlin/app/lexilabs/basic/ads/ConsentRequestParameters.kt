@@ -8,6 +8,7 @@ package app.lexilabs.basic.ads
  * @see Builder
  */
 @Suppress("unused")
+@DependsOnGoogleUserMessagingPlatform
 public expect class ConsentRequestParameters {
 
     /**

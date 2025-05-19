@@ -9,6 +9,7 @@ package app.lexilabs.basic.ads
  * @see DebugGeography
  */
 @Suppress("unused")
+@DependsOnGoogleUserMessagingPlatform
 public expect class ConsentDebugSettings {
 
     /**

@@ -10,6 +10,7 @@ package app.lexilabs.basic.ads
  * The [Consent] class [require]s the Activity be a non-null Context on Android
  * @param activity [require]s non-null Activity Context on Android. All other platforms can pass `null`
  */
+@DependsOnGoogleUserMessagingPlatform
 public expect class Consent(activity: Any?) {
 
     /**

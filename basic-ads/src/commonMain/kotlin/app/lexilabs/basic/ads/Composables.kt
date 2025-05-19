@@ -28,6 +28,14 @@ import androidx.compose.runtime.Composable
  * @param onLoad Lambda expression that executes after the [AdRequest] has fully loaded
  * @see AdUnitId.autoSelect
  */
+@Deprecated(
+    message = "Will be replaced by InterstitialAd class in Basic-Ads version 0.2.7",
+    replaceWith = ReplaceWith(
+        expression = "InterstitialAd(activity).load(adUnitId, onLoad, onFailure)",
+        imports = arrayOf("app.lexilabs.basic.ads.InterstitialAd")
+    ),
+    level = DeprecationLevel.WARNING
+)
 @DependsOnGoogleMobileAds
 @Composable public expect fun InterstitialAd(
     activity: Any?,
@@ -53,6 +61,14 @@ import androidx.compose.runtime.Composable
  * @param onLoad Lambda expression that executes after the [AdRequest] has fully loaded
  * @see AdUnitId.autoSelect
  */
+@Deprecated(
+    message = "Will be replaced by RewardedAd class in Basic-Ads version 0.2.7",
+    replaceWith = ReplaceWith(
+        expression = "RewardedAd(activity).load(adUnitId, onLoad, onFailure)",
+        imports = arrayOf("app.lexilabs.basic.ads.RewardedAd")
+    ),
+    level = DeprecationLevel.WARNING
+)
 @DependsOnGoogleMobileAds
 @Composable public expect fun RewardedAd(
     activity: Any?,
@@ -79,6 +95,14 @@ import androidx.compose.runtime.Composable
  * @param onLoad Lambda expression that executes after the [AdRequest] has fully loaded
  * @see AdUnitId.autoSelect
  */
+@Deprecated(
+    message = "Will be replaced by RewardedInterstitialAd class in Basic-Ads version 0.2.7",
+    replaceWith = ReplaceWith(
+        expression = "RewardedInterstitialAd(activity).load(adUnitId, onLoad,onFailure)",
+        imports = arrayOf("app.lexilabs.basic.ads.RewardedInterstitialAd")
+    ),
+    level = DeprecationLevel.WARNING
+)
 @DependsOnGoogleMobileAds
 @Composable public expect fun RewardedInterstitialAd(
     activity: Any?,

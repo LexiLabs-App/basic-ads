@@ -36,6 +36,7 @@ package app.lexilabs.basic.ads
  * @see setListeners
  * @see show
  */
+@DependsOnGoogleMobileAds
 public expect class RewardedAd(activity: Any?) {
 
     /**
