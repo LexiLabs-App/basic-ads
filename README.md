@@ -4,17 +4,15 @@
 ![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
 ![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
 [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21--RC-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
 ![badge-android](http://img.shields.io/badge/android-full_support-65c663.svg?style=flat)
 ![badge-ios](http://img.shields.io/badge/ios-full_support-65c663.svg?style=flat)
-![badge-wasmJs](https://img.shields.io/badge/wasmJs-empty_compile-red.svg?style=flat)
 
 ### How it works
 Basic-Ads uses the existing Android and iOS [Google AdMob](https://admob.google.com/) libraries to display ads as `Composables`.
-It does complile on wasmJs if you need to use [Google AdSense](https://adsense.google.com/), but that is all it does on wasmJs.
 A [full walkthrough](https://medium.com/@robert.jamison/composable-ads-f8795924aa0d) is available on Medium,
 and there's also [an easy-start template](https://github.com/LexiLabs-App/Example-Basic-Ads).
 
@@ -221,6 +219,7 @@ Here's a list of the dependency versions for each release after 0.2.0:
 |     0.2.6-beta03      |   2.1.20    |         1.7.3          |    1.9.1    |     24.2.0 / 12.2.0     |           -           |
 |     0.2.6-beta04      |  2.1.21-RC  |         1.7.3          |    1.9.1    |     24.2.0 / 12.2.0     |           -           |
 |     0.2.6-beta05      |  2.1.21-RC  |         1.8.0          |    1.9.1    |     24.2.0 / 12.4.0     |     3.2.0 / 3.0.0     |
+|         0.2.6         |   2.1.21    |         1.8.0          |    1.9.1    |     24.2.0 / 12.4.0     |     3.2.0 / 3.0.0     |
 
 ### \[Advanced Users Only\] How to deal with building this garbage
 1. Find a large cup. It must exist in the real world.

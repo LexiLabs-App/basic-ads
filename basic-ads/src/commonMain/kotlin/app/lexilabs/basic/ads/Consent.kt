@@ -10,6 +10,7 @@ package app.lexilabs.basic.ads
  * The [Consent] class [require]s the Activity be a non-null Context on Android
  * @param activity [require]s non-null Activity Context on Android. All other platforms can pass `null`
  */
+@DependsOnGoogleUserMessagingPlatform
 public expect class Consent(activity: Any?) {
 
     /**
@@ -27,6 +28,22 @@ public expect class Consent(activity: Any?) {
      * @param onError lambda which passes a [ConsentException] on failure
      */
     public fun requestConsentInfoUpdate(onError: (Exception) -> Unit)
+
+    /**
+     * Gets the user's consent information
+     *
+     * You should request an update of the user's consent information at every app launch,
+     * using [requestConsentInfoUpdate]. This request checks the following:
+     *
+     * __Whether consent is required.__ For example, consent is required for
+     * the first time, or the previous consent decision expired.
+     *
+     * __Whether a privacy options entry point is required.__
+     * Some privacy messages require apps to allow users to modify their
+     * privacy options at any time.
+     * @param onError lambda which passes a [ConsentException] on failure
+     */
+    public fun requestConsentInfoUpdate(params: ConsentRequestParameters, onError: (Exception) -> Unit)
 
     /**
      * Load and present the privacy message form
@@ -73,4 +90,14 @@ public expect class Consent(activity: Any?) {
      * check if you've obtained consent from the user.
      */
     public fun canRequestAds(): Boolean
+
+    /**
+     * Reset consent state
+     *
+     * When testing your app with the UMP SDK, you might find it helpful to reset
+     * the state of the SDK so that you can simulate a user's first install experience.
+     *
+     * All SDKs provide the reset() method to do this.
+     */
+    public fun reset()
 }

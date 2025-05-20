@@ -1,3 +1,10 @@
+public final class app/lexilabs/basic/ads/AdException : java/lang/Exception {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
 public final class app/lexilabs/basic/ads/AdLoader {
 	public static final field $stable I
 	public fun <init> ()V
@@ -77,13 +84,58 @@ public final class app/lexilabs/basic/ads/Consent {
 	public final fun canRequestAds ()Z
 	public final fun isPrivacyOptionsRequired ()Z
 	public final fun loadAndShowConsentForm (Lkotlin/jvm/functions/Function1;)V
+	public final fun requestConsentInfoUpdate (Lapp/lexilabs/basic/ads/ConsentRequestParameters;Lkotlin/jvm/functions/Function1;)V
 	public final fun requestConsentInfoUpdate (Lkotlin/jvm/functions/Function1;)V
+	public final fun reset ()V
 	public final fun showPrivacyOptionsForm (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class app/lexilabs/basic/ads/ConsentDebugSettings {
+	public static final field $stable I
+	public final fun getDebugGeography ()Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public final fun isTestDevice ()Z
+}
+
+public final class app/lexilabs/basic/ads/ConsentDebugSettings$Builder {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun addTestDeviceHashedId (Ljava/lang/String;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
+	public final fun build ()Lapp/lexilabs/basic/ads/ConsentDebugSettings;
+	public final fun setDebugGeography (Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
+	public final fun setForceTesting (Z)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
+}
+
+public final class app/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography : java/lang/Enum {
+	public static final field DEBUG_GEOGRAPHY_DISABLED Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_EEA Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_NOT_EEA Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_OTHER Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static final field DEBUG_GEOGRAPHY_REGULATED_US_STATE Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
+	public static fun values ()[Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
 }
 
 public final class app/lexilabs/basic/ads/ConsentException : java/lang/Exception {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;)V
+}
+
+public final class app/lexilabs/basic/ads/ConsentRequestParameters {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getConsentDebugSettings ()Lapp/lexilabs/basic/ads/ConsentDebugSettings;
+	public final fun getIsTagForUnderAgeOfConsent ()Z
+}
+
+public final class app/lexilabs/basic/ads/ConsentRequestParameters$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun build ()Lapp/lexilabs/basic/ads/ConsentRequestParameters;
+	public final fun setAdMobAppId (Ljava/lang/String;)Lapp/lexilabs/basic/ads/ConsentRequestParameters$Builder;
+	public final fun setConsentDebugSettings (Lapp/lexilabs/basic/ads/ConsentDebugSettings;)Lapp/lexilabs/basic/ads/ConsentRequestParameters$Builder;
+	public final fun setTagForUnderAgeOfConsent (Z)Lapp/lexilabs/basic/ads/ConsentRequestParameters$Builder;
 }
 
 public final class app/lexilabs/basic/ads/ConvertersKt {
@@ -98,7 +150,30 @@ public final class app/lexilabs/basic/ads/ConvertersKt {
 public abstract interface annotation class app/lexilabs/basic/ads/DependsOnGoogleMobileAds : java/lang/annotation/Annotation {
 }
 
+public abstract interface annotation class app/lexilabs/basic/ads/DependsOnGoogleUserMessagingPlatform : java/lang/annotation/Annotation {
+}
+
 public abstract interface annotation class app/lexilabs/basic/ads/ExperimentalBasicAds : java/lang/annotation/Annotation {
+}
+
+public final class app/lexilabs/basic/ads/FullscreenContentDelegate : com/google/android/gms/ads/FullScreenContentCallback {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public fun onAdClicked ()V
+	public fun onAdDismissedFullScreenContent ()V
+	public fun onAdFailedToShowFullScreenContent (Lcom/google/android/gms/ads/AdError;)V
+	public fun onAdImpression ()V
+	public fun onAdShowedFullScreenContent ()V
+}
+
+public final class app/lexilabs/basic/ads/InterstitialAd {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/InterstitialAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/InterstitialAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun show ()V
 }
 
 public final class app/lexilabs/basic/ads/RequestConfiguration {
@@ -148,5 +223,25 @@ public final class app/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyP
 
 public final class app/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyPersonalizationState$Companion {
 	public final fun fromInt (I)Lapp/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyPersonalizationState;
+}
+
+public final class app/lexilabs/basic/ads/RewardedAd {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun show (Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class app/lexilabs/basic/ads/RewardedInterstitialAd {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun show (Lkotlin/jvm/functions/Function0;)V
 }
 

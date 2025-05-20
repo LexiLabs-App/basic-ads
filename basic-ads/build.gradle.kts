@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
@@ -19,29 +18,6 @@ kotlin {
     // FORCES CHECK OF PUBLIC API DECLARATIONS
     // DON'T FORGET TO RUN `./gradlew apiDump`
     explicitApi()
-
-    js(IR) {
-        binaries.executable()
-        browser {
-            commonWebpackConfig {
-                cssSupport {
-                    enabled.set(true)
-                }
-            }
-            testTask {
-                useKarma {
-                    useChromeHeadless()
-                }
-            }
-        }
-    }
-
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
-        compilerOptions { freeCompilerArgs.add("-Xwasm-attach-js-exception") }
-    }
 
     listOf(
         iosX64(), // mobile

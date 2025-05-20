@@ -7,7 +7,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.UIKitView
 import cocoapods.Google_Mobile_Ads_SDK.GADBannerView
 import kotlinx.cinterop.ExperimentalForeignApi
-import platform.UIKit.UIApplication
 
 @OptIn(ExperimentalForeignApi::class)
 @Composable
@@ -18,7 +17,7 @@ public actual fun BannerAd(
 ) {
     UIKitView(
         factory = {
-            val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+            val viewController = getCurrentViewController() //UIApplication.sharedApplication.keyWindow?.rootViewController
             checkNotNull(viewController) { "Root ViewController is null" }
 
             val bannerView = GADBannerView(adSize.toCGRectCValue()).apply {

@@ -1,11 +1,12 @@
 package app.lexilabs.basic.ads
 
-import android.content.Context
+import android.app.Activity
 import androidx.annotation.MainThread
 import androidx.annotation.RequiresPermission
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-public actual typealias AdError = com.google.android.gms.ads.AdError
-//public actual typealias InitializationStatus = com.google.android.gms.ads.initialization.InitializationStatus
 public typealias AdView = com.google.android.gms.ads.AdView
 
 public actual object BasicAds {
@@ -28,21 +29,23 @@ public actual object BasicAds {
         require(context != null) {
             "Context must be set to non-null value in Android"
         }
-        com.google.android.gms.ads.MobileAds.initialize(context as Context)
+        CoroutineScope(Dispatchers.IO).launch {
+            com.google.android.gms.ads.MobileAds.initialize(context as Activity)
+        }
     }
 
     public actual fun disableMediationAdapterInitialization(context: Any?) {
         require(context != null) {
             "Context must be set to non-null value in Android"
         }
-        com.google.android.gms.ads.MobileAds.disableMediationAdapterInitialization(context as Context)
+        com.google.android.gms.ads.MobileAds.disableMediationAdapterInitialization(context as Activity)
     }
 
     public actual fun openDebugMenu(context: Any?, adUnitId: String) {
         require(context != null) {
             "Context must be set to non-null value in Android"
         }
-        com.google.android.gms.ads.MobileAds.openDebugMenu(context as Context, adUnitId)
+        com.google.android.gms.ads.MobileAds.openDebugMenu(context as Activity, adUnitId)
     }
 
     public actual fun setAppMuted(muted: Boolean) {
@@ -52,7 +55,4 @@ public actual object BasicAds {
     public actual fun setAppVolume(volume: Float) {
         com.google.android.gms.ads.MobileAds.setAppVolume(volume)
     }
-
-//    public actual fun getInitializationStatus(): InitializationStatus? =
-//        com.google.android.gms.ads.MobileAds.getInitializationStatus()
 }

@@ -3,6 +3,10 @@ package app.lexilabs.basic.ads
 /**
  * Generates components required for ad requests
  */
+@Deprecated(
+    message = "Will be obsolete and deleted in Basic-Ads version 0.2.7",
+    level = DeprecationLevel.WARNING
+)
 public expect class AdRequest
 
 /**
@@ -17,6 +21,10 @@ public expect class AdRequest
  * @see loadRewardedAd
  * @see showRewardedAd
  */
+@Deprecated(
+    message = "Will be obsolete and deleted in Basic-Ads version 0.2.7",
+    level = DeprecationLevel.WARNING
+)
 public expect class AdLoader() {
     /**
      * Submits an [AdRequest] and returns the resulting [AdRequest]
@@ -24,6 +32,10 @@ public expect class AdLoader() {
      * As long as [showInterstitialAd] is called from the same [AdLoader] instance, the ad will display.
      * @return a loaded or failed [AdRequest]
      */
+    @Deprecated(
+        message = "Will be obsolete and deleted in Basic-Ads version 0.2.7",
+        level = DeprecationLevel.WARNING
+    )
     public fun requestAd(): AdRequest
 
     /**
@@ -36,6 +48,14 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see showInterstitialAd
      */
+    @Deprecated(
+        message = "Will be replaced by InterstitialAd.load() in Basic-Ads version 0.2.7",
+        replaceWith = ReplaceWith(
+            expression = "InterstitialAd(activity).load(adUnitId, onLoaded,onFailedToLoad)",
+            imports = arrayOf("app.lexilabs.basic.ads.InterstitialAd")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun loadInterstitialAd(
         activity: Any?,
         adUnitId: String,
@@ -56,6 +76,14 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see loadInterstitialAd
      */
+    @Deprecated(
+        message = "Will be replaced by InterstitialAd.show() in Basic-Ads version 0.2.7",
+        replaceWith = ReplaceWith(
+            expression = "InterstitialAd(activity).show()",
+            imports = arrayOf("app.lexilabs.basic.ads.InterstitialAd")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun showInterstitialAd(
         activity: Any?,
         onDismissed: () -> Unit = {},
@@ -75,6 +103,14 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see showRewardedInterstitialAd
      */
+    @Deprecated(
+        message = "Will be replaced by RewardedInterstitialAd.load() in Basic-Ads version 0.2.7",
+        replaceWith = ReplaceWith(
+            expression = "RewardedInterstitialAd(activity).load(adUnitId, onLoaded,onFailedToLoad)",
+            imports = arrayOf("app.lexilabs.basic.ads.RewardedInterstitialAd")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun loadRewardedInterstitialAd(
         activity: Any?,
         adUnitId: String,
@@ -98,6 +134,14 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see loadRewardedInterstitialAd
      */
+    @Deprecated(
+        message = "Will be replaced by RewardedInterstitialAd.show() in Basic-Ads version 0.2.7",
+        replaceWith = ReplaceWith(
+            expression = "InterstitialAd(activity).show(onRewardEarned)",
+            imports = arrayOf("app.lexilabs.basic.ads.RewardedInterstitialAd")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun showRewardedInterstitialAd(
         activity: Any?,
         onRewardEarned: () -> Unit,
@@ -118,6 +162,14 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see showRewardedAd
      */
+    @Deprecated(
+        message = "Will be replaced by RewardedAd.load() in Basic-Ads version 0.2.7",
+        replaceWith = ReplaceWith(
+            expression = "RewardedAd(activity).load(adUnitId, onLoaded,onFailedToLoad)",
+            imports = arrayOf("app.lexilabs.basic.ads.RewardedAd")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun loadRewardedAd(
         activity: Any?,
         adUnitId: String,
@@ -141,6 +193,14 @@ public expect class AdLoader() {
      * @author rjamison@lexilabs.app
      * @see loadRewardedAd
      */
+    @Deprecated(
+        message = "Will be replaced by InterstitialAd.show() in Basic-Ads version 0.2.7",
+        replaceWith = ReplaceWith(
+            expression = "RewardedAd(activity).show(onRewardEarned)",
+            imports = arrayOf("app.lexilabs.basic.ads.RewardedAd")
+        ),
+        level = DeprecationLevel.WARNING
+    )
     public fun showRewardedAd(
         activity: Any?,
         onRewardEarned: () -> Unit,
