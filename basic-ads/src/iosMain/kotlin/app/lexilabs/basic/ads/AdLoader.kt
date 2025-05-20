@@ -2,15 +2,11 @@ package app.lexilabs.basic.ads
 
 import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADInterstitialAd
-import cocoapods.Google_Mobile_Ads_SDK.GADInterstitialAdLoadCompletionHandler
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
 import cocoapods.Google_Mobile_Ads_SDK.GADRewardedAd
-import cocoapods.Google_Mobile_Ads_SDK.GADRewardedAdLoadCompletionHandler
 import cocoapods.Google_Mobile_Ads_SDK.GADRewardedInterstitialAd
-import cocoapods.Google_Mobile_Ads_SDK.GADRewardedInterstitialAdLoadCompletionHandler
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
-import platform.UIKit.UIApplication
 
 @OptIn(ExperimentalForeignApi::class)
 public actual typealias AdRequest = GADRequest
@@ -41,17 +37,15 @@ public actual class AdLoader {
         GADInterstitialAd.loadWithAdUnitID(
             adUnitID = interstitialAdId,
             request = requestAd(),
-            completionHandler = object : GADInterstitialAdLoadCompletionHandler {
-                override fun invoke(p1: GADInterstitialAd?, p2: NSError?) {
-                    p1?.let {
-                        Log.d(tag, "loadInterstitialAd:success")
-                        interstitialAd = it
-                        onLoaded()
-                    }
-                    p2?.let {
-                        Log.e(tag, "loadInterstitialAd:failure:$it")
-                        onFailedToLoad(it.code)
-                    }
+            completionHandler = { ad: GADInterstitialAd?, error: NSError? ->
+                ad?.let {
+                    Log.d(tag, "loadInterstitialAd:success")
+                    interstitialAd = it
+                    onLoaded()
+                }
+                error?.let {
+                    Log.e(tag, "loadInterstitialAd:failure:$it")
+                    onFailedToLoad(it.code)
                 }
             }
         )
@@ -65,18 +59,15 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ){
-        val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
-        checkNotNull(viewController) { "Root ViewController is null" }
-
         interstitialAd?.let { ad ->
             ad.fullScreenContentDelegate = FullScreenContentDelegate(
-                onClick = { onClick() },
-                onImpression = { onImpression() },
-                onDismissed = { onDismissed() },
-                onFailure = { onFailure() },
-                onShown = { onShown() }
+                onClick = onClick,
+                onImpression = onImpression,
+                onDismissed = onDismissed,
+                onFailure = { _: Exception -> onFailure() },
+                onShown = onShown
             )
-            ad.presentFromRootViewController(viewController)
+            ad.presentFromRootViewController(null)
         } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
     }
 
@@ -90,17 +81,15 @@ public actual class AdLoader {
         GADRewardedInterstitialAd.loadWithAdUnitID(
             adUnitID = rewardedInterstitialAdId,
             request = requestAd(),
-            completionHandler = object : GADRewardedInterstitialAdLoadCompletionHandler {
-                override fun invoke(p1: GADRewardedInterstitialAd?, p2: NSError?) {
-                    p1?.let {
-                        Log.d(tag, "loadRewardedInterstitialAd:success")
-                        rewardedInterstitialAd = it
-                        onLoaded()
-                    }
-                    p2?.let {
-                        Log.e(tag, "loadRewardedInterstitialAd:failure:$it")
-                        onFailedToLoad(it.code)
-                    }
+            completionHandler = { ad: GADRewardedInterstitialAd?, error: NSError? ->
+                ad?.let {
+                    Log.d(tag, "loadRewardedInterstitialAd:success")
+                    rewardedInterstitialAd = it
+                    onLoaded()
+                }
+                error?.let {
+                    Log.e(tag, "loadRewardedInterstitialAd:failure:$it")
+                    onFailedToLoad(it.code)
                 }
             }
         )
@@ -115,22 +104,17 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ) {
-        val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
-        checkNotNull(viewController) { "Root ViewController is null" }
-
         rewardedInterstitialAd?.let { ad ->
             ad.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
-                onFailure = onFailure,
+                onFailure = { _: Exception -> onFailure() },
                 onImpression = onImpression,
                 onShown = onShown
             )
             ad.presentFromRootViewController(
-                viewController = viewController,
-                userDidEarnRewardHandler = UserDidEarnRewardHandler(
-                    onRewardEarned = { onRewardEarned() }
-                )
+                viewController = null,
+                userDidEarnRewardHandler = { onRewardEarned() }
             )
         } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
     }
@@ -145,17 +129,15 @@ public actual class AdLoader {
         GADRewardedAd.loadWithAdUnitID(
             adUnitID = rewardedAdId,
             request = requestAd(),
-            completionHandler = object : GADRewardedAdLoadCompletionHandler {
-                override fun invoke(p1: GADRewardedAd?, p2: NSError?) {
-                    p1?.let {
-                        Log.d(tag, "loadRewardedAd:success")
-                        rewardedAd = it
-                        onLoaded()
-                    }
-                    p2?.let {
-                        Log.e(tag, "loadRewardedAd:failure:$it")
-                        onFailedToLoad(it.code)
-                    }
+            completionHandler = { ad: GADRewardedAd?, error: NSError? ->
+                ad?.let {
+                    Log.d(tag, "loadRewardedAd:success")
+                    rewardedAd = it
+                    onLoaded()
+                }
+                error?.let {
+                    Log.e(tag, "loadRewardedAd:failure:$it")
+                    onFailedToLoad(it.code)
                 }
             }
         )
@@ -170,22 +152,17 @@ public actual class AdLoader {
         onClick: () -> Unit,
         onFailure: () -> Unit,
     ) {
-        val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
-        checkNotNull(viewController) { "Root ViewController is null" }
-
         rewardedAd?.let { ad ->
             ad.fullScreenContentDelegate = FullScreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
-                onFailure = onFailure,
+                onFailure = { _: Exception -> onFailure() },
                 onImpression = onImpression,
                 onShown = onShown
             )
             ad.presentFromRootViewController(
-                rootViewController = viewController,
-                userDidEarnRewardHandler = UserDidEarnRewardHandler(
-                    onRewardEarned = { onRewardEarned() }
-                )
+                rootViewController = null,
+                userDidEarnRewardHandler = { onRewardEarned() }
             )
         } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")
     }

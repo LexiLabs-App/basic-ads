@@ -5,8 +5,6 @@ import cocoapods.GoogleUserMessagingPlatform.UMPConsentInformation
 import cocoapods.GoogleUserMessagingPlatform.UMPPrivacyOptionsRequirementStatusRequired
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
-import platform.UIKit.UIApplication
-import platform.UIKit.UIViewController
 
 /**
  * Create consent and privacy forms via the Google User Messaging Platform.
@@ -19,6 +17,7 @@ import platform.UIKit.UIViewController
  * @param activity [require] non-null Activity Context on Android. All other platforms can pass `null`
  */
 @OptIn(ExperimentalForeignApi::class)
+@DependsOnGoogleUserMessagingPlatform
 public actual class Consent actual constructor(activity: Any?) {
 
     /**
@@ -39,13 +38,48 @@ public actual class Consent actual constructor(activity: Any?) {
         UMPConsentInformation.sharedInstance().requestConsentInfoUpdateWithParameters(
             parameters = null,
             completionHandler = { updateError ->
-                updateError?.let { onError(ConsentException(it.description)) }
+                if (updateError != null) {
+                    onError(ConsentException(updateError.description))
+                } else {
+                    UMPConsentForm.loadAndPresentIfRequiredFromViewController(
+                        viewController = getCurrentViewController(),
+                        completionHandler = { loadError ->
+                            loadError?.let { onError(ConsentException(it.description)) }
+                        }
+                    )
+                }
             }
         )
-        UMPConsentForm.loadAndPresentIfRequiredFromViewController(
-            viewController = getCurrentViewController(),
-            completionHandler = { loadError ->
-                loadError?.let { onError(ConsentException(it.description)) }
+    }
+
+    /**
+     * Gets the user's consent information
+     *
+     * You should request an update of the user's consent information at every app launch,
+     * using [requestConsentInfoUpdate]. This request checks the following:
+     *
+     * __Whether consent is required.__ For example, consent is required for
+     * the first time, or the previous consent decision expired.
+     *
+     * __Whether a privacy options entry point is required.__
+     * Some privacy messages require apps to allow users to modify their
+     * privacy options at any time.
+     * @param onError lambda which passes a [ConsentException] on failure
+     */
+    public actual fun requestConsentInfoUpdate(params: ConsentRequestParameters, onError: (Exception) -> Unit) {
+        UMPConsentInformation.sharedInstance().requestConsentInfoUpdateWithParameters(
+            parameters = params.ios,
+            completionHandler = { updateError ->
+                if (updateError != null) {
+                    onError(ConsentException(updateError.description))
+                } else {
+                    UMPConsentForm.loadAndPresentIfRequiredFromViewController(
+                        viewController = getCurrentViewController(),
+                        completionHandler = { loadError ->
+                            loadError?.let { onError(ConsentException(it.description)) }
+                        }
+                    )
+                }
             }
         )
     }
@@ -122,8 +156,15 @@ public actual class Consent actual constructor(activity: Any?) {
     public actual fun canRequestAds(): Boolean =
         UMPConsentInformation.sharedInstance.canRequestAds
 
-    private fun getCurrentViewController(): UIViewController? {
-        return UIApplication.sharedApplication().keyWindow()?.rootViewController?.presentedViewController ?:
-        UIApplication.sharedApplication.keyWindow?.rootViewController
+    /**
+     * Reset consent state
+     *
+     * When testing your app with the UMP SDK, you might find it helpful to reset
+     * the state of the SDK so that you can simulate a user's first install experience.
+     *
+     * All SDKs provide the reset() method to do this.
+     */
+    public actual fun reset(){
+        UMPConsentInformation.sharedInstance.reset()
     }
 }

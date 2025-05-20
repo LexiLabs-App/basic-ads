@@ -40,6 +40,11 @@ public expect class AdSize public constructor(width: Int, height: Int) {
         public val FLUID: AdSize
         public val INVALID: AdSize
 
+        /**
+         * Provides the appropriate [AdSize] based on the platform
+         * @param androidAdSize The Android implemented [AdSize]
+         * @param iosAdSize The iOS implemented [AdSize]
+         */
         public fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize
     }
 }

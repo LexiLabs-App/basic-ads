@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads
 
 import android.app.Activity
-import com.google.android.ump.ConsentInformation
-import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.ConsentInformation as AndroidConsentInformation
+import com.google.android.ump.ConsentRequestParameters as AndroidConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 
 /**
@@ -15,10 +15,12 @@ import com.google.android.ump.UserMessagingPlatform
  * The [Consent] class [require]s a non-null [Activity] on Android
  * @param activity [require] non-null [Activity] on Android. All other platforms can pass `null`
  */
+@ExperimentalBasicAds
+@DependsOnGoogleUserMessagingPlatform
 public actual class Consent actual constructor (activity: Any?) {
 
     private val context: Activity
-    private val consentInformation: ConsentInformation
+    private val consentInformation: AndroidConsentInformation
 
     init {
         require(activity != null) {
@@ -43,10 +45,38 @@ public actual class Consent actual constructor (activity: Any?) {
      * @param onError lambda which passes a [ConsentException] on failure
      */
     public actual fun requestConsentInfoUpdate(onError: (Exception) -> Unit) {
-        val params = ConsentRequestParameters.Builder().build()
+        val params = AndroidConsentRequestParameters.Builder().build()
         consentInformation.requestConsentInfoUpdate(
             context,
             params,
+            {
+                if (consentInformation.isConsentFormAvailable) {
+                    loadAndShowConsentForm { onError(it) }
+                }
+            },
+            { onError(ConsentException(it.message)) }
+        )
+    }
+
+    /**
+     * Gets the user's consent information
+     *
+     * You should request an update of the user's consent information at every app launch,
+     * using [requestConsentInfoUpdate]. This request checks the following:
+     *
+     * __Whether consent is required.__ For example, consent is required for
+     * the first time, or the previous consent decision expired.
+     *
+     * __Whether a privacy options entry point is required.__
+     * Some privacy messages require apps to allow users to modify their
+     * privacy options at any time.
+     * @param onError lambda which passes a [ConsentException] on failure
+     */
+    public actual fun requestConsentInfoUpdate(params: ConsentRequestParameters, onError: (Exception) -> Unit) {
+
+        consentInformation.requestConsentInfoUpdate(
+            context,
+            params.android,
             {
                 if (consentInformation.isConsentFormAvailable) {
                     loadAndShowConsentForm { onError(it) }
@@ -89,7 +119,7 @@ public actual class Consent actual constructor (activity: Any?) {
      */
     public actual fun isPrivacyOptionsRequired(): Boolean =
         consentInformation.privacyOptionsRequirementStatus ==
-                ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED
+                AndroidConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED
 
     /**
      * Present the privacy options form
@@ -116,4 +146,16 @@ public actual class Consent actual constructor (activity: Any?) {
      */
     public actual fun canRequestAds(): Boolean =
         consentInformation.canRequestAds()
+
+    /**
+     * Reset consent state
+     *
+     * When testing your app with the UMP SDK, you might find it helpful to reset
+     * the state of the SDK so that you can simulate a user's first install experience.
+     *
+     * All SDKs provide the reset() method to do this.
+     */
+    public actual fun reset(){
+        consentInformation.reset()
+    }
 }
