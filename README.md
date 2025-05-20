@@ -92,7 +92,7 @@ sourceSets {
 }
 ```
 
-## Usage
+## Initialization
 Call `BasicAds.initialize` in your `commonMain` before building ads.
 ***NOTE: You do not need to initialize within each platform.***
 
@@ -109,55 +109,54 @@ fun App() {
 }
 ```
 
-Now you can build ads:
-
+## Composing a `BannerAd`
+You can build a `BannerAd` via a `Composable` function:
+_NOTE: If you want the [deprecated Composables](DEPRECATED.md), they'll be included until version 0.2.7_
 ```kotlin
 // in your 'composeApp/src/commonMain/AdScreen.kt' file
 @Composable
 fun AdScreen() {
     BannerAd() // Results in a Test Banner Ad being created
-    // You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-    InterstitialAd(activity) // Results in a Test Interstitial Ad being created
-    RewardedInterstitialAd(activity, {} ) // Results in a Test Rewarded Interstitial Ad (Beta) being created
-    RewardedAd(activity, {}) // Results in a Test Rewarded Ad being created
 }
 ```
 
-If you want to customize your ad experience, you can take advantage of lambdas:
+## Creating a `RewardedAd` or `InterstitialAd`
+
+You can also build other Ad types in your `ViewModel`:
 ```kotlin
-// in your 'composeApp/src/commonMain/AdScreen.kt' file
-@Composable
-fun AdScreen() {
-    // You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-    RewardedAd(
-        activity = activity,
-        adUnitId = AdUnitId.autoSelect(
-            "YOUR_ANDROID_AD_UNIT_ID",
-            "YOUR_IOS_AD_UNIT_ID"
-        ),
-        onDismissed = {
-            doSomethingElse()
-        },
-        onRewardEarned = {
-            playSomeCoolSound()
-        },
-        onShown = {
-            addValueToSomeCounter()
-        },
-        onImpression = {
-            addValueToSomeTracker()
-        },
-        onClick = {
-            incrementSomeValueSomewhere()
-        },
-        onFailure = {
-            runTheBackupOption()
-        }
-    )
-}
+// You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
+val rewardedAd = RewardedAd(activity)
+val interstitialAd = InterstitialAd(activity)
+val rewardedInterstitialAd = RewardedInterstitialAd(activity) // currently a Google Beta feature
+
+```
+You'll want to load each ad
+```kotlin
+rewardedInterstitial.load(
+    adUnitId = "Ad Unit ID goes here",
+    onLoad = {
+        // Some people call setListeners() here...
+    },
+    onFailure = { Log.e(tag, "${it.message}")}
+)
 ```
 
-In case you need it, here's some [additional documentation](https://basic.lexilabs.app/basic-ads)
+Don't forget to set listeners to observe user actions with the ad:
+```kotlin
+rewarded.setListeners(
+    onFailure = { Log.e(tag, "${it.message}") },
+    onDismissed = { 
+        loadRewardedAd() // I like to load the next add during this phase
+    }
+)
+```
+
+Lastly, show the ad:
+```kotlin
+rewarded.show { onRewardEarned() }
+```
+
+In case you need it, here's some [additional documentation](https://ads.basic.lexilabs.app)
 
 ## [FOR GDPR COMPLIANCE ONLY] Consent Requests
 
@@ -230,5 +229,4 @@ Here's a list of the dependency versions for each release after 0.2.0:
 6. Once complete, click `Build` > `Rebuild Project`. NOTE: Despite religious preference, prayer is encouraged.
 
 ### Known Issues:
-* [Can't compile using Xcode 16.3 due to breaking changes](https://youtrack.jetbrains.com/issue/KT-76460) ***FIXED IN 0.2.6-beta04+***
 * [Doesn't support Native Ads (yet)](https://github.com/LexiLabs-App/basic-ads/issues/29)
