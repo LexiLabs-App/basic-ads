@@ -1,11 +1,11 @@
 [versions]
 # BUILD INFO
-ads = "0.2.6"
+ads = "0.2.7-beta01"
 build-sdk-compile = "35"
 build-sdk-min = "24"
 build-sdk-target = "35"
 build-ios-target-deployment = "13.0"
-kotlin = "2.1.21"
+kotlin = "2.2.0-RC"
 agp = "8.10.0"
 # COCOAPODS DEPENDENCIES
 cocoapods-admob = "12.4.0"
@@ -13,8 +13,8 @@ cocoapods-ump = "3.0.0"
 # DEPENDENCIES
 bcv = "0.17.0"
 dokka = "2.0.0"
-compose = "1.8.0"
-google-play-services-ads = "24.2.0"
+compose = "1.8.1"
+google-play-services-ads = "24.3.0"
 annotations = "1.9.1"
 kover = "0.9.1"
 logging = "0.2.6"

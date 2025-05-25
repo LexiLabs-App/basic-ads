@@ -16,6 +16,8 @@ Basic-Ads uses the existing Android and iOS [Google AdMob](https://admob.google.
 A [full walkthrough](https://medium.com/@robert.jamison/composable-ads-f8795924aa0d) is available on Medium,
 and there's also [an easy-start template](https://github.com/LexiLabs-App/Example-Basic-Ads).
 
+In case you need it, here's the [Basic-Ads API Documentation](https://ads.basic.lexilabs.app)
+
 ## Preparation
 For **Android**, complete the steps in AdMob's instructions:
 
@@ -25,16 +27,20 @@ For **iOS**, complete the steps in AdMob's instructions:
 
 * [Import the Mobile Ads SDK](https://developers.google.com/admob/ios/quick-start#import_the_mobile_ads_sdk)
 
+* [For GDPR Compliance Only] [Import the User Messaging Platform SDK](https://developers.google.com/admob/ios/privacy)
+
 * [Update your Info.plist](https://developers.google.com/admob/ios/quick-start#update_your_infoplist)
 
 ***NOTE: For Xcode 13+, you can update your [Custom iOS Target Properties](https://useyourloaf.com/blog/xcode-13-missing-info.plist/).***
 
 ## Installation
 * [![Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21--RC-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+
+Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
 
 Add your dependencies from Maven
 ```toml
@@ -43,13 +49,11 @@ Add your dependencies from Maven
 kotlin = "+" # gets the latest version
 compose = "+" # gets the latest version
 basic = "+" # gets the latest version
-build-ios-target-deployment = "13.0" # required for cocoapods
 google-play-services-ads = "+" # you did this during the preparation step
-android-ump = "+"
+android-ump = "+" # you did this during the preparation step
 
 [libraries]
 basic-ads = { module = "app.lexilabs.basic:basic-ads", version.ref = "basic"}
-basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "basic"}
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
 android-ump = { module = "com.google.android.ump:user-messaging-platform", version.ref = "android-ump" }
 
@@ -66,23 +70,12 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-cocoapods {
-    ios.deploymentTarget = libs.versions.build.ios.target.deployment.get()
-    noPodspec()
-    pod("Google-Mobile-Ads-SDK") {
-        moduleName = "GoogleMobileAds"
-        version = libs.versions.cocoapods.admob.get()
-        extraOpts += listOf("-compiler-option", "-fmodules")
-    }
-    pod("GoogleUserMessagingPlatform") {
-        moduleName = "UserMessagingPlatform"
-        version = libs.versions.cocoapods.ump.get()
-        extraOpts += listOf("-compiler-option", "-fmodules")
-    }
-}
-
 sourceSets {
     commonMain.dependencies {
+        implementation(compose.runtime)
+        implementation(compose.foundation)
+        implementation(compose.material)
+        implementation(compose.ui)
         implementation(libs.lexilabs.basic.ads)
     }
     androidMain.dependencies {
@@ -122,12 +115,18 @@ fun AdScreen() {
 
 ## Creating a `RewardedAd` or `InterstitialAd`
 
-You can also build other Ad types in your `ViewModel`:
+You can also build other Ad types in your `ViewModel`, 
+but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
+
 ```kotlin
+// in your 'composeApp/src/commonMain/AdViewModel.kt' file
 // You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-val rewardedAd = RewardedAd(activity)
-val interstitialAd = InterstitialAd(activity)
-val rewardedInterstitialAd = RewardedInterstitialAd(activity) // currently a Google Beta feature
+class AdViewModel(activity: Any?): ViewModel() {
+    val rewardedAd = RewardedAd(activity)
+    val interstitialAd = InterstitialAd(activity)
+    val rewardedInterstitialAd = RewardedInterstitialAd(activity) // currently a Google Beta feature
+    /*...*/
+}
 
 ```
 You'll want to load each ad
@@ -156,11 +155,9 @@ Lastly, show the ad:
 rewarded.show { onRewardEarned() }
 ```
 
-In case you need it, here's some [additional documentation](https://ads.basic.lexilabs.app)
-
 ## [FOR GDPR COMPLIANCE ONLY] Consent Requests
 
-This topic can goe _very_ in-depth, so please begin by reading about [what GDPR is](https://gdpr.eu/) and [how AdMob complies with GDPR requirements](https://support.google.com/admob/answer/7666366?hl=en).
+This topic can go _very_ in-depth, so please begin by reading about [what GDPR is](https://gdpr.eu/) and [how AdMob complies with GDPR requirements](https://support.google.com/admob/answer/7666366?hl=en).
 
 Once you're familiar with the consent banner requirements, feel free to begin using the `Consent` features of Basic Ads:
 ```kotlin
@@ -200,25 +197,6 @@ if (consentInfo.canRequestAds()) {
     AdScreen()
 }
 ```
-
-## Versioning
-
-Here's a list of the dependency versions for each release after 0.2.0:
-
-| Basic-Ads<br/>Version |   Kotlin    | Compose<br/>Foundation | Annotations | AdMob<br/>Android / iOS | UMP<br/>Android / iOS |
-|:---------------------:|:-----------:|:----------------------:|:-----------:|:-----------------------:|:---------------------:|
-|         0.2.0         | 2.1.0-Beta1 |       1.7.0-rc01       |    1.8.2    |     23.4.0 / 11.9.0     |           -           |
-|         0.2.1         |  2.1.0-RC2  |         1.7.0          |    1.9.1    |     23.5.0 / 11.9.0     |           -           |
-|         0.2.2         |    2.1.0    |         1.7.1          |    1.9.1    |     23.5.0 / 11.9.0     |           -           |
-|         0.2.3         |   2.0.21    |         1.7.1          |    1.9.1    |     23.6.0 / 11.9.0     |           -           |
-|         0.2.4         |   2.0.21    |         1.7.1          |    1.9.1    |     23.6.0 / 11.9.0     |           -           |
-|         0.2.5         |   2.1.10    |         1.7.3          |    1.9.1    |     24.0.0 / 12.1.0     |           -           |
-|     0.2.6-Beta01      |   2.1.20    |         1.7.3          |    1.9.1    |     24.1.0 / 12.2.0     |           -           |
-|     0.2.6-beta02      |   2.1.20    |         1.7.3          |    1.9.1    |     24.2.0 / 12.2.0     |           -           |
-|     0.2.6-beta03      |   2.1.20    |         1.7.3          |    1.9.1    |     24.2.0 / 12.2.0     |           -           |
-|     0.2.6-beta04      |  2.1.21-RC  |         1.7.3          |    1.9.1    |     24.2.0 / 12.2.0     |           -           |
-|     0.2.6-beta05      |  2.1.21-RC  |         1.8.0          |    1.9.1    |     24.2.0 / 12.4.0     |     3.2.0 / 3.0.0     |
-|         0.2.6         |   2.1.21    |         1.8.0          |    1.9.1    |     24.2.0 / 12.4.0     |     3.2.0 / 3.0.0     |
 
 ### \[Advanced Users Only\] How to deal with building this garbage
 1. Find a large cup. It must exist in the real world.

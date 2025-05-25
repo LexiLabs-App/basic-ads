@@ -17,27 +17,6 @@ public class FullScreenContentDelegate(
     private val onFailure: (Exception) -> Unit
 ): NSObject(), GADFullScreenContentDelegateProtocol {
 
-    @Deprecated(
-        message = "Use the constructor with onFailure: (Exception) -> Unit instead",
-        replaceWith = ReplaceWith(
-            "FullScreenContentDelegate(onDismissed, onShown, onImpression, onClick) { exception: Exception ->  }"
-        ),
-        level = DeprecationLevel.WARNING
-    )
-    public constructor(
-        onDismissed: () -> Unit,
-        onShown: () -> Unit,
-        onImpression: () -> Unit,
-        onClick: () -> Unit,
-        onFailure: () -> Unit
-    ): this(
-        onDismissed = onDismissed,
-        onShown = onShown,
-        onImpression = onImpression,
-        onClick = onClick,
-        onFailure = { _ : Exception -> onFailure() }
-    )
-
     private val tag = "FullScreenContentDelegate"
 
     override fun ad(
