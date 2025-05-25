@@ -1,4 +1,5 @@
 # Deprecated Functions
+The following functions are deprecated as of v0.2.6 and will be removed in v0.2.7 or v1.0.0 -- whichever is first.
 
 Now you can build ads:
 

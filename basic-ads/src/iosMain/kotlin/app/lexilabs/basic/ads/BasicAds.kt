@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalForeignApi::class)
+
 package app.lexilabs.basic.ads
 
 import androidx.annotation.MainThread
@@ -9,8 +11,6 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import platform.Foundation.NSNumber
 
-//@OptIn(ExperimentalForeignApi::class)
-//public actual typealias InitializationStatus = GADInitializationStatus
 @OptIn(ExperimentalForeignApi::class)
 public actual object BasicAds {
 
