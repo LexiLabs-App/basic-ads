@@ -115,18 +115,14 @@ fun AdScreen() {
 
 ## Creating a `RewardedAd` or `InterstitialAd`
 
-You can also build other Ad types in your `ViewModel`, 
+You can also build other Ad types,
 but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
 
 ```kotlin
-// in your 'composeApp/src/commonMain/AdViewModel.kt' file
 // You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-class AdViewModel(activity: Any?): ViewModel() {
-    val rewardedAd = RewardedAd(activity)
-    val interstitialAd = InterstitialAd(activity)
-    val rewardedInterstitialAd = RewardedInterstitialAd(activity) // currently a Google Beta feature
-    /*...*/
-}
+val rewardedAd = RewardedAd(activity)
+val interstitialAd = InterstitialAd(activity)
+val rewardedInterstitialAd = RewardedInterstitialAd(activity) // currently a Google Beta feature
 
 ```
 You'll want to load each ad
