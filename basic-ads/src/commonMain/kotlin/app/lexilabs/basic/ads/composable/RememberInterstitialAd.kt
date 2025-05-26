@@ -18,17 +18,16 @@ public fun rememberInterstitialAd(
     onFailure: (Exception) -> Unit = {}
 ): MutableState<InterstitialAdHandler> {
     val ad = remember(activity) { mutableStateOf(InterstitialAdHandler(activity)) }
-    ad.value.load(
-        adUnitId = adUnitId,
-        onLoad = onLoad,
-        onFailure = onFailure
-    )
-    if (ad.value.state == AdState.DISMISSED){
-        ad.value.load(
-            adUnitId = adUnitId,
-            onLoad = onLoad,
-            onFailure = onFailure
-        )
+    when(ad.value.state){
+        AdState.DISMISSED,
+        AdState.NONE -> {
+            ad.value.load(
+                adUnitId = adUnitId,
+                onLoad = onLoad,
+                onFailure = onFailure
+            )
+        }
+        else -> { /** DO NOTHING **/ }
     }
     return ad
 }

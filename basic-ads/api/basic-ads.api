@@ -162,7 +162,6 @@ public final class app/lexilabs/basic/ads/InterstitialAdHandler {
 	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/InterstitialAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
 	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/InterstitialAdHandler;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
-	public final fun setState (Lapp/lexilabs/basic/ads/AdState;)V
 	public final fun show ()V
 }
 
@@ -223,7 +222,6 @@ public final class app/lexilabs/basic/ads/RewardedAdHandler {
 	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
 	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedAdHandler;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
-	public final fun setState (Lapp/lexilabs/basic/ads/AdState;)V
 	public final fun show (Lkotlin/jvm/functions/Function0;)V
 }
 
@@ -235,7 +233,6 @@ public final class app/lexilabs/basic/ads/RewardedInterstitialAdHandler {
 	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
 	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAdHandler;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
-	public final fun setState (Lapp/lexilabs/basic/ads/AdState;)V
 	public final fun show (Lkotlin/jvm/functions/Function0;)V
 }
 

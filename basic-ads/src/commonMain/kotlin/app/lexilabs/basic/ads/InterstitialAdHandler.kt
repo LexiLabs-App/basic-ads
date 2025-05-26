@@ -44,7 +44,7 @@ public expect class InterstitialAdHandler(activity: Any?) {
     /**
      * Determines the [AdState] of the [InterstitialAdHandler]
      */
-    public var state: AdState
+    public val state: AdState
 
     /**
      * Loads an Interstitial Ad.

@@ -1,6 +1,9 @@
 package app.lexilabs.basic.ads
 
 import androidx.annotation.MainThread
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADInterstitialAd
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
@@ -14,17 +17,18 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
     private var interstitialAd: GADInterstitialAd? = null
     private var delegate: FullScreenContentDelegate? = null
 
+    private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
     /**
      * Determines the [AdState] of the [InterstitialAdHandler]
      */
-    public actual var state: AdState = AdState.NONE
+    public actual val state: AdState by _state
     
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-        state = AdState.LOADING
+        _state.value = AdState.LOADING
         Log.d(tag, "load:starting")
         GADInterstitialAd.loadWithAdUnitID(
             adUnitID = adUnitId,
@@ -33,12 +37,12 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
                 ad?.let {
                     Log.d(tag, "load:success")
                     interstitialAd = it
-                    state = AdState.READY
+                    _state.value = AdState.READY
                     onLoad()
                 }
                 error?.let {
                     Log.e(tag, "load:failure:$it")
-                    state = AdState.FAILING
+                    _state.value = AdState.FAILING
                     onFailure(AdException())
                 }
             }
@@ -54,22 +58,22 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
     ) {
         Log.d(tag, "setListeners:starting")
         require(interstitialAd != null) {
-            state = AdState.FAILING
+            _state.value = AdState.FAILING
             "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
         }
         delegate = FullScreenContentDelegate(
             onClick = onClick,
             onDismissed = {
-                state = AdState.DISMISSED
+                _state.value = AdState.DISMISSED
                 onDismissed()
             },
             onFailure = {
-                state = AdState.FAILING
+                _state.value = AdState.FAILING
                 onFailure(it)
             },
             onImpression = onImpression,
             onShown = {
-                state = AdState.SHOWN
+                _state.value = AdState.SHOWN
                 onShown()
             }
         )
@@ -78,14 +82,14 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
 
     @MainThread
     public actual fun show() {
-        state = AdState.SHOWING
+        _state.value = AdState.SHOWING
         Log.d(tag, "show:starting")
         require(interstitialAd != null) {
-            state = AdState.FAILING
+            _state.value = AdState.FAILING
             "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
         }
         require(delegate != null) {
-            state = AdState.FAILING
+            _state.value = AdState.FAILING
             "InterstitialAd listeners not set yet. `InterstitialAd.setListeners()` must be called first"
         }
         interstitialAd?.presentFromRootViewController(null)

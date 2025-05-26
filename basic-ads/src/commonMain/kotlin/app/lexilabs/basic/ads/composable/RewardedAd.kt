@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
@@ -34,13 +34,13 @@ public fun RewardedAd(
     onFailure: (Exception) -> Unit = {},
     onLoad: () -> Unit = {}
 ) {
-    val ad by rememberRewardedAd(activity)
-    LaunchedEffect(ad){
-        ad.load(
-            adUnitId = adUnitId,
-            onLoad = onLoad,
-            onFailure = onFailure
-        )
+    val ad by rememberRewardedAd(
+        activity = activity,
+        adUnitId = adUnitId,
+        onLoad = onLoad,
+        onFailure = onFailure
+    )
+    if (ad.state == AdState.READY) {
         ad.setListeners(
             onFailure = onFailure,
             onDismissed = onDismissed,
@@ -77,16 +77,14 @@ public fun RewardedAd(
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
 ) {
-    LaunchedEffect(loadedAd){
-        loadedAd.setListeners(
-            onFailure = onFailure,
-            onDismissed = onDismissed,
-            onShown = onShown,
-            onImpression = onImpression,
-            onClick = onClick
-        )
-        loadedAd.show(
-            onRewardEarned = onRewardEarned
-        )
-    }
+    loadedAd.setListeners(
+        onFailure = onFailure,
+        onDismissed = onDismissed,
+        onShown = onShown,
+        onImpression = onImpression,
+        onClick = onClick
+    )
+    loadedAd.show(
+        onRewardEarned = onRewardEarned
+    )
 }

@@ -1,7 +1,6 @@
 package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
@@ -31,22 +30,20 @@ public fun InterstitialAd(
     onFailure: (Exception) -> Unit = {},
     onLoad: () -> Unit = {}
 ) {
-    val ad by rememberInterstitialAd(activity)
-    LaunchedEffect(ad){
-        ad.load(
-            adUnitId = adUnitId,
-            onLoad = onLoad,
-            onFailure = onFailure
-        )
-        ad.setListeners(
-            onFailure = onFailure,
-            onDismissed = onDismissed,
-            onShown = onShown,
-            onImpression = onImpression,
-            onClick = onClick
-        )
-        ad.show()
-    }
+    val ad by rememberInterstitialAd(
+        activity = activity,
+        adUnitId = adUnitId,
+        onLoad = onLoad,
+        onFailure = onFailure
+    )
+    ad.setListeners(
+        onFailure = onFailure,
+        onDismissed = onDismissed,
+        onShown = onShown,
+        onImpression = onImpression,
+        onClick = onClick
+    )
+    ad.show()
 }
 
 /**
@@ -70,14 +67,12 @@ public fun InterstitialAd(
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
 ) {
-    LaunchedEffect(loadedAd){
-        loadedAd.setListeners(
-            onFailure = onFailure,
-            onDismissed = onDismissed,
-            onShown = onShown,
-            onImpression = onImpression,
-            onClick = onClick
-        )
-        loadedAd.show()
-    }
+    loadedAd.setListeners(
+        onFailure = onFailure,
+        onDismissed = onDismissed,
+        onShown = onShown,
+        onImpression = onImpression,
+        onClick = onClick
+    )
+    loadedAd.show()
 }

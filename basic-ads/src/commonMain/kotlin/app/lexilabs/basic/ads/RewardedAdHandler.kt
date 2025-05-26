@@ -42,7 +42,7 @@ public expect class RewardedAdHandler(activity: Any?) {
     /**
      * Determines the [AdState] of the [RewardedAdHandler]
      */
-    public var state: AdState
+    public val state: AdState
 
     /**
      * Loads an Rewarded Ad.
