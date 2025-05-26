@@ -95,16 +95,12 @@ Call `BasicAds.initialize` in your `commonMain` before building ads.
 @Composable
 fun App() {
     // You'll need to access your platform-specific context (Android) or null (iOS) to pass as an `Any?` argument
-    BasicAds.initialize(
-        platformContext
-    )
-    //...
+    BasicAds.initialize(activity)
 }
 ```
 
 ## Composing a `BannerAd`
 You can build a `BannerAd` via a `Composable` function:
-_NOTE: If you want the [deprecated Composables](DEPRECATED.md), they'll be included until version 0.2.7_
 ```kotlin
 // in your 'composeApp/src/commonMain/AdScreen.kt' file
 @Composable
@@ -113,42 +109,41 @@ fun AdScreen() {
 }
 ```
 
-## Creating a `RewardedAd` or `InterstitialAd`
+## Creating Full Screen Ads
 
-You can also build other Ad types,
-but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
+You can also build other Ad types, but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
 
 ```kotlin
+// in your 'composeApp/src/commonMain/AdScreen.kt' file
 // You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-val rewardedAd = RewardedAd(activity)
-val interstitialAd = InterstitialAd(activity)
-val rewardedInterstitialAd = RewardedInterstitialAd(activity) // currently a Google Beta feature
-
+InterstitialAd(activity)
+RewardedAd(activity, onRewardEarned = {/** do something here **/})
+RewardedInterstitialAd(activity, onRewardEarned = {/** do something here **/}) // currently a Google Beta feature
 ```
-You'll want to load each ad
+If you want to preload your ads, there's a way to do that too:
 ```kotlin
-rewardedInterstitial.load(
-    adUnitId = "Ad Unit ID goes here",
-    onLoad = {
-        // Some people call setListeners() here...
-    },
-    onFailure = { Log.e(tag, "${it.message}")}
-)
+// Load the Ad within your Composable
+val rewardedAd by rememberRewardedAd(activity)
+// Display the Ad as soon as it's available
+RewardedAd(rewardedAd, onRewardEarned = {/** do something here **/})
 ```
-
-Don't forget to set listeners to observe user actions with the ad:
+You can also check the `AdState` before doing something:
 ```kotlin
-rewarded.setListeners(
-    onFailure = { Log.e(tag, "${it.message}") },
-    onDismissed = { 
-        loadRewardedAd() // I like to load the next add during this phase
-    }
-)
-```
-
-Lastly, show the ad:
-```kotlin
-rewarded.show { onRewardEarned() }
+// Load the Ad within your Composable
+val interstitialAd by rememberInterstitialAd(activity)
+// Determine to show or hide the Ad
+var showInterstitialAd by remember { mutableStateOf(false) }
+// Composable Button with callbacks
+Button(
+    onClick = { showInterstitialAd = true }, // Shows the ad on click
+    /** Checks AdState and disables the button if ad isn't ready **/
+    enabled = interstitialAd.state == AdState.READY
+) { Text("Show Interstitial Ad") } // label for the button
+// Checks for button click
+if (showInterstitialAd){
+    // Shows Composable Ad
+    InterstitialAd(interstitialAd)
+}
 ```
 
 ## [FOR GDPR COMPLIANCE ONLY] Consent Requests
@@ -189,8 +184,8 @@ if (consentInfo.isPrivacyOptionsRequired()) {
 
 // Check if the user can see ads
 if (consentInfo.canRequestAds()) {
-    /** Logic to show your ads **/
-    AdScreen()
+    // Call your ads here
+    InterstitialAd()
 }
 ```
 
@@ -204,3 +199,4 @@ if (consentInfo.canRequestAds()) {
 
 ### Known Issues:
 * [Doesn't support Native Ads (yet)](https://github.com/LexiLabs-App/basic-ads/issues/29)
+* Version 0.2.7-beta01 breaks most of the API. Just don't use it
