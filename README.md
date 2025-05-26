@@ -31,7 +31,8 @@ For **iOS**, complete the steps in AdMob's instructions:
 
 * [Update your Info.plist](https://developers.google.com/admob/ios/quick-start#update_your_infoplist)
 
-> [!NOTE] For Xcode 13+, you can update your [Custom iOS Target Properties](https://useyourloaf.com/blog/xcode-13-missing-info.plist/).
+> [!NOTE] 
+> For Xcode 13+, you can update your [Custom iOS Target Properties](https://useyourloaf.com/blog/xcode-13-missing-info.plist/).
 
 ## Installation
 * [![Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
@@ -40,7 +41,8 @@ For **iOS**, complete the steps in AdMob's instructions:
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
-> [!IMPORTANT] Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
+> [!IMPORTANT] 
+> Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
 
 Add your dependencies from Maven
 ```toml
@@ -88,7 +90,8 @@ sourceSets {
 ## Initialization
 Call `BasicAds.initialize` in your `commonMain` before building ads.
 
-> [!NOTE] You do not need to initialize within each platform.
+> [!NOTE] 
+> You do not need to initialize within each platform.
 
 ```kotlin
 // in your 'composeApp/src/commonMain/App.kt' file
@@ -148,7 +151,8 @@ if (showInterstitialAd){
 
 ## Consent Requests
 
-> [!TIP] Consent Popups are typically only required for Californian or International audiences.
+> [!TIP] 
+> Consent Popups are typically only required for Californian or International audiences.
 > GDPR is a _very_ in-depth topic, so please begin by reading about [what GDPR is](https://gdpr.eu/) 
 > and [how AdMob complies with GDPR requirements](https://support.google.com/admob/answer/7666366?hl=en).
 
@@ -170,7 +174,8 @@ if (consent.canRequestAds) {
 
 ### Building this Garbage
 
-> [!CAUTION] Advanced Users Only
+> [!CAUTION] 
+> Advanced Users Only
 
 1. Find a large cup. It must exist in the real world.
 2. Fill said cup to the brim with some sort of caffeinated beverage.
