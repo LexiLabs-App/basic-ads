@@ -2,15 +2,15 @@ package app.lexilabs.basic.ads
 
 import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
-import cocoapods.Google_Mobile_Ads_SDK.GADRewardedAd
+import cocoapods.Google_Mobile_Ads_SDK.GADRewardedInterstitialAd
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 
 @OptIn(ExperimentalForeignApi::class)
-public actual class RewardedAd actual constructor(activity: Any?) {
+public actual class RewardedInterstitialAdHandler actual constructor(activity: Any?) {
 
-    private val tag = "RewardedAd"
-    private var rewardedAd: GADRewardedAd? = null
+    private val tag = "RewardedInterstitialAd"
+    private var rewardedInterstitialAd: GADRewardedInterstitialAd? = null
     private var delegate: FullScreenContentDelegate? = null
 
     public actual fun load(
@@ -19,13 +19,13 @@ public actual class RewardedAd actual constructor(activity: Any?) {
         onFailure: (Exception) -> Unit
     ) {
         Log.d(tag, "load:starting")
-        GADRewardedAd.loadWithAdUnitID(
+        GADRewardedInterstitialAd.loadWithAdUnitID(
             adUnitID = adUnitId,
             request = GADRequest(),
-            completionHandler = { ad: GADRewardedAd?, error: NSError? ->
+            completionHandler = { ad: GADRewardedInterstitialAd?, error: NSError? ->
                 ad?.let {
                     Log.d(tag, "load:success")
-                    rewardedAd = it
+                    rewardedInterstitialAd = it
                     onLoad()
                 }
                 error?.let {
@@ -44,7 +44,7 @@ public actual class RewardedAd actual constructor(activity: Any?) {
         onClick: () -> Unit
     ) {
         Log.d(tag, "setListeners:starting")
-        require(rewardedAd != null) {
+        require(rewardedInterstitialAd != null) {
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
         delegate = FullScreenContentDelegate(
@@ -54,21 +54,19 @@ public actual class RewardedAd actual constructor(activity: Any?) {
             onImpression = onImpression,
             onShown = onShown
         )
-        rewardedAd?.fullScreenContentDelegate = delegate
+        rewardedInterstitialAd?.fullScreenContentDelegate = delegate
     }
 
-    public actual fun show(
-        onRewardEarned: () -> Unit
-    ) {
+    public actual fun show(onRewardEarned: () -> Unit) {
         Log.d(tag, "show:starting")
-        require(rewardedAd != null) {
+        require(rewardedInterstitialAd != null) {
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
         require(delegate != null) {
             "RewardedAd listeners not set yet. `RewardedAd.setListeners()` must be called first"
         }
-        rewardedAd?.presentFromRootViewController(
-            rootViewController = null,
+        rewardedInterstitialAd?.presentFromRootViewController(
+            viewController = null,
             userDidEarnRewardHandler = { onRewardEarned() }
         )
     }

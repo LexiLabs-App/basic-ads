@@ -1,20 +1,20 @@
 package app.lexilabs.basic.ads
 
 /**
- * An [RewardedInterstitialAd] is a full-screen ad that cover the interface of the host app.
+ * An [RewardedAdHandler] is a full-screen ad that cover the interface of the host app.
  * They're typically displayed at natural transition points in the flow of an app,
  * such as between activities or during the pause between levels in a game.
- * When an app shows an RewardedInterstitial ad, the user has the choice to either tap on
+ * When an app shows an rewarded ad, the user has the choice to either tap on
  * the ad and continue to its destination or close it and return to the app.
  *
  * @param activity Android required Activity
  *
  * ```kotlin
  * // Instantiate
- * val ad = RewardedInterstitialAd(activity)
+ * val ad = RewardedAd(activity)
  * // Load the Ad
  * ad.load(
- *   adUnitId = "AD_UNIT_ID_GOES_HERE", // RewardedInterstitial Ad Unit ID from AdMob
+ *   adUnitId = "AD_UNIT_ID_GOES_HERE", // Rewarded Ad Unit ID from AdMob
  *   onLoad = {
  *   // ad.setListeners could go here instead
  *   },
@@ -37,32 +37,32 @@ package app.lexilabs.basic.ads
  * @see show
  */
 @DependsOnGoogleMobileAds
-public expect class RewardedInterstitialAd(activity: Any?) {
+public expect class RewardedAdHandler(activity: Any?) {
 
     /**
-     * Loads an RewardedInterstitial Ad.
+     * Loads an Rewarded Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *
-     * To load an RewardedInterstitial ad, call [RewardedInterstitialAd.load] method
+     * To load an Rewarded ad, call [RewardedAdHandler.load] method
      * and pass in an [AdUnitId] as a [String] to receive the loaded ad, the [onLoad]
      * callback, and any possible [Exception] from the [onFailure] callback.
-     * @param adUnitId Your RewardedInterstitial Ad AdUnitId [String] from AdMob
+     * @param adUnitId Your Rewarded Ad AdUnitId [String] from AdMob
      * @param onLoad Callback after the ad loads
      * @param onFailure Callback sharing the [Exception] when the ad fail to load
      * @see [AdUnitId.autoSelect]
-     * @see [AdUnitId.REWARDED_INTERSTITIAL_DEFAULT]
+     * @see [AdUnitId.REWARDED_DEFAULT]
      */
     public fun load(
-        adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
+        adUnitId: String = AdUnitId.REWARDED_DEFAULT,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     )
 
     /**
-     * Sets the FullScreenContentCallback for the RewardedInterstitial Ad.
+     * Sets the FullScreenContentCallback for the Rewarded Ad.
      *
      * The [setListeners] function handles events related to displaying your
-     * [RewardedInterstitialAd]. Callbacks must be set before calling [RewardedInterstitialAd.show].
+     * [RewardedAdHandler]. Callbacks must be set before calling [RewardedAdHandler.show].
      *
      * @param onFailure Callback with [Exception] when ad fails to display
      * @param onDismissed Callback when ad is dismissed
@@ -80,9 +80,9 @@ public expect class RewardedInterstitialAd(activity: Any?) {
     )
 
     /**
-     * Shows the [RewardedInterstitialAd].
+     * Shows the [RewardedAdHandler].
      *
-     * @param onRewardEarned Callback after ad reward is earned.
+     * @param onRewardEarned Callback when ad reward is earned
      */
     public fun show(
         onRewardEarned: () -> Unit

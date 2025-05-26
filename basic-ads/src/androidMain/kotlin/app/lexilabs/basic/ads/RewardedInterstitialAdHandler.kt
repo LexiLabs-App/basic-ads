@@ -2,15 +2,17 @@ package app.lexilabs.basic.ads
 
 import android.app.Activity
 import app.lexilabs.basic.logging.Log
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.google.android.gms.ads.AdRequest as AndroidAdRequest
-import com.google.android.gms.ads.rewarded.RewardedAd as AndroidRewardedAd
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd as AndroidRewardedInterstitialAd
 
-public actual class RewardedAd actual constructor(private val activity: Any?) {
+public actual class RewardedInterstitialAdHandler actual constructor(
+    private val activity: Any?
+) {
 
-    private val tag = "RewardedAd"
-    private var rewardedAd: AndroidRewardedAd? = null
+    private val tag = "RewardedInterstitialAd"
+    private var rewardedInterstitialAd: AndroidRewardedInterstitialAd? = null
 
     public actual fun load(
         adUnitId: String,
@@ -24,21 +26,21 @@ public actual class RewardedAd actual constructor(private val activity: Any?) {
         require(activity is Activity) {
             "activity variable must be of the Android `Activity` type"
         }
-        AndroidRewardedAd.load(
+        AndroidRewardedInterstitialAd.load(
             activity,
             adUnitId,
-            AndroidAdRequest.Builder().build(),
-            object : RewardedAdLoadCallback() {
+            AdRequest.Builder().build(),
+            object : RewardedInterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     super.onAdFailedToLoad(adError)
                     Log.d(tag, "loadRewardedAd:failure:$adError")
                     onFailure(AdException(adError.message))
                 }
 
-                override fun onAdLoaded(ad: AndroidRewardedAd) {
+                override fun onAdLoaded(ad: AndroidRewardedInterstitialAd) {
                     super.onAdLoaded(ad)
                     Log.d(tag, "loadRewardedAd:success")
-                    rewardedAd = ad
+                    rewardedInterstitialAd = ad
                     onLoad()
                 }
             }
@@ -51,25 +53,23 @@ public actual class RewardedAd actual constructor(private val activity: Any?) {
         onShown: () -> Unit,
         onImpression: () -> Unit,
         onClick: () -> Unit
-    ){
+    ) {
         Log.d(tag, "setListeners: Loading")
-        require(rewardedAd != null) {
+        require(rewardedInterstitialAd != null) {
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
-        rewardedAd?.let {
-            rewardedAd?.fullScreenContentCallback = FullscreenContentDelegate(
+        rewardedInterstitialAd?.let {
+            rewardedInterstitialAd?.fullScreenContentCallback = FullscreenContentDelegate(
                 onClick = onClick,
                 onDismissed = onDismissed,
                 onFailure = onFailure,
                 onImpression = onImpression,
                 onShown = onShown
             )
-        } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")
+        } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
     }
 
-    public actual fun show(
-        onRewardEarned: () -> Unit
-    ){
+    public actual fun show(onRewardEarned: () -> Unit) {
         Log.d(tag, "show: Loading")
         require(activity != null) {
             "Activity Context must be set to non-null value in Android"
@@ -77,10 +77,10 @@ public actual class RewardedAd actual constructor(private val activity: Any?) {
         require(activity is Activity) {
             "activity variable must be of the Android `Activity` type"
         }
-        require(rewardedAd != null) {
+        require(rewardedInterstitialAd != null) {
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
-        rewardedAd?.show(activity) {
+        rewardedInterstitialAd?.show(activity) {
             Log.d(tag, "A reward was earned")
             onRewardEarned()
         }

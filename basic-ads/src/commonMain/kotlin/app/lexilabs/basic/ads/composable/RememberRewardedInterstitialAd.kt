@@ -4,10 +4,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
-import app.lexilabs.basic.ads.RewardedInterstitialAd
+import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
 
 @DependsOnGoogleMobileAds
 @Composable
-public fun rememberRewardedInterstitialAd(activity: Any?): MutableState<RewardedInterstitialAd> =
-    remember(activity) { mutableStateOf(RewardedInterstitialAd(activity)) }
+public fun rememberRewardedInterstitialAd(
+    activity: Any?,
+    adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
+    onLoad: () -> Unit = {},
+    onFailure: (Exception) -> Unit = {}
+): MutableState<RewardedInterstitialAdHandler> {
+    val ad = remember(activity) { mutableStateOf(RewardedInterstitialAdHandler(activity)) }
+    ad.value.load(
+        adUnitId = adUnitId,
+        onLoad = onLoad,
+        onFailure = onFailure
+    )
+    return ad
+}

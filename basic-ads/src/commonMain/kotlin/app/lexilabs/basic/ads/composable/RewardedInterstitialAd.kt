@@ -1,11 +1,12 @@
 package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
-import app.lexilabs.basic.ads.InterstitialAd
-import app.lexilabs.basic.ads.RewardedInterstitialAd
+import app.lexilabs.basic.ads.InterstitialAdHandler
+import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
 
 /**
  * Loads and displays a Rewarded Interstitial Ad using a [Composable].
@@ -17,7 +18,7 @@ import app.lexilabs.basic.ads.RewardedInterstitialAd
  * @param onImpression Lambda expression that executes after the user has seen the ad
  * @param onClick Lambda expression that executes after the user clicks the ad
  * @param onFailure Lambda expression that executes after the ad fails to load or redirect
- * @param onLoad Lambda expression that executes after the [InterstitialAd] has fully loaded
+ * @param onLoad Lambda expression that executes after the [InterstitialAdHandler] has fully loaded
  * @see AdUnitId.autoSelect
  */
 @DependsOnGoogleMobileAds
@@ -32,27 +33,29 @@ import app.lexilabs.basic.ads.RewardedInterstitialAd
     onFailure: (Exception) -> Unit = {},
     onLoad: () -> Unit = {}
 ) {
-    val ad by rememberRewardedAd(activity)
-    ad.load(
-        adUnitId = adUnitId,
-        onLoad = onLoad,
-        onFailure = onFailure
-    )
-    ad.setListeners(
-        onFailure = onFailure,
-        onDismissed = onDismissed,
-        onShown = onShown,
-        onImpression = onImpression,
-        onClick = onClick
-    )
-    ad.show(
-        onRewardEarned = onRewardEarned
-    )
+    val ad by rememberRewardedInterstitialAd(activity)
+    LaunchedEffect(ad){
+        ad.load(
+            adUnitId = adUnitId,
+            onLoad = onLoad,
+            onFailure = onFailure
+        )
+        ad.setListeners(
+            onFailure = onFailure,
+            onDismissed = onDismissed,
+            onShown = onShown,
+            onImpression = onImpression,
+            onClick = onClick
+        )
+        ad.show(
+            onRewardEarned = onRewardEarned
+        )
+    }
 }
 
 /**
  * Displays a pre-loaded Rewarded Interstitial Ad using a [Composable].
- * @param loadedAd an [RewardedInterstitialAd] pre-loaded before the call
+ * @param loadedAd an [RewardedInterstitialAdHandler] pre-loaded before the call
  * @param onRewardEarned Lambda that executes when the user has earned an ad-related reward
  * @param onDismissed Lambda that executes when the user closes the ad
  * @param onShown Lambda expression that executes after the ad is presented
@@ -64,7 +67,7 @@ import app.lexilabs.basic.ads.RewardedInterstitialAd
 @DependsOnGoogleMobileAds
 @Composable
 public fun RewardedInterstitialAd(
-    loadedAd: RewardedInterstitialAd,
+    loadedAd: RewardedInterstitialAdHandler,
     onRewardEarned: () -> Unit,
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
@@ -72,14 +75,16 @@ public fun RewardedInterstitialAd(
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
 ) {
-    loadedAd.setListeners(
-        onFailure = onFailure,
-        onDismissed = onDismissed,
-        onShown = onShown,
-        onImpression = onImpression,
-        onClick = onClick
-    )
-    loadedAd.show(
-        onRewardEarned = onRewardEarned
-    )
+    LaunchedEffect(loadedAd){
+        loadedAd.setListeners(
+            onFailure = onFailure,
+            onDismissed = onDismissed,
+            onShown = onShown,
+            onImpression = onImpression,
+            onClick = onClick
+        )
+        loadedAd.show(
+            onRewardEarned = onRewardEarned
+        )
+    }
 }
