@@ -12,16 +12,21 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
     private val tag = "RewardedAd"
     private var rewardedAd: AndroidRewardedAd? = null
 
+    public actual var state: AdState = AdState.NONE
+
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     ){
+        state = AdState.LOADING
         Log.d(tag, "loadRewardedAd: Loading")
         require(activity != null) {
+            state = AdState.FAILING
             "Activity Context must be set to non-null value in Android"
         }
         require(activity is Activity) {
+            state = AdState.FAILING
             "activity variable must be of the Android `Activity` type"
         }
         AndroidRewardedAd.load(
@@ -32,6 +37,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     super.onAdFailedToLoad(adError)
                     Log.d(tag, "loadRewardedAd:failure:$adError")
+                    state = AdState.FAILING
                     onFailure(AdException(adError.message))
                 }
 
@@ -39,6 +45,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
                     super.onAdLoaded(ad)
                     Log.d(tag, "loadRewardedAd:success")
                     rewardedAd = ad
+                    state = AdState.READY
                     onLoad()
                 }
             }
@@ -54,15 +61,25 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
     ){
         Log.d(tag, "setListeners: Loading")
         require(rewardedAd != null) {
+            state = AdState.FAILING
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
         rewardedAd?.let {
             rewardedAd?.fullScreenContentCallback = FullscreenContentDelegate(
                 onClick = onClick,
-                onDismissed = onDismissed,
-                onFailure = onFailure,
+                onDismissed = {
+                    state = AdState.DISMISSED
+                    onDismissed()
+                },
+                onFailure = {
+                    state = AdState.FAILING
+                    onFailure(it)
+                },
                 onImpression = onImpression,
-                onShown = onShown
+                onShown = {
+                    state = AdState.SHOWN
+                    onShown()
+                }
             )
         } ?: Log.d(tag, "The rewarded ad wasn't ready yet.")
     }
@@ -70,14 +87,18 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
     public actual fun show(
         onRewardEarned: () -> Unit
     ){
+        state = AdState.SHOWING
         Log.d(tag, "show: Loading")
         require(activity != null) {
+            state = AdState.FAILING
             "Activity Context must be set to non-null value in Android"
         }
         require(activity is Activity) {
+            state = AdState.FAILING
             "activity variable must be of the Android `Activity` type"
         }
         require(rewardedAd != null) {
+            state = AdState.FAILING
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
         rewardedAd?.show(activity) {

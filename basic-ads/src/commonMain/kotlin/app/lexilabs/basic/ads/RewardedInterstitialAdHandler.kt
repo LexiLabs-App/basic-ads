@@ -40,6 +40,11 @@ package app.lexilabs.basic.ads
 public expect class RewardedInterstitialAdHandler(activity: Any?) {
 
     /**
+     * Determines the [AdState] of the [RewardedInterstitialAdHandler]
+     */
+    public var state: AdState
+
+    /**
      * Loads an RewardedInterstitial Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *

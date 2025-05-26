@@ -42,6 +42,11 @@ import androidx.annotation.MainThread
 public expect class InterstitialAdHandler(activity: Any?) {
 
     /**
+     * Determines the [AdState] of the [InterstitialAdHandler]
+     */
+    public var state: AdState
+
+    /**
      * Loads an Interstitial Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *

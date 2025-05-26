@@ -40,6 +40,11 @@ package app.lexilabs.basic.ads
 public expect class RewardedAdHandler(activity: Any?) {
 
     /**
+     * Determines the [AdState] of the [RewardedAdHandler]
+     */
+    public var state: AdState
+
+    /**
      * Loads an Rewarded Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *

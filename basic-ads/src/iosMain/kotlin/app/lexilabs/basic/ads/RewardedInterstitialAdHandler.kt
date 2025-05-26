@@ -12,12 +12,14 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
     private val tag = "RewardedInterstitialAd"
     private var rewardedInterstitialAd: GADRewardedInterstitialAd? = null
     private var delegate: FullScreenContentDelegate? = null
+    public actual var state: AdState = AdState.NONE
 
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
+        state = AdState.LOADING
         Log.d(tag, "load:starting")
         GADRewardedInterstitialAd.loadWithAdUnitID(
             adUnitID = adUnitId,
@@ -26,10 +28,12 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
                 ad?.let {
                     Log.d(tag, "load:success")
                     rewardedInterstitialAd = it
+                    state = AdState.READY
                     onLoad()
                 }
                 error?.let {
                     Log.e(tag, "load:failure:$it")
+                    state = AdState.FAILING
                     onFailure(AdException())
                 }
             }
@@ -45,24 +49,37 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
     ) {
         Log.d(tag, "setListeners:starting")
         require(rewardedInterstitialAd != null) {
+            state = AdState.FAILING
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
         delegate = FullScreenContentDelegate(
             onClick = onClick,
-            onDismissed = onDismissed,
-            onFailure = onFailure,
+            onDismissed = {
+                state = AdState.DISMISSED
+                onDismissed()
+            },
+            onFailure = {
+                state = AdState.FAILING
+                onFailure(it)
+            },
             onImpression = onImpression,
-            onShown = onShown
+            onShown = {
+                state = AdState.SHOWN
+                onShown()
+            }
         )
         rewardedInterstitialAd?.fullScreenContentDelegate = delegate
     }
 
     public actual fun show(onRewardEarned: () -> Unit) {
+        state = AdState.SHOWING
         Log.d(tag, "show:starting")
         require(rewardedInterstitialAd != null) {
+            state = AdState.FAILING
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
         require(delegate != null) {
+            state = AdState.FAILING
             "RewardedAd listeners not set yet. `RewardedAd.setListeners()` must be called first"
         }
         rewardedInterstitialAd?.presentFromRootViewController(
