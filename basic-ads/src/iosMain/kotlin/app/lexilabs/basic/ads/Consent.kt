@@ -1,5 +1,8 @@
 package app.lexilabs.basic.ads
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import cocoapods.GoogleUserMessagingPlatform.UMPConsentForm
 import cocoapods.GoogleUserMessagingPlatform.UMPConsentInformation
 import cocoapods.GoogleUserMessagingPlatform.UMPPrivacyOptionsRequirementStatusRequired
@@ -19,6 +22,12 @@ import platform.Foundation.NSError
 @OptIn(ExperimentalForeignApi::class)
 @DependsOnGoogleUserMessagingPlatform
 public actual class Consent actual constructor(activity: Any?) {
+
+    private val _canRequestAds: MutableState<Boolean> = mutableStateOf(false)
+    public actual val canRequestAds: Boolean by _canRequestAds
+
+    private val _isPrivacyOptionsRequired: MutableState<Boolean> = mutableStateOf(false)
+    public actual val privacyOptionsRequired: Boolean by _isPrivacyOptionsRequired
 
     /**
      * Gets the user's consent information
@@ -114,7 +123,7 @@ public actual class Consent actual constructor(activity: Any?) {
      * Check if a privacy options entry point is required
      *
      * After you have called [requestConsentInfoUpdate], check
-     * [Consent.isPrivacyOptionsRequired] to determine if a privacy
+     * [Consent.privacyOptionsRequired] to determine if a privacy
      * options entry point is required for your app.
      *
      * If an entry point is required, add a visible and interactable
@@ -123,9 +132,11 @@ public actual class Consent actual constructor(activity: Any?) {
      * If a privacy entry point is not required, configure your UI element
      * to be not visible and interactable.
      */
-    public actual fun isPrivacyOptionsRequired(): Boolean =
-        UMPConsentInformation.sharedInstance.privacyOptionsRequirementStatus ==
+    public actual fun isPrivacyOptionsRequired(): Boolean {
+        _isPrivacyOptionsRequired.value = UMPConsentInformation.sharedInstance.privacyOptionsRequirementStatus ==
                 UMPPrivacyOptionsRequirementStatusRequired
+        return _isPrivacyOptionsRequired.value
+    }
 
     /**
      * Present the privacy options form
@@ -153,8 +164,10 @@ public actual class Consent actual constructor(activity: Any?) {
      * Before requesting ads, use [Consent.canRequestAds] to
      * check if you've obtained consent from the user.
      */
-    public actual fun canRequestAds(): Boolean =
-        UMPConsentInformation.sharedInstance.canRequestAds
+    public actual fun canRequestAds(): Boolean {
+        _canRequestAds.value = UMPConsentInformation.sharedInstance.canRequestAds
+        return _canRequestAds.value
+    }
 
     /**
      * Reset consent state

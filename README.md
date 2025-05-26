@@ -31,7 +31,8 @@ For **iOS**, complete the steps in AdMob's instructions:
 
 * [Update your Info.plist](https://developers.google.com/admob/ios/quick-start#update_your_infoplist)
 
-***NOTE: For Xcode 13+, you can update your [Custom iOS Target Properties](https://useyourloaf.com/blog/xcode-13-missing-info.plist/).***
+> [!NOTE] 
+> For Xcode 13+, you can update your [Custom iOS Target Properties](https://useyourloaf.com/blog/xcode-13-missing-info.plist/).
 
 ## Installation
 * [![Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
@@ -40,7 +41,8 @@ For **iOS**, complete the steps in AdMob's instructions:
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
-Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
+> [!IMPORTANT] 
+> Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
 
 Add your dependencies from Maven
 ```toml
@@ -87,7 +89,9 @@ sourceSets {
 
 ## Initialization
 Call `BasicAds.initialize` in your `commonMain` before building ads.
-***NOTE: You do not need to initialize within each platform.***
+
+> [!NOTE] 
+> You do not need to initialize within each platform.
 
 ```kotlin
 // in your 'composeApp/src/commonMain/App.kt' file
@@ -95,16 +99,12 @@ Call `BasicAds.initialize` in your `commonMain` before building ads.
 @Composable
 fun App() {
     // You'll need to access your platform-specific context (Android) or null (iOS) to pass as an `Any?` argument
-    BasicAds.initialize(
-        platformContext
-    )
-    //...
+    BasicAds.initialize(activity)
 }
 ```
 
 ## Composing a `BannerAd`
 You can build a `BannerAd` via a `Composable` function:
-_NOTE: If you want the [deprecated Composables](DEPRECATED.md), they'll be included until version 0.2.7_
 ```kotlin
 // in your 'composeApp/src/commonMain/AdScreen.kt' file
 @Composable
@@ -113,88 +113,70 @@ fun AdScreen() {
 }
 ```
 
-## Creating a `RewardedAd` or `InterstitialAd`
+## Creating Full Screen Ads
+You can also build other Ad types, but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
 
-You can also build other Ad types,
-but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
-
-```kotlin
-// You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-val rewardedAd = RewardedAd(activity)
-val interstitialAd = InterstitialAd(activity)
-val rewardedInterstitialAd = RewardedInterstitialAd(activity) // currently a Google Beta feature
-
-```
-You'll want to load each ad
-```kotlin
-rewardedInterstitial.load(
-    adUnitId = "Ad Unit ID goes here",
-    onLoad = {
-        // Some people call setListeners() here...
-    },
-    onFailure = { Log.e(tag, "${it.message}")}
-)
-```
-
-Don't forget to set listeners to observe user actions with the ad:
-```kotlin
-rewarded.setListeners(
-    onFailure = { Log.e(tag, "${it.message}") },
-    onDismissed = { 
-        loadRewardedAd() // I like to load the next add during this phase
-    }
-)
-```
-
-Lastly, show the ad:
-```kotlin
-rewarded.show { onRewardEarned() }
-```
-
-## [FOR GDPR COMPLIANCE ONLY] Consent Requests
-
-This topic can go _very_ in-depth, so please begin by reading about [what GDPR is](https://gdpr.eu/) and [how AdMob complies with GDPR requirements](https://support.google.com/admob/answer/7666366?hl=en).
-
-Once you're familiar with the consent banner requirements, feel free to begin using the `Consent` features of Basic Ads:
 ```kotlin
 // in your 'composeApp/src/commonMain/AdScreen.kt' file
-val consentInfo = Consent(activity) // Create a Consent object
-
-// Check what the app's consent requirements are
-consentInfo.requestConsentInfoUpdate(
-    onError = { error: Exception ->
-        Log.e(tag, error.message)
-    }
-)
-
-// Show the consent form
-consentInfo.loadAndShowConsentForm(
-    onError = { error: Exception ->
-        Log.e(tag, error.message)
-    }
-)
-
-// Check if privacy options are required
-if (consentInfo.isPrivacyOptionsRequired()) {
-    // Load and present the privacy form
-    consentInfo.showPrivacyOptionsForm(
-        onDismissed = {
-            Log.d(tag, "dismissed")
-        },
-        onError = { error: Exception ->
-            Log.e(tag, error.message)
-        }
-    )
-} 
-
-// Check if the user can see ads
-if (consentInfo.canRequestAds()) {
-    /** Logic to show your ads **/
-    AdScreen()
+// You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
+InterstitialAd(activity)
+RewardedAd(activity, onRewardEarned = {/** do something here **/})
+RewardedInterstitialAd(activity, onRewardEarned = {/** do something here **/}) // currently a Google Beta feature
+```
+If you want to preload your ads, there's a way to do that too:
+```kotlin
+// Load the Ad within your Composable
+val rewardedAd by rememberRewardedAd(activity)
+// Display the Ad as soon as it's available
+RewardedAd(rewardedAd, onRewardEarned = {/** do something here **/})
+```
+You can also check the `AdState` before doing something:
+```kotlin
+// Load the Ad within your Composable
+val interstitialAd by rememberInterstitialAd(activity)
+// Determine to show or hide the Ad
+var showInterstitialAd by remember { mutableStateOf(false) }
+// Composable Button with callbacks
+Button(
+    onClick = { showInterstitialAd = true }, // Shows the ad on click
+    /** Checks AdState and disables the button if ad isn't ready **/
+    enabled = interstitialAd.state == AdState.READY
+) { Text("Show Interstitial Ad") } // label for the button
+// Checks for button click
+if (showInterstitialAd){
+    // Shows Composable Ad
+    InterstitialAd(interstitialAd)
 }
 ```
 
-### \[Advanced Users Only\] How to deal with building this garbage
+## Consent Requests
+
+> [!TIP] 
+> Consent Popups are typically only required for Californian or International audiences.
+> GDPR is a _very_ in-depth topic, so please begin by reading about [what GDPR is](https://gdpr.eu/) 
+> and [how AdMob complies with GDPR requirements](https://support.google.com/admob/answer/7666366?hl=en).
+
+You can use the `Consent` features of Basic Ads with Composables too:
+```kotlin
+// in your 'composeApp/src/commonMain/AdScreen.kt' file
+// You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
+val consent by rememberConsent(activity)
+
+// Create a ConsentPopup (if available in your region)
+ConsentPopup(consent)
+
+// Check if the user can see ads
+if (consent.canRequestAds) {
+    // Call your ads here
+    InterstitialAd()
+}
+```
+
+### Building this Garbage
+
+> [!CAUTION] 
+> Advanced Users Only
+
 1. Find a large cup. It must exist in the real world.
 2. Fill said cup to the brim with some sort of caffeinated beverage.
 3. Click `File` > `Invalidate Caches...`, check all boxes and hit `invalidate and restart`
@@ -204,3 +186,4 @@ if (consentInfo.canRequestAds()) {
 
 ### Known Issues:
 * [Doesn't support Native Ads (yet)](https://github.com/LexiLabs-App/basic-ads/issues/29)
+* Version 0.2.7-beta01 breaks most of the API. Just don't use it

@@ -1,6 +1,9 @@
-package app.lexilabs.basic.ads
+package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
+import app.lexilabs.basic.ads.AdSize
+import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 
 /**
  * Loads and displays a Banner Ad using a [Composable].

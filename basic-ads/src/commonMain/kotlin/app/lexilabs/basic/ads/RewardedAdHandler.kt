@@ -1,7 +1,7 @@
 package app.lexilabs.basic.ads
 
 /**
- * An [RewardedAd] is a full-screen ad that cover the interface of the host app.
+ * An [RewardedAdHandler] is a full-screen ad that cover the interface of the host app.
  * They're typically displayed at natural transition points in the flow of an app,
  * such as between activities or during the pause between levels in a game.
  * When an app shows an rewarded ad, the user has the choice to either tap on
@@ -37,13 +37,18 @@ package app.lexilabs.basic.ads
  * @see show
  */
 @DependsOnGoogleMobileAds
-public expect class RewardedAd(activity: Any?) {
+public expect class RewardedAdHandler(activity: Any?) {
+
+    /**
+     * Determines the [AdState] of the [RewardedAdHandler]
+     */
+    public val state: AdState
 
     /**
      * Loads an Rewarded Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *
-     * To load an Rewarded ad, call [RewardedAd.load] method
+     * To load an Rewarded ad, call [RewardedAdHandler.load] method
      * and pass in an [AdUnitId] as a [String] to receive the loaded ad, the [onLoad]
      * callback, and any possible [Exception] from the [onFailure] callback.
      * @param adUnitId Your Rewarded Ad AdUnitId [String] from AdMob
@@ -62,7 +67,7 @@ public expect class RewardedAd(activity: Any?) {
      * Sets the FullScreenContentCallback for the Rewarded Ad.
      *
      * The [setListeners] function handles events related to displaying your
-     * [RewardedAd]. Callbacks must be set before calling [RewardedAd.show].
+     * [RewardedAdHandler]. Callbacks must be set before calling [RewardedAdHandler.show].
      *
      * @param onFailure Callback with [Exception] when ad fails to display
      * @param onDismissed Callback when ad is dismissed
@@ -80,7 +85,7 @@ public expect class RewardedAd(activity: Any?) {
     )
 
     /**
-     * Shows the [RewardedAd].
+     * Shows the [RewardedAdHandler].
      *
      * @param onRewardEarned Callback when ad reward is earned
      */
