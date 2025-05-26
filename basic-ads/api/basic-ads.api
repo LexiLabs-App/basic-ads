@@ -27,6 +27,19 @@ public final class app/lexilabs/basic/ads/AdSize$Companion {
 	public final fun getWIDE_SKYSCRAPER ()Lapp/lexilabs/basic/ads/AdSize;
 }
 
+public final class app/lexilabs/basic/ads/AdState : java/lang/Enum {
+	public static final field DISMISSED Lapp/lexilabs/basic/ads/AdState;
+	public static final field FAILING Lapp/lexilabs/basic/ads/AdState;
+	public static final field LOADING Lapp/lexilabs/basic/ads/AdState;
+	public static final field NONE Lapp/lexilabs/basic/ads/AdState;
+	public static final field READY Lapp/lexilabs/basic/ads/AdState;
+	public static final field SHOWING Lapp/lexilabs/basic/ads/AdState;
+	public static final field SHOWN Lapp/lexilabs/basic/ads/AdState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lapp/lexilabs/basic/ads/AdState;
+	public static fun values ()[Lapp/lexilabs/basic/ads/AdState;
+}
+
 public final class app/lexilabs/basic/ads/AdUnitId {
 	public static final field $stable I
 	public static final field BANNER_DEFAULT Ljava/lang/String;
@@ -141,13 +154,15 @@ public final class app/lexilabs/basic/ads/FullscreenContentDelegate : com/google
 	public fun onAdShowedFullScreenContent ()V
 }
 
-public final class app/lexilabs/basic/ads/InterstitialAd {
+public final class app/lexilabs/basic/ads/InterstitialAdHandler {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;)V
+	public final fun getState ()Lapp/lexilabs/basic/ads/AdState;
 	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/InterstitialAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/InterstitialAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
-	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/InterstitialAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/InterstitialAdHandler;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun setState (Lapp/lexilabs/basic/ads/AdState;)V
 	public final fun show ()V
 }
 
@@ -200,23 +215,27 @@ public final class app/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyP
 	public final fun fromInt (I)Lapp/lexilabs/basic/ads/RequestConfiguration$PublisherPrivacyPersonalizationState;
 }
 
-public final class app/lexilabs/basic/ads/RewardedAd {
+public final class app/lexilabs/basic/ads/RewardedAdHandler {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;)V
+	public final fun getState ()Lapp/lexilabs/basic/ads/AdState;
 	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
-	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedAdHandler;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun setState (Lapp/lexilabs/basic/ads/AdState;)V
 	public final fun show (Lkotlin/jvm/functions/Function0;)V
 }
 
-public final class app/lexilabs/basic/ads/RewardedInterstitialAd {
+public final class app/lexilabs/basic/ads/RewardedInterstitialAdHandler {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;)V
+	public final fun getState ()Lapp/lexilabs/basic/ads/AdState;
 	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAd;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public final fun setListeners (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
-	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAd;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/RewardedInterstitialAdHandler;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun setState (Lapp/lexilabs/basic/ads/AdState;)V
 	public final fun show (Lkotlin/jvm/functions/Function0;)V
 }
 
@@ -225,29 +244,29 @@ public final class app/lexilabs/basic/ads/composable/BannerAdKt {
 }
 
 public final class app/lexilabs/basic/ads/composable/InterstitialAdKt {
-	public static final fun InterstitialAd (Lapp/lexilabs/basic/ads/InterstitialAd;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun InterstitialAd (Lapp/lexilabs/basic/ads/InterstitialAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun InterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class app/lexilabs/basic/ads/composable/RememberInterstitialAdKt {
-	public static final fun rememberInterstitialAd (Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/MutableState;
+	public static final fun rememberInterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/MutableState;
 }
 
 public final class app/lexilabs/basic/ads/composable/RememberRewardedAdKt {
-	public static final fun rememberRewardedAd (Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/MutableState;
+	public static final fun rememberRewardedAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/MutableState;
 }
 
 public final class app/lexilabs/basic/ads/composable/RememberRewardedInterstitialAdKt {
-	public static final fun rememberRewardedInterstitialAd (Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/MutableState;
+	public static final fun rememberRewardedInterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/MutableState;
 }
 
 public final class app/lexilabs/basic/ads/composable/RewardedAdKt {
-	public static final fun RewardedAd (Lapp/lexilabs/basic/ads/RewardedAd;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun RewardedAd (Lapp/lexilabs/basic/ads/RewardedAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun RewardedAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class app/lexilabs/basic/ads/composable/RewardedInterstitialAdKt {
-	public static final fun RewardedInterstitialAd (Lapp/lexilabs/basic/ads/RewardedInterstitialAd;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun RewardedInterstitialAd (Lapp/lexilabs/basic/ads/RewardedInterstitialAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun RewardedInterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
