@@ -70,6 +70,8 @@ public final class app/lexilabs/basic/ads/Consent {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;)V
 	public final fun canRequestAds ()Z
+	public final fun getCanRequestAds ()Z
+	public final fun getPrivacyOptionsRequired ()Z
 	public final fun isPrivacyOptionsRequired ()Z
 	public final fun loadAndShowConsentForm (Lkotlin/jvm/functions/Function1;)V
 	public final fun requestConsentInfoUpdate (Lapp/lexilabs/basic/ads/ConsentRequestParameters;Lkotlin/jvm/functions/Function1;)V
@@ -240,9 +242,18 @@ public final class app/lexilabs/basic/ads/composable/BannerAdKt {
 	public static final fun BannerAd (Ljava/lang/String;Lapp/lexilabs/basic/ads/AdSize;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
+public final class app/lexilabs/basic/ads/composable/ConsentPopupKt {
+	public static final fun ConsentPopup (Lapp/lexilabs/basic/ads/Consent;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ConsentPopup (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
 public final class app/lexilabs/basic/ads/composable/InterstitialAdKt {
 	public static final fun InterstitialAd (Lapp/lexilabs/basic/ads/InterstitialAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun InterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class app/lexilabs/basic/ads/composable/RememberConsentKt {
+	public static final fun rememberConsent (Ljava/lang/Object;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/MutableState;
 }
 
 public final class app/lexilabs/basic/ads/composable/RememberInterstitialAdKt {

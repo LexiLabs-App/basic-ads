@@ -14,6 +14,29 @@ package app.lexilabs.basic.ads
 public expect class Consent(activity: Any?) {
 
     /**
+     * Request ads with user consent
+     *
+     * Before requesting ads, check [canRequestAds] to
+     * verify you've obtained consent from the user.
+     */
+    public val canRequestAds: Boolean
+
+    /**
+     * Check if a privacy options entry point is required
+     *
+     * After you have called [requestConsentInfoUpdate], check
+     * [privacyOptionsRequired] to determine if a privacy
+     * options entry point is required for your app.
+     *
+     * If an entry point is required, add a visible and interactable
+     * UI element to your app that presents the privacy options form.
+     *
+     * If a privacy entry point is not required, configure your UI element
+     * to be not visible and interactable.
+     */
+    public val privacyOptionsRequired: Boolean
+
+    /**
      * Gets the user's consent information
      *
      * You should request an update of the user's consent information at every app launch,
@@ -63,7 +86,7 @@ public expect class Consent(activity: Any?) {
      * Check if a privacy options entry point is required
      *
      * After you have called [requestConsentInfoUpdate], check
-     * [Consent.isPrivacyOptionsRequired] to determine if a privacy
+     * [Consent.privacyOptionsRequired] to determine if a privacy
      * options entry point is required for your app.
      *
      * If an entry point is required, add a visible and interactable
