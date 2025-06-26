@@ -11,7 +11,7 @@ agp = "8.10.0"
 cocoapods-admob = "12.4.0"
 cocoapods-ump = "3.0.0"
 # DEPENDENCIES
-bcv = "0.17.0"
+bcv = "0.18.0"
 dokka = "2.0.0"
 compose = "1.8.1"
 google-play-services-ads = "24.3.0"
