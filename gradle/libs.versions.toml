@@ -1,24 +1,25 @@
 [versions]
 # BUILD INFO
-ads = "0.2.7-beta02"
+ads = "0.2.7-SNAPSHOT"
 build-sdk-compile = "35"
 build-sdk-min = "24"
 build-sdk-target = "35"
 build-ios-target-deployment = "13.0"
 kotlin = "2.1.21"
-agp = "8.10.0"
+agp = "8.10.1"
 # COCOAPODS DEPENDENCIES
 cocoapods-admob = "12.4.0"
 cocoapods-ump = "3.0.0"
 # DEPENDENCIES
 bcv = "0.17.0"
 dokka = "2.0.0"
-compose = "1.8.1"
-google-play-services-ads = "24.3.0"
+compose = "1.8.2"
+google-play-services-ads = "24.4.0"
 annotations = "1.9.1"
 kover = "0.9.1"
 logging = "0.2.6"
 android-ump = "3.2.0"
+maven-publish = "0.32.0"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
@@ -37,3 +38,4 @@ native-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref =
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish"}
