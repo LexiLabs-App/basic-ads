@@ -51,6 +51,18 @@ public final class app/lexilabs/basic/ads/AdUnitId {
 	public static synthetic fun autoSelect$default (Lapp/lexilabs/basic/ads/AdUnitId;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
 }
 
+public final class app/lexilabs/basic/ads/BannerAdHandler {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun getBannerView ()Lcom/google/android/gms/ads/AdView;
+	public final fun getState ()Lapp/lexilabs/basic/ads/AdState;
+	public final fun load (Ljava/lang/String;Lapp/lexilabs/basic/ads/AdSize;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/BannerAdHandler;Ljava/lang/String;Lapp/lexilabs/basic/ads/AdSize;ILjava/lang/Object;)V
+	public final fun setBannerView (Lcom/google/android/gms/ads/AdView;)V
+	public final fun setListeners (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun setListeners$default (Lapp/lexilabs/basic/ads/BannerAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+}
+
 public final class app/lexilabs/basic/ads/BasicAds {
 	public static final field $stable I
 	public static final field INSTANCE Lapp/lexilabs/basic/ads/BasicAds;
@@ -239,6 +251,7 @@ public final class app/lexilabs/basic/ads/RewardedInterstitialAdHandler {
 }
 
 public final class app/lexilabs/basic/ads/composable/BannerAdKt {
+	public static final fun BannerAd (Lapp/lexilabs/basic/ads/BannerAdHandler;Landroidx/compose/runtime/Composer;I)V
 	public static final fun BannerAd (Ljava/lang/String;Lapp/lexilabs/basic/ads/AdSize;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
@@ -250,6 +263,10 @@ public final class app/lexilabs/basic/ads/composable/ConsentPopupKt {
 public final class app/lexilabs/basic/ads/composable/InterstitialAdKt {
 	public static final fun InterstitialAd (Lapp/lexilabs/basic/ads/InterstitialAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun InterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class app/lexilabs/basic/ads/composable/RememberBannerAdKt {
+	public static final fun rememberBannerAd (Ljava/lang/Object;Ljava/lang/String;Lapp/lexilabs/basic/ads/AdSize;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/MutableState;
 }
 
 public final class app/lexilabs/basic/ads/composable/RememberConsentKt {

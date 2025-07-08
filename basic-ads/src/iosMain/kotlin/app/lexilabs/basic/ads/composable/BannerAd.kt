@@ -6,7 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.UIKitView
 import app.lexilabs.basic.ads.AdSize
+import app.lexilabs.basic.ads.BannerAdHandler
 import app.lexilabs.basic.ads.getCurrentViewController
+import app.lexilabs.basic.ads.toAdSize
 import app.lexilabs.basic.ads.toCGRectCValue
 import cocoapods.Google_Mobile_Ads_SDK.GADBannerView
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
@@ -33,5 +35,22 @@ public actual fun BannerAd(
             bannerView
         },
         modifier = Modifier.size(width = adSize.width.dp, height = adSize.height.dp)
+    )
+}
+
+@OptIn(ExperimentalForeignApi::class)
+@Composable
+public actual fun BannerAd(
+    loadedAd: BannerAdHandler,
+) {
+    val adSize = loadedAd.bannerView.adSize.toAdSize()
+    UIKitView(
+        factory = {
+            loadedAd.bannerView
+        },
+        modifier = Modifier.size(
+            width = adSize.width.dp,
+            height = adSize.height.dp
+        )
     )
 }
