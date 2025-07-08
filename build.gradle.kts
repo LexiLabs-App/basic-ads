@@ -2,7 +2,6 @@ import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.SonatypeHost
 
 
 plugins {
@@ -29,12 +28,6 @@ allprojects {
     apply(plugin = "com.vanniktech.maven.publish")
     apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
 
-//    val javadocJar = tasks.register<Jar>("javadocJar") {
-//        dependsOn(tasks.dokkaHtml)
-//        archiveClassifier.set("javadoc")
-//        from("${layout.buildDirectory}/dokka")
-//    }
-
     /** dokka generation **/
     tasks.register<Delete>("clearDokkaHtml") {
         delete("${projectDir.parent}/docs")
@@ -59,7 +52,7 @@ allprojects {
     extensions.configure<MavenPublishBaseExtension> {
 
         mavenPublishing {
-            publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+            publishToMavenCentral(automaticRelease = true)
 
             signAllPublications()
             coordinates(group.toString(), project.name, version.toString())
