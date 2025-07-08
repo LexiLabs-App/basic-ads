@@ -7,8 +7,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-public typealias AdView = com.google.android.gms.ads.AdView
-
 public actual object BasicAds {
 
     public actual val errorDomain: String? = com.google.android.gms.ads.MobileAds.ERROR_DOMAIN

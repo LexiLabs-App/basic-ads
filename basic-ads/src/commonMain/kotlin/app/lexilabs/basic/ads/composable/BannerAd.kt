@@ -3,6 +3,7 @@ package app.lexilabs.basic.ads.composable
 import androidx.compose.runtime.Composable
 import app.lexilabs.basic.ads.AdSize
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.BannerAdHandler
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 
 /**
@@ -17,4 +18,14 @@ import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
     adUnitId: String = AdUnitId.BANNER_DEFAULT,
     adSize: AdSize = AdSize.FULL_BANNER,
     onLoad: () -> Unit = {}
+)
+
+/**
+ * Loads and displays a Banner Ad using a [Composable].
+ * @param loadedAd Your pre-loaded [rememberBannerAd]
+ * @see AdUnitId.autoSelect
+ */
+@DependsOnGoogleMobileAds
+@Composable public expect fun BannerAd(
+    loadedAd: BannerAdHandler
 )

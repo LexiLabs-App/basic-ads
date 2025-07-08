@@ -113,6 +113,32 @@ fun AdScreen() {
 }
 ```
 
+If you want to preload your `BannerAds`, there's a way to do that too:
+```kotlin
+// Load the Ad within your Composable
+val bannerAd by rememberBannerAd(activity)
+// Display the Ad as soon as it's available
+BannerAd(bannerAd)
+```
+You can also check the `AdState` before doing something:
+```kotlin
+// Load the Ad within your Composable
+val bannerAd by rememberBannerAd(activity)
+// Determine to show or hide the Ad
+var showBannerAd by remember { mutableStateOf(false) }
+// Composable Button with callbacks
+Button(
+    onClick = { showBannerAd = true }, // Shows the ad on click
+    /** Checks AdState and disables the button if ad isn't ready **/
+    enabled = bannerAd.state == AdState.READY
+) { Text("Show Banner Ad") } // label for the button
+// Checks for button click
+if (showBannerAd){
+    // Shows Composable Ad
+    BannerAd(bannerAd)
+}
+```
+
 ## Creating Full Screen Ads
 You can also build other Ad types, but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
 
