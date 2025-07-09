@@ -19,7 +19,7 @@ annotations = "1.9.1"
 kover = "0.9.1"
 logging = "0.2.6"
 android-ump = "3.2.0"
-maven-publish = "0.32.0"
+maven-publish = "0.33.0"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
