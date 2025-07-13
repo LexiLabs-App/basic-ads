@@ -251,7 +251,7 @@ public final class app/lexilabs/basic/ads/RewardedInterstitialAdHandler {
 }
 
 public final class app/lexilabs/basic/ads/composable/BannerAdKt {
-	public static final fun BannerAd (Lapp/lexilabs/basic/ads/BannerAdHandler;Landroidx/compose/runtime/Composer;I)V
+	public static final fun BannerAd (Lapp/lexilabs/basic/ads/BannerAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 	public static final fun BannerAd (Ljava/lang/String;Lapp/lexilabs/basic/ads/AdSize;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 

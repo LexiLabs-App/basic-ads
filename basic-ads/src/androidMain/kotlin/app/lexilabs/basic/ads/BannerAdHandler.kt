@@ -18,7 +18,6 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
     private val tag = "BannerAd"
     private val context: Context
     public var bannerView: BannerView
-
     private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
 
     /**
@@ -65,12 +64,14 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
         bannerView.adListener = object: AdListener() {
             override fun onAdClicked() {
                 super.onAdClicked()
+                Log.d(tag, "onClick event")
                 onClick()
             }
 
             override fun onAdClosed() {
                 super.onAdClosed()
                 _state.value = AdState.DISMISSED
+                Log.d(tag, "onDismissed event")
                 onDismissed()
                 // Code to be executed when the user is about to return
                 // to the app after tapping on an ad.
@@ -79,11 +80,13 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
             override fun onAdFailedToLoad(adError : LoadAdError) {
                 super.onAdFailedToLoad(adError)
                 _state.value = AdState.FAILING
+                Log.e(tag, "onFailure: ${adError.message}")
                 onFailure(AdException(adError.message))
             }
 
             override fun onAdImpression() {
                 super.onAdImpression()
+                Log.d(tag, "onImpression event")
                 onImpression()
                 // Code to be executed when an impression is recorded
                 // for an ad.
@@ -91,6 +94,7 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
 
             override fun onAdLoaded() {
                 super.onAdLoaded()
+                Log.d(tag, "onLoad event")
                 _state.value = AdState.READY
                 onLoad()
             }
@@ -98,6 +102,7 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
             override fun onAdOpened() {
                 super.onAdOpened()
                 _state.value = AdState.SHOWING
+                Log.d(tag, "onShown event")
                 onShown()
                 // Code to be executed when an ad opens an overlay that
                 // covers the screen.

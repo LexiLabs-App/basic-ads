@@ -27,5 +27,11 @@ import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
  */
 @DependsOnGoogleMobileAds
 @Composable public expect fun BannerAd(
-    loadedAd: BannerAdHandler
+    loadedAd: BannerAdHandler,
+    onLoad: () -> Unit = {},
+    onFailure: (Exception) -> Unit = {},
+    onDismissed: () -> Unit = {},
+    onShown: () -> Unit = {},
+    onImpression: () -> Unit = {},
+    onClick: () -> Unit = {}
 )

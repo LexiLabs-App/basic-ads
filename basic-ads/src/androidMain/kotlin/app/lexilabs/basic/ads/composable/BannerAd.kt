@@ -39,7 +39,21 @@ public actual fun BannerAd(
 @Composable
 public actual fun BannerAd(
     loadedAd: BannerAdHandler,
+    onLoad: () -> Unit,
+    onFailure: (Exception) -> Unit,
+    onDismissed: () -> Unit,
+    onShown: () -> Unit,
+    onImpression: () -> Unit,
+    onClick: () -> Unit
 ) {
+    loadedAd.setListeners(
+        onLoad = onLoad,
+        onFailure = onFailure,
+        onDismissed = onDismissed,
+        onShown = onShown,
+        onImpression = onImpression,
+        onClick = onClick
+    )
     AndroidView(
         factory = { loadedAd.bannerView }
     )
