@@ -14,6 +14,7 @@ import androidx.annotation.MainThread
  * @see setAppMuted
  * @see setAppVolume
  */
+@Suppress("unused")
 @DependsOnGoogleMobileAds
 public expect object BasicAds {
     /**
@@ -67,7 +68,7 @@ public expect object BasicAds {
     /**
      * This opens the Debug Menu, which I have never personally done myself.
      * @param context Android Context or null for iOS, passed in an [Any] variable
-     * @param adUnitId AdMob AdUnitId [String] for [AdRequest]
+     * @param adUnitId AdMob AdUnitId [String] for Ad Requests
      * @see DependsOnGoogleMobileAds
      * @see BasicAds
      */

@@ -7,23 +7,28 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.AdView
 
-public typealias BannerView = com.google.android.gms.ads.AdView
+public typealias BannerView = AdView
 
 public actual class BannerAdHandler actual constructor(activity: Any?) {
 
     private val tag = "BannerAd"
     private val context: Context
-    public var bannerView: BannerView
+    public var bannerView: BannerView? = null
     private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
+    private val _adSize: MutableState<AdSize> = mutableStateOf(AdSize.FULL_BANNER)
 
     /**
      * Determines the [AdState] of the [BannerAdHandler]
      */
     public actual val state: AdState by _state
+
+    /**
+     * Holds the active [AdSize] of the [BannerAdHandler]
+     */
+    public actual val adSize: AdSize by _adSize
 
     init {
         require(activity != null) {
@@ -35,24 +40,12 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
             "`activity` variable must be of the Android `Activity` or `Context` type"
         }
         context = activity
-        bannerView = BannerView(context)
     }
 
     @RequiresPermission("android.permission.INTERNET")
     public actual fun load(
         adUnitId: String,
         adSize: AdSize,
-    ) {
-        _state.value = AdState.LOADING
-        Log.d(tag, "loadBannerAd: Loading")
-        bannerView.apply {
-            this.adUnitId = adUnitId
-            this.setAdSize(adSize.toAndroid())
-            this.loadAd(AdRequest.Builder().build())
-        }
-    }
-
-    public actual fun setListeners(
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit,
         onDismissed: () -> Unit,
@@ -60,53 +53,39 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
         onImpression: () -> Unit,
         onClick: () -> Unit
     ) {
-        Log.d(tag, "setListeners: Loading")
-        bannerView.adListener = object: AdListener() {
-            override fun onAdClicked() {
-                super.onAdClicked()
-                Log.d(tag, "onClick event")
-                onClick()
-            }
-
-            override fun onAdClosed() {
-                super.onAdClosed()
-                _state.value = AdState.DISMISSED
-                Log.d(tag, "onDismissed event")
-                onDismissed()
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-
-            override fun onAdFailedToLoad(adError : LoadAdError) {
-                super.onAdFailedToLoad(adError)
-                _state.value = AdState.FAILING
-                Log.e(tag, "onFailure: ${adError.message}")
-                onFailure(AdException(adError.message))
-            }
-
-            override fun onAdImpression() {
-                super.onAdImpression()
-                Log.d(tag, "onImpression event")
-                onImpression()
-                // Code to be executed when an impression is recorded
-                // for an ad.
-            }
-
-            override fun onAdLoaded() {
-                super.onAdLoaded()
-                Log.d(tag, "onLoad event")
-                _state.value = AdState.READY
-                onLoad()
-            }
-
-            override fun onAdOpened() {
-                super.onAdOpened()
-                _state.value = AdState.SHOWING
-                Log.d(tag, "onShown event")
-                onShown()
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
+        _adSize.value = adSize
+        _state.value = AdState.LOADING
+        Log.d(tag, "loadBannerAd: Loading")
+        bannerView = BannerView(context)
+        bannerView?.apply {
+            this.adUnitId = adUnitId
+            this.setAdSize(adSize.toAndroid())
+            this.adListener = BannerAdListener(
+                onLoad = {
+                    _state.value = AdState.READY
+                    onLoad()
+                },
+                onFailure = {
+                    _state.value = AdState.FAILING
+                    onFailure(it)
+                },
+                onDismissed = {
+                    _state.value = AdState.DISMISSED
+                    onDismissed()
+                },
+                onShown = {
+                    _state.value = AdState.SHOWN
+                    onShown()
+                },
+                onImpression = {
+                    _state.value = AdState.SHOWING
+                    onImpression()
+                },
+                onClick = {
+                    onClick()
+                }
+            )
+            this.loadAd(AdRequest.Builder().build())
         }
     }
 }

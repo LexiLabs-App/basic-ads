@@ -15,36 +15,23 @@ public typealias BannerView = GADBannerView
 public actual class BannerAdHandler actual constructor(activity: Any?) {
 
     private val tag = "BannerAd"
-    public var bannerView: BannerView
-    private var delegate: BannerViewDelegate? = null
-
+    public var bannerView: BannerView = BannerView()
     private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
+    private val _adSize: MutableState<AdSize> = mutableStateOf(AdSize.FULL_BANNER)
+
     /**
      * Determines the [AdState] of the [BannerAdHandler]
      */
     public actual val state: AdState by _state
 
-    init {
-        bannerView = BannerView()
-    }
+    /**
+     * Holds the active [AdSize] of the [BannerAdHandler]
+     */
+    public actual val adSize: AdSize by _adSize
+
     public actual fun load(
         adUnitId: String,
         adSize: AdSize,
-    ) {
-        _state.value = AdState.LOADING
-        Log.d(tag, "load:starting")
-
-        val viewController = getCurrentViewController() //UIApplication.sharedApplication.keyWindow?.rootViewController
-        checkNotNull(viewController) { "Root ViewController is null" }
-
-        bannerView = BannerView(adSize.toCGRectCValue()).apply {
-            setAdUnitID(adUnitId)
-            loadRequest(GADRequest())
-            rootViewController = viewController
-        }
-    }
-
-    public actual fun setListeners(
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit,
         onDismissed: () -> Unit,
@@ -52,29 +39,41 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
         onImpression: () -> Unit,
         onClick: () -> Unit
     ) {
-        Log.d(tag, "setListeners:starting")
-        require(bannerView.adUnitID != null) {
-            _state.value = AdState.FAILING
-            "BannerAd not loaded yet. `BannerAd.load()` must be called first to pass the AdUnitId."
+        _adSize.value = adSize
+        _state.value = AdState.LOADING
+        Log.d(tag, "load:starting")
+
+        val viewController = getCurrentViewController()
+        checkNotNull(viewController) { "Root ViewController is null" }
+
+        bannerView = BannerView(adSize.toCGRectCValue()).apply {
+            setAdUnitID(adUnitId)
+            delegate = BannerViewDelegate(
+                onLoad = {
+                    _state.value = AdState.READY
+                    onLoad()
+                },
+                onClick = onClick,
+                onWillDismiss = {},
+                onDismissed = {
+                    _state.value = AdState.DISMISSED
+                    onDismissed()
+                },
+                onFailure = {
+                    _state.value = AdState.FAILING
+                    onFailure(it)
+                },
+                onImpression = {
+                    _state.value = AdState.SHOWING
+                    onImpression()
+                },
+                onShown = {
+                    _state.value = AdState.SHOWN
+                    onShown()
+                }
+            )
+            loadRequest(GADRequest())
+            rootViewController = viewController
         }
-        delegate = BannerViewDelegate(
-            onLoad = onLoad,
-            onClick = onClick,
-            onWillDismiss = {},
-            onDismissed = {
-                _state.value = AdState.DISMISSED
-                onDismissed()
-            },
-            onFailure = {
-                _state.value = AdState.FAILING
-                onFailure(it)
-            },
-            onImpression = onImpression,
-            onShown = {
-                _state.value = AdState.SHOWN
-                onShown()
-            }
-        )
-        bannerView.delegate = delegate
     }
 }
