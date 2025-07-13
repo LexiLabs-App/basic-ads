@@ -22,10 +22,10 @@ import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 
 /**
  * Loads and displays a Banner Ad using a [Composable].
- * @param loadedAd Your pre-loaded [rememberBannerAd]
+ * @param ad The [BannerAdHandler] built within your [Composable] using [rememberBannerAd]
  * @see AdUnitId.autoSelect
  */
 @DependsOnGoogleMobileAds
 @Composable public expect fun BannerAd(
-    loadedAd: BannerAdHandler
+    ad: BannerAdHandler
 )
