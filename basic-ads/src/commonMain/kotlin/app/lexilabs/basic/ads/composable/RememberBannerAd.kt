@@ -17,6 +17,9 @@ public fun rememberBannerAd(
     adUnitId: String = AdUnitId.BANNER_DEFAULT,
     adSize: AdSize = AdSize.FULL_BANNER,
 ): MutableState<BannerAdHandler> {
+    /** TODO: Fix banner state update.
+     *   Fails to reach AdState.READY
+    */
     val ad = remember(activity) { mutableStateOf(BannerAdHandler(activity)) }
     when(ad.value.state){
         AdState.DISMISSED,
