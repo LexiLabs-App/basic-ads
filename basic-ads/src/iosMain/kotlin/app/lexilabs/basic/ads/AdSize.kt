@@ -10,6 +10,11 @@ import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeLeaderboard
 import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeMediumRectangle
 import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeSkyscraper
 import cocoapods.Google_Mobile_Ads_SDK.GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth
+import cocoapods.Google_Mobile_Ads_SDK.GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth
+import cocoapods.Google_Mobile_Ads_SDK.GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth
+import cocoapods.Google_Mobile_Ads_SDK.GADLandscapeInlineAdaptiveBannerAdSizeWithWidth
+import cocoapods.Google_Mobile_Ads_SDK.GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth
+import cocoapods.Google_Mobile_Ads_SDK.GADPortraitInlineAdaptiveBannerAdSizeWithWidth
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
@@ -33,6 +38,24 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
         public actual val INVALID: AdSize get() = GADAdSizeInvalid.toCommon()
 
         public actual fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize = iosAdSize
+
+        public actual fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
+            GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        public actual fun getPortraitAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
+            GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        public actual fun getLandscapeAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
+            GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        public actual fun getCurrentOrientationInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
+            GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        public actual fun getPortraitInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
+            GADPortraitInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        public actual fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
+            GADLandscapeInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
     }
     public fun toIos(): GADAdSize {
         return when(this) {

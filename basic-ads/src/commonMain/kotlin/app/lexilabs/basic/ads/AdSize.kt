@@ -15,6 +15,7 @@ package app.lexilabs.basic.ads
  * @see FLUID
  * @see INVALID
  */
+@Suppress("unused")
 @DependsOnGoogleMobileAds
 public expect class AdSize public constructor(width: Int, height: Int) {
 
@@ -46,5 +47,53 @@ public expect class AdSize public constructor(width: Int, height: Int) {
          * @param iosAdSize The iOS implemented [AdSize]
          */
         public fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize
+
+        /**
+         * Gets an anchored adaptive banner ad size for the current orientation.
+         * @param context Not used on iOS. Can be null.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        public fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
+
+        /**
+         * Gets an anchored adaptive banner ad size for portrait orientation.
+         * @param context Not used on iOS. Can be null.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        public fun getPortraitAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
+
+        /**
+         * Gets an anchored adaptive banner ad size for landscape orientation.
+         * @param context Not used on iOS. Can be null.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        public fun getLandscapeAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
+
+        /**
+         * Gets an inline adaptive banner ad size for the current orientation.
+         * @param context Not used on iOS. Can be null.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        public fun getCurrentOrientationInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
+
+        /**
+         * Gets an inline adaptive banner ad size for portrait orientation.
+         * @param context Not used on iOS. Can be null.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        public fun getPortraitInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
+
+        /**
+         * Gets an inline adaptive banner ad size for landscape orientation.
+         * @param context Not used on iOS. Can be null.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        public fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
     }
 }
