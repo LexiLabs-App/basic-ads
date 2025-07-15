@@ -9,6 +9,18 @@ import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
 
+/**
+ * Composable function to remember an interstitial ad.
+ *
+ * This function creates and manages an [InterstitialAdHandler] instance,
+ * automatically loading an ad when the state is [AdState.DISMISSED] or [AdState.NONE].
+ *
+ * @param activity The activity context, required for ad loading.
+ * @param adUnitId The ad unit ID for the interstitial ad. Defaults to [AdUnitId.INTERSTITIAL_DEFAULT].
+ * @param onLoad A callback function invoked when the ad is successfully loaded.
+ * @param onFailure A callback function invoked when ad loading fails, providing the [Exception] that occurred.
+ * @return A [MutableState] holding the [InterstitialAdHandler]. You can use this to control and observe the ad's state (e.g., to show the ad).
+ */
 @DependsOnGoogleMobileAds
 @Composable
 public fun rememberInterstitialAd(

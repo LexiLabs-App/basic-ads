@@ -1,7 +1,9 @@
 package app.lexilabs.basic.ads
 
 /**
- * Parameters sent on updating user consent info.
+ * Parameters sent when updating user consent information.
+ *
+ * This class encapsulates parameters used when requesting an update to the user's consent status.
  *
  * @see getConsentDebugSettings
  * @see getIsTagForUnderAgeOfConsent

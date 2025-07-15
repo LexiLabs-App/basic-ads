@@ -71,13 +71,15 @@ public expect class ConsentDebugSettings {
     }
 
     /**
-     * Location of [DebugGeography] to test the [Consent.requestConsentInfoUpdate]
+     * Enum class representing different debug geography settings for testing consent flows.
+     * These settings allow developers to simulate user locations to test how the
+     * [Consent.requestConsentInfoUpdate] behaves under different geographical regulations.
      *
-     * @see DEBUG_GEOGRAPHY_DISABLED
-     * @see DEBUG_GEOGRAPHY_EEA
-     * @see DEBUG_GEOGRAPHY_NOT_EEA
-     * @see DEBUG_GEOGRAPHY_REGULATED_US_STATE
-     * @see DEBUG_GEOGRAPHY_OTHER
+     * @see DEBUG_GEOGRAPHY_DISABLED Disables debug geography settings. The consent SDK will behave as if the device is not in a debug geography.
+     * @see DEBUG_GEOGRAPHY_EEA Simulates the device being located within the European Economic Area (EEA).
+     * @see DEBUG_GEOGRAPHY_NOT_EEA Simulates the device being located outside the European Economic Area (EEA).
+     * @see DEBUG_GEOGRAPHY_REGULATED_US_STATE Simulates the device being located in a US state with specific privacy regulations (e.g., California).
+     * @see DEBUG_GEOGRAPHY_OTHER Simulates the device being located in a region not covered by the other specific debug geographies.
      */
     public enum class DebugGeography {
         DEBUG_GEOGRAPHY_DISABLED,

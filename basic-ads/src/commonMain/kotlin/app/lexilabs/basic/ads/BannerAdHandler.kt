@@ -1,30 +1,60 @@
 package app.lexilabs.basic.ads
 
-import app.lexilabs.basic.ads.composable.rememberBannerAd
-
 /**
  * A [BannerAdHandler] creates landscape ads that cover part of the host app screen.
  *
- * @param activity Android required Activity
+ * This class is responsible for loading and managing the state of a banner advertisement
+ * provided by Google Mobile Ads. It requires an Android `Activity` for its operations.
+ *
+ * **Usage Example:**
  *
  * ```kotlin
- * // Instantiate
- * val ad = BannerAdHandler(activity)
- * // Load the Ad
- * ad.load(
- *   adUnitId = "AD_UNIT_ID_GOES_HERE", // Banner Ad Unit ID from AdMob
- *   adSize = AdSize.FULL_BANNER // Banner AdSize goes here
- *   onFailure = {}, // Callback when ad fails to display
- *   onDismissed = {}, // Callback when ad is dismissed
- *   onShown = {}, // Callback after ad is shown
- *   onImpression = {}, // Callback after the ad makes an impression
- *   onClick = {} // Callback on ad click
- * )
- * // Show the ad in your Composable
- * BannerAd(ad)
+ * // In your Composable function or where you have access to an Activity:
+ * val activity = LocalContext.current as Activity
+ *
+ * // Instantiate the BannerAdHandler
+ * val adHandler = rememberBannerAd(activity = activity)
+ *
+ * // Load the Ad (typically in a LaunchedEffect or similar)
+ * LaunchedEffect(Unit) {
+ *   adHandler.load(
+ *     adUnitId = "YOUR_ADMOB_BANNER_AD_UNIT_ID", // Replace with your actual Ad Unit ID
+ *     adSize = AdSize.BANNER, // Or any other desired AdSize
+ *     onLoad = {
+ *       // Ad loaded successfully
+ *       println("Banner Ad loaded!")
+ *     },
+ *     onFailure = { exception ->
+ *       // Ad failed to load
+ *       println("Banner Ad failed to load: ${exception.message}")
+ *     },
+ *     onDismissed = {
+ *       // Ad was dismissed (not typical for banners, but callback exists)
+ *       println("Banner Ad dismissed.")
+ *     },
+ *     onShown = {
+ *       // Ad is now visible on screen
+ *       println("Banner Ad shown.")
+ *     },
+ *     onImpression = {
+ *       // Ad impression has been recorded
+ *       println("Banner Ad impression recorded.")
+ *     },
+ *     onClick = {
+ *       // User clicked on the ad
+ *       println("Banner Ad clicked.")
+ *     }
+ *   )
+ * }
+ *
+ * // Display the ad in your Composable UI
+ * if (adHandler.state == AdState.Loaded) { // Or handle other states like Loading, Error
+ *   BannerAd(adHandler)
+ * }
  * ```
- * @see rememberBannerAd
- * @see load
+ *
+ * @param activity The Android `Activity` required for displaying the ad.
+ *                 On platforms other than Android, this parameter might be unused or expect a platform-specific equivalent.
  */
 @DependsOnGoogleMobileAds
 public expect class BannerAdHandler(activity: Any?) {
