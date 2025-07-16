@@ -91,7 +91,7 @@ sourceSets {
 Call `BasicAds.initialize` in your `commonMain` before building ads.
 
 > [!NOTE] 
-> You do not need to initialize within each platform.
+> You only need to initialize `Basic-Ads` in your `commonMain`. You do not need to initialize within each platform. 
 
 ```kotlin
 // in your 'composeApp/src/commonMain/App.kt' file
