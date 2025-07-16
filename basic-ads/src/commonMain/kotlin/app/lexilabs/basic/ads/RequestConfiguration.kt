@@ -19,6 +19,12 @@ public data class RequestConfiguration(
     val tagForUnderAgeOfConsent: Int,
     val testDeviceIds: List<String?>?
 ){
+    /**
+     * Enum for the state of publisher privacy personalization.
+     * @property DEFAULT The default state, which may be determined by other settings.
+     * @property ENABLED Publisher has opted to enable personalized advertising.
+     * @property DISABLED Publisher has opted to disable personalized advertising.
+     */
     public enum class PublisherPrivacyPersonalizationState(private val value: Int) {
         DEFAULT(0),
         ENABLED(1),

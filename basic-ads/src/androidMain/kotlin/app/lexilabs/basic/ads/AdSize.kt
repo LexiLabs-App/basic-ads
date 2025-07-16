@@ -1,5 +1,7 @@
 package app.lexilabs.basic.ads
 
+import android.content.Context
+
 public actual class AdSize public actual constructor(public actual val width: Int, public actual val height: Int) {
 
     init {
@@ -19,5 +21,46 @@ public actual class AdSize public actual constructor(public actual val width: In
         public actual val INVALID: AdSize = com.google.android.gms.ads.AdSize.INVALID.toCommon()
 
         public actual fun autoSelect(androidAdSize: AdSize, iosAdSize: AdSize): AdSize = androidAdSize
+
+        public actual fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
+            require(context != null && context is Context) {
+                "`getCurrentOrientationAnchoredAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
+            }
+            return com.google.android.gms.ads.AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width).toCommon()
+        }
+
+        public actual fun getPortraitAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
+            require(context != null && context is Context) {
+                "`getPortraitAnchoredAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
+            }
+            return com.google.android.gms.ads.AdSize.getPortraitAnchoredAdaptiveBannerAdSize(context, width).toCommon()
+        }
+        public actual fun getLandscapeAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
+            require(context != null && context is Context) {
+                "`getLandscapeAnchoredAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
+            }
+            return com.google.android.gms.ads.AdSize.getLandscapeAnchoredAdaptiveBannerAdSize(context, width).toCommon()
+        }
+
+        public actual fun getCurrentOrientationInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
+            require(context != null && context is Context) {
+                "`getCurrentOrientationInlineAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
+            }
+            return com.google.android.gms.ads.AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(context, width).toCommon()
+        }
+
+        public actual fun getPortraitInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
+            require(context != null && context is Context) {
+                "`getPortraitInlineAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
+            }
+            return com.google.android.gms.ads.AdSize.getPortraitInlineAdaptiveBannerAdSize(context, width).toCommon()
+        }
+
+        public actual fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
+            require(context != null && context is Context) {
+                "`getLandscapeInlineAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
+            }
+            return com.google.android.gms.ads.AdSize.getLandscapeInlineAdaptiveBannerAdSize(context, width).toCommon()
+        }
     }
 }
