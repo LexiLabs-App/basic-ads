@@ -17,13 +17,19 @@ public final class app/lexilabs/basic/ads/AdSize$Companion {
 	public final fun autoSelect (Lapp/lexilabs/basic/ads/AdSize;Lapp/lexilabs/basic/ads/AdSize;)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getAUTO_HEIGHT ()I
 	public final fun getBANNER ()Lapp/lexilabs/basic/ads/AdSize;
+	public final fun getCurrentOrientationAnchoredAdaptiveBannerAdSize (Ljava/lang/Object;I)Lapp/lexilabs/basic/ads/AdSize;
+	public final fun getCurrentOrientationInlineAdaptiveBannerAdSize (Ljava/lang/Object;I)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getFLUID ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getFULL_BANNER ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getFULL_WIDTH ()I
 	public final fun getINVALID ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getLARGE_BANNER ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getLEADERBOARD ()Lapp/lexilabs/basic/ads/AdSize;
+	public final fun getLandscapeAnchoredAdaptiveBannerAdSize (Ljava/lang/Object;I)Lapp/lexilabs/basic/ads/AdSize;
+	public final fun getLandscapeInlineAdaptiveBannerAdSize (Ljava/lang/Object;I)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getMEDIUM_RECTANGLE ()Lapp/lexilabs/basic/ads/AdSize;
+	public final fun getPortraitAnchoredAdaptiveBannerAdSize (Ljava/lang/Object;I)Lapp/lexilabs/basic/ads/AdSize;
+	public final fun getPortraitInlineAdaptiveBannerAdSize (Ljava/lang/Object;I)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getWIDE_SKYSCRAPER ()Lapp/lexilabs/basic/ads/AdSize;
 }
 
