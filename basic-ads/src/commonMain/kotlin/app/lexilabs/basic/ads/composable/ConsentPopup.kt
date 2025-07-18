@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.Consent
 import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
-import app.lexilabs.basic.ads.ExperimentalBasicAds
 
 /**
  * A composable function that requests and updates user consent information using the Google User Messaging Platform (UMP) SDK.
@@ -24,7 +23,6 @@ import app.lexilabs.basic.ads.ExperimentalBasicAds
  * @see rememberConsent
  * @see DependsOnGoogleUserMessagingPlatform
  */
-@ExperimentalBasicAds
 @DependsOnGoogleUserMessagingPlatform
 @Composable
 public fun ConsentPopup(
@@ -52,7 +50,6 @@ public fun ConsentPopup(
  * details about the error. By default, this parameter is an empty lambda function, which means
  * that errors are ignored.
  */
-@ExperimentalBasicAds
 @DependsOnGoogleUserMessagingPlatform
 @Composable
 public fun ConsentPopup(
