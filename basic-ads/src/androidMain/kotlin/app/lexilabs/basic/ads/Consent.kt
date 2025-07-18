@@ -18,7 +18,6 @@ import com.google.android.ump.UserMessagingPlatform
  * The [Consent] class [require]s a non-null [Activity] on Android
  * @param activity [require] non-null [Activity] on Android. All other platforms can pass `null`
  */
-@ExperimentalBasicAds
 @DependsOnGoogleUserMessagingPlatform
 public actual class Consent actual constructor (activity: Any?) {
 
@@ -91,7 +90,7 @@ public actual class Consent actual constructor (activity: Any?) {
                     loadAndShowConsentForm { onError(it) }
                 }
             },
-            { onError(ConsentException(it.message)) }
+            { formError -> onError(ConsentException(formError.message)) }
         )
     }
 
@@ -108,8 +107,8 @@ public actual class Consent actual constructor (activity: Any?) {
      * @param onError lambda which passes a [ConsentException] on failure
      */
     public actual fun loadAndShowConsentForm(onError: (Exception) -> Unit) {
-        UserMessagingPlatform.loadAndShowConsentFormIfRequired(context) { error ->
-            onError(ConsentException(error?.message))
+        UserMessagingPlatform.loadAndShowConsentFormIfRequired(context) {
+            it?.let { error -> onError(ConsentException(error.message)) }
         }
     }
 
