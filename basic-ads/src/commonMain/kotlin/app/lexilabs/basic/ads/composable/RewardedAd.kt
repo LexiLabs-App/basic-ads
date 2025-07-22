@@ -6,6 +6,7 @@ import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
+import app.lexilabs.basic.ads.RewardItem
 import app.lexilabs.basic.ads.RewardedAdHandler
 
 /**
@@ -26,7 +27,7 @@ import app.lexilabs.basic.ads.RewardedAdHandler
 public fun RewardedAd(
     activity: Any?,
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
-    onRewardEarned: () -> Unit,
+    onRewardEarned: (RewardItem) -> Unit,
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
     onImpression: () -> Unit = {},
@@ -48,9 +49,7 @@ public fun RewardedAd(
             onImpression = onImpression,
             onClick = onClick
         )
-        ad.show(
-            onRewardEarned = onRewardEarned
-        )
+        ad.show { onRewardEarned(it) }
     }
 }
 
@@ -70,7 +69,7 @@ public fun RewardedAd(
 @Composable
 public fun RewardedAd(
     loadedAd: RewardedAdHandler,
-    onRewardEarned: () -> Unit,
+    onRewardEarned: (RewardItem) -> Unit,
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
     onImpression: () -> Unit = {},
@@ -84,7 +83,5 @@ public fun RewardedAd(
         onImpression = onImpression,
         onClick = onClick
     )
-    loadedAd.show(
-        onRewardEarned = onRewardEarned
-    )
+    loadedAd.show { onRewardEarned(it) }
 }
