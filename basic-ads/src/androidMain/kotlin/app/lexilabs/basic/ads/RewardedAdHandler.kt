@@ -10,6 +10,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.gms.ads.AdRequest as AndroidAdRequest
 import com.google.android.gms.ads.rewarded.RewardedAd as AndroidRewardedAd
 
+@DependsOnGoogleMobileAds
 public actual class RewardedAdHandler actual constructor(private val activity: Any?) {
 
     private val tag = "RewardedAd"
@@ -89,7 +90,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
     }
 
     public actual fun show(
-        onRewardEarned: () -> Unit
+        onRewardEarned: (RewardItem) -> Unit
     ){
         _state.value = AdState.SHOWING
         Log.d(tag, "show: Loading")
@@ -105,9 +106,9 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
             _state.value = AdState.FAILING
             "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
         }
-        rewardedAd?.show(activity) {
+        rewardedAd?.show(activity) { reward ->
             Log.d(tag, "A reward was earned")
-            onRewardEarned()
+            onRewardEarned(RewardItem(reward))
         }
     }
 }
