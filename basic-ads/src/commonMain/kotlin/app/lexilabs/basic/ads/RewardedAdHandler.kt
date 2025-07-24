@@ -36,6 +36,7 @@ package app.lexilabs.basic.ads
  * @see setListeners
  * @see show
  */
+@Suppress("unused")
 @DependsOnGoogleMobileAds
 public expect class RewardedAdHandler(activity: Any?) {
 
@@ -90,6 +91,6 @@ public expect class RewardedAdHandler(activity: Any?) {
      * @param onRewardEarned Callback when ad reward is earned
      */
     public fun show(
-        onRewardEarned: () -> Unit
+        onRewardEarned: (RewardItem) -> Unit
     )
 }

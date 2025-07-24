@@ -77,7 +77,7 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
     }
 
     public actual fun show(
-        onRewardEarned: () -> Unit
+        onRewardEarned: (RewardItem) -> Unit
     ) {
         _state.value = AdState.SHOWING
         Log.d(tag, "show:starting")
@@ -89,9 +89,13 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
             _state.value = AdState.FAILING
             "RewardedAd listeners not set yet. `RewardedAd.setListeners()` must be called first"
         }
-        rewardedAd?.presentFromRootViewController(
-            rootViewController = null,
-            userDidEarnRewardHandler = { onRewardEarned() }
-        )
+        rewardedAd?.let { ad ->
+            ad.presentFromRootViewController(
+                rootViewController = null,
+                userDidEarnRewardHandler = {
+                    onRewardEarned(RewardItem(ad.adReward))
+                }
+            )
+        }
     }
 }

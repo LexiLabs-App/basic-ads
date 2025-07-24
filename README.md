@@ -4,7 +4,7 @@
 ![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
 ![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
 [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
@@ -39,7 +39,7 @@ For **iOS**, complete the steps in AdMob's instructions:
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 > [!IMPORTANT] 
 > Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
@@ -154,7 +154,12 @@ If you want to preload your ads, there's a way to do that too:
 // Load the Ad within your Composable
 val rewardedAd by rememberRewardedAd(activity)
 // Display the Ad as soon as it's available
-RewardedAd(rewardedAd, onRewardEarned = {/** do something here **/})
+RewardedAd(
+    ad = rewardedAd,
+    onRewardEarned = { rewardItem ->
+        /** do something here with the rewardItem (if it exists) **/
+    }
+)
 ```
 You can also check the `AdState` before doing something:
 ```kotlin
