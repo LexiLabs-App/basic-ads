@@ -23,6 +23,7 @@ public final class app/lexilabs/basic/ads/AdSize$Companion {
 	public final fun getFULL_BANNER ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getFULL_WIDTH ()I
 	public final fun getINVALID ()Lapp/lexilabs/basic/ads/AdSize;
+	public final fun getInlineAdaptiveBannerAdSize (II)Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getLARGE_BANNER ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getLEADERBOARD ()Lapp/lexilabs/basic/ads/AdSize;
 	public final fun getLandscapeAnchoredAdaptiveBannerAdSize (Ljava/lang/Object;I)Lapp/lexilabs/basic/ads/AdSize;
