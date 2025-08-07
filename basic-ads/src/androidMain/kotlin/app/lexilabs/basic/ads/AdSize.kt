@@ -62,5 +62,8 @@ public actual class AdSize public actual constructor(public actual val width: In
             }
             return com.google.android.gms.ads.AdSize.getLandscapeInlineAdaptiveBannerAdSize(context, width).toCommon()
         }
+
+        public actual fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize =
+            com.google.android.gms.ads.AdSize.getInlineAdaptiveBannerAdSize(width, maxHeight).toCommon()
     }
 }

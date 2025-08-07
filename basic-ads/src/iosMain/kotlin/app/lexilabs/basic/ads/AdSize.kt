@@ -11,6 +11,7 @@ import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeMediumRectangle
 import cocoapods.Google_Mobile_Ads_SDK.GADAdSizeSkyscraper
 import cocoapods.Google_Mobile_Ads_SDK.GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth
 import cocoapods.Google_Mobile_Ads_SDK.GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth
+import cocoapods.Google_Mobile_Ads_SDK.GADInlineAdaptiveBannerAdSizeWithWidthAndMaxHeight
 import cocoapods.Google_Mobile_Ads_SDK.GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth
 import cocoapods.Google_Mobile_Ads_SDK.GADLandscapeInlineAdaptiveBannerAdSizeWithWidth
 import cocoapods.Google_Mobile_Ads_SDK.GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth
@@ -56,6 +57,9 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
 
         public actual fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
             GADLandscapeInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        public actual fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize =
+            GADInlineAdaptiveBannerAdSizeWithWidthAndMaxHeight(width.toDouble(), maxHeight.toDouble()).toAdSize()
     }
     public fun toIos(): GADAdSize {
         return when(this) {
