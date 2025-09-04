@@ -95,5 +95,13 @@ public expect class AdSize public constructor(width: Int, height: Int) {
          * @return The adaptive [AdSize].
          */
         public fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
+
+        /**
+         * Gets an inline adaptive banner ad size for any orientation.
+         * @param width The width of the ad container.
+         * @param maxHeight The maximum height of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        public fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize
     }
 }

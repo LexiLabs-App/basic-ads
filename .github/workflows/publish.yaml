@@ -64,8 +64,9 @@ jobs:
       - name: Setup gradle
         uses: gradle/gradle-build-action@v2
 
+        # Updated to 16.3 to meet Kotlin 2.2.10 requirements
       - name: Set up Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_16.3.app/Contents/Developer
 
       - name: Publish to MavenCentral
         if: ${{ github.event_name != 'pull_request' }}

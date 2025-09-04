@@ -107,8 +107,12 @@ public actual class Consent actual constructor (activity: Any?) {
      * @param onError lambda which passes a [ConsentException] on failure
      */
     public actual fun loadAndShowConsentForm(onError: (Exception) -> Unit) {
-        UserMessagingPlatform.loadAndShowConsentFormIfRequired(context) {
-            it?.let { error -> onError(ConsentException(error.message)) }
+        UserMessagingPlatform.loadAndShowConsentFormIfRequired(context) { error ->
+            if (error != null) {
+                onError(ConsentException(error.message))
+            } else {
+                canRequestAds()
+            }
         }
     }
 
