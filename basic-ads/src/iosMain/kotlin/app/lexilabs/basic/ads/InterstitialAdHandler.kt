@@ -9,6 +9,7 @@ import cocoapods.Google_Mobile_Ads_SDK.GADInterstitialAd
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
+import platform.UIKit.UIViewController
 
 @OptIn(ExperimentalForeignApi::class)
 public actual class InterstitialAdHandler actual constructor(activity: Any?) {
@@ -93,6 +94,21 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
             "InterstitialAd listeners not set yet. `InterstitialAd.setListeners()` must be called first"
         }
         interstitialAd?.presentFromRootViewController(null)
+    }
+
+    @MainThread
+    public fun show(viewController: UIViewController) {
+        _state.value = AdState.SHOWING
+        Log.d(tag, "show:starting")
+        require(interstitialAd != null) {
+            _state.value = AdState.FAILING
+            "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
+        }
+        require(delegate != null) {
+            _state.value = AdState.FAILING
+            "InterstitialAd listeners not set yet. `InterstitialAd.setListeners()` must be called first"
+        }
+        interstitialAd?.presentFromRootViewController(viewController)
     }
 
 }
