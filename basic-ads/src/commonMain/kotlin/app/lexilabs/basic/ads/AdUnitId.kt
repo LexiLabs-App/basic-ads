@@ -27,4 +27,5 @@ public expect object AdUnitId {
     public val INTERSTITIAL_DEFAULT: String
     public val REWARDED_INTERSTITIAL_DEFAULT: String
     public val REWARDED_DEFAULT: String
+    public val NATIVE_DEFAULT: String
 }
