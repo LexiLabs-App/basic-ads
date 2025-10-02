@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
-import app.lexilabs.basic.ads.NativeAdData
-import app.lexilabs.basic.ads.NativeAdHandler
+import app.lexilabs.basic.ads.nativead.NativeAdData
+import app.lexilabs.basic.ads.nativead.NativeAdHandler
 
 @DependsOnGoogleMobileAds
 @Composable
