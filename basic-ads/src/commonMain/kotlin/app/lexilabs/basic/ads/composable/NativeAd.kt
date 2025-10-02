@@ -24,16 +24,13 @@ public fun NativeAd(
         activity = activity,
         adUnitId = adUnitId,
         onLoad = onLoad,
-        onFailure = onFailure
-    )
-    ad.setListeners(
         onFailure = onFailure,
         onDismissed = onDismissed,
         onShown = onShown,
         onImpression = onImpression,
         onClick = onClick
     )
-    ad.show(nativeAdTemplate)
+    nativeAdTemplate(ad.render())
 }
 
 @DependsOnGoogleMobileAds
@@ -41,19 +38,6 @@ public fun NativeAd(
 public fun NativeAd(
     loadedAd: NativeAdHandler,
     nativeAdTemplate: @Composable (NativeAdData) -> Unit, // TODO: Create a default nativeAdTemplate
-    onDismissed: () -> Unit = {},
-    onShown: () -> Unit = {},
-    onImpression: () -> Unit = {},
-    onClick: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {},
-    onLoad: () -> Unit = {}
 ) {
-    loadedAd.setListeners(
-        onFailure = onFailure,
-        onDismissed = onDismissed,
-        onShown = onShown,
-        onImpression = onImpression,
-        onClick = onClick
-    )
-    loadedAd.show(nativeAdTemplate)
+    nativeAdTemplate(loadedAd.render())
 }

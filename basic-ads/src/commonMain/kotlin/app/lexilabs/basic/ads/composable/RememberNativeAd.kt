@@ -15,7 +15,11 @@ public fun rememberNativeAd(
     activity: Any?,
     adUnitId: String = AdUnitId.NATIVE_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    onDismissed: () -> Unit = {},
+    onShown: () -> Unit = {},
+    onImpression: () -> Unit = {},
+    onClick: () -> Unit = {},
 ): MutableState<NativeAdHandler> {
     val ad = remember(activity) { mutableStateOf(NativeAdHandler(activity)) }
     when(ad.value.state){
@@ -24,7 +28,11 @@ public fun rememberNativeAd(
             ad.value.load(
                 adUnitId = adUnitId,
                 onLoad = onLoad,
-                onFailure = onFailure
+                onFailure = onFailure,
+                onDismissed = onDismissed,
+                onShown = onShown,
+                onImpression = onImpression,
+                onClick = onClick
             )
         }
         else -> { /** DO NOTHING **/ }
