@@ -10,7 +10,7 @@ import platform.Foundation.NSError
 import platform.darwin.NSObject
 
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
-public class AdLoaderDelegate(
+public class AdLoader(
     public val onFailure: (Exception) -> Unit = {},
     public val onLoaded: () -> Unit = {}
 ): NSObject(), GADAdLoaderDelegateProtocol {
