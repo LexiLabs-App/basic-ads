@@ -11,7 +11,7 @@ import app.lexilabs.basic.ads.nativead.NativeAdHandler
 @Composable
 public fun NativeAd(
     activity: Any?,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit, // TODO: Create a default nativeAdTemplate
+    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
     adUnitId: String = AdUnitId.NATIVE_DEFAULT,
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
@@ -37,7 +37,7 @@ public fun NativeAd(
 @Composable
 public fun NativeAd(
     loadedAd: NativeAdHandler,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit, // TODO: Create a default nativeAdTemplate
+    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
 ) {
     nativeAdTemplate(loadedAd.render())
 }
