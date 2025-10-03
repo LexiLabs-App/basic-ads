@@ -52,6 +52,7 @@ public final class app/lexilabs/basic/ads/AdUnitId {
 	public static final field BANNER_DEFAULT Ljava/lang/String;
 	public static final field INSTANCE Lapp/lexilabs/basic/ads/AdUnitId;
 	public static final field INTERSTITIAL_DEFAULT Ljava/lang/String;
+	public static final field NATIVE_DEFAULT Ljava/lang/String;
 	public static final field REWARDED_DEFAULT Ljava/lang/String;
 	public static final field REWARDED_INTERSTITIAL_DEFAULT Ljava/lang/String;
 	public final fun autoSelect (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -292,6 +293,15 @@ public final class app/lexilabs/basic/ads/composable/InterstitialAdKt {
 	public static final fun InterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
+public final class app/lexilabs/basic/ads/composable/NativeAdDefaultKt {
+	public static final fun NativeAdDefault (Ljava/lang/Object;Lapp/lexilabs/basic/ads/nativead/NativeAdData;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class app/lexilabs/basic/ads/composable/NativeAdKt {
+	public static final fun NativeAd (Lapp/lexilabs/basic/ads/nativead/NativeAdHandler;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
+	public static final fun NativeAd (Ljava/lang/Object;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+}
+
 public final class app/lexilabs/basic/ads/composable/RememberBannerAdKt {
 	public static final fun rememberBannerAd (Ljava/lang/Object;Ljava/lang/String;Lapp/lexilabs/basic/ads/AdSize;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/MutableState;
 }
@@ -302,6 +312,10 @@ public final class app/lexilabs/basic/ads/composable/RememberConsentKt {
 
 public final class app/lexilabs/basic/ads/composable/RememberInterstitialAdKt {
 	public static final fun rememberInterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/MutableState;
+}
+
+public final class app/lexilabs/basic/ads/composable/RememberNativeAdKt {
+	public static final fun rememberNativeAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/MutableState;
 }
 
 public final class app/lexilabs/basic/ads/composable/RememberRewardedAdKt {
@@ -320,5 +334,73 @@ public final class app/lexilabs/basic/ads/composable/RewardedAdKt {
 public final class app/lexilabs/basic/ads/composable/RewardedInterstitialAdKt {
 	public static final fun RewardedInterstitialAd (Lapp/lexilabs/basic/ads/RewardedInterstitialAdHandler;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun RewardedInterstitialAd (Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class app/lexilabs/basic/ads/nativead/NativeAdConvertersKt {
+	public static final fun toCommon (Lcom/google/android/gms/ads/MediaContent;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$MediaContent;
+	public static final fun toCommon (Lcom/google/android/gms/ads/MuteThisAdReason;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$MuteThisAdReason;
+	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd$AdChoicesInfo;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo;
+	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd$Image;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$Image;
+	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd;)Lapp/lexilabs/basic/ads/nativead/NativeAdData;
+}
+
+public final class app/lexilabs/basic/ads/nativead/NativeAdData {
+	public static final field $stable I
+	public fun <init> (Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lapp/lexilabs/basic/ads/nativead/NativeAdData$Image;Lapp/lexilabs/basic/ads/nativead/NativeAdData$MediaContent;Ljava/util/List;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;)V
+	public final fun getAdChoicesInfo ()Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo;
+	public final fun getAdvertiser ()Ljava/lang/String;
+	public final fun getBody ()Ljava/lang/String;
+	public final fun getCallToAction ()Ljava/lang/String;
+	public final fun getHeadline ()Ljava/lang/String;
+	public final fun getIcon ()Lapp/lexilabs/basic/ads/nativead/NativeAdData$Image;
+	public final fun getMediaContent ()Lapp/lexilabs/basic/ads/nativead/NativeAdData$MediaContent;
+	public final fun getMuteThisAdReasons ()Ljava/util/List;
+	public final fun getPlacementId ()Ljava/lang/Long;
+	public final fun getPrice ()Ljava/lang/String;
+	public final fun getStarRating ()Ljava/lang/Double;
+	public final fun getStore ()Ljava/lang/String;
+}
+
+public final class app/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo {
+	public static final field $stable I
+	public fun <init> (Ljava/util/List;Ljava/lang/CharSequence;)V
+	public final fun getImages ()Ljava/util/List;
+	public final fun getText ()Ljava/lang/CharSequence;
+}
+
+public final class app/lexilabs/basic/ads/nativead/NativeAdData$Image {
+	public static final field $stable I
+	public fun <init> (Landroid/graphics/drawable/Drawable;DLandroid/net/Uri;)V
+	public final fun getDrawable ()Landroid/graphics/drawable/Drawable;
+	public final fun getScale ()D
+	public final fun getUri ()Landroid/net/Uri;
+}
+
+public final class app/lexilabs/basic/ads/nativead/NativeAdData$MediaContent {
+	public static final field $stable I
+	public fun <init> (FFFLandroid/graphics/drawable/Drawable;Lcom/google/android/gms/ads/VideoController;)V
+	public final fun getAspectRatio ()F
+	public final fun getCurrentTime ()F
+	public final fun getDuration ()F
+	public final fun getMainImage ()Landroid/graphics/drawable/Drawable;
+	public final fun getVideoController ()Lcom/google/android/gms/ads/VideoController;
+}
+
+public final class app/lexilabs/basic/ads/nativead/NativeAdData$MuteThisAdReason {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getDescription ()Ljava/lang/String;
+}
+
+public final class app/lexilabs/basic/ads/nativead/NativeAdHandler {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun destroy ()V
+	public final fun getNativeAd ()Lcom/google/android/gms/ads/nativead/NativeAd;
+	public final fun getState ()Lapp/lexilabs/basic/ads/AdState;
+	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/nativead/NativeAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public final fun render ()Lapp/lexilabs/basic/ads/nativead/NativeAdData;
+	public final fun setNativeAd (Lcom/google/android/gms/ads/nativead/NativeAd;)V
 }
 
