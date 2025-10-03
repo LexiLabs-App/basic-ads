@@ -10,6 +10,19 @@ import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 
+/**
+ * Remembers a [NativeAdHandler] across compositions.
+ * @param activity the current Activity (only needed for Android Impl)
+ * @param adUnitId Your AdMob AdUnitId [String]
+ * @param onLoad Lambda expression that executes after the [NativeAdHandler] has fully loaded
+ * @param onFailure Lambda expression that executes after the ad fails to load or redirect
+ * @param onDismissed Lambda that executes when the user closes the ad
+ * @param onShown Lambda expression that executes after the ad is presented
+ * @param onImpression Lambda expression that executes after the user has seen the ad
+ * @param onClick Lambda expression that executes after the user clicks the ad
+ * @return a [MutableState] of [NativeAdHandler]
+ * @see AdUnitId.autoSelect
+ */
 @DependsOnGoogleMobileAds
 @Composable
 public fun rememberNativeAd(

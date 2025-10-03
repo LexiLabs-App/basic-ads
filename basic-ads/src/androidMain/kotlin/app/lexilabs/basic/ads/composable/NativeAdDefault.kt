@@ -16,6 +16,11 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import app.lexilabs.basic.ads.nativead.NativeAdData
 
+/**
+ * A default implementation of a native ad.
+ * @param activity the current Activity (only needed for Android Impl)
+ * @param nativeAd the native ad to display
+ */
 @Composable
 public actual fun NativeAdDefault(activity: Any?, nativeAd: NativeAdData) {
     /** Display a native ad with a user defined template. */

@@ -7,6 +7,18 @@ import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.nativead.NativeAdData
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 
+/**
+ * A composable that displays a native ad.
+ * @param activity the current Activity (only needed for Android Impl)
+ * @param nativeAdTemplate the composable that will be used to display the native ad
+ * @param adUnitId the ad unit ID for the native ad
+ * @param onDismissed a callback that will be invoked when the ad is dismissed
+ * @param onShown a callback that will be invoked when the ad is shown
+ * @param onImpression a callback that will be invoked when an impression is recorded for the ad
+ * @param onClick a callback that will be invoked when the ad is clicked
+ * @param onFailure a callback that will be invoked when the ad fails to load
+ * @param onLoad a callback that will be invoked when the ad has loaded
+ */
 @DependsOnGoogleMobileAds
 @Composable
 public fun NativeAd(
@@ -33,6 +45,11 @@ public fun NativeAd(
     nativeAdTemplate(ad.render())
 }
 
+/**
+ * A composable that displays a native ad.
+ * @param loadedAd the pre-loaded native ad
+ * @param nativeAdTemplate the composable that will be used to display the native ad
+ */
 @DependsOnGoogleMobileAds
 @Composable
 public fun NativeAd(
