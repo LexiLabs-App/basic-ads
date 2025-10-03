@@ -9,4 +9,5 @@ public actual object AdUnitId {
     public actual const val INTERSTITIAL_DEFAULT: String = "ca-app-pub-3940256099942544/4411468910"
     public actual const val REWARDED_INTERSTITIAL_DEFAULT: String = "ca-app-pub-3940256099942544/6978759866"
     public actual const val REWARDED_DEFAULT: String = "ca-app-pub-3940256099942544/1712485313"
+    public actual const val NATIVE_DEFAULT: String = "ca-app-pub-3940256099942544/3986624511"
 }

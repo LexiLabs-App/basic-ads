@@ -19,6 +19,12 @@ import app.lexilabs.basic.ads.toAndroid
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 
+/**
+ * Loads and displays a Banner Ad using a [Composable].
+ * @param adUnitId Your AdMob AdUnitId [String]
+ * @param adSize The size of the banner ad
+ * @param onLoad Lambda expression that executes after the ad is loaded
+ */
 @OptIn(DependsOnGoogleMobileAds::class)
 @RequiresPermission("android.permission.INTERNET")
 @Composable
