@@ -3,21 +3,35 @@ package app.lexilabs.basic.ads.nativead
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import com.google.android.gms.ads.VideoController
+import com.google.android.gms.ads.nativead.NativeAd
 
 public actual class NativeAdData (
-    public actual val adChoicesInfo: AdChoicesInfo?,
-    public actual val advertiser: String?,
-    public actual val body: String?,
-    public actual val callToAction: String?,
-    public actual val headline: String?,
-    public actual val icon: Image?,
-    public actual val mediaContent: MediaContent?,
-    public actual val muteThisAdReasons: List<MuteThisAdReason>,
-    public actual val placementId: Long?,
-    public actual val price: String?,
-    public actual val starRating: Double?,
-    public actual val store: String?
+    public val android: NativeAd
 ) {
+    public actual val adChoicesInfo: AdChoicesInfo?
+        get() = android.adChoicesInfo?.toCommon()
+    public actual val advertiser: String?
+        get() = android.advertiser
+    public actual val body: String?
+        get() = android.body
+    public actual val callToAction: String?
+        get() = android.callToAction
+    public actual val headline: String?
+        get() = android.headline
+    public actual val icon: Image?
+        get() = android.icon?.toCommon()
+    public actual val mediaContent: MediaContent?
+        get() = android.mediaContent?.toCommon()
+    public actual val muteThisAdReasons: List<MuteThisAdReason>
+        get() = android.muteThisAdReasons.map { it.toCommon() }
+    public actual val placementId: Long?
+        get() = android.placementId
+    public actual val price: String?
+        get() = android.price
+    public actual val starRating: Double?
+        get() = android.starRating
+    public actual val store: String?
+        get() = android.store
     public actual class AdChoicesInfo (
         public val images: List<Image>,
         public val text: CharSequence

@@ -14,7 +14,6 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +23,7 @@ import kotlinx.coroutines.launch
 public actual class NativeAdHandler actual constructor(private val activity: Any?) {
 
     private val tag = "NativeAd"
-    public var nativeAd: NativeAd? = null
+    public var ad: NativeAdData? = null
     private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
 
     /**
@@ -46,7 +45,7 @@ public actual class NativeAdHandler actual constructor(private val activity: Any
             _state.value = AdState.LOADING
             val adLoader = AdLoader.Builder(activity as Activity, adUnitId)
                 .forNativeAd {
-                    nativeAd = it
+                    ad = NativeAdData(it)
                     _state.value = AdState.READY
                     onLoad()
                 }
@@ -96,13 +95,14 @@ public actual class NativeAdHandler actual constructor(private val activity: Any
      */
     @MainThread
     public actual fun render(): NativeAdData {
-        require(nativeAd != null){
+        require(ad?.android != null){
             "NativeAd has not loaded"
         }
-        return nativeAd!!.toCommon()
+        return ad!!
     }
 
     public actual fun destroy() {
-        nativeAd?.destroy()
+        ad?.android?.destroy()
+        ad = null
     }
 }
