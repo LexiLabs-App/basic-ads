@@ -341,14 +341,14 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdConvertersKt {
 	public static final fun toCommon (Lcom/google/android/gms/ads/MuteThisAdReason;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$MuteThisAdReason;
 	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd$AdChoicesInfo;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo;
 	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd$Image;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$Image;
-	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd;)Lapp/lexilabs/basic/ads/nativead/NativeAdData;
 }
 
 public final class app/lexilabs/basic/ads/nativead/NativeAdData {
 	public static final field $stable I
-	public fun <init> (Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lapp/lexilabs/basic/ads/nativead/NativeAdData$Image;Lapp/lexilabs/basic/ads/nativead/NativeAdData$MediaContent;Ljava/util/List;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;)V
+	public fun <init> (Lcom/google/android/gms/ads/nativead/NativeAd;)V
 	public final fun getAdChoicesInfo ()Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo;
 	public final fun getAdvertiser ()Ljava/lang/String;
+	public final fun getAndroid ()Lcom/google/android/gms/ads/nativead/NativeAd;
 	public final fun getBody ()Ljava/lang/String;
 	public final fun getCallToAction ()Ljava/lang/String;
 	public final fun getHeadline ()Ljava/lang/String;
@@ -396,11 +396,11 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdHandler {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;)V
 	public final fun destroy ()V
-	public final fun getNativeAd ()Lcom/google/android/gms/ads/nativead/NativeAd;
+	public final fun getAd ()Lapp/lexilabs/basic/ads/nativead/NativeAdData;
 	public final fun getState ()Lapp/lexilabs/basic/ads/AdState;
 	public final fun load (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
 	public static synthetic fun load$default (Lapp/lexilabs/basic/ads/nativead/NativeAdHandler;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 	public final fun render ()Lapp/lexilabs/basic/ads/nativead/NativeAdData;
-	public final fun setNativeAd (Lcom/google/android/gms/ads/nativead/NativeAd;)V
+	public final fun setAd (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)V
 }
 

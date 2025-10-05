@@ -1,6 +1,5 @@
 package app.lexilabs.basic.ads.composable
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -63,11 +62,6 @@ public actual fun NativeAdDefault(activity: Any?, nativeAd: NativeAdData) {
                     Box(
                         Modifier
                             .padding(5.dp)
-                            .clickable(
-                                onClick = {
-                                    // TODO: Fix onclick issue described above
-                                }
-                            )
                     ) {
                         BasicText(text = callToAction)
                     }
