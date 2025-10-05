@@ -2,9 +2,13 @@ package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.viewinterop.AndroidView
+import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.nativead.NativeAdData
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
+import com.google.android.gms.ads.nativead.NativeAdView
 
 /**
  * A composable that displays a native ad.
@@ -41,7 +45,10 @@ public actual fun NativeAd(
         onImpression = onImpression,
         onClick = onClick
     )
-    nativeAdTemplate(ad.render())
+
+    if (ad.state == AdState.READY) {
+        NativeAd(loadedAd = ad, nativeAdTemplate = nativeAdTemplate)
+    }
 }
 
 /**
@@ -55,5 +62,26 @@ public actual fun NativeAd(
     loadedAd: NativeAdHandler,
     nativeAdTemplate: @Composable (NativeAdData) -> Unit,
 ) {
-    nativeAdTemplate(loadedAd.render())
+    if (loadedAd.state != AdState.READY) {
+        return
+    }
+
+    val adData = loadedAd.render()
+    val nativeAd = adData.android
+
+    AndroidView(
+        factory = { context ->
+            val nativeAdView = NativeAdView(context)
+            val composeView = ComposeView(context)
+            nativeAdView.addView(composeView)
+            nativeAdView
+        },
+        update = { nativeAdView ->
+            val composeView = nativeAdView.getChildAt(0) as ComposeView
+            composeView.setContent {
+                nativeAdTemplate(adData)
+            }
+            nativeAdView.setNativeAd(nativeAd)
+        }
+    )
 }
