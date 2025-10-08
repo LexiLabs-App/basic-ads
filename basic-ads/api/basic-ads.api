@@ -406,6 +406,7 @@ public class app/lexilabs/basic/ads/nativead/NativeAdDefault : app/lexilabs/basi
 	public fun Show (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
 	public fun StarRating (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 	public fun Store (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public final fun Supervisor (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 	public fun copy (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;
 	public fun getNativeAdData ()Lapp/lexilabs/basic/ads/nativead/NativeAdData;
 	public fun invoke (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;

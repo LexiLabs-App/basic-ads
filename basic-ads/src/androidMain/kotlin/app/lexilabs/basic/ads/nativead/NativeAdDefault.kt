@@ -57,6 +57,40 @@ public actual open class NativeAdDefault actual constructor(
     actual override fun Show(
         modifier: Modifier
     ) {
+        Supervisor(modifier) {
+            Box(modifier = Modifier.padding(8.dp).wrapContentHeight(Alignment.Top)) {
+                Column(Modifier.align(Alignment.TopStart).wrapContentHeight(Alignment.Top)) {
+                    Media()
+                    Attribution(text = "ad")
+                    Row {
+                        nativeAdData!!.icon?.drawable?.let {
+                            Icon { Image(bitmap = it.toBitmap().asImageBitmap(), "Icon") }
+                        }
+                    }
+                    Column {
+                        nativeAdData!!.headline?.let { Headline { BasicText(it) } }
+                        nativeAdData!!.starRating?.let { BasicText("Rated $it") }
+                    }
+
+                    nativeAdData!!.body?.let { Body { BasicText(it) } }
+
+                    Row(Modifier.align(Alignment.End).padding(5.dp)) {
+                        nativeAdData!!.price?.let { BasicText(it) }
+                        nativeAdData!!.store?.let { BasicText(it) }
+                        nativeAdData!!.callToAction?.let {
+                            NativeAdButton(it)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    public actual fun Supervisor(
+        modifier: Modifier,
+        content: @Composable () -> Unit
+    ) {
         require(nativeAdData != null) { "nativeAdData cannot be null" }
         val parentView = LocalView.current
         val nativeAdView = remember(parentView) {
@@ -75,31 +109,7 @@ public actual open class NativeAdDefault actual constructor(
             onDispose {}
         }
 
-        Box(modifier = Modifier.padding(8.dp).wrapContentHeight(Alignment.Top)) {
-            Column(Modifier.align(Alignment.TopStart).wrapContentHeight(Alignment.Top)) {
-                Media()
-                Attribution(text = "ad")
-                Row {
-                    nativeAdData!!.icon?.drawable?.let {
-                        Icon { Image(bitmap = it.toBitmap().asImageBitmap(), "Icon") }
-                    }
-                }
-                Column {
-                    nativeAdData!!.headline?.let { Headline { BasicText(it) } }
-                    nativeAdData!!.starRating?.let { BasicText("Rated $it") }
-                }
-
-                nativeAdData!!.body?.let { Body { BasicText(it) } }
-
-                Row(Modifier.align(Alignment.End).padding(5.dp)) {
-                    nativeAdData!!.price?.let { BasicText(it)}
-                    nativeAdData!!.store?.let { BasicText(it)}
-                    nativeAdData!!.callToAction?.let {
-                        NativeAdButton(it)
-                    }
-                }
-            }
-        }
+        content()
     }
 
     @Composable

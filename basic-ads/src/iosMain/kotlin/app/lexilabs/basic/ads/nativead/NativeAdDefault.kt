@@ -47,6 +47,37 @@ public actual open class NativeAdDefault actual constructor(
     @OptIn(ExperimentalComposeUiApi::class, ExperimentalForeignApi::class)
     @Composable
     actual override fun Show(modifier: Modifier) {
+        Supervisor(modifier) {
+            Box(modifier = Modifier.padding(8.dp).wrapContentHeight(Alignment.Top)) {
+                Column(Modifier.align(Alignment.TopStart).wrapContentHeight(Alignment.Top)) {
+                    Media()
+                    Attribution(text = "ad")
+                    Row { nativeAdData!!.icon?.image?.let { Icon { it } } }
+                    Column {
+                        nativeAdData!!.headline?.let { Headline { BasicText(it) } }
+                        nativeAdData!!.starRating?.let { BasicText("Rated $it") }
+                    }
+
+                    nativeAdData!!.body?.let { Body { BasicText(it) } }
+
+                    Row(Modifier.align(Alignment.End).padding(5.dp)) {
+                        nativeAdData!!.price?.let { BasicText(it) }
+                        nativeAdData!!.store?.let { BasicText(it) }
+                        nativeAdData!!.callToAction?.let {
+                            NativeAdButton(it)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalComposeUiApi::class, ExperimentalForeignApi::class)
+    @Composable
+    public actual fun Supervisor(
+        modifier: Modifier,
+        content: @Composable () -> Unit
+    ) {
         require(nativeAdData != null) { "nativeAdData cannot be null" }
         val parentView = LocalUIView.current
         val nativeAdView = remember(parentView) {
@@ -63,28 +94,7 @@ public actual open class NativeAdDefault actual constructor(
             nativeAdView?.setNativeAd(nativeAdData!!.ios)
             onDispose {}
         }
-
-        Box(modifier = Modifier.padding(8.dp).wrapContentHeight(Alignment.Top)) {
-            Column(Modifier.align(Alignment.TopStart).wrapContentHeight(Alignment.Top)) {
-                Media()
-                Attribution(text = "ad")
-                Row { nativeAdData!!.icon?.image?.let { Icon { it } } }
-                Column {
-                    nativeAdData!!.headline?.let { Headline { BasicText(it) } }
-                    nativeAdData!!.starRating?.let { BasicText("Rated $it") }
-                }
-
-                nativeAdData!!.body?.let { Body { BasicText(it) } }
-
-                Row(Modifier.align(Alignment.End).padding(5.dp)) {
-                    nativeAdData!!.price?.let { BasicText(it)}
-                    nativeAdData!!.store?.let { BasicText(it)}
-                    nativeAdData!!.callToAction?.let {
-                        NativeAdButton(it)
-                    }
-                }
-            }
-        }
+        content()
     }
 
     @OptIn(ExperimentalForeignApi::class)
