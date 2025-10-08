@@ -388,7 +388,7 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdData$MuteThisAdReason
 	public final fun getDescription ()Ljava/lang/String;
 }
 
-public class app/lexilabs/basic/ads/nativead/NativeAdDefault : app/lexilabs/basic/ads/nativead/NativeAdTemplate {
+public final class app/lexilabs/basic/ads/nativead/NativeAdDefault : app/lexilabs/basic/ads/nativead/NativeAdTemplate {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun <init> (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)V
