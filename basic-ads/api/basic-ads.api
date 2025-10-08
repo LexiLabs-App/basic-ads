@@ -467,6 +467,9 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdViewKt {
 }
 
 public final class app/lexilabs/basic/ads/nativead/ScaleType : java/lang/Enum {
+	public static final field Bottom Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field BottomLeft Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field BottomRight Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static final field CENTER Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static final field CENTER_CROP Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static final field CENTER_INSIDE Lapp/lexilabs/basic/ads/nativead/ScaleType;
@@ -474,9 +477,23 @@ public final class app/lexilabs/basic/ads/nativead/ScaleType : java/lang/Enum {
 	public static final field FIT_END Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static final field FIT_START Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static final field FIT_XY Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field Left Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static final field MATRIX Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field Redraw Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field Right Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field ScaleAspectFill Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field ScaleAspectFit Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field ScaleToFill Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field Top Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field TopLeft Lapp/lexilabs/basic/ads/nativead/ScaleType;
+	public static final field TopRight Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lapp/lexilabs/basic/ads/nativead/ScaleType;
 	public static fun values ()[Lapp/lexilabs/basic/ads/nativead/ScaleType;
+}
+
+public final class app/lexilabs/basic/ads/nativead/ScaleTypeKt {
+	public static final fun toAndroid (Lapp/lexilabs/basic/ads/nativead/ScaleType;)Landroid/widget/ImageView$ScaleType;
+	public static final fun toCommon (Landroid/widget/ImageView$ScaleType;)Lapp/lexilabs/basic/ads/nativead/ScaleType;
 }
 
