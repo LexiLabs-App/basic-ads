@@ -32,7 +32,7 @@ import platform.UIKit.didMoveToParentViewController
 import platform.UIKit.removeFromParentViewController
 import platform.UIKit.willMoveToParentViewController
 
-public actual open class NativeAdDefault actual constructor(
+public actual class NativeAdDefault actual constructor(
     actual override val nativeAdData: NativeAdData?
 ) : NativeAdTemplate(nativeAdData) {
 

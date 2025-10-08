@@ -3,7 +3,7 @@ package app.lexilabs.basic.ads.nativead
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-public expect open class NativeAdDefault : NativeAdTemplate {
+public expect class NativeAdDefault : NativeAdTemplate {
 
     override val nativeAdData: NativeAdData?
 

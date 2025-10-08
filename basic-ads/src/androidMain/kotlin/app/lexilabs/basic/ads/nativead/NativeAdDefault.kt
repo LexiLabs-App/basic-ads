@@ -45,7 +45,7 @@ import com.google.android.gms.ads.nativead.AdChoicesView
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAdView
 
-public actual open class NativeAdDefault actual constructor(
+public actual class NativeAdDefault actual constructor(
     actual override val nativeAdData: NativeAdData?,
 ) : NativeAdTemplate(nativeAdData) {
 
