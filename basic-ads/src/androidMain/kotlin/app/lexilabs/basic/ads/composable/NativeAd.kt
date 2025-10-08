@@ -65,6 +65,6 @@ public actual fun NativeAd(
     val adData = loadedAd.render()
 
     NativeAdViewWrapper(nativeAd = adData){
-        nativeAdTemplate(it).Show()
+        nativeAdTemplate.copy(it).Show()
     }
 }

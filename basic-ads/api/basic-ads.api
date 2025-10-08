@@ -294,7 +294,7 @@ public final class app/lexilabs/basic/ads/composable/InterstitialAdKt {
 }
 
 public final class app/lexilabs/basic/ads/composable/NativeAdKt {
-	public static final fun NativeAd (Lapp/lexilabs/basic/ads/nativead/NativeAdHandler;Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;Landroidx/compose/runtime/Composer;I)V
+	public static final fun NativeAd (Lapp/lexilabs/basic/ads/nativead/NativeAdHandler;Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;Landroidx/compose/runtime/Composer;II)V
 	public static final fun NativeAd (Ljava/lang/Object;Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
@@ -390,7 +390,9 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdData$MuteThisAdReason
 
 public class app/lexilabs/basic/ads/nativead/NativeAdDefault : app/lexilabs/basic/ads/nativead/NativeAdTemplate {
 	public static final field $stable I
+	public fun <init> ()V
 	public fun <init> (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)V
+	public synthetic fun <init> (Lapp/lexilabs/basic/ads/nativead/NativeAdData;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun AdChoices (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
 	public fun Advertiser (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 	public fun Attribution (Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
@@ -404,6 +406,7 @@ public class app/lexilabs/basic/ads/nativead/NativeAdDefault : app/lexilabs/basi
 	public fun Show (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
 	public fun StarRating (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 	public fun Store (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public fun copy (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;
 	public fun getNativeAdData ()Lapp/lexilabs/basic/ads/nativead/NativeAdData;
 	public fun invoke (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;
 }
@@ -439,6 +442,7 @@ public abstract class app/lexilabs/basic/ads/nativead/NativeAdTemplate : app/lex
 	public abstract fun Show (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
 	public abstract fun StarRating (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 	public abstract fun Store (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public abstract fun copy (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;
 	public fun getNativeAdData ()Lapp/lexilabs/basic/ads/nativead/NativeAdData;
 	public abstract fun invoke (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate;
 }

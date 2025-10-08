@@ -4,10 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 public abstract class NativeAdTemplate public constructor(
-    public override val nativeAdData: NativeAdData
+    public override val nativeAdData: NativeAdData?
 ): NativeAdScope {
 
-    public abstract operator fun invoke(nativeAdData: NativeAdData): NativeAdTemplate
+    public abstract operator fun invoke(nativeAdData: NativeAdData?): NativeAdTemplate
+
+    public abstract fun copy(nativeAdData: NativeAdData?): NativeAdTemplate
     @Composable
     public abstract fun Show(modifier: Modifier = Modifier)
 

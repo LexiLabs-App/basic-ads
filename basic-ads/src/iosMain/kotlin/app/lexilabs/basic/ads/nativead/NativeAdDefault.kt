@@ -32,11 +32,13 @@ import platform.UIKit.didMoveToParentViewController
 import platform.UIKit.removeFromParentViewController
 import platform.UIKit.willMoveToParentViewController
 
-public actual open class NativeAdDefault(
-    actual override val nativeAdData: NativeAdData
+public actual open class NativeAdDefault actual constructor(
+    actual override val nativeAdData: NativeAdData?
 ) : NativeAdTemplate(nativeAdData) {
 
-    actual override operator fun invoke(nativeAdData: NativeAdData): NativeAdTemplate = this
+    actual override operator fun invoke(nativeAdData: NativeAdData?): NativeAdTemplate = this
+
+    actual override fun copy(nativeAdData: NativeAdData?): NativeAdTemplate = NativeAdDefault(nativeAdData)
 
     @OptIn(ExperimentalForeignApi::class)
     private val nativeAdView: GADNativeAdView = GADNativeAdView.new() ?:
@@ -45,6 +47,7 @@ public actual open class NativeAdDefault(
     @OptIn(ExperimentalComposeUiApi::class, ExperimentalForeignApi::class)
     @Composable
     actual override fun Show(modifier: Modifier) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val parentView = LocalUIView.current
         val nativeAdView = remember(parentView) {
             var p = parentView.superview
@@ -57,7 +60,7 @@ public actual open class NativeAdDefault(
             // By the time this effect runs, the child AndroidViews have been composed
             // and their update blocks have run, registering the views. Now it's safe
             // to associate the ad with the view.
-            nativeAdView?.setNativeAd(nativeAdData.ios)
+            nativeAdView?.setNativeAd(nativeAdData!!.ios)
             onDispose {}
         }
 
@@ -65,18 +68,18 @@ public actual open class NativeAdDefault(
             Column(Modifier.align(Alignment.TopStart).wrapContentHeight(Alignment.Top)) {
                 Media()
                 Attribution(text = "ad")
-                Row { nativeAdData.icon?.image?.let { Icon { it } } }
+                Row { nativeAdData!!.icon?.image?.let { Icon { it } } }
                 Column {
-                    nativeAdData.headline?.let { Headline { BasicText(it) } }
-                    nativeAdData.starRating?.let { BasicText("Rated $it") }
+                    nativeAdData!!.headline?.let { Headline { BasicText(it) } }
+                    nativeAdData!!.starRating?.let { BasicText("Rated $it") }
                 }
 
-                nativeAdData.body?.let { Body { BasicText(it) } }
+                nativeAdData!!.body?.let { Body { BasicText(it) } }
 
                 Row(Modifier.align(Alignment.End).padding(5.dp)) {
-                    nativeAdData.price?.let { BasicText(it)}
-                    nativeAdData.store?.let { BasicText(it)}
-                    nativeAdData.callToAction?.let {
+                    nativeAdData!!.price?.let { BasicText(it)}
+                    nativeAdData!!.store?.let { BasicText(it)}
+                    nativeAdData!!.callToAction?.let {
                         NativeAdButton(it)
                     }
                 }
@@ -90,6 +93,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -106,6 +110,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -121,6 +126,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -135,6 +141,7 @@ public actual open class NativeAdDefault(
     @OptIn(ExperimentalForeignApi::class)
     @Composable
     actual override fun AdChoices(modifier: Modifier) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ViewInUIView(
             modifier = modifier,
             update = {
@@ -149,6 +156,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -164,6 +172,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -179,10 +188,11 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         scaleType: ScaleType?
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ViewInUIView(
             modifier = modifier,
             update = { uiView ->
-                nativeAdView.mediaView?.mediaContent = nativeAdData.ios.mediaContent
+                nativeAdView.mediaView?.mediaContent = nativeAdData!!.ios.mediaContent
             }
         )
     }
@@ -193,6 +203,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -208,6 +219,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -223,6 +235,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -234,6 +247,7 @@ public actual open class NativeAdDefault(
 
     @Composable
     actual override fun Attribution(text: String, modifier: Modifier) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         Box(
             modifier = modifier.background(Color.Yellow).clip(RectangleShape)
         ) {
@@ -249,6 +263,7 @@ public actual open class NativeAdDefault(
         backgroundColor: Color = Color.Black,
         shape: Shape = RectangleShape
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         Box(
             modifier = modifier.background(backgroundColor, shape)
         ) {

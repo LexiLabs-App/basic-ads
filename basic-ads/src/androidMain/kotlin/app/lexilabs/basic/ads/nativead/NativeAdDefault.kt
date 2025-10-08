@@ -45,16 +45,19 @@ import com.google.android.gms.ads.nativead.AdChoicesView
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAdView
 
-public actual open class NativeAdDefault(
-    actual override val nativeAdData: NativeAdData,
+public actual open class NativeAdDefault actual constructor(
+    actual override val nativeAdData: NativeAdData?,
 ) : NativeAdTemplate(nativeAdData) {
 
-    actual override operator fun invoke(nativeAdData: NativeAdData): NativeAdTemplate = this
+    actual override operator fun invoke(nativeAdData: NativeAdData?): NativeAdTemplate = this
+
+    actual override fun copy(nativeAdData: NativeAdData?): NativeAdTemplate = NativeAdDefault(nativeAdData)
 
     @Composable
     actual override fun Show(
         modifier: Modifier
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val parentView = LocalView.current
         val nativeAdView = remember(parentView) {
             var p = parentView.parent
@@ -68,7 +71,7 @@ public actual open class NativeAdDefault(
             // By the time this effect runs, the child AndroidViews have been composed
             // and their update blocks have run, registering the views. Now it's safe
             // to associate the ad with the view.
-            nativeAdView?.setNativeAd(nativeAdData.android)
+            nativeAdView?.setNativeAd(nativeAdData!!.android)
             onDispose {}
         }
 
@@ -77,21 +80,21 @@ public actual open class NativeAdDefault(
                 Media()
                 Attribution(text = "ad")
                 Row {
-                    nativeAdData.icon?.drawable?.let {
+                    nativeAdData!!.icon?.drawable?.let {
                         Icon { Image(bitmap = it.toBitmap().asImageBitmap(), "Icon") }
                     }
                 }
                 Column {
-                    nativeAdData.headline?.let { Headline { BasicText(it) } }
-                    nativeAdData.starRating?.let { BasicText("Rated $it") }
+                    nativeAdData!!.headline?.let { Headline { BasicText(it) } }
+                    nativeAdData!!.starRating?.let { BasicText("Rated $it") }
                 }
 
-                nativeAdData.body?.let { Body { BasicText(it) } }
+                nativeAdData!!.body?.let { Body { BasicText(it) } }
 
                 Row(Modifier.align(Alignment.End).padding(5.dp)) {
-                    nativeAdData.price?.let { BasicText(it)}
-                    nativeAdData.store?.let { BasicText(it)}
-                    nativeAdData.callToAction?.let {
+                    nativeAdData!!.price?.let { BasicText(it)}
+                    nativeAdData!!.store?.let { BasicText(it)}
+                    nativeAdData!!.callToAction?.let {
                         NativeAdButton(it)
                     }
                 }
@@ -104,6 +107,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         AndroidView(
             factory = { context ->
@@ -123,6 +127,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
@@ -140,6 +145,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
@@ -154,6 +160,7 @@ public actual open class NativeAdDefault(
 
     @Composable
     actual override fun AdChoices(modifier: Modifier) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         AndroidView(
@@ -173,6 +180,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
@@ -190,6 +198,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
@@ -207,6 +216,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         scaleType: ScaleType?
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         AndroidView(
@@ -224,6 +234,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable (() -> Unit)
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
@@ -241,6 +252,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
@@ -258,6 +270,7 @@ public actual open class NativeAdDefault(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }

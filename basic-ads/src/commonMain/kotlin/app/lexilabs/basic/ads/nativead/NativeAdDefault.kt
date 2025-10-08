@@ -3,10 +3,15 @@ package app.lexilabs.basic.ads.nativead
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-public expect class NativeAdDefault: NativeAdTemplate {
-    override val nativeAdData: NativeAdData
+public expect class NativeAdDefault : NativeAdTemplate {
 
-    override operator fun invoke(nativeAdData: NativeAdData): NativeAdTemplate
+    override val nativeAdData: NativeAdData?
+
+    public constructor(nativeAdData: NativeAdData? = null)
+
+    override operator fun invoke(nativeAdData: NativeAdData?): NativeAdTemplate
+
+    override fun copy(nativeAdData: NativeAdData?): NativeAdTemplate
 
     @Composable
     override fun Show(modifier: Modifier)

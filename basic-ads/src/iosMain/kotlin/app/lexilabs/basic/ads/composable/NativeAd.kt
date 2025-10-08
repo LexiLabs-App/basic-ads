@@ -87,7 +87,7 @@ public actual fun NativeAd(
 
         // We create and remember a ComposeUIViewController to host our custom ad template.
         val composeController = remember {
-            ComposeUIViewController { nativeAdTemplate(adData).Show() }
+            ComposeUIViewController { nativeAdTemplate.copy(adData).Show() }
         }
 
         // This effect correctly manages the lifecycle of the child view controller.
