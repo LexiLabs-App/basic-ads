@@ -9,16 +9,20 @@ import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
 
 /**
- * A composable that displays a native ad.
- * @param activity the current Activity (only needed for Android Impl)
- * @param nativeAdTemplate the composable that will be used to display the native ad
- * @param adUnitId the ad unit ID for the native ad
- * @param onDismissed a callback that will be invoked when the ad is dismissed
- * @param onShown a callback that will be invoked when the ad is shown
- * @param onImpression a callback that will be invoked when an impression is recorded for the ad
- * @param onClick a callback that will be invoked when the ad is clicked
- * @param onFailure a callback that will be invoked when the ad fails to load
- * @param onLoad a callback that will be invoked when the ad has loaded
+ * A composable that loads and displays a native ad.
+ *
+ * This function handles the entire lifecycle of a native ad, from loading it using [rememberNativeAd]
+ * to displaying it once it's in the [AdState.READY] state.
+ *
+ * @param activity The current Activity, required for the Android implementation.
+ * @param nativeAdTemplate The composable template used to render the native ad UI.
+ * @param adUnitId The ad unit ID for the native ad.
+ * @param onDismissed A callback invoked when the ad is dismissed.
+ * @param onShown A callback invoked when the ad is shown.
+ * @param onImpression A callback invoked when an impression is recorded for the ad.
+ * @param onClick A callback invoked when the ad is clicked.
+ * @param onFailure A callback invoked when the ad fails to load.
+ * @param onLoad A callback invoked when the ad has successfully loaded.
  */
 @DependsOnGoogleMobileAds
 @Composable
@@ -50,9 +54,13 @@ public actual fun NativeAd(
 }
 
 /**
- * A composable that displays a native ad.
- * @param loadedAd the pre-loaded native ad
- * @param nativeAdTemplate the composable that will be used to display the native ad
+ * A composable that displays a pre-loaded native ad from a [NativeAdHandler].
+ *
+ * This function should be used when you have already loaded a native ad and want to display it.
+ * It renders the ad data using the provided [nativeAdTemplate].
+ *
+ * @param loadedAd The [NativeAdHandler] containing the pre-loaded native ad.
+ * @param nativeAdTemplate The composable template used to render the native ad UI.
  */
 @DependsOnGoogleMobileAds
 @Composable

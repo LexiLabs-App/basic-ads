@@ -1,10 +1,10 @@
 package app.lexilabs.basic.ads
 
 /**
- * A [BannerAdHandler] creates landscape ads that cover part of the host app screen.
+ * A handler for creating and managing banner ads that cover part of the host app screen.
  *
  * This class is responsible for loading and managing the state of a banner advertisement
- * provided by Google Mobile Ads. It requires an Android `Activity` for its operations.
+ * provided by Google Mobile Ads. It requires a platform-specific activity or context for its operations.
  *
  * **Usage Example:**
  *
@@ -53,39 +53,31 @@ package app.lexilabs.basic.ads
  * }
  * ```
  *
- * @param activity The Android `Activity` required for displaying the ad.
- *                 On platforms other than Android, this parameter might be unused or expect a platform-specific equivalent.
+ * @param activity The platform-specific activity or context required for displaying the ad (e.g., an Android `Activity`).
  */
 @DependsOnGoogleMobileAds
 public expect class BannerAdHandler(activity: Any?) {
 
-    /**
-     * Determines the [AdState] of the [BannerAdHandler]
-     */
+    /** The current [AdState] of the banner ad. */
     public val state: AdState
 
-    /**
-     * Holds the active [AdSize] of the [BannerAdHandler]
-     */
+    /** The active [AdSize] of the banner ad. */
     public val adSize: AdSize
 
     /**
-     * Loads an Banner Ad.
+     * Loads a banner ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *
-     * To load an banner ad, call [BannerAdHandler.load] method
-     * and pass in an [AdUnitId] as a [String] and an [AdSize] to receive the loaded ad.
-     * @param adUnitId Your Banner Ad AdUnitId [String] from AdMob
-     * @param adSize Your Banner Ad [AdSize], which defaults to [AdSize.FULL_BANNER]
-     * @param onLoad Callback after the ad loads
-     * @param onFailure Callback with [Exception] when ad fails to display
-     * @param onDismissed Callback when ad is dismissed
-     * @param onShown Callback after ad is shown
-     * @param onImpression Callback after the ad makes an impression
-     * @param onClick Callback on ad click
-     * @see [AdUnitId.autoSelect]
-     * @see [AdUnitId.BANNER_DEFAULT]
-     * @see [AdSize.FULL_BANNER]
+     * To load a banner ad, call the [load] method and provide an ad unit ID and ad size.
+     *
+     * @param adUnitId The ad unit ID for the banner ad.
+     * @param adSize The size of the banner ad.
+     * @param onLoad A callback invoked when the ad has finished loading.
+     * @param onFailure A callback invoked with an [Exception] when the ad fails to load or display.
+     * @param onDismissed A callback invoked when the ad is dismissed.
+     * @param onShown A callback invoked when the ad is shown on screen.
+     * @param onImpression A callback invoked when an ad impression has been recorded.
+     * @param onClick A callback invoked when the user clicks on the ad.
      */
     @Suppress("Unused Parameter")
     public fun load(

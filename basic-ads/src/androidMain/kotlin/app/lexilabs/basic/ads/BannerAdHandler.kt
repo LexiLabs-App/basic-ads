@@ -10,23 +10,32 @@ import app.lexilabs.basic.logging.Log
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 
+/**
+ * A typealias for [AdView] on Android.
+ */
 public typealias BannerView = AdView
 
+/**
+ * A handler for banner ads on Android.
+ *
+ * @param activity The activity context.
+ */
 public actual class BannerAdHandler actual constructor(activity: Any?) {
 
     private val tag = "BannerAd"
     private val context: Context
+    /** The underlying [BannerView] instance. */
     public var bannerView: BannerView? = null
     private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
     private val _adSize: MutableState<AdSize> = mutableStateOf(AdSize.FULL_BANNER)
 
     /**
-     * Determines the [AdState] of the [BannerAdHandler]
+     * Determines the [AdState] of the [BannerAdHandler].
      */
     public actual val state: AdState by _state
 
     /**
-     * Holds the active [AdSize] of the [BannerAdHandler]
+     * Holds the active [AdSize] of the [BannerAdHandler].
      */
     public actual val adSize: AdSize by _adSize
 
@@ -42,6 +51,18 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
         context = activity
     }
 
+    /**
+     * Loads a banner ad.
+     *
+     * @param adUnitId The ad unit ID.
+     * @param adSize The size of the ad.
+     * @param onLoad A callback invoked when the ad is loaded.
+     * @param onFailure A callback invoked when the ad fails to load.
+     * @param onDismissed A callback invoked when the ad is dismissed.
+     * @param onShown A callback invoked when the ad is shown.
+     * @param onImpression A callback invoked when an impression is recorded for the ad.
+     * @param onClick A callback invoked when the ad is clicked.
+     */
     @RequiresPermission("android.permission.INTERNET")
     public actual fun load(
         adUnitId: String,

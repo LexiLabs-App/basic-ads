@@ -11,6 +11,11 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.interstitial.InterstitialAd as AndroidInterstitialAd
 
+/**
+ * A handler for interstitial ads on Android.
+ *
+ * @param activity The activity context.
+ */
 public actual class InterstitialAdHandler actual constructor(
     private val activity: Any?
 ) {
@@ -21,10 +26,17 @@ public actual class InterstitialAdHandler actual constructor(
     private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
 
     /**
-     * Determines the [AdState] of the [InterstitialAdHandler]
+     * Determines the [AdState] of the [InterstitialAdHandler].
      */
     public actual val state: AdState by _state
 
+    /**
+     * Loads an interstitial ad.
+     *
+     * @param adUnitId The ad unit ID.
+     * @param onLoad A callback invoked when the ad is loaded.
+     * @param onFailure A callback invoked when the ad fails to load.
+     */
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
@@ -63,6 +75,15 @@ public actual class InterstitialAdHandler actual constructor(
         )
     }
 
+    /**
+     * Sets the listeners for the interstitial ad.
+     *
+     * @param onFailure A callback invoked when the ad fails to show.
+     * @param onDismissed A callback invoked when the ad is dismissed.
+     * @param onShown A callback invoked when the ad is shown.
+     * @param onImpression A callback invoked when an impression is recorded for the ad.
+     * @param onClick A callback invoked when the ad is clicked.
+     */
     public actual fun setListeners(
         onFailure: (Exception) -> Unit,
         onDismissed: () -> Unit,
@@ -95,6 +116,9 @@ public actual class InterstitialAdHandler actual constructor(
         } ?: Log.d(tag, "The interstitial ad wasn't ready yet.")
     }
 
+    /**
+     * Shows the interstitial ad.
+     */
     @MainThread
     public actual fun show() {
         _state.value = AdState.SHOWING

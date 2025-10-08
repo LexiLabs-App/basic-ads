@@ -25,9 +25,11 @@ public actual class Consent actual constructor (activity: Any?) {
     private val consentInformation: AndroidConsentInformation
 
     private val _canRequestAds: MutableState<Boolean> = mutableStateOf(false)
+    /** Indicates whether ads can be requested. */
     public actual val canRequestAds: Boolean by _canRequestAds
 
     private val _privacyOptionsRequired: MutableState<Boolean> = mutableStateOf(false)
+    /** Indicates whether a privacy options entry point is required. */
     public actual val privacyOptionsRequired: Boolean by _privacyOptionsRequired
 
     init {
@@ -78,6 +80,7 @@ public actual class Consent actual constructor (activity: Any?) {
      * __Whether a privacy options entry point is required.__
      * Some privacy messages require apps to allow users to modify their
      * privacy options at any time.
+     * @param params The consent request parameters.
      * @param onError lambda which passes a [ConsentException] on failure
      */
     public actual fun requestConsentInfoUpdate(params: ConsentRequestParameters, onError: (Exception) -> Unit) {
@@ -128,6 +131,7 @@ public actual class Consent actual constructor (activity: Any?) {
      *
      * If a privacy entry point is not required, configure your UI element
      * to be not visible and interactable.
+     * @return `true` if a privacy options entry point is required, `false` otherwise.
      */
     public actual fun isPrivacyOptionsRequired(): Boolean {
         _privacyOptionsRequired.value = consentInformation.privacyOptionsRequirementStatus ==
@@ -157,6 +161,7 @@ public actual class Consent actual constructor (activity: Any?) {
      *
      * Before requesting ads, use [Consent.canRequestAds] to
      * check if you've obtained consent from the user.
+     * @return `true` if ads can be requested, `false` otherwise.
      */
     public actual fun canRequestAds(): Boolean {
         _canRequestAds.value = consentInformation.canRequestAds()

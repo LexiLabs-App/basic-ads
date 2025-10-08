@@ -1,7 +1,7 @@
 package app.lexilabs.basic.ads
 
 /**
- * An object used to hold functions related to AdMob AdUnitIds.
+ * A utility object for providing ad unit IDs.
  *
  * This object provides a way to manage and access AdMob AdUnitIds for different ad types and platforms.
  * It includes a utility function for selecting the appropriate AdUnitId based on the current platform (Android or iOS)
@@ -16,16 +16,22 @@ package app.lexilabs.basic.ads
 @Suppress("unused")
 public expect object AdUnitId {
     /**
-     * Provides a way of selecting an AdMob AdUnitId by platform during runtime.
-     * This function works for any ad type.
-     * @param androidAdUnitId provide an AdUnitId [String] for Android implementation
-     * @param iosAdUnitId provide an AdUnitId [String] for iOS implementation
+     * Selects the appropriate ad unit ID based on the platform at runtime.
+     *
+     * @param androidAdUnitId The ad unit ID for the Android implementation.
+     * @param iosAdUnitId The ad unit ID for the iOS implementation.
+     * @return The ad unit ID for the current platform.
      */
     public fun autoSelect(androidAdUnitId: String? = null, iosAdUnitId: String? = null): String
 
+    /** The default test ad unit ID for banner ads. */
     public val BANNER_DEFAULT: String
+    /** The default test ad unit ID for interstitial ads. */
     public val INTERSTITIAL_DEFAULT: String
+    /** The default test ad unit ID for rewarded interstitial ads. */
     public val REWARDED_INTERSTITIAL_DEFAULT: String
+    /** The default test ad unit ID for rewarded ads. */
     public val REWARDED_DEFAULT: String
+    /** The default test ad unit ID for native ads. */
     public val NATIVE_DEFAULT: String
 }
