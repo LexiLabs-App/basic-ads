@@ -193,6 +193,7 @@ public actual open class NativeAdDefault actual constructor(
             modifier = modifier,
             update = { uiView ->
                 nativeAdView.mediaView?.mediaContent = nativeAdData!!.ios.mediaContent
+                scaleType?.let { nativeAdView.mediaView?.contentMode = it.toIos() }
             }
         )
     }
