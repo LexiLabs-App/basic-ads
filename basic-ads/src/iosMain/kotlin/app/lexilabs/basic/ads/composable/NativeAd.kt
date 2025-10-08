@@ -10,8 +10,8 @@ import androidx.compose.ui.viewinterop.UIKitView
 import androidx.compose.ui.window.ComposeUIViewController
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
-import app.lexilabs.basic.ads.nativead.NativeAdData
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
+import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.NSLayoutConstraint
@@ -36,7 +36,7 @@ import platform.UIKit.willMoveToParentViewController
 @Composable
 public actual fun NativeAd(
     activity: Any?,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
+    nativeAdTemplate: NativeAdTemplate,
     adUnitId: String,
     onDismissed: () -> Unit,
     onShown: () -> Unit,
@@ -71,7 +71,7 @@ public actual fun NativeAd(
 @Composable
 public actual fun NativeAd(
     loadedAd: NativeAdHandler,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
+    nativeAdTemplate: NativeAdTemplate
 ) {
     if (loadedAd.state != AdState.READY) {
         return
@@ -87,7 +87,7 @@ public actual fun NativeAd(
 
         // We create and remember a ComposeUIViewController to host our custom ad template.
         val composeController = remember {
-            ComposeUIViewController { nativeAdTemplate(adData) }
+            ComposeUIViewController { nativeAdTemplate(adData).Show() }
         }
 
         // This effect correctly manages the lifecycle of the child view controller.

@@ -1,12 +1,79 @@
 package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import app.lexilabs.basic.ads.nativead.NativeAdData
+import app.lexilabs.basic.ads.nativead.NativeAdTemplate
+import app.lexilabs.basic.ads.nativead.ScaleType
 
-/**
- * A default implementation of a native ad.
- * @param activity the current Activity (only needed for Android Impl)
- * @param nativeAd the native ad to display
- */
-@Composable
-public expect fun NativeAdDefault(activity: Any?, nativeAd: NativeAdData)
+public expect class NativeAdDefault: NativeAdTemplate {
+    override val nativeAdData: NativeAdData
+
+    override operator fun invoke(nativeAdData: NativeAdData): NativeAdTemplate
+
+    @Composable
+    override fun Show(modifier: Modifier)
+
+    @Composable
+    override fun Advertiser(
+        modifier: Modifier,
+        content: @Composable (() -> Unit)
+    )
+
+    @Composable
+    override fun Body(
+        modifier: Modifier,
+        content: @Composable (() -> Unit)
+    )
+
+    @Composable
+    override fun CallToAction(
+        modifier: Modifier,
+        content: @Composable (() -> Unit)
+    )
+
+    @Composable
+    override fun AdChoices(modifier: Modifier)
+
+    @Composable
+    override fun Headline(
+        modifier: Modifier,
+        content: @Composable (() -> Unit)
+    )
+
+    @Composable
+    override fun Icon(
+        modifier: Modifier,
+        content: @Composable () -> Unit
+    )
+
+    @Composable
+    override fun Media(
+        modifier: Modifier,
+        scaleType: ScaleType?
+    )
+
+    @Composable
+    override fun Price(
+        modifier: Modifier,
+        content: @Composable (() -> Unit)
+    )
+
+    @Composable
+    override fun StarRating(
+        modifier: Modifier,
+        content: @Composable (() -> Unit)
+    )
+
+    @Composable
+    override fun Store(
+        modifier: Modifier,
+        content: @Composable (() -> Unit)
+    )
+
+    @Composable
+    override fun Attribution(
+        text: String,
+        modifier: Modifier
+    )
+}

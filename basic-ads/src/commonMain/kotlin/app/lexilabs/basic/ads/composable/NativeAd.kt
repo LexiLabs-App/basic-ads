@@ -3,8 +3,8 @@ package app.lexilabs.basic.ads.composable
 import androidx.compose.runtime.Composable
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
-import app.lexilabs.basic.ads.nativead.NativeAdData
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
+import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 
 /**
  * A composable that displays a native ad.
@@ -22,7 +22,7 @@ import app.lexilabs.basic.ads.nativead.NativeAdHandler
 @Composable
 public expect fun NativeAd(
     activity: Any?,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
+    nativeAdTemplate: NativeAdTemplate,
     adUnitId: String = AdUnitId.NATIVE_DEFAULT,
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
@@ -41,5 +41,5 @@ public expect fun NativeAd(
 @Composable
 public expect fun NativeAd(
     loadedAd: NativeAdHandler,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
+    nativeAdTemplate: NativeAdTemplate,
 )
