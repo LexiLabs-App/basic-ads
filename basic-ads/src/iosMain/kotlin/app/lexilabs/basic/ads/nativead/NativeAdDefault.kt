@@ -1,4 +1,4 @@
-package app.lexilabs.basic.ads.composable
+package app.lexilabs.basic.ads.nativead
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -23,9 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.UIKitView
 import androidx.compose.ui.window.ComposeUIViewController
 import app.lexilabs.basic.ads.AdException
-import app.lexilabs.basic.ads.nativead.NativeAdData
-import app.lexilabs.basic.ads.nativead.NativeAdTemplate
-import app.lexilabs.basic.ads.nativead.ScaleType
 import cocoapods.Google_Mobile_Ads_SDK.GADAdChoicesView
 import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
 import kotlinx.cinterop.ExperimentalForeignApi

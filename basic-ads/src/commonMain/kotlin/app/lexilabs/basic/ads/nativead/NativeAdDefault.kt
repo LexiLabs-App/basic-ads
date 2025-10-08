@@ -1,10 +1,7 @@
-package app.lexilabs.basic.ads.composable
+package app.lexilabs.basic.ads.nativead
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import app.lexilabs.basic.ads.nativead.NativeAdData
-import app.lexilabs.basic.ads.nativead.NativeAdTemplate
-import app.lexilabs.basic.ads.nativead.ScaleType
 
 public expect class NativeAdDefault: NativeAdTemplate {
     override val nativeAdData: NativeAdData

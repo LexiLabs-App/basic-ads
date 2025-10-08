@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package app.lexilabs.basic.ads.composable
+package app.lexilabs.basic.ads.nativead
 
 import android.view.View
 import android.widget.ImageView
@@ -41,10 +41,6 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.graphics.drawable.toBitmap
-import app.lexilabs.basic.ads.nativead.LocalNativeAdView
-import app.lexilabs.basic.ads.nativead.NativeAdData
-import app.lexilabs.basic.ads.nativead.NativeAdTemplate
-import app.lexilabs.basic.ads.nativead.ScaleType
 import com.google.android.gms.ads.nativead.AdChoicesView
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAdView
