@@ -103,7 +103,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Generate api docs with dokka
-        run: ./gradlew dokkaHtml
+        run: ./gradlew dokkaGenerate
 
       - name: Upload pages
         uses: actions/upload-pages-artifact@v3

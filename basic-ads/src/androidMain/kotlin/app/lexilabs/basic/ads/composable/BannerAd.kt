@@ -12,7 +12,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import app.lexilabs.basic.ads.AdSize
-import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.BannerAdHandler
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.toAndroid
@@ -20,10 +19,14 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 
 /**
- * Loads and displays a Banner Ad using a [Composable].
- * @param adUnitId Your AdMob AdUnitId [String]
- * @param adSize The size of the banner ad
- * @param onLoad Lambda expression that executes after the ad is loaded
+ * Loads and displays a banner ad.
+ *
+ * This composable is a simple way to display a banner ad without manual lifecycle management.
+ * It creates and loads an [AdView] and displays it.
+ *
+ * @param adUnitId The ad unit ID for the banner ad.
+ * @param adSize The size of the banner ad.
+ * @param onLoad A callback invoked when the ad has finished loading.
  */
 @OptIn(DependsOnGoogleMobileAds::class)
 @RequiresPermission("android.permission.INTERNET")
@@ -47,9 +50,12 @@ public actual fun BannerAd(
 }
 
 /**
- * Loads and displays a Banner Ad using a [Composable].
- * @param ad Your pre-loaded [rememberBannerAd]
- * @see AdUnitId.autoSelect
+ * Displays a pre-loaded banner ad from a [BannerAdHandler].
+ *
+ * This composable takes a [BannerAdHandler] (which should be remembered using [rememberBannerAd])
+ * and manages its lifecycle, pausing, resuming, and destroying the ad in sync with the composable's lifecycle.
+ *
+ * @param ad The [BannerAdHandler] containing the pre-loaded banner ad.
  */
 @OptIn(DependsOnGoogleMobileAds::class)
 @RequiresPermission("android.permission.INTERNET")

@@ -67,7 +67,7 @@ public actual class NativeAdHandler actual constructor(activity: Any?) {
         require(adLoader?.nativeAd != null) {
             "NativeAd is null"
         }
-        return adLoader!!.nativeAd!!.toCommon()
+        return NativeAdData(adLoader!!.nativeAd!!)
     }
 
     @OptIn(ExperimentalForeignApi::class)

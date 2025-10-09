@@ -4,6 +4,15 @@ import app.lexilabs.basic.logging.Log
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.FullScreenContentCallback
 
+/**
+ * A [FullScreenContentCallback] for handling full-screen ad content events.
+ *
+ * @param onDismissed A callback invoked when the ad is dismissed.
+ * @param onShown A callback invoked when the ad is shown.
+ * @param onImpression A callback invoked when an impression is recorded for the ad.
+ * @param onClick A callback invoked when the ad is clicked.
+ * @param onFailure A callback invoked when the ad fails to show.
+ */
 public class FullscreenContentDelegate(
     private val onDismissed: () -> Unit,
     private val onShown: () -> Unit,

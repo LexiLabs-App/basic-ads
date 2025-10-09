@@ -1,11 +1,11 @@
 package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
-import app.lexilabs.basic.ads.nativead.NativeAdData
+import app.lexilabs.basic.ads.nativead.NativeAdDefault
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
+import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 
 /**
  * A composable that displays a native ad.
@@ -21,9 +21,9 @@ import app.lexilabs.basic.ads.nativead.NativeAdHandler
  */
 @DependsOnGoogleMobileAds
 @Composable
-public fun NativeAd(
+public expect fun NativeAd(
     activity: Any?,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
+    nativeAdTemplate: NativeAdTemplate = NativeAdDefault(),
     adUnitId: String = AdUnitId.NATIVE_DEFAULT,
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
@@ -31,19 +31,7 @@ public fun NativeAd(
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
     onLoad: () -> Unit = {}
-) {
-    val ad by rememberNativeAd(
-        activity = activity,
-        adUnitId = adUnitId,
-        onLoad = onLoad,
-        onFailure = onFailure,
-        onDismissed = onDismissed,
-        onShown = onShown,
-        onImpression = onImpression,
-        onClick = onClick
-    )
-    nativeAdTemplate(ad.render())
-}
+)
 
 /**
  * A composable that displays a native ad.
@@ -52,9 +40,7 @@ public fun NativeAd(
  */
 @DependsOnGoogleMobileAds
 @Composable
-public fun NativeAd(
+public expect fun NativeAd(
     loadedAd: NativeAdHandler,
-    nativeAdTemplate: @Composable (NativeAdData) -> Unit,
-) {
-    nativeAdTemplate(loadedAd.render())
-}
+    nativeAdTemplate: NativeAdTemplate = NativeAdDefault(),
+)

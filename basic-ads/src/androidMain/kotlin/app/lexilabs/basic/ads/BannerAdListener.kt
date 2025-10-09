@@ -4,6 +4,16 @@ import app.lexilabs.basic.logging.Log
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.LoadAdError
 
+/**
+ * An [AdListener] for banner ads.
+ *
+ * @param onLoad A callback invoked when the ad is loaded.
+ * @param onFailure A callback invoked when the ad fails to load.
+ * @param onDismissed A callback invoked when the ad is dismissed.
+ * @param onShown A callback invoked when the ad is shown.
+ * @param onImpression A callback invoked when an impression is recorded for the ad.
+ * @param onClick A callback invoked when the ad is clicked.
+ */
 public class BannerAdListener(
     public val onLoad: () -> Unit,
     public val onFailure: (Exception) -> Unit,

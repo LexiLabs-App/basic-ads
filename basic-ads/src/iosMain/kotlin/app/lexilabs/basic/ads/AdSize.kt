@@ -23,6 +23,9 @@ import platform.CoreGraphics.CGRect
 import platform.CoreGraphics.CGRectMake
 import platform.UIKit.UIScreen
 
+/**
+ * The iOS implementation of [AdSize].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public actual class AdSize actual constructor(public actual val width: Int, public actual val height: Int) {
 
@@ -61,6 +64,10 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
         public actual fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize =
             GADInlineAdaptiveBannerAdSizeWithWidthAndMaxHeight(width.toDouble(), maxHeight.toDouble()).toAdSize()
     }
+
+    /**
+     * Converts this common [AdSize] to an iOS-specific [GADAdSize].
+     */
     public fun toIos(): GADAdSize {
         return when(this) {
             BANNER -> GADAdSizeBanner
@@ -76,6 +83,9 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
     }
 }
 
+/**
+ * Converts an iOS-specific [GADAdSize] to a common [AdSize].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public fun GADAdSize.toCommon(): AdSize =
     AdSize(
@@ -83,6 +93,9 @@ public fun GADAdSize.toCommon(): AdSize =
         height = this.size.height.toInt()
     )
 
+/**
+ * Converts an iOS-specific [GADAdSize] to a [CValue] of [CGRect].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public fun GADAdSize.toCGRectCValue(): CValue<CGRect> {
     return CGRectMake(
@@ -93,6 +106,9 @@ public fun GADAdSize.toCGRectCValue(): CValue<CGRect> {
     )
 }
 
+/**
+ * Converts a common [AdSize] to a [CValue] of [CGRect].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public fun AdSize.toCGRectCValue(): CValue<CGRect> {
     return CGRectMake(
@@ -103,12 +119,21 @@ public fun AdSize.toCGRectCValue(): CValue<CGRect> {
     )
 }
 
+/**
+ * Returns the width of the [CGRect].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public fun CValue<CGRect>.width(): Int = this.useContents { return size.width.toInt() }
 
+/**
+ * Returns the height of the [CGRect].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public fun CValue<CGRect>.height(): Int = this.useContents { return size.height.toInt() }
 
+/**
+ * Converts a [CValue] of [CGRect] to a common [AdSize].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public fun CValue<CGRect>.toAdSize(): AdSize {
     this.useContents {
@@ -119,6 +144,9 @@ public fun CValue<CGRect>.toAdSize(): AdSize {
     }
 }
 
+/**
+ * Converts a [CValue] of [GADAdSize] to a common [AdSize].
+ */
 @OptIn(ExperimentalForeignApi::class)
 public fun CValue<GADAdSize>.toAdSize(): AdSize {
     this.useContents {

@@ -10,6 +10,11 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd as AndroidRewardedInterstitialAd
 
+/**
+ * A handler for rewarded interstitial ads on Android.
+ *
+ * @param activity The activity context.
+ */
 public actual class RewardedInterstitialAdHandler actual constructor(
     private val activity: Any?
 ) {
@@ -17,8 +22,16 @@ public actual class RewardedInterstitialAdHandler actual constructor(
     private val tag = "RewardedInterstitialAd"
     private var rewardedInterstitialAd: AndroidRewardedInterstitialAd? = null
     private val _state: MutableState<AdState> = mutableStateOf(AdState.NONE)
+    /** The current [AdState] of the rewarded interstitial ad. */
     public actual val state: AdState by _state
 
+    /**
+     * Loads a rewarded interstitial ad.
+     *
+     * @param adUnitId The ad unit ID.
+     * @param onLoad A callback invoked when the ad is loaded.
+     * @param onFailure A callback invoked when the ad fails to load.
+     */
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
@@ -57,6 +70,15 @@ public actual class RewardedInterstitialAdHandler actual constructor(
         )
     }
 
+    /**
+     * Sets the listeners for the rewarded interstitial ad.
+     *
+     * @param onFailure A callback invoked when the ad fails to show.
+     * @param onDismissed A callback invoked when the ad is dismissed.
+     * @param onShown A callback invoked when the ad is shown.
+     * @param onImpression A callback invoked when an impression is recorded for the ad.
+     * @param onClick A callback invoked when the ad is clicked.
+     */
     public actual fun setListeners(
         onFailure: (Exception) -> Unit,
         onDismissed: () -> Unit,
@@ -89,6 +111,11 @@ public actual class RewardedInterstitialAdHandler actual constructor(
         } ?: Log.d(tag, "The rewarded interstitial ad wasn't ready yet.")
     }
 
+    /**
+     * Shows the rewarded interstitial ad.
+     *
+     * @param onRewardEarned A callback invoked when the user earns a reward.
+     */
     public actual fun show(onRewardEarned: () -> Unit) {
         _state.value = AdState.SHOWING
         Log.d(tag, "show: Loading")
