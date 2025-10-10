@@ -47,7 +47,7 @@ allprojects {
         mavenPublishing {
             publishToMavenCentral(automaticRelease = true)
 
-//            signAllPublications()
+            signAllPublications()
             coordinates(group.toString(), project.name, version.toString())
             pom {
                 name.set("Basic")
