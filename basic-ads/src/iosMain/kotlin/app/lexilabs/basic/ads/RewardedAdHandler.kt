@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
 import cocoapods.Google_Mobile_Ads_SDK.GADRewardedAd
+import cocoapods.Google_Mobile_Ads_SDK.GADServerSideVerificationOptions
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 
@@ -21,6 +22,8 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
 
     public actual fun load(
         adUnitId: String,
+        userId: String?,
+        customData: String?,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
@@ -33,6 +36,10 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
                 ad?.let {
                     Log.d(tag, "load:success")
                     rewardedAd = it
+                    val options = GADServerSideVerificationOptions()
+                    if (userId != null) options.userIdentifier = userId
+                    if (customData != null) options.customRewardString = customData
+                    it.serverSideVerificationOptions = options
                     _state.value = AdState.READY
                     onLoad()
                 }
