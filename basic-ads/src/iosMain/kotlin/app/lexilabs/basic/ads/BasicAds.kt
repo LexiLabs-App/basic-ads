@@ -43,7 +43,12 @@ public actual object BasicAds {
     }
 
     public actual fun openDebugMenu(context: Any?, adUnitId: String) {
-        // DO NOTHING. This doesn't exist in iOS
+        GADMobileAds.sharedInstance.presentAdInspectorFromViewController(
+            viewController = getCurrentViewController(),
+            completionHandler = { error ->
+                throw AdException(error?.localizedDescription ?: "error during `presentAdInspectorFromViewController`")
+            }
+        )
     }
 
     @OptIn(ExperimentalForeignApi::class)
