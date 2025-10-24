@@ -45,9 +45,7 @@ public actual object BasicAds {
     public actual fun openDebugMenu(context: Any?, adUnitId: String) {
         GADMobileAds.sharedInstance.presentAdInspectorFromViewController(
             viewController = getCurrentViewController(),
-            completionHandler = { error ->
-                throw AdException(error?.localizedDescription ?: "error during `presentAdInspectorFromViewController`")
-            }
+            completionHandler = { it?.let { error -> throw AdException(error.localizedDescription) } }
         )
     }
 
