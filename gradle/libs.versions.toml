@@ -13,7 +13,7 @@ cocoapods-ump = "3.0.0"
 # DEPENDENCIES
 bcv = "0.18.1"
 dokka = "2.1.0-Beta" #"2.0.0"
-compose = "1.9.0"
+compose = "1.9.2"
 google-play-services-ads = "24.6.0"
 annotations = "1.9.1"
 kover = "0.9.2"
