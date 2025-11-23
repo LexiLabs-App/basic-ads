@@ -5,8 +5,8 @@ package app.lexilabs.basic.ads
  *
  * This class encapsulates parameters used when requesting an update to the user's consent status.
  *
- * @see getConsentDebugSettings
- * @see getIsTagForUnderAgeOfConsent
+ * @see consentDebugSettings
+ * @see isTagForUnderAgeOfConsent
  * @see Builder
  */
 @Suppress("unused")
@@ -14,16 +14,16 @@ package app.lexilabs.basic.ads
 public expect class ConsentRequestParameters {
 
     /**
-     * Gets the [ConsentDebugSettings].
+     * The [ConsentDebugSettings] for this request.
      *
      * @see [ConsentDebugSettings]
      */
-    public fun getConsentDebugSettings(): ConsentDebugSettings?
+    public val consentDebugSettings: ConsentDebugSettings?
 
     /**
-     * Gets the TFUA value sets by [Builder.setTagForUnderAgeOfConsent].
+     * The TFUA value set by [Builder.setTagForUnderAgeOfConsent].
      */
-    public fun getIsTagForUnderAgeOfConsent(): Boolean
+    public val isTagForUnderAgeOfConsent: Boolean
 
     /**
      * Builder of [ConsentRequestParameters].

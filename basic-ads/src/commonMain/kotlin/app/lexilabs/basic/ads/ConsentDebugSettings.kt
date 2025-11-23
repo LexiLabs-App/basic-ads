@@ -3,7 +3,7 @@ package app.lexilabs.basic.ads
 /**
  * Debug settings to hardcode in test requests to [Consent.requestConsentInfoUpdate].
  *
- * @see getDebugGeography
+ * @see debugGeography
  * @see isTestDevice
  * @see Builder
  * @see DebugGeography
@@ -13,15 +13,15 @@ package app.lexilabs.basic.ads
 public expect class ConsentDebugSettings {
 
     /**
-     * Gets the debug geography.
+     * The debug geography for testing purposes.
      * @see DebugGeography
      */
-    public fun getDebugGeography(): DebugGeography
+    public val debugGeography: DebugGeography
 
     /**
      * Returns `true` if this device is a test device.
      */
-    public fun isTestDevice(): Boolean
+    public val isTestDevice: Boolean
 
     /**
      * Builder of [ConsentDebugSettings].
@@ -89,4 +89,3 @@ public expect class ConsentDebugSettings {
         DEBUG_GEOGRAPHY_OTHER;
     }
 }
-
