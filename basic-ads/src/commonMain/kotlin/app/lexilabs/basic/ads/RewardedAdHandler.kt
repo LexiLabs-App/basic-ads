@@ -60,6 +60,8 @@ public expect class RewardedAdHandler(activity: Any?) {
      */
     public fun load(
         adUnitId: String = AdUnitId.REWARDED_DEFAULT,
+        userId: String? = null,
+        customData: String? = null,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     )

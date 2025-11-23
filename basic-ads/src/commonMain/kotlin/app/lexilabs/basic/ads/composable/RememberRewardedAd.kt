@@ -26,6 +26,8 @@ import app.lexilabs.basic.ads.RewardedAdHandler
 public fun rememberRewardedAd(
     activity: Any?,
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
+    userId: String? = null,
+    customData: String? = null,
     onLoad: () -> Unit = {},
     onFailure: (Exception) -> Unit = {}
 ): MutableState<RewardedAdHandler> {
@@ -35,6 +37,8 @@ public fun rememberRewardedAd(
         AdState.NONE -> {
             ad.value.load(
                 adUnitId = adUnitId,
+                userId = userId,
+                customData = customData,
                 onLoad = onLoad,
                 onFailure = onFailure
             )

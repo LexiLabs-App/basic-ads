@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions
 import com.google.android.gms.ads.AdRequest as AndroidAdRequest
 import com.google.android.gms.ads.rewarded.RewardedAd as AndroidRewardedAd
 
@@ -34,9 +35,11 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
      */
     public actual fun load(
         adUnitId: String,
+        userId: String?,
+        customData: String?,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
-    ){
+    ) {
         _state.value = AdState.LOADING
         Log.d(tag, "loadRewardedAd: Loading")
         require(activity != null) {
@@ -63,6 +66,12 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
                     super.onAdLoaded(ad)
                     Log.d(tag, "loadRewardedAd:success")
                     rewardedAd = ad
+                    val options =
+                        ServerSideVerificationOptions.Builder().apply {
+                            if (userId != null) setUserId(userId)
+                            if (customData != null) setCustomData(customData)
+                        }.build()
+                    rewardedAd?.setServerSideVerificationOptions(options)
                     _state.value = AdState.READY
                     onLoad()
                 }
@@ -85,7 +94,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
         onShown: () -> Unit,
         onImpression: () -> Unit,
         onClick: () -> Unit
-    ){
+    ) {
         Log.d(tag, "setListeners: Loading")
         require(rewardedAd != null) {
             _state.value = AdState.FAILING
@@ -118,7 +127,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
      */
     public actual fun show(
         onRewardEarned: (RewardItem) -> Unit
-    ){
+    ) {
         _state.value = AdState.SHOWING
         Log.d(tag, "show: Loading")
         require(activity != null) {

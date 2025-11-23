@@ -27,6 +27,8 @@ import app.lexilabs.basic.ads.RewardedAdHandler
 public fun RewardedAd(
     activity: Any?,
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
+    userId: String? = null,
+    customData: String? = null,
     onRewardEarned: (RewardItem) -> Unit,
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
@@ -38,6 +40,8 @@ public fun RewardedAd(
     val ad by rememberRewardedAd(
         activity = activity,
         adUnitId = adUnitId,
+        userId = userId,
+        customData = customData,
         onLoad = onLoad,
         onFailure = onFailure
     )
