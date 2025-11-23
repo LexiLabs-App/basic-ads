@@ -6,20 +6,20 @@ build-sdk-min = "24"
 build-sdk-target = "36"
 build-ios-target-deployment = "13.0"
 kotlin = "2.2.21"
-agp = "8.13.0"
+agp = "8.13.1"
 # COCOAPODS DEPENDENCIES
-cocoapods-admob = "12.12.0"
-cocoapods-ump = "3.0.0"
+cocoapods-admob = "12.14.0"
+cocoapods-ump = "3.1.0"
 # DEPENDENCIES
 bcv = "0.18.1"
 dokka = "2.1.0" #"2.0.0"
-compose = "1.9.1"
-google-play-services-ads = "24.7.0"
+compose = "1.9.3"
+google-play-services-ads = "24.8.0"
 annotations = "1.9.1"
 kover = "0.9.3"
 logging = "0.2.6"
-android-ump = "3.2.0"
-maven-publish = "0.34.0"
+android-ump = "4.0.0"
+maven-publish = "0.35.0"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
