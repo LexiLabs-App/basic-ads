@@ -22,8 +22,34 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
 
     public actual fun load(
         adUnitId: String,
-        userId: String?,
-        customData: String?,
+        onLoad: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        _state.value = AdState.LOADING
+        Log.d(tag, "load:starting")
+        GADRewardedAd.loadWithAdUnitID(
+            adUnitID = adUnitId,
+            request = GADRequest(),
+            completionHandler = { ad: GADRewardedAd?, error: NSError? ->
+                ad?.let {
+                    Log.d(tag, "load:success")
+                    rewardedAd = it
+                    _state.value = AdState.READY
+                    onLoad()
+                }
+                error?.let {
+                    Log.e(tag, "load:failure:$it")
+                    _state.value = AdState.FAILING
+                    onFailure(AdException())
+                }
+            }
+        )
+    }
+
+    public actual fun load(
+        adUnitId: String,
+        userId: String,
+        customData: String,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
@@ -37,8 +63,8 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
                     Log.d(tag, "load:success")
                     rewardedAd = it
                     val options = GADServerSideVerificationOptions()
-                    if (userId != null) options.userIdentifier = userId
-                    if (customData != null) options.customRewardString = customData
+                    options.userIdentifier = userId
+                    options.customRewardString = customData
                     it.serverSideVerificationOptions = options
                     _state.value = AdState.READY
                     onLoad()

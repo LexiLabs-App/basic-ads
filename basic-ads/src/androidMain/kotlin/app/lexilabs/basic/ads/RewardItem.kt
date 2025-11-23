@@ -11,7 +11,9 @@ public actual class RewardItem(
     internal val android: RewardItem
 ) {
     /** The amount of the reward. */
-    public actual val amount: Int = android.amount
+    public actual val amount: Int
+        get() = android.amount
     /** The type of the reward. */
-    public actual val type: String = android.type
+    public actual val type: String
+        get() = android.type
 }
