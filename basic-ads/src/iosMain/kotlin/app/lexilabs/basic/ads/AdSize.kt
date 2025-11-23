@@ -152,7 +152,7 @@ public fun CValue<GADAdSize>.toAdSize(): AdSize {
     this.useContents {
         return AdSize(
             width = size.width.toInt(),
-            height = size.width.toInt()
+            height = size.height.toInt()
         )
     }
 }

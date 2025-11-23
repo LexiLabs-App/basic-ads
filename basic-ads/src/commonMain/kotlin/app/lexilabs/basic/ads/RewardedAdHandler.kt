@@ -65,6 +65,29 @@ public expect class RewardedAdHandler(activity: Any?) {
     )
 
     /**
+     * Loads an Rewarded Ad.
+     * Note: Make all calls to the Mobile Ads SDK on the main thread.
+     *
+     * To load an Rewarded ad, call [RewardedAdHandler.load] method
+     * and pass in an [AdUnitId] as a [String] to receive the loaded ad, the [onLoad]
+     * callback, and any possible [Exception] from the [onFailure] callback.
+     * @param adUnitId Your Rewarded Ad AdUnitId [String] from AdMob
+     * @param userId Used for Server-Side Verification
+     * @param customData Used for Server-Side Verification
+     * @param onLoad Callback after the ad loads
+     * @param onFailure Callback sharing the [Exception] when the ad fail to load
+     * @see [AdUnitId.autoSelect]
+     * @see [AdUnitId.REWARDED_DEFAULT]
+     */
+    public fun load(
+        adUnitId: String = AdUnitId.REWARDED_DEFAULT,
+        userId: String,
+        customData: String,
+        onLoad: () -> Unit,
+        onFailure: (Exception) -> Unit
+    )
+
+    /**
      * Sets the FullScreenContentCallback for the Rewarded Ad.
      *
      * The [setListeners] function handles events related to displaying your

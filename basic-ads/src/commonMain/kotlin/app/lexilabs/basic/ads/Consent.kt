@@ -1,127 +1,122 @@
 package app.lexilabs.basic.ads
 
 /**
- * Create consent and privacy forms via the Google User Messaging Platform.
- * Types are found under the Privacy & messaging tab of your AdMob account.
+ * Manages consent and privacy forms using the Google User Messaging Platform (UMP) SDK.
  *
- * The UMP SDK attempts to display a privacy message created from
- * the AdMob Application ID set in your project.
+ * This class helps you gather consent from your users, which is often a legal requirement (e.g., GDPR).
+ * The UMP SDK will attempt to display a privacy message that you configure in the
+ * "Privacy & messaging" tab of your AdMob account.
  *
- * The [Consent] class [require]s the Activity be a non-null Context on Android
- * @param activity [require]s non-null Activity Context on Android. All other platforms can pass `null`
+ * On Android, this class requires an `Activity` context. For other platforms, you can pass `null`.
+ *
+ * @property activity The activity context, required on Android.
  */
 @Suppress("unused")
 @DependsOnGoogleUserMessagingPlatform
 public expect class Consent(activity: Any?) {
 
     /**
-     * Request ads with user consent
+     * Indicates whether you can request ads.
      *
-     * Before requesting ads, check [canRequestAds] to
-     * verify you've obtained consent from the user.
+     * Before requesting ads, check this property to ensure you have obtained the necessary consent from the user.
      */
     public val canRequestAds: Boolean
 
     /**
-     * Check if a privacy options entry point is required
+     * Indicates whether a privacy options entry point is required.
      *
-     * After you have called [requestConsentInfoUpdate], check
-     * [privacyOptionsRequired] to determine if a privacy
-     * options entry point is required for your app.
+     * After calling [requestConsentInfoUpdate], check this property to determine if your app
+     * needs to provide a way for users to modify their privacy settings.
      *
-     * If an entry point is required, add a visible and interactable
-     * UI element to your app that presents the privacy options form.
-     *
-     * If a privacy entry point is not required, configure your UI element
-     * to be not visible and interactable.
+     * If `true`, your app's UI should include a button or link that, when clicked,
+     * calls [showPrivacyOptionsForm].
      */
     public val privacyOptionsRequired: Boolean
 
     /**
-     * Gets the user's consent information
+     * Requests an update of the user's consent information.
      *
-     * You should request an update of the user's consent information at every app launch,
-     * using [requestConsentInfoUpdate]. This request checks the following:
+     * You should call this at every app launch to determine if consent is required
+     * and whether a privacy options entry point needs to be shown.
      *
-     * __Whether consent is required.__ For example, consent is required for
-     * the first time, or the previous consent decision expired.
-     *
-     * __Whether a privacy options entry point is required.__
-     * Some privacy messages require apps to allow users to modify their
-     * privacy options at any time.
-     * @param onError lambda which passes a [ConsentException] on failure
+     * @param onCompletion Called when the operation is successful.
+     * @param onError Called when the operation fails, passing an [Exception].
      */
-    public fun requestConsentInfoUpdate(onError: (Exception) -> Unit)
+    public fun requestConsentInfoUpdate(
+        onCompletion: () -> Unit = {},
+        onError: (Exception) -> Unit = {}
+    )
 
     /**
-     * Gets the user's consent information
+     * Requests an update of the user's consent information with specific parameters.
      *
-     * You should request an update of the user's consent information at every app launch,
-     * using [requestConsentInfoUpdate]. This request checks the following:
+     * You should call this at every app launch. This overload allows you to provide
+     * [ConsentRequestParameters] for the request, for example to specify debug settings.
      *
-     * __Whether consent is required.__ For example, consent is required for
-     * the first time, or the previous consent decision expired.
-     *
-     * __Whether a privacy options entry point is required.__
-     * Some privacy messages require apps to allow users to modify their
-     * privacy options at any time.
-     * @param onError lambda which passes a [ConsentException] on failure
+     * @param params The parameters for the consent information request.
+     * @param onCompletion Called when the operation is successful.
+     * @param onError Called when the operation fails, passing an [Exception].
      */
-    public fun requestConsentInfoUpdate(params: ConsentRequestParameters, onError: (Exception) -> Unit)
+    public fun requestConsentInfoUpdate(
+        params: ConsentRequestParameters,
+        onCompletion: () -> Unit = {},
+        onError: (Exception) -> Unit = {}
+    )
 
     /**
-     * Load and present the privacy message form
+     * Loads and shows a consent form if one is required.
      *
-     * After you have received the most up-to-date consent status,
-     * call [loadAndShowConsentForm] to load any forms required to collect user consent.
-     * After loading, the forms present immediately.
+     * After getting the latest consent status with [requestConsentInfoUpdate], call this function.
+     * If consent is needed, it loads and displays the appropriate form to the user.
+     * If no form is needed, [onLoaded] is called immediately.
      *
-     * __Key Point:__ If no privacy message forms require collection of user
-     * consent prior to requesting ads, the callback is invoked immediately.
-     *
-     * @param onError lambda which passes a [ConsentException] on failure
+     * @param onLoaded Called when the form is loaded (or if no form is needed).
+     * @param onShown Called when the form is shown to the user.
+     * @param onError Called when an error occurs during loading or showing the form, passing an [Exception].
      */
-    public fun loadAndShowConsentForm(onError: (Exception) -> Unit)
+    public fun loadAndShowConsentForm(
+        onLoaded: () -> Unit = {},
+        onShown: () -> Unit = {},
+        onError: (Exception) -> Unit = {}
+    )
 
     /**
-     * Check if a privacy options entry point is required
+     * Checks if a privacy options entry point is required.
      *
-     * After you have called [requestConsentInfoUpdate], check
-     * [Consent.privacyOptionsRequired] to determine if a privacy
-     * options entry point is required for your app.
-     *
-     * If an entry point is required, add a visible and interactable
-     * UI element to your app that presents the privacy options form.
-     *
-     * If a privacy entry point is not required, configure your UI element
-     * to be not visible and interactable.
+     * @return `true` if a privacy options entry point is required, `false` otherwise.
+     * @see privacyOptionsRequired
+     * @deprecated Use the [privacyOptionsRequired] property instead.
      */
     public fun isPrivacyOptionsRequired(): Boolean
 
     /**
-     * Present the privacy options form
+     * Shows the privacy options form.
      *
-     * When the user interacts with your element, present the privacy options form:
-     * @param onDismissed lambda which executes when form is exited by user
-     * @param onError lambda which passes a [ConsentException] on failure
+     * This function should be called when a user wants to change their privacy settings.
+     * It should only be called if [privacyOptionsRequired] is `true`.
+     *
+     * @param onDismissed Called when the user dismisses the form.
+     * @param onError Called if an error occurs while showing the form, passing an [Exception].
      */
-    public fun showPrivacyOptionsForm(onDismissed: () -> Unit, onError: (Exception) -> Unit)
+    public fun showPrivacyOptionsForm(
+        onDismissed: () -> Unit,
+        onError: (Exception) -> Unit = {}
+    )
 
     /**
-     * Request ads with user consent
+     * Checks if ads can be requested.
      *
-     * Before requesting ads, use [Consent.canRequestAds] to
-     * check if you've obtained consent from the user.
+     * @return `true` if ads can be requested, `false` otherwise.
+     * @see canRequestAds
+     * @deprecated Use the [canRequestAds] property instead.
      */
     public fun canRequestAds(): Boolean
 
     /**
-     * Reset consent state
+     * Resets the consent state.
      *
-     * When testing your app with the UMP SDK, you might find it helpful to reset
-     * the state of the SDK so that you can simulate a user's first install experience.
-     *
-     * All SDKs provide the reset() method to do this.
+     * This is useful for testing, to simulate a first-time install experience.
+     * It clears the consent status for the current user.
      */
     public fun reset()
 }

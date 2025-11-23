@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions
 import com.google.android.gms.ads.AdRequest as AndroidAdRequest
 import com.google.android.gms.ads.rewarded.RewardedAd as AndroidRewardedAd
 
@@ -71,6 +72,61 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
     }
 
     /**
+     * Loads a rewarded ad.
+     *
+     * @param adUnitId The ad unit ID.
+     * @param userId Used for Server-Side Verification
+     * @param customData Used for Server-Side Verification
+     * @param onLoad A callback invoked when the ad is loaded.
+     * @param onFailure A callback invoked when the ad fails to load.
+     */
+    public actual fun load(
+        adUnitId: String,
+        userId: String,
+        customData: String,
+        onLoad: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        _state.value = AdState.LOADING
+        Log.d(tag, "loadRewardedAd: Loading")
+        require(activity != null) {
+            _state.value = AdState.FAILING
+            "Activity Context must be set to non-null value in Android"
+        }
+        require(activity is Activity) {
+            _state.value = AdState.FAILING
+            "activity variable must be of the Android `Activity` type"
+        }
+        AndroidRewardedAd.load(
+            activity,
+            adUnitId,
+            AndroidAdRequest.Builder().build(),
+            object : RewardedAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    super.onAdFailedToLoad(adError)
+                    Log.d(tag, "loadRewardedAd:failure:$adError")
+                    _state.value = AdState.FAILING
+                    onFailure(AdException(adError.message))
+                }
+
+                override fun onAdLoaded(ad: AndroidRewardedAd) {
+                    super.onAdLoaded(ad)
+                    Log.d(tag, "loadRewardedAd:success")
+                    rewardedAd = ad
+                    val options =
+                        ServerSideVerificationOptions.Builder().apply {
+                            setUserId(userId)
+                            setCustomData(customData)
+                        }.build()
+                    rewardedAd?.setServerSideVerificationOptions(options)
+                    _state.value = AdState.READY
+                    onLoad()
+                }
+            }
+        )
+    }
+
+    /**
      * Sets the listeners for the rewarded ad.
      *
      * @param onFailure A callback invoked when the ad fails to show.
@@ -85,7 +141,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
         onShown: () -> Unit,
         onImpression: () -> Unit,
         onClick: () -> Unit
-    ){
+    ) {
         Log.d(tag, "setListeners: Loading")
         require(rewardedAd != null) {
             _state.value = AdState.FAILING
@@ -118,7 +174,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
      */
     public actual fun show(
         onRewardEarned: (RewardItem) -> Unit
-    ){
+    ) {
         _state.value = AdState.SHOWING
         Log.d(tag, "show: Loading")
         require(activity != null) {
