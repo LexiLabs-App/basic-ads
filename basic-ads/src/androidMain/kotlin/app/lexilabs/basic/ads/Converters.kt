@@ -72,9 +72,11 @@ public fun com.google.android.gms.ads.RequestConfiguration.PublisherPrivacyPerso
  */
 public fun Context.getActivity(): Activity? {
     var context = this
-    while (context is ContextWrapper) {
+    var i = 5
+    while (context is ContextWrapper && i > 0) {
         if (context is Activity) return context
         context = context.baseContext
+        i -= 1
     }
     return null
 }
