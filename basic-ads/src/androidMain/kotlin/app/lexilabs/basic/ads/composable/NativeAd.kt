@@ -1,9 +1,7 @@
 package app.lexilabs.basic.ads.composable
 
-import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
@@ -37,10 +35,7 @@ public actual fun NativeAd(
     onFailure: (Exception) -> Unit,
     onLoad: () -> Unit
 ) {
-    val activity = LocalContext.current as Activity?
-
     val ad by rememberNativeAd(
-        activity = activity,
         adUnitId = adUnitId,
         onLoad = onLoad,
         onFailure = onFailure,
@@ -86,7 +81,6 @@ public actual fun NativeAd(
     onLoad: () -> Unit
 ) {
     val ad by rememberNativeAd(
-        activity = activity,
         adUnitId = adUnitId,
         onLoad = onLoad,
         onFailure = onFailure,
