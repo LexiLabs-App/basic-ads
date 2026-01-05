@@ -2,10 +2,11 @@ package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import app.lexilabs.basic.ads.Consent
 import app.lexilabs.basic.ads.ConsentDebugSettings
 import app.lexilabs.basic.ads.ConsentRequestParameters
-import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
 
 /**
@@ -25,7 +26,12 @@ import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
  */
 @DependsOnGoogleUserMessagingPlatform
 @Composable
-public expect fun rememberConsent(): MutableState<Consent>
+public actual fun rememberConsent(): MutableState<Consent> {
+    val consent = remember(null) { mutableStateOf(Consent(null)) }
+    consent.value.isPrivacyOptionsRequired()
+    consent.value.canRequestAds()
+    return consent
+}
 
 /**
  * Composable function to remember and manage user consent for ads.
@@ -43,12 +49,19 @@ public expect fun rememberConsent(): MutableState<Consent>
  * @see Consent
  * @see DependsOnGoogleUserMessagingPlatform
  */
-@DependsOnGoogleMobileAds
 @DependsOnGoogleUserMessagingPlatform
 @Composable
-public expect fun rememberConsent(
-    requestParameters: ConsentRequestParameters
-): MutableState<Consent>
+public actual fun rememberConsent(requestParameters: ConsentRequestParameters): MutableState<Consent> {
+    val consent = remember(null) { mutableStateOf(Consent(null)) }
+    consent.value.requestConsentInfoUpdate(
+        params = requestParameters,
+        onCompletion = {
+            consent.value.isPrivacyOptionsRequired()
+            consent.value.canRequestAds()
+        }
+    )
+    return consent
+}
 
 /**
  * Composable function to remember and manage user consent for ads.
@@ -66,12 +79,20 @@ public expect fun rememberConsent(
  * @see Consent
  * @see DependsOnGoogleUserMessagingPlatform
  */
-@DependsOnGoogleMobileAds
 @DependsOnGoogleUserMessagingPlatform
 @Composable
-public expect fun rememberConsent(
-    debugSettings: ConsentDebugSettings
-): MutableState<Consent>
+public actual fun rememberConsent(debugSettings: ConsentDebugSettings): MutableState<Consent> {
+    val consent = remember(null) { mutableStateOf(Consent(null)) }
+    val params = ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).build()
+    consent.value.requestConsentInfoUpdate(
+        params = params,
+        onCompletion = {
+            consent.value.isPrivacyOptionsRequired()
+            consent.value.canRequestAds()
+        }
+    )
+    return consent
+}
 
 /**
  * Composable function to remember and manage user consent for ads.
@@ -93,6 +114,11 @@ public expect fun rememberConsent(
 @DependsOnGoogleUserMessagingPlatform
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
-public expect fun rememberConsent(
+public actual fun rememberConsent(
     activity: Any?
-): MutableState<Consent>
+): MutableState<Consent> {
+    val consent = remember(activity) { mutableStateOf(Consent(activity)) }
+    consent.value.isPrivacyOptionsRequired()
+    consent.value.canRequestAds()
+    return consent
+}

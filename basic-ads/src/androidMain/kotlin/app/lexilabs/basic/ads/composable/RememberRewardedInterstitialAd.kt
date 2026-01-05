@@ -2,9 +2,14 @@ package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
+import app.lexilabs.basic.ads.getActivity
 
 /**
  * A composable function that remembers and manages a RewardedInterstitialAdHandler.
@@ -25,11 +30,26 @@ import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
  */
 @DependsOnGoogleMobileAds
 @Composable
-public expect fun rememberRewardedInterstitialAd(
-    adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
-    onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
-): MutableState<RewardedInterstitialAdHandler>
+public actual fun rememberRewardedInterstitialAd(
+    adUnitId: String,
+    onLoad: () -> Unit,
+    onFailure: (Exception) -> Unit
+): MutableState<RewardedInterstitialAdHandler> {
+    val activity = LocalContext.current.getActivity()
+    val ad = remember(activity) { mutableStateOf(RewardedInterstitialAdHandler(activity)) }
+    when(ad.value.state){
+        AdState.DISMISSED,
+        AdState.NONE -> {
+            ad.value.load(
+                adUnitId = adUnitId,
+                onLoad = onLoad,
+                onFailure = onFailure
+            )
+        }
+        else -> { /** DO NOTHING **/ }
+    }
+    return ad
+}
 
 /**
  * A composable function that remembers and manages a RewardedInterstitialAdHandler.
@@ -53,9 +73,23 @@ public expect fun rememberRewardedInterstitialAd(
 @DependsOnGoogleMobileAds
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
-public expect fun rememberRewardedInterstitialAd(
+public actual fun rememberRewardedInterstitialAd(
     activity: Any?,
-    adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
-    onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
-): MutableState<RewardedInterstitialAdHandler>
+    adUnitId: String,
+    onLoad: () -> Unit,
+    onFailure: (Exception) -> Unit
+): MutableState<RewardedInterstitialAdHandler> {
+    val ad = remember(activity) { mutableStateOf(RewardedInterstitialAdHandler(activity)) }
+    when(ad.value.state){
+        AdState.DISMISSED,
+        AdState.NONE -> {
+            ad.value.load(
+                adUnitId = adUnitId,
+                onLoad = onLoad,
+                onFailure = onFailure
+            )
+        }
+        else -> { /** DO NOTHING **/ }
+    }
+    return ad
+}

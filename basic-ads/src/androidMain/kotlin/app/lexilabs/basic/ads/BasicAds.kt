@@ -3,6 +3,9 @@ package app.lexilabs.basic.ads
 import android.app.Activity
 import androidx.annotation.MainThread
 import androidx.annotation.RequiresPermission
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,10 +33,24 @@ public actual object BasicAds {
 
     /**
      * Initializes the Mobile Ads SDK.
+     */
+    @MainThread
+    @Composable
+    @RequiresPermission("android.permission.INTERNET")
+    public actual fun Initialize() {
+        val context = LocalContext.current
+        LaunchedEffect(context) {
+            com.google.android.gms.ads.MobileAds.initialize(context)
+        }
+    }
+
+    /**
+     * Initializes the Mobile Ads SDK.
      *
      * @param context The context to use for initialization. Must be an `Activity` on Android.
      */
     @MainThread
+    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
     @RequiresPermission("android.permission.INTERNET")
     public actual fun initialize(context: Any?) {
         require(context != null) {
@@ -46,9 +63,18 @@ public actual object BasicAds {
 
     /**
      * Disables the initialization of mediation adapters.
+     */
+    @Composable
+    public actual fun DisableMediationAdapterInitialization() {
+        com.google.android.gms.ads.MobileAds.disableMediationAdapterInitialization(LocalContext.current)
+    }
+
+    /**
+     * Disables the initialization of mediation adapters.
      *
      * @param context The context to use. Must be an `Activity` on Android.
      */
+    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
     public actual fun disableMediationAdapterInitialization(context: Any?) {
         require(context != null) {
             "Context must be set to non-null value in Android"
@@ -59,9 +85,20 @@ public actual object BasicAds {
     /**
      * Opens the ad inspector.
      *
+     * @param adUnitId The ad unit ID to use.
+     */
+    @Composable
+    public actual fun OpenDebugMenu(adUnitId: String) {
+        com.google.android.gms.ads.MobileAds.openDebugMenu(LocalContext.current, adUnitId)
+    }
+
+    /**
+     * Opens the ad inspector.
+     *
      * @param context The context to use. Must be an `Activity` on Android.
      * @param adUnitId The ad unit ID to use.
      */
+    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
     public actual fun openDebugMenu(context: Any?, adUnitId: String) {
         require(context != null) {
             "Context must be set to non-null value in Android"
