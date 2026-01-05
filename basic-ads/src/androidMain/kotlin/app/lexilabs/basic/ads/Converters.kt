@@ -1,5 +1,9 @@
 package app.lexilabs.basic.ads
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+
 /**
  * Converts a common [AdSize] to a [com.google.android.gms.ads.AdSize].
  */
@@ -53,3 +57,26 @@ public fun RequestConfiguration.PublisherPrivacyPersonalizationState.toAndroid(
 public fun com.google.android.gms.ads.RequestConfiguration.PublisherPrivacyPersonalizationState.toCommon(
 ): RequestConfiguration.PublisherPrivacyPersonalizationState =
     RequestConfiguration.PublisherPrivacyPersonalizationState.fromInt(this.ordinal)
+
+/**
+ * Recursively unwraps this [Context] to find the underlying [Activity].
+ *
+ * In Android, a [Context] is frequently wrapped in multiple layers of [ContextWrapper]s
+ * (e.g., for Themes, Hilt/Dagger, or Jetpack Compose). Attempting to cast a
+ * wrapped context directly to [Activity] can cause a [ClassCastException].
+ *
+ * This function traverses the `baseContext` chain until it finds the actual [Activity]
+ * or reaches the end of the chain.
+ *
+ * @return The underlying [Activity] if found, or `null` if the context is not attached to an activity.
+ */
+public fun Context.getActivity(): Activity? {
+    var context = this
+    var i = 5
+    while (context is ContextWrapper && i > 0) {
+        if (context is Activity) return context
+        context = context.baseContext
+        i -= 1
+    }
+    return null
+}

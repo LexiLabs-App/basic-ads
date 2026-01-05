@@ -14,8 +14,6 @@ import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
  *
  * This function relies on the [Consent] class to manage the underlying UMP SDK interactions.
  *
- * @param activity The current Android Activity. This is required by the UMP SDK to display the consent form.
- *                 It's typed as `Any?` to allow for flexibility, but it should be an instance of `android.app.Activity`.
  * @param onFailure A lambda function that will be invoked if an error occurs during the consent information update process.
  *                  It receives an [Exception] object describing the error. Defaults to an empty lambda.
  *
@@ -26,10 +24,38 @@ import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
 @DependsOnGoogleUserMessagingPlatform
 @Composable
 public fun ConsentPopup(
+    onFailure: (Exception) -> Unit
+){
+    val consent by rememberConsent()
+    consent.requestConsentInfoUpdate(onError = onFailure)
+}
+
+/**
+ * A composable function that requests and updates user consent information using the Google User Messaging Platform (UMP) SDK.
+ * It is designed to be used within a Composable UI context.
+ *
+ * This function handles the process of checking the current consent status and requesting an update if necessary.
+ * If a consent form is required and available, it will be presented to the user.
+ *
+ * This function relies on the [Consent] class to manage the underlying UMP SDK interactions.
+ *
+ * @param activity The current Android Activity. This is required by the UMP SDK to display the consent form.
+ *                 It's typed as `Any?` to allow for flexibility, but it should be an instance of `android.app.Activity`.
+ * @param onFailure A lambda function that will be invoked if an error occurs during the consent information update process.
+ *                  It receives an [Exception] object describing the error. Defaults to an empty lambda.
+ *
+ * @see Consent
+ * @see rememberConsent
+ * @see DependsOnGoogleUserMessagingPlatform
+ */
+@DependsOnGoogleUserMessagingPlatform
+@Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
+@Composable
+public fun ConsentPopup(
     activity: Any?,
     onFailure: (Exception) -> Unit = {}
 ){
-    val consent by rememberConsent(activity)
+    val consent by rememberConsent()
     consent.requestConsentInfoUpdate(onError = onFailure)
 }
 

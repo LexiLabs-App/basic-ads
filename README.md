@@ -90,16 +90,12 @@ sourceSets {
 ## Initialization
 Call `BasicAds.initialize` in your `commonMain` before building ads.
 
-> [!NOTE] 
-> You only need to initialize `Basic-Ads` in your `commonMain`. You do not need to initialize within each platform. 
-
 ```kotlin
 // in your 'composeApp/src/commonMain/App.kt' file
 @OptIn(DependsOnGoogleMobileAds::class)
 @Composable
 fun App() {
-    // You'll need to access your platform-specific context (Android) or null (iOS) to pass as an `Any?` argument
-    BasicAds.initialize(activity)
+    BasicAds.initialize()
 }
 ```
 
@@ -116,14 +112,14 @@ fun AdScreen() {
 If you want to preload your `BannerAds`, there's a way to do that too:
 ```kotlin
 // Load the Ad within your Composable
-val bannerAd by rememberBannerAd(activity)
+val bannerAd by rememberBannerAd()
 // Display the Ad as soon as it's available
 BannerAd(bannerAd)
 ```
 You can also check the `AdState` before doing something:
 ```kotlin
 // Load the Ad within your Composable
-val bannerAd by rememberBannerAd(activity)
+val bannerAd by rememberBannerAd()
 // Determine to show or hide the Ad
 var showBannerAd by remember { mutableStateOf(false) }
 // Composable Button with callbacks
@@ -140,19 +136,18 @@ if (showBannerAd){
 ```
 
 ## Creating Full Screen Ads
-You can also build other Ad types, but you'll need to [pass your Android `Activity` `Context` when you initialize](https://blog.hakz.com/contain-your-apps-memory-please-0c62819f8d7f).
+You can also build other Ad types.
 
 ```kotlin
 // in your 'composeApp/src/commonMain/AdScreen.kt' file
-// You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-InterstitialAd(activity)
-RewardedAd(activity, onRewardEarned = {/** do something here **/})
-RewardedInterstitialAd(activity, onRewardEarned = {/** do something here **/}) // currently a Google Beta feature
+InterstitialAd()
+RewardedAd(onRewardEarned = {/** do something here **/})
+RewardedInterstitialAd(onRewardEarned = {/** do something here **/}) // currently a Google Beta feature
 ```
 If you want to preload your ads, there's a way to do that too:
 ```kotlin
 // Load the Ad within your Composable
-val rewardedAd by rememberRewardedAd(activity)
+val rewardedAd by rememberRewardedAd()
 // Display the Ad as soon as it's available
 RewardedAd(
     ad = rewardedAd,
@@ -164,7 +159,7 @@ RewardedAd(
 You can also check the `AdState` before doing something:
 ```kotlin
 // Load the Ad within your Composable
-val interstitialAd by rememberInterstitialAd(activity)
+val interstitialAd by rememberInterstitialAd()
 // Determine to show or hide the Ad
 var showInterstitialAd by remember { mutableStateOf(false) }
 // Composable Button with callbacks
@@ -190,8 +185,7 @@ if (showInterstitialAd){
 You can use the `Consent` features of Basic Ads with Composables too:
 ```kotlin
 // in your 'composeApp/src/commonMain/AdScreen.kt' file
-// You'll need to access your platform-specific Activity (Android) or null (iOS) to pass as an `Any?` argument
-val consent by rememberConsent(activity)
+val consent by rememberConsent()
 
 // Create a ConsentPopup (if available in your region)
 ConsentPopup(consent)

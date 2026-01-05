@@ -14,7 +14,6 @@ import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
  * This function handles the entire lifecycle of a native ad, from loading it using [rememberNativeAd]
  * to displaying it once it's in the [AdState.READY] state.
  *
- * @param activity The current Activity, required for the Android implementation.
  * @param nativeAdTemplate The composable template used to render the native ad UI.
  * @param adUnitId The ad unit ID for the native ad.
  * @param onDismissed A callback invoked when the ad is dismissed.
@@ -25,6 +24,50 @@ import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
  * @param onLoad A callback invoked when the ad has successfully loaded.
  */
 @DependsOnGoogleMobileAds
+@Composable
+public actual fun NativeAd(
+    nativeAdTemplate: NativeAdTemplate,
+    adUnitId: String,
+    onDismissed: () -> Unit,
+    onShown: () -> Unit,
+    onImpression: () -> Unit,
+    onClick: () -> Unit,
+    onFailure: (Exception) -> Unit,
+    onLoad: () -> Unit
+) {
+    val ad by rememberNativeAd(
+        adUnitId = adUnitId,
+        onLoad = onLoad,
+        onFailure = onFailure,
+        onDismissed = onDismissed,
+        onShown = onShown,
+        onImpression = onImpression,
+        onClick = onClick
+    )
+
+    if (ad.state == AdState.READY) {
+        NativeAd(loadedAd = ad, nativeAdTemplate = nativeAdTemplate)
+    }
+}
+
+/**
+ * A composable that loads and displays a native ad.
+ *
+ * This function handles the entire lifecycle of a native ad, from loading it using [rememberNativeAd]
+ * to displaying it once it's in the [AdState.READY] state.
+ *
+ * @param activity The current activity. This is only needed for Android implementation.
+ * @param nativeAdTemplate The composable template used to render the native ad UI.
+ * @param adUnitId The ad unit ID for the native ad.
+ * @param onDismissed A callback invoked when the ad is dismissed.
+ * @param onShown A callback invoked when the ad is shown.
+ * @param onImpression A callback invoked when an impression is recorded for the ad.
+ * @param onClick A callback invoked when the ad is clicked.
+ * @param onFailure A callback invoked when the ad fails to load.
+ * @param onLoad A callback invoked when the ad has successfully loaded.
+ */
+@DependsOnGoogleMobileAds
+@Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
 public actual fun NativeAd(
     activity: Any?,
@@ -38,7 +81,6 @@ public actual fun NativeAd(
     onLoad: () -> Unit
 ) {
     val ad by rememberNativeAd(
-        activity = activity,
         adUnitId = adUnitId,
         onLoad = onLoad,
         onFailure = onFailure,
