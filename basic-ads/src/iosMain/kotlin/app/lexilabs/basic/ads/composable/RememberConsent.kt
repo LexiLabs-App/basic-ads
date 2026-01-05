@@ -93,3 +93,32 @@ public actual fun rememberConsent(debugSettings: ConsentDebugSettings): MutableS
     )
     return consent
 }
+
+/**
+ * Composable function to remember and manage user consent for ads.
+ *
+ * This function creates and remembers a [Consent] object, which handles interactions
+ * with the Google User Messaging Platform (UMP) SDK to obtain and manage user consent
+ * for personalized advertising.
+ *
+ * It initializes the consent state and checks if privacy options are required and if ads can be requested.
+ *
+ * @param activity The current Activity context. This is crucial for the UMP SDK to function correctly.
+ *                 It's recommended to pass the result of `LocalContext.current as? Activity`.
+ * @return A [MutableState] holding the [Consent] object. This allows observing and reacting
+ *         to changes in the consent status within your Composable UI.
+ *
+ * @see Consent
+ * @see DependsOnGoogleUserMessagingPlatform
+ */
+@DependsOnGoogleUserMessagingPlatform
+@Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
+@Composable
+public actual fun rememberConsent(
+    activity: Any?
+): MutableState<Consent> {
+    val consent = remember(activity) { mutableStateOf(Consent(activity)) }
+    consent.value.isPrivacyOptionsRequired()
+    consent.value.canRequestAds()
+    return consent
+}

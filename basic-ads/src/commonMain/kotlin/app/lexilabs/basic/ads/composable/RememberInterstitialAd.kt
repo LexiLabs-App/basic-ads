@@ -2,8 +2,6 @@ package app.lexilabs.basic.ads.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
@@ -43,23 +41,9 @@ public expect fun rememberInterstitialAd(
 @DependsOnGoogleMobileAds
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
-public fun rememberInterstitialAd(
+public expect fun rememberInterstitialAd(
     activity: Any?,
     adUnitId: String = AdUnitId.INTERSTITIAL_DEFAULT,
     onLoad: () -> Unit = {},
     onFailure: (Exception) -> Unit = {}
-): MutableState<InterstitialAdHandler> {
-    val ad = remember(activity) { mutableStateOf(InterstitialAdHandler(activity)) }
-    when(ad.value.state){
-        AdState.DISMISSED,
-        AdState.NONE -> {
-            ad.value.load(
-                adUnitId = adUnitId,
-                onLoad = onLoad,
-                onFailure = onFailure
-            )
-        }
-        else -> { /** DO NOTHING **/ }
-    }
-    return ad
-}
+): MutableState<InterstitialAdHandler>

@@ -44,7 +44,6 @@ public actual fun NativeAd(
     onLoad: () -> Unit
 ) {
     val ad by rememberNativeAd(
-        activity = null,
         adUnitId = adUnitId,
         onLoad = onLoad,
         onFailure = onFailure,
@@ -86,7 +85,6 @@ public actual fun NativeAd(
     onLoad: () -> Unit
 ) {
     val ad by rememberNativeAd(
-        activity = null,
         adUnitId = adUnitId,
         onLoad = onLoad,
         onFailure = onFailure,
