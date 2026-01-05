@@ -1,5 +1,6 @@
 package app.lexilabs.basic.ads.composable
 
+import androidx.annotation.RequiresPermission
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdState
@@ -24,6 +25,7 @@ import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
  * @param onLoad A callback invoked when the ad has successfully loaded.
  */
 @DependsOnGoogleMobileAds
+@RequiresPermission("android.permission.INTERNET")
 @Composable
 public actual fun NativeAd(
     nativeAdTemplate: NativeAdTemplate,
@@ -67,6 +69,7 @@ public actual fun NativeAd(
  * @param onLoad A callback invoked when the ad has successfully loaded.
  */
 @DependsOnGoogleMobileAds
+@RequiresPermission("android.permission.INTERNET")
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
 public actual fun NativeAd(
