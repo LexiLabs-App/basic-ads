@@ -61,6 +61,48 @@ public actual fun NativeAd(
 
 /**
  * A composable that displays a native ad.
+ * @param activity The current activity. This is only needed for Android implementation.
+ * @param nativeAdTemplate the composable that will be used to display the native ad
+ * @param adUnitId the ad unit ID for the native ad
+ * @param onDismissed a callback that will be invoked when the ad is dismissed
+ * @param onShown a callback that will be invoked when the ad is shown
+ * @param onImpression a callback that will be invoked when an impression is recorded for the ad
+ * @param onClick a callback that will be invoked when the ad is clicked
+ * @param onFailure a callback that will be invoked when the ad fails to load
+ * @param onLoad a callback that will be invoked when the ad has loaded
+ */
+@DependsOnGoogleMobileAds
+@Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
+@Composable
+public actual fun NativeAd(
+    activity: Any?,
+    nativeAdTemplate: NativeAdTemplate,
+    adUnitId: String,
+    onDismissed: () -> Unit,
+    onShown: () -> Unit,
+    onImpression: () -> Unit,
+    onClick: () -> Unit,
+    onFailure: (Exception) -> Unit,
+    onLoad: () -> Unit
+) {
+    val ad by rememberNativeAd(
+        activity = null,
+        adUnitId = adUnitId,
+        onLoad = onLoad,
+        onFailure = onFailure,
+        onDismissed = onDismissed,
+        onShown = onShown,
+        onImpression = onImpression,
+        onClick = onClick
+    )
+
+    if (ad.state == AdState.READY) {
+        NativeAd(loadedAd = ad, nativeAdTemplate = nativeAdTemplate)
+    }
+}
+
+/**
+ * A composable that displays a native ad.
  * @param loadedAd the pre-loaded native ad
  * @param nativeAdTemplate the composable that will be used to display the native ad
  */
