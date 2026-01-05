@@ -9,7 +9,6 @@ import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 
 /**
  * A composable that displays a native ad.
- * @param activity the current Activity (only needed for Android Impl)
  * @param nativeAdTemplate the composable that will be used to display the native ad
  * @param adUnitId the ad unit ID for the native ad
  * @param onDismissed a callback that will be invoked when the ad is dismissed
@@ -22,7 +21,6 @@ import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 @DependsOnGoogleMobileAds
 @Composable
 public expect fun NativeAd(
-    activity: Any?,
     nativeAdTemplate: NativeAdTemplate = NativeAdDefault(),
     adUnitId: String = AdUnitId.NATIVE_DEFAULT,
     onDismissed: () -> Unit = {},

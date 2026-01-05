@@ -22,7 +22,6 @@ import platform.UIKit.willMoveToParentViewController
 
 /**
  * A composable that displays a native ad.
- * @param activity the current Activity (only needed for Android Impl)
  * @param nativeAdTemplate the composable that will be used to display the native ad
  * @param adUnitId the ad unit ID for the native ad
  * @param onDismissed a callback that will be invoked when the ad is dismissed
@@ -35,7 +34,6 @@ import platform.UIKit.willMoveToParentViewController
 @DependsOnGoogleMobileAds
 @Composable
 public actual fun NativeAd(
-    activity: Any?,
     nativeAdTemplate: NativeAdTemplate,
     adUnitId: String,
     onDismissed: () -> Unit,
@@ -46,7 +44,7 @@ public actual fun NativeAd(
     onLoad: () -> Unit
 ) {
     val ad by rememberNativeAd(
-        activity = activity,
+        activity = null,
         adUnitId = adUnitId,
         onLoad = onLoad,
         onFailure = onFailure,

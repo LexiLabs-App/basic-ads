@@ -1,7 +1,9 @@
 package app.lexilabs.basic.ads.composable
 
+import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
@@ -14,7 +16,6 @@ import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
  * This function handles the entire lifecycle of a native ad, from loading it using [rememberNativeAd]
  * to displaying it once it's in the [AdState.READY] state.
  *
- * @param activity The current Activity, required for the Android implementation.
  * @param nativeAdTemplate The composable template used to render the native ad UI.
  * @param adUnitId The ad unit ID for the native ad.
  * @param onDismissed A callback invoked when the ad is dismissed.
@@ -27,7 +28,6 @@ import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
 @DependsOnGoogleMobileAds
 @Composable
 public actual fun NativeAd(
-    activity: Any?,
     nativeAdTemplate: NativeAdTemplate,
     adUnitId: String,
     onDismissed: () -> Unit,
@@ -37,6 +37,8 @@ public actual fun NativeAd(
     onFailure: (Exception) -> Unit,
     onLoad: () -> Unit
 ) {
+    val activity = LocalContext.current as Activity?
+
     val ad by rememberNativeAd(
         activity = activity,
         adUnitId = adUnitId,
