@@ -185,7 +185,9 @@ if (showInterstitialAd){
 You can use the `Consent` features of Basic Ads with Composables too:
 ```kotlin
 // in your 'composeApp/src/commonMain/AdScreen.kt' file
-val consent by rememberConsent()
+// You can also configure debugging using the overload version of this function
+// val consent by rememberConsent(debugSettings = ConsentDebugSettings(true))
+val consent by rememberConsent() 
 
 // Create a ConsentPopup (if available in your region)
 ConsentPopup(consent)
