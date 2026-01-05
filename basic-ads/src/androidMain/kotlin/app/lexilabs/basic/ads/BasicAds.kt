@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.annotation.MainThread
 import androidx.annotation.RequiresPermission
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,9 +37,9 @@ public actual object BasicAds {
     @MainThread
     @Composable
     @RequiresPermission("android.permission.INTERNET")
-    public actual fun initialize() {
-        val context = LocalContext.current as Activity
-        CoroutineScope(Dispatchers.IO).launch {
+    public actual fun Initialize() {
+        val context = LocalContext.current
+        LaunchedEffect(context) {
             com.google.android.gms.ads.MobileAds.initialize(context)
         }
     }
@@ -64,7 +65,7 @@ public actual object BasicAds {
      * Disables the initialization of mediation adapters.
      */
     @Composable
-    public actual fun disableMediationAdapterInitialization() {
+    public actual fun DisableMediationAdapterInitialization() {
         com.google.android.gms.ads.MobileAds.disableMediationAdapterInitialization(LocalContext.current)
     }
 
@@ -87,7 +88,7 @@ public actual object BasicAds {
      * @param adUnitId The ad unit ID to use.
      */
     @Composable
-    public actual fun openDebugMenu(adUnitId: String) {
+    public actual fun OpenDebugMenu(adUnitId: String) {
         com.google.android.gms.ads.MobileAds.openDebugMenu(LocalContext.current, adUnitId)
     }
 

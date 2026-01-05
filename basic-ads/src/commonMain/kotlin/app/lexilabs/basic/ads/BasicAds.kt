@@ -27,7 +27,7 @@ public expect object BasicAds {
      */
     @MainThread
     @Composable
-    public fun initialize()
+    public fun Initialize()
 
     /**
      * Initializes the Mobile Ads SDK.
@@ -46,7 +46,7 @@ public expect object BasicAds {
      * mediation adapters manually before making ad requests.
      */
     @Composable
-    public fun disableMediationAdapterInitialization()
+    public fun DisableMediationAdapterInitialization()
 
     /**
      * Disables the automatic initialization of mediation adapters.
@@ -67,7 +67,7 @@ public expect object BasicAds {
      * @param adUnitId The ad unit ID to use for the ad inspector.
      */
     @Composable
-    public fun openDebugMenu(adUnitId: String)
+    public fun OpenDebugMenu(adUnitId: String)
 
     /**
      * Opens the ad inspector, which allows for testing ad configurations and troubleshooting ad delivery.

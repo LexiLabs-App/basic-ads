@@ -31,7 +31,7 @@ public actual object BasicAds {
 
     @MainThread
     @Composable
-    public actual fun initialize() {
+    public actual fun Initialize() {
         GADMobileAds.sharedInstance().startWithCompletionHandler(null)
     }
 
@@ -47,7 +47,7 @@ public actual object BasicAds {
 
     @OptIn(ExperimentalForeignApi::class)
     @Composable
-    public actual fun disableMediationAdapterInitialization() {
+    public actual fun DisableMediationAdapterInitialization() {
         GADMobileAds.sharedInstance().disableMediationInitialization()
     }
 
@@ -58,7 +58,7 @@ public actual object BasicAds {
     }
 
     @Composable
-    public actual fun openDebugMenu(adUnitId: String) {
+    public actual fun OpenDebugMenu(adUnitId: String) {
         GADMobileAds.sharedInstance.presentAdInspectorFromViewController(
             viewController = getCurrentViewController(),
             completionHandler = { it?.let { error -> throw AdException(error.localizedDescription) } }

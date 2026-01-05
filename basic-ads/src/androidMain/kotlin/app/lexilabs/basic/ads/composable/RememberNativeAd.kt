@@ -1,6 +1,6 @@
 package app.lexilabs.basic.ads.composable
 
-import android.app.Activity
+import androidx.annotation.RequiresPermission
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
@@ -10,6 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
+import app.lexilabs.basic.ads.getActivity
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 
 /**
@@ -25,6 +26,7 @@ import app.lexilabs.basic.ads.nativead.NativeAdHandler
  * @see AdUnitId.autoSelect
  */
 @DependsOnGoogleMobileAds
+@RequiresPermission("android.permission.INTERNET")
 @Composable
 public actual fun rememberNativeAd(
     adUnitId: String,
@@ -35,7 +37,7 @@ public actual fun rememberNativeAd(
     onImpression: () -> Unit,
     onClick: () -> Unit,
 ): MutableState<NativeAdHandler> {
-    val activity = LocalContext.current as Activity?
+    val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(NativeAdHandler(activity)) }
     DisposableEffect(ad) {
         onDispose {

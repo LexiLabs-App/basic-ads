@@ -1,6 +1,5 @@
 package app.lexilabs.basic.ads.composable
 
-import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -8,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import app.lexilabs.basic.ads.Consent
 import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
+import app.lexilabs.basic.ads.getActivity
 
 /**
  * Composable function to remember and manage user consent for ads.
@@ -27,7 +27,7 @@ import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
 @DependsOnGoogleUserMessagingPlatform
 @Composable
 public actual fun rememberConsent(): MutableState<Consent> {
-    val activity = LocalContext.current as Activity?
+    val activity = LocalContext.current.getActivity()
     val consent = remember(activity) { mutableStateOf(Consent(activity)) }
     consent.value.isPrivacyOptionsRequired()
     consent.value.canRequestAds()

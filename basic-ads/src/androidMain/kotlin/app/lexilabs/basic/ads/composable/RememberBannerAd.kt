@@ -1,6 +1,6 @@
 package app.lexilabs.basic.ads.composable
 
-import android.app.Activity
+import androidx.annotation.RequiresPermission
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -11,6 +11,7 @@ import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.BannerAdHandler
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
+import app.lexilabs.basic.ads.getActivity
 
 /**
  * A Composable function that remembers a [BannerAdHandler] across compositions.
@@ -35,6 +36,7 @@ import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
  *         interact with the ad (e.g., to display it in your UI).
  */
 @DependsOnGoogleMobileAds
+@RequiresPermission("android.permission.INTERNET")
 @Composable
 public actual fun rememberBannerAd(
     adUnitId: String,
@@ -46,7 +48,7 @@ public actual fun rememberBannerAd(
     onImpression: () -> Unit,
     onClick: () -> Unit
 ): MutableState<BannerAdHandler> {
-    val activity = LocalContext.current as Activity?
+    val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(BannerAdHandler(activity)) }
     when(ad.value.state){
         AdState.DISMISSED,

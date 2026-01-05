@@ -1,6 +1,5 @@
 package app.lexilabs.basic.ads.composable
 
-import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +9,7 @@ import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
+import app.lexilabs.basic.ads.getActivity
 
 /**
  * A composable function that remembers and manages a RewardedInterstitialAdHandler.
@@ -35,7 +35,7 @@ public actual fun rememberRewardedInterstitialAd(
     onLoad: () -> Unit,
     onFailure: (Exception) -> Unit
 ): MutableState<RewardedInterstitialAdHandler> {
-    val activity = LocalContext.current as Activity?
+    val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(RewardedInterstitialAdHandler(activity)) }
     when(ad.value.state){
         AdState.DISMISSED,
