@@ -95,7 +95,7 @@ Call `BasicAds.initialize` in your `commonMain` before building ads.
 @OptIn(DependsOnGoogleMobileAds::class)
 @Composable
 fun App() {
-    BasicAds.initialize()
+    BasicAds.Initialize()
 }
 ```
 
