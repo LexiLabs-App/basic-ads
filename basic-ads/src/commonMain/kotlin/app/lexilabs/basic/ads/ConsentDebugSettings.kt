@@ -26,20 +26,22 @@ public expect class ConsentDebugSettings {
      */
     public val isTestDevice: Boolean
 
-    /**
-     * Composable Builder of [ConsentDebugSettings].
-     *
-     * @param debugGeography The [DebugGeography] to set while testing [Consent.requestConsentInfoUpdate]
-     * @param hashedId The hashId from the test device
-     * @param forceTesting `true` if you want to force testing
-     */
-    @ReadOnlyComposable
-    @Composable
-    public fun Build(
-        debugGeography: DebugGeography? = null,
-        hashedId: String? = null,
-        forceTesting: Boolean? = null,
-    ): ConsentDebugSettings
+    public companion object {
+        /**
+         * Composable Builder of [ConsentDebugSettings].
+         *
+         * @param debugGeography The [DebugGeography] to set while testing [Consent.requestConsentInfoUpdate]
+         * @param hashedId The hashId from the test device
+         * @param forceTesting `true` if you want to force testing
+         */
+        @ReadOnlyComposable
+        @Composable
+        public fun builder(
+            debugGeography: DebugGeography? = null,
+            hashedId: String? = null,
+            forceTesting: Boolean? = null,
+        ): ConsentDebugSettings
+    }
 
     /**
      * Builder of [ConsentDebugSettings].

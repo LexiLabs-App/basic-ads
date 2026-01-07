@@ -15,18 +15,20 @@ public actual class ConsentDebugSettings internal constructor(
     public actual val isTestDevice: Boolean
         get() = android.isTestDevice
 
-    @ReadOnlyComposable
-    @Composable
-    public actual fun Build(
-        debugGeography: DebugGeography?,
-        hashedId: String?,
-        forceTesting: Boolean?,
-    ): ConsentDebugSettings {
-        val builder = Builder(LocalContext.current.getActivity())
-        debugGeography?.let { builder.setDebugGeography(it) }
-        hashedId?.let { builder.addTestDeviceHashedId(it) }
-        forceTesting?.let { builder.setForceTesting(it) }
-        return builder.build()
+    public actual companion object {
+        @ReadOnlyComposable
+        @Composable
+        public actual fun builder(
+            debugGeography: DebugGeography?,
+            hashedId: String?,
+            forceTesting: Boolean?,
+        ): ConsentDebugSettings {
+            val builder = Builder(LocalContext.current.getActivity())
+            debugGeography?.let { builder.setDebugGeography(it) }
+            hashedId?.let { builder.addTestDeviceHashedId(it) }
+            forceTesting?.let { builder.setForceTesting(it) }
+            return builder.build()
+        }
     }
 
     public actual class Builder actual constructor(activity: Any?) {
