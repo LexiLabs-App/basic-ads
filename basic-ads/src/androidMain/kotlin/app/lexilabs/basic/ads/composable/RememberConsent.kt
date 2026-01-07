@@ -32,8 +32,12 @@ import app.lexilabs.basic.ads.getActivity
 public actual fun rememberConsent(): MutableState<Consent> {
     val activity = LocalContext.current.getActivity()
     val consent = remember(activity) { mutableStateOf(Consent(activity)) }
-    consent.value.isPrivacyOptionsRequired()
-    consent.value.canRequestAds()
+    consent.value.requestConsentInfoUpdate(
+        onCompletion = {
+            consent.value.isPrivacyOptionsRequired()
+            consent.value.canRequestAds()
+        }
+    )
     return consent
 }
 
@@ -126,7 +130,11 @@ public actual fun rememberConsent(
     activity: Any?
 ): MutableState<Consent> {
     val consent = remember(activity) { mutableStateOf(Consent(activity)) }
-    consent.value.isPrivacyOptionsRequired()
-    consent.value.canRequestAds()
+    consent.value.requestConsentInfoUpdate(
+        onCompletion = {
+            consent.value.isPrivacyOptionsRequired()
+            consent.value.canRequestAds()
+        }
+    )
     return consent
 }
