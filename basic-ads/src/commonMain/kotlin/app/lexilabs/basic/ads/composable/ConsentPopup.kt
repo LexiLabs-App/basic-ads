@@ -32,12 +32,9 @@ public fun ConsentPopup(
     onLoaded: () -> Unit = {},
     onShown: () -> Unit = {}
 ){
-    consent.requestConsentInfoUpdate(
-        onCompletion = { consent.loadAndShowConsentForm(
-            onLoaded = onLoaded,
-            onShown = onShown,
-            onError = onFailure
-        ) },
+    consent.loadAndShowConsentForm(
+        onLoaded = onLoaded,
+        onShown = onShown,
         onError = onFailure
     )
 }
@@ -67,12 +64,9 @@ public fun ConsentPopup(
     onShown: () -> Unit = {}
 ){
     val consent by rememberConsent()
-    consent.requestConsentInfoUpdate(
-        onCompletion = { consent.loadAndShowConsentForm(
-            onLoaded = onLoaded,
-            onShown = onShown,
-            onError = onFailure
-        ) },
+    consent.loadAndShowConsentForm(
+        onLoaded = onLoaded,
+        onShown = onShown,
         onError = onFailure
     )
 }
@@ -103,10 +97,7 @@ public fun ConsentPopup(
     onFailure: (Exception) -> Unit = {}
 ){
     val consent by rememberConsent()
-    consent.requestConsentInfoUpdate(
-        onCompletion = { consent.loadAndShowConsentForm(
-            onError = onFailure
-        ) },
+    consent.loadAndShowConsentForm(
         onError = onFailure
     )
 }
