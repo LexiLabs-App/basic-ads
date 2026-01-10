@@ -12,6 +12,45 @@ plugins {
     alias(libs.plugins.kover)
 }
 
+/** REMEDIATION **/
+dependencies {
+    /** This patches all transitive dependencies that have vulnerabilities **/
+    constraints {
+        androidMainImplementation(libs.remediate.okhttp) {
+            version { strictly(libs.versions.remediate.okhttp.get()) }
+            because("CVE-2021-0341")
+        }
+        androidMainImplementation(libs.remediate.bitbucket) {
+            version { strictly(libs.versions.remediate.bitbucket.get())}
+            because("CVE-2024-29371")
+        }
+        androidMainImplementation(libs.remediate.netty.codec.http){
+            version { strictly(libs.versions.remediate.netty.get())}
+            because("CVE-2025-67735")
+        }
+        androidMainImplementation(libs.remediate.netty.codec.http2){
+            version { strictly(libs.versions.remediate.netty.get())}
+            because("CVE-2025-55163")
+        }
+        androidMainImplementation(libs.remediate.google.protobuf.kotlin){
+            version { strictly(libs.versions.remediate.google.protobuf.get())}
+            because("CVE-2024-7254")
+        }
+        androidMainImplementation(libs.remediate.google.protobuf.java){
+            version { strictly(libs.versions.remediate.google.protobuf.get())}
+            because("CVE-2024-7254")
+        }
+        androidMainImplementation(libs.remediate.jdom){
+            version { strictly(libs.versions.remediate.jdom.get())}
+            because("CVE-2021-33813")
+        }
+        androidMainImplementation(libs.remediate.apache.compress){
+            version { strictly(libs.versions.remediate.apache.compress.get())}
+            because("CVE-2024-26308")
+        }
+    }
+}
+
 kotlin {
 
     // FORCES CHECK OF PUBLIC API DECLARATIONS
@@ -56,21 +95,6 @@ kotlin {
             compileOnly(libs.android.core)
             compileOnly(libs.android.ump)
             api(libs.android.ump)
-            /** REMEDIATION **/
-            // CVE-2021-0341
-            compileOnly(libs.remediate.okhttp)
-            // CVE-2024-29371
-            compileOnly(libs.remediate.bitbucket)
-            // CVE-2025-67735
-            compileOnly(libs.remediate.netty.codec.http)
-            // CVE-2025-55163
-            compileOnly(libs.remediate.netty.codec.http2)
-            // CVE-2024-7254
-            compileOnly(libs.remediate.google.protobuf.kotlin)
-            // CVE-2024-7254
-            compileOnly(libs.remediate.google.protobuf.java)
-            // CVE-2021-33813
-            compileOnly(libs.remediate.jdom)
         }
         iosMain.dependencies {}
     }
