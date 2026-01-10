@@ -371,7 +371,7 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdConvertersKt {
 	public static final fun toCommon (Lcom/google/android/gms/ads/MediaContent;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$MediaContent;
 	public static final fun toCommon (Lcom/google/android/gms/ads/MuteThisAdReason;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$MuteThisAdReason;
 	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd$AdChoicesInfo;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo;
-	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd$Image;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$Image;
+	public static final fun toCommon (Lcom/google/android/gms/ads/nativead/NativeAd$Image;)Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdIcon;
 }
 
 public final class app/lexilabs/basic/ads/nativead/NativeAdData {
@@ -383,7 +383,7 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdData {
 	public final fun getBody ()Ljava/lang/String;
 	public final fun getCallToAction ()Ljava/lang/String;
 	public final fun getHeadline ()Ljava/lang/String;
-	public final fun getIcon ()Lapp/lexilabs/basic/ads/nativead/NativeAdData$Image;
+	public final fun getIcon ()Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdIcon;
 	public final fun getMediaContent ()Lapp/lexilabs/basic/ads/nativead/NativeAdData$MediaContent;
 	public final fun getMuteThisAdReasons ()Ljava/util/List;
 	public final fun getPlacementId ()Ljava/lang/Long;
@@ -395,11 +395,11 @@ public final class app/lexilabs/basic/ads/nativead/NativeAdData {
 public final class app/lexilabs/basic/ads/nativead/NativeAdData$AdChoicesInfo {
 	public static final field $stable I
 	public fun <init> (Ljava/util/List;Ljava/lang/CharSequence;)V
-	public final fun getImages ()Ljava/util/List;
+	public final fun getAdIcons ()Ljava/util/List;
 	public final fun getText ()Ljava/lang/CharSequence;
 }
 
-public final class app/lexilabs/basic/ads/nativead/NativeAdData$Image {
+public final class app/lexilabs/basic/ads/nativead/NativeAdData$AdIcon {
 	public static final field $stable I
 	public fun <init> (Landroid/graphics/drawable/Drawable;DLandroid/net/Uri;)V
 	public final fun getDrawable ()Landroid/graphics/drawable/Drawable;
@@ -452,12 +452,12 @@ public abstract class app/lexilabs/basic/ads/nativead/NativeAdTemplate : app/lex
 	public static final field $stable I
 	public fun <init> (Lapp/lexilabs/basic/ads/nativead/NativeAdData;)V
 	public final fun AdChoices (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public final fun AdIcon (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lapp/lexilabs/basic/ads/nativead/NativeAdData$AdIcon;Landroidx/compose/runtime/Composer;II)V
 	public final fun Advertiser (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public final fun Attribution (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 	public final fun Body (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public final fun CallToAction (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public final fun Headline (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
-	public final fun Icon (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public final fun Media (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lapp/lexilabs/basic/ads/nativead/ScaleType;Landroidx/compose/runtime/Composer;II)V
 	public final fun NativeAdButton-jB83MbM (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;JJLandroidx/compose/ui/graphics/Shape;Landroidx/compose/runtime/Composer;II)V
 	public final fun Price (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V

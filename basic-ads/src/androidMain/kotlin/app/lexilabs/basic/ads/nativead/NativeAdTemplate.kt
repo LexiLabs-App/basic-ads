@@ -1,6 +1,7 @@
 package app.lexilabs.basic.ads.nativead
 
 import android.view.View
+import androidx.compose.foundation.Image
 import android.widget.ImageView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,10 +14,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.graphics.drawable.toBitmap
 import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import com.google.android.gms.ads.nativead.AdChoicesView
 import com.google.android.gms.ads.nativead.MediaView
@@ -169,21 +172,27 @@ public actual abstract class NativeAdTemplate public actual constructor(
     }
 
     @Composable
-    public actual fun SupervisorScope.Icon(
+    public actual fun SupervisorScope.AdIcon(
         modifier: Modifier,
-        content: @Composable () -> Unit
+        adIcon: NativeAdData.AdIcon
     ) {
         require(nativeAdData != null) { "nativeAdData cannot be null" }
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
-        AndroidView(
-            factory = {
-                nativeAdView.iconView = localComposeView
-                localComposeView.apply { setContent(content) }
-            },
-            modifier = modifier,
-        )
+        adIcon.drawable?.let { image ->
+            AndroidView(
+                factory = {
+                    nativeAdView.iconView = localComposeView
+                    localComposeView.apply {
+                        setContent {
+                            Image(bitmap = image.toBitmap().asImageBitmap(), "Icon")
+                        }
+                    }
+                },
+                modifier = modifier,
+            )
+        }
     }
 
     @Composable

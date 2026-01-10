@@ -20,7 +20,7 @@ public actual class NativeAdData(
         get() = ios.callToAction
     public actual val headline: String?
         get() = ios.headline
-    public actual val icon: Image?
+    public actual val icon: AdIcon?
         get() = ios.icon?.toCommon()
     public actual val mediaContent: MediaContent?
         get() = ios.mediaContent.toCommon()
@@ -35,10 +35,10 @@ public actual class NativeAdData(
     public actual val store: String?
         get() = ios.store
     public actual class AdChoicesInfo (
-        public val images: List<Image>,
+        public val images: List<AdIcon>,
         public val text: CharSequence
     )
-    public actual class Image (
+    public actual class AdIcon (
         public val image: UIImage?,
         public val scale: CGFloat,
         public val imageUrl: NSURL?

@@ -166,18 +166,20 @@ public actual abstract class NativeAdTemplate public actual constructor(
     }
 
     @Composable
-    public actual fun SupervisorScope.Icon(
+    public actual fun SupervisorScope.AdIcon(
         modifier: Modifier,
-        content: @Composable () -> Unit
+        adIcon: NativeAdData.AdIcon
     ) {
         require(nativeAdData != null) { "nativeAdData cannot be null" }
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                nativeAdView.iconView = uiView
-            }
-        )
+        adIcon.image?.let {
+            ComposeInUIView(
+                content = { it },
+                modifier = modifier,
+                update = { uiView ->
+                    nativeAdView.iconView = uiView
+                }
+            )
+        }
     }
 
     @Composable

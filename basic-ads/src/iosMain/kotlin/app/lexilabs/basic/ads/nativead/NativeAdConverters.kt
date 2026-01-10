@@ -6,8 +6,8 @@ import cocoapods.Google_Mobile_Ads_SDK.mainImage
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)
-public fun GADNativeAdImage.toCommon(): NativeAdData.Image {
-    return NativeAdData.Image(
+public fun GADNativeAdImage.toCommon(): NativeAdData.AdIcon {
+    return NativeAdData.AdIcon(
         image = this.image,
         scale = this.scale,
         imageUrl = this.imageURL

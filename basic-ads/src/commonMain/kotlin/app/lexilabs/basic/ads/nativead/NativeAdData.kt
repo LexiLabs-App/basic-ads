@@ -6,7 +6,7 @@ public expect class NativeAdData{
     public val body: String?
     public val callToAction: String?
     public val headline: String?
-    public val icon: Image?
+    public val icon: AdIcon?
     public val mediaContent: MediaContent?
     public val muteThisAdReasons: List<MuteThisAdReason>
     public val placementId: Long?
@@ -14,7 +14,7 @@ public expect class NativeAdData{
     public val starRating: Double?
     public val store: String?
     public class AdChoicesInfo
-    public class Image
+    public class AdIcon
     public class MediaContent
     public class MuteThisAdReason
 }

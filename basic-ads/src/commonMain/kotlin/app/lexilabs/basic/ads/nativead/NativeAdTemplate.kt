@@ -67,9 +67,9 @@ public expect abstract class NativeAdTemplate public constructor(
     )
 
     @Composable
-    public fun SupervisorScope.Icon(
+    public fun SupervisorScope.AdIcon(
         modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        adIcon: NativeAdData.AdIcon
     )
 
     @Composable
