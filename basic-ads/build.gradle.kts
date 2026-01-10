@@ -56,6 +56,21 @@ kotlin {
             compileOnly(libs.android.core)
             compileOnly(libs.android.ump)
             api(libs.android.ump)
+            /** REMEDIATION **/
+            // CVE-2021-0341
+            compileOnly(libs.remediate.okhttp)
+            // CVE-2024-29371
+            compileOnly(libs.remediate.bitbucket)
+            // CVE-2025-67735
+            compileOnly(libs.remediate.netty.codec.http)
+            // CVE-2025-55163
+            compileOnly(libs.remediate.netty.codec.http2)
+            // CVE-2024-7254
+            compileOnly(libs.remediate.google.protobuf.kotlin)
+            // CVE-2024-7254
+            compileOnly(libs.remediate.google.protobuf.java)
+            // CVE-2021-33813
+            compileOnly(libs.remediate.jdom)
         }
         iosMain.dependencies {}
     }
