@@ -1,5 +1,7 @@
 package app.lexilabs.basic.ads
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import cocoapods.GoogleUserMessagingPlatform.UMPDebugSettings
 import kotlinx.cinterop.ExperimentalForeignApi
 
@@ -13,6 +15,22 @@ public actual class ConsentDebugSettings internal constructor(
 
     public actual val isTestDevice: Boolean
         get() = !ios.testDeviceIdentifiers.isNullOrEmpty()
+
+    public actual companion object {
+        @ReadOnlyComposable
+        @Composable
+        public actual fun builder(
+            debugGeography: DebugGeography?,
+            hashedId: String?,
+            forceTesting: Boolean?,
+        ): ConsentDebugSettings {
+            val builder = Builder(null)
+            debugGeography?.let { builder.setDebugGeography(it) }
+            hashedId?.let { builder.addTestDeviceHashedId(it) }
+            forceTesting?.let { builder.setForceTesting(it) }
+            return builder.build()
+        }
+    }
 
     public actual class Builder actual constructor(activity: Any?) {
         internal val builder = UMPDebugSettings()

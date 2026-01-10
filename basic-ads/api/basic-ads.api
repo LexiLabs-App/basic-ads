@@ -125,6 +125,7 @@ public final class app/lexilabs/basic/ads/Consent {
 
 public final class app/lexilabs/basic/ads/ConsentDebugSettings {
 	public static final field $stable I
+	public static final field Companion Lapp/lexilabs/basic/ads/ConsentDebugSettings$Companion;
 	public final fun getDebugGeography ()Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;
 	public final fun isTestDevice ()Z
 }
@@ -136,6 +137,10 @@ public final class app/lexilabs/basic/ads/ConsentDebugSettings$Builder {
 	public final fun build ()Lapp/lexilabs/basic/ads/ConsentDebugSettings;
 	public final fun setDebugGeography (Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
 	public final fun setForceTesting (Z)Lapp/lexilabs/basic/ads/ConsentDebugSettings$Builder;
+}
+
+public final class app/lexilabs/basic/ads/ConsentDebugSettings$Companion {
+	public final fun builder (Lapp/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography;Ljava/lang/String;Ljava/lang/Boolean;Landroidx/compose/runtime/Composer;II)Lapp/lexilabs/basic/ads/ConsentDebugSettings;
 }
 
 public final class app/lexilabs/basic/ads/ConsentDebugSettings$DebugGeography : java/lang/Enum {
@@ -297,9 +302,9 @@ public final class app/lexilabs/basic/ads/composable/BannerAdKt {
 }
 
 public final class app/lexilabs/basic/ads/composable/ConsentPopupKt {
-	public static final fun ConsentPopup (Lapp/lexilabs/basic/ads/Consent;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ConsentPopup (Lapp/lexilabs/basic/ads/Consent;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 	public static final fun ConsentPopup (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
-	public static final fun ConsentPopup (Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)V
+	public static final fun ConsentPopup (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class app/lexilabs/basic/ads/composable/InterstitialAdKt {

@@ -1,5 +1,8 @@
 package app.lexilabs.basic.ads
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+
 /**
  * Debug settings to hardcode in test requests to [Consent.requestConsentInfoUpdate].
  *
@@ -22,6 +25,23 @@ public expect class ConsentDebugSettings {
      * Returns `true` if this device is a test device.
      */
     public val isTestDevice: Boolean
+
+    public companion object {
+        /**
+         * Composable Builder of [ConsentDebugSettings].
+         *
+         * @param debugGeography The [DebugGeography] to set while testing [Consent.requestConsentInfoUpdate]
+         * @param hashedId The hashId from the test device
+         * @param forceTesting `true` if you want to force testing
+         */
+        @ReadOnlyComposable
+        @Composable
+        public fun builder(
+            debugGeography: DebugGeography? = null,
+            hashedId: String? = null,
+            forceTesting: Boolean? = null,
+        ): ConsentDebugSettings
+    }
 
     /**
      * Builder of [ConsentDebugSettings].

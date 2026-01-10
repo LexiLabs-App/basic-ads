@@ -28,8 +28,12 @@ import app.lexilabs.basic.ads.DependsOnGoogleUserMessagingPlatform
 @Composable
 public actual fun rememberConsent(): MutableState<Consent> {
     val consent = remember(null) { mutableStateOf(Consent(null)) }
-    consent.value.isPrivacyOptionsRequired()
-    consent.value.canRequestAds()
+    consent.value.requestConsentInfoUpdate(
+        onCompletion = {
+            consent.value.isPrivacyOptionsRequired()
+            consent.value.canRequestAds()
+        }
+    )
     return consent
 }
 
@@ -118,7 +122,11 @@ public actual fun rememberConsent(
     activity: Any?
 ): MutableState<Consent> {
     val consent = remember(activity) { mutableStateOf(Consent(activity)) }
-    consent.value.isPrivacyOptionsRequired()
-    consent.value.canRequestAds()
+    consent.value.requestConsentInfoUpdate(
+        onCompletion = {
+            consent.value.isPrivacyOptionsRequired()
+            consent.value.canRequestAds()
+        }
+    )
     return consent
 }
