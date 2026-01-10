@@ -10,6 +10,7 @@ import androidx.compose.ui.viewinterop.UIKitView
 import androidx.compose.ui.window.ComposeUIViewController
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
+import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
@@ -31,6 +32,7 @@ import platform.UIKit.willMoveToParentViewController
  * @param onFailure a callback that will be invoked when the ad fails to load
  * @param onLoad a callback that will be invoked when the ad has loaded
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Composable
 public actual fun NativeAd(
@@ -70,6 +72,7 @@ public actual fun NativeAd(
  * @param onFailure a callback that will be invoked when the ad fails to load
  * @param onLoad a callback that will be invoked when the ad has loaded
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
@@ -105,6 +108,7 @@ public actual fun NativeAd(
  * @param nativeAdTemplate the composable that will be used to display the native ad
  */
 @OptIn(ExperimentalForeignApi::class)
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Composable
 public actual fun NativeAd(

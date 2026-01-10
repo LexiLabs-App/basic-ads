@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
+import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
@@ -24,6 +25,7 @@ import app.lexilabs.basic.ads.nativead.NativeAdView as NativeAdViewWrapper
  * @param onFailure A callback invoked when the ad fails to load.
  * @param onLoad A callback invoked when the ad has successfully loaded.
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @RequiresPermission("android.permission.INTERNET")
 @Composable
@@ -68,6 +70,7 @@ public actual fun NativeAd(
  * @param onFailure A callback invoked when the ad fails to load.
  * @param onLoad A callback invoked when the ad has successfully loaded.
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @RequiresPermission("android.permission.INTERNET")
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
@@ -107,6 +110,7 @@ public actual fun NativeAd(
  * @param loadedAd The [NativeAdHandler] containing the pre-loaded native ad.
  * @param nativeAdTemplate The composable template used to render the native ad UI.
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Composable
 public actual fun NativeAd(

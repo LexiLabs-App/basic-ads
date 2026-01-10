@@ -3,6 +3,7 @@ package app.lexilabs.basic.ads.composable
 import androidx.compose.runtime.Composable
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
+import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import app.lexilabs.basic.ads.nativead.NativeAdDefault
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 import app.lexilabs.basic.ads.nativead.NativeAdTemplate
@@ -18,6 +19,7 @@ import app.lexilabs.basic.ads.nativead.NativeAdTemplate
  * @param onFailure a callback that will be invoked when the ad fails to load
  * @param onLoad a callback that will be invoked when the ad has loaded
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Composable
 public expect fun NativeAd(
@@ -43,6 +45,7 @@ public expect fun NativeAd(
  * @param onFailure a callback that will be invoked when the ad fails to load
  * @param onLoad a callback that will be invoked when the ad has loaded
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
@@ -63,6 +66,7 @@ public expect fun NativeAd(
  * @param loadedAd the pre-loaded native ad
  * @param nativeAdTemplate the composable that will be used to display the native ad
  */
+@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Composable
 public expect fun NativeAd(
