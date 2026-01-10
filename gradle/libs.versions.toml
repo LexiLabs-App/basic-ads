@@ -15,6 +15,7 @@ bcv = "0.18.1"
 dokka = "2.1.0" #"2.0.0"
 compose = "1.9.3"
 google-play-services-ads = "24.9.0"
+android-core = "1.17.0"
 annotations = "1.9.1"
 kover = "0.9.4"
 logging = "0.2.6"
@@ -25,13 +26,14 @@ maven-publish = "0.35.0"
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 google-play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "google-play-services-ads"}
+android-core = { module = "androidx.core:core-ktx", version.ref = "android-core"}
 annotations = { module = "androidx.annotation:annotation", version.ref = "annotations"}
 lexilabs-basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "logging" }
 android-ump = { module = "com.google.android.ump:user-messaging-platform", version.ref = "android-ump"}
 
 [plugins]
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-android-library = { id = "com.android.library", version.ref = "agp" }
+multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp"}
 kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv"}
 kotlinx-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
 native-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }

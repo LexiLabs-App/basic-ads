@@ -1,9 +1,10 @@
+import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.multiplatform.library)
     alias(libs.plugins.kotlinx.binary.compatibility.validator)
     alias(libs.plugins.dokka)
     alias(libs.plugins.native.cocoapods)
@@ -52,6 +53,7 @@ kotlin {
         }
         androidMain.dependencies {
             compileOnly(libs.google.play.services.ads)
+            compileOnly(libs.android.core)
             compileOnly(libs.android.ump)
             api(libs.android.ump)
         }
@@ -71,34 +73,15 @@ kotlin {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 
-    // Android JVM target target options
-    androidTarget {
-        publishLibraryVariants("release", "debug")
-        compilations.all{
-            compileTaskProvider.configure{
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_17)
-                }
-            }
-        }
-    }
-}
-
-android {
-    namespace = "app.lexilabs.basic.ads"
-    compileSdk = libs.versions.build.sdk.compile.get().toInt()
-
-    defaultConfig {
+    @Suppress("UnstableApiUsage")
+    androidLibrary{
+        namespace = "app.lexilabs.basic.ads"
+        compileSdk = libs.versions.build.sdk.compile.get().toInt()
         minSdk = libs.versions.build.sdk.min.get().toInt()
-    }
-    testOptions {
-        targetSdk = libs.versions.build.sdk.target.get().toInt()
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    buildFeatures{
-        compose = true
+        withJava()
+
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
 }
