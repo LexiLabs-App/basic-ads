@@ -21,6 +21,13 @@ kover = "0.9.4"
 logging = "0.2.6"
 android-ump = "4.0.0"
 maven-publish = "0.35.0"
+# REMEDIATION
+remediate-okhttp = "5.3.2"
+remediate-bitbucket = "0.9.6"
+remediate-netty = "4.2.9.Final"
+remediate-google-protobuf = "4.33.3"
+remediate-jdom = "2.0.6.1"
+remediate-apache-compress = "1.28.0"
 
 [libraries]
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
@@ -31,13 +38,14 @@ annotations = { module = "androidx.annotation:annotation", version.ref = "annota
 lexilabs-basic-logging = { module = "app.lexilabs.basic:basic-logging", version.ref = "logging" }
 android-ump = { module = "com.google.android.ump:user-messaging-platform", version.ref = "android-ump"}
 # REMEDIATION
-remediate-okhttp = { module = "com.squareup.okhttp3:okhttp", version = { strictly = "5.3.2" } }
-remediate-bitbucket = { module = "org.bitbucket.b_c:jose4j", version = { strictly = "0.9.6" } }
-remediate-netty-codec-http = { module = "io.netty:netty-codec-http", version = { strictly = "4.2.9.Final" } }
-remediate-netty-codec-http2 = { module = "io.netty:netty-codec-http2", version = { strictly = "4.2.9.Final" } }
-remediate-google-protobuf-kotlin = { module = "com.google.protobuf:protobuf-kotlin", version = { strictly = "4.33.3"}}
-remediate-google-protobuf-java = { module = "com.google.protobuf:protobuf-java", version = { strictly = "4.33.3"}}
-remediate-jdom = { module = "org.jdom:jdom2", version = { strictly = "2.0.6.1" } }
+remediate-okhttp = { module = "com.squareup.okhttp3:okhttp" }
+remediate-bitbucket = { module = "org.bitbucket.b_c:jose4j" }
+remediate-netty-codec-http = { module = "io.netty:netty-codec-http" }
+remediate-netty-codec-http2 = { module = "io.netty:netty-codec-http2" }
+remediate-google-protobuf-kotlin = { module = "com.google.protobuf:protobuf-kotlin" }
+remediate-google-protobuf-java = { module = "com.google.protobuf:protobuf-java" }
+remediate-jdom = { module = "org.jdom:jdom2" }
+remediate-apache-compress = { module = "org.apache.commons:commons-compress" }
 
 [plugins]
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
