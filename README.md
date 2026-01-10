@@ -4,7 +4,7 @@
 ![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
 ![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
 [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
@@ -39,7 +39,7 @@ For **iOS**, complete the steps in AdMob's instructions:
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 > [!IMPORTANT] 
 > Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
@@ -60,16 +60,16 @@ google-play-services-ads = { module = "com.google.android.gms:play-services-ads"
 android-ump = { module = "com.google.android.ump:user-messaging-platform", version.ref = "android-ump" }
 
 [plugins] # make sure you're using the JetBrains plugin to import your composables
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+jetbrains-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ```
 
 then include the library in your gradle build
 ```kotlin
 // in your 'composeApp/build.gradle.kts' file
 plugins {
-    alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrains.compose)
+    alias(libs.plugins.jetbrains.compose.compiler)
 }
 
 sourceSets {
@@ -78,7 +78,7 @@ sourceSets {
         implementation(compose.foundation)
         implementation(compose.material)
         implementation(compose.ui)
-        implementation(libs.lexilabs.basic.ads)
+        implementation(libs.basic.ads)
     }
     androidMain.dependencies {
         implementation(libs.google.play.services.ads)
