@@ -131,18 +131,18 @@ public actual fun NativeAd(
         val parentController = LocalUIViewController.current
 
         // We create and remember a ComposeUIViewController to host our custom ad template.
-        val composeController = remember {
+        val adTemplateController = remember {
             ComposeUIViewController { nativeAdTemplate.copy(adData).Show() }
         }
 
         // This effect correctly manages the lifecycle of the child view controller.
-        DisposableEffect(parentController, composeController) {
-            parentController.addChildViewController(composeController)
-            composeController.didMoveToParentViewController(parentController)
+        DisposableEffect(parentController, adTemplateController) {
+            parentController.addChildViewController(adTemplateController)
+            adTemplateController.didMoveToParentViewController(parentController)
             onDispose {
-                composeController.willMoveToParentViewController(null)
-                composeController.view.removeFromSuperview()
-                composeController.removeFromParentViewController()
+                adTemplateController.willMoveToParentViewController(null)
+                adTemplateController.view.removeFromSuperview()
+                adTemplateController.removeFromParentViewController()
             }
         }
 
@@ -151,17 +151,17 @@ public actual fun NativeAd(
                 Log.i("NativeAd", "Creating UIKitView")
 
                 val nativeAdView = GADNativeAdView()
-                val composeView = composeController.view
+                val adTemplate = adTemplateController.view
 
-                composeView.translatesAutoresizingMaskIntoConstraints = false
-                nativeAdView.addSubview(composeView)
+                adTemplate.translatesAutoresizingMaskIntoConstraints = false
+                nativeAdView.addSubview(adTemplate)
 
                 NSLayoutConstraint.activateConstraints(
                     listOf(
-                        composeView.leadingAnchor.constraintEqualToAnchor(nativeAdView.leadingAnchor),
-                        composeView.trailingAnchor.constraintEqualToAnchor(nativeAdView.trailingAnchor),
-                        composeView.topAnchor.constraintEqualToAnchor(nativeAdView.topAnchor),
-                        composeView.bottomAnchor.constraintEqualToAnchor(nativeAdView.bottomAnchor)
+                        adTemplate.leadingAnchor.constraintEqualToAnchor(nativeAdView.leadingAnchor),
+                        adTemplate.trailingAnchor.constraintEqualToAnchor(nativeAdView.trailingAnchor),
+                        adTemplate.topAnchor.constraintEqualToAnchor(nativeAdView.topAnchor),
+                        adTemplate.bottomAnchor.constraintEqualToAnchor(nativeAdView.bottomAnchor)
                     )
                 )
                 nativeAdView
