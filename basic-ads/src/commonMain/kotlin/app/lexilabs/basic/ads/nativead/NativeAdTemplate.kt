@@ -83,6 +83,7 @@ public expect abstract class NativeAdTemplate public constructor(
         content: @Composable () -> Unit
     )
 
+    // TODO: Convert to a picture of stars
     @Composable
     public fun SupervisorScope.StarRating(
         modifier: Modifier = Modifier,

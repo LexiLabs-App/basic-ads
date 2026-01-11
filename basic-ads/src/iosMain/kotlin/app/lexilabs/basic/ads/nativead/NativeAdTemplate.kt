@@ -14,19 +14,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.uikit.LocalUIView
-import androidx.compose.ui.uikit.LocalUIViewController
 import androidx.compose.ui.viewinterop.UIKitView
-import androidx.compose.ui.window.ComposeUIViewController
 import app.lexilabs.basic.ads.AdException
 import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import cocoapods.Google_Mobile_Ads_SDK.GADAdChoicesView
+import cocoapods.Google_Mobile_Ads_SDK.GADMediaContent
+import cocoapods.Google_Mobile_Ads_SDK.GADMediaView
 import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
 import kotlinx.cinterop.ExperimentalForeignApi
-import platform.UIKit.UIView
-import platform.UIKit.addChildViewController
-import platform.UIKit.didMoveToParentViewController
-import platform.UIKit.removeFromParentViewController
-import platform.UIKit.willMoveToParentViewController
+import platform.UIKit.UIButton
+import platform.UIKit.UIControlStateNormal
+import platform.UIKit.UIImageView
+import platform.UIKit.UILabel
 
 @ExperimentalBasicAdsFeature
 public actual abstract class NativeAdTemplate public actual constructor(
@@ -38,8 +37,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
     public actual abstract fun copy(nativeAdData: NativeAdData?): NativeAdTemplate
 
     @OptIn(ExperimentalForeignApi::class)
-    private val nativeAdView: GADNativeAdView = GADNativeAdView.new() ?:
-        throw AdException("NativeAdView null")
+    internal val nativeAdView: GADNativeAdView = GADNativeAdView.new() ?: throw AdException("GADNativeAdView is null")
 
     @Composable
     public actual abstract fun Show(modifier: Modifier)
@@ -78,11 +76,14 @@ public actual abstract class NativeAdTemplate public actual constructor(
     public actual fun SupervisorScope.AdChoices(
         modifier: Modifier
     ) {
-        ViewInUIView(
-            modifier = modifier,
-            update = {
-                nativeAdView.adChoicesView = GADAdChoicesView.new()
-            }
+        UIKitView(
+            factory = {
+                GADAdChoicesView.new() ?: throw AdException("GADAdChoicesView is null")
+            },
+            update = { adChoices ->
+                nativeAdView.adChoicesView = adChoices
+            },
+            modifier = modifier
         )
     }
 
@@ -92,13 +93,19 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                // Assign the created UIView to the GADNativeAdView
-                nativeAdView.advertiserView = uiView
-            }
+        UIKitView(
+            factory = {
+                UILabel.new() ?: throw AdException("UILabel is null")
+            },
+            update = { advertiser ->
+                if (nativeAdData?.advertiser.isNullOrBlank()) {
+                    advertiser.hidden = true
+                } else {
+                    advertiser.text = nativeAdData?.advertiser
+                }
+                nativeAdView.advertiserView = advertiser
+            },
+            modifier = modifier
         )
     }
 
@@ -120,12 +127,19 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                nativeAdView.bodyView = uiView
-            }
+        UIKitView(
+            factory = {
+                UILabel.new() ?: throw AdException("UILabel is null")
+            },
+            update = { body ->
+                if (nativeAdData?.body.isNullOrBlank()){
+                    body.hidden = true
+                } else {
+                    body.text = nativeAdData?.body
+                }
+                nativeAdView.bodyView = body
+            },
+            modifier = modifier
         )
     }
 
@@ -134,14 +148,23 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                nativeAdView.callToActionView = uiView
-                // Make the view interactive for clicks
-                nativeAdView.callToActionView?.setUserInteractionEnabled(true)
-            }
+        UIKitView(
+            factory = {
+                UIButton.new() ?: throw AdException("UIButton is null")
+            },
+            update = { cta ->
+                if (nativeAdData?.callToAction.isNullOrBlank()) {
+                    cta.hidden = true
+                } else {
+                    cta.setTitle(
+                        title = nativeAdData?.callToAction,
+                        forState = UIControlStateNormal
+                    )
+                }
+                cta.setUserInteractionEnabled(false)
+                nativeAdView.callToActionView = cta
+            },
+            modifier = modifier
         )
     }
 
@@ -150,12 +173,19 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                nativeAdView.headlineView = uiView
-            }
+        UIKitView(
+            factory = {
+                UILabel.new() ?: throw AdException("UILabel is null")
+            },
+            update = { headline ->
+                if (nativeAdData?.headline.isNullOrBlank()) {
+                    headline.hidden = true
+                } else {
+                    headline.text = nativeAdData?.headline
+                }
+                nativeAdView.headlineView = headline
+            },
+            modifier = modifier
         )
     }
 
@@ -164,15 +194,20 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         adIcon: NativeAdData.AdIcon
     ) {
-        adIcon.image?.let {
-            ComposeInUIView(
-                content = { it },
-                modifier = modifier,
-                update = { uiView ->
-                    nativeAdView.iconView = uiView
+        UIKitView(
+            factory = {
+                UIImageView.new() ?: throw AdException("UIImageView is null")
+            },
+            update = { icon ->
+                if (nativeAdData?.headline.isNullOrEmpty()) {
+                    icon.hidden = true
+                } else {
+                    icon.image = adIcon.image
                 }
-            )
-        }
+                nativeAdView.iconView = icon
+            },
+            modifier = modifier
+        )
     }
 
     @Composable
@@ -180,12 +215,20 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         scaleType: ScaleType?
     ) {
-        ViewInUIView(
-            modifier = modifier,
-            update = { _ ->
-                nativeAdView.mediaView?.mediaContent = nativeAdData?.ios?.mediaContent
-                scaleType?.let { nativeAdView.mediaView?.contentMode = it.toIos() }
-            }
+        UIKitView(
+            factory = {
+                GADMediaView.new() ?: throw AdException("GADMediaView is null")
+            },
+            update = { media ->
+                if (nativeAdData?.ios?.mediaContent != null) {
+                    val content: GADMediaContent = nativeAdData?.ios?.mediaContent ?: throw AdException("GADMediaContent is null")
+                    media.mediaContent = content
+                } else {
+                    media.hidden = true
+                }
+                nativeAdView.mediaView = media
+            },
+            modifier = modifier
         )
     }
 
@@ -194,12 +237,19 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                nativeAdView.priceView = uiView
-            }
+        UIKitView(
+            factory = {
+                UILabel.new() ?: throw AdException("UILabel is null")
+            },
+            update = { price ->
+                if (nativeAdData?.price.isNullOrBlank()) {
+                    price.hidden = true
+                } else {
+                    price.text = nativeAdData?.price
+                }
+                nativeAdView.priceView = price
+            },
+            modifier = modifier
         )
     }
 
@@ -208,12 +258,19 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                nativeAdView.starRatingView = uiView
-            }
+        UIKitView(
+            factory = {
+                UILabel.new() ?: throw AdException("UILabel is null")
+            },
+            update = { starRating ->
+                if (nativeAdData?.ios?.starRating != null) {
+                    starRating.text = nativeAdData?.ios?.starRating.toString()
+                } else {
+                    starRating.hidden = true
+                }
+                nativeAdView.starRatingView = starRating
+            },
+            modifier = modifier
         )
     }
 
@@ -222,12 +279,19 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        ComposeInUIView(
-            content = content,
-            modifier = modifier,
-            update = { uiView ->
-                nativeAdView.storeView = uiView
-            }
+        UIKitView(
+            factory = {
+                UILabel.new() ?: throw AdException("UILabel is null")
+            },
+            update = { store ->
+                if (nativeAdData?.store.isNullOrBlank()) {
+                    store.hidden = true
+                } else {
+                    store.text = nativeAdData?.store
+                }
+                nativeAdView.storeView = store
+            },
+            modifier = modifier
         )
     }
 
@@ -244,91 +308,5 @@ public actual abstract class NativeAdTemplate public actual constructor(
         ) {
             BasicText(color = { textColor }, text = text)
         }
-    }
-
-    /**
-     * A composable that embeds a Compose view in a UIView.
-     *
-     * @param content The content to be embedded.
-     * @param modifier The modifier to be applied to the view.
-     * @param update A callback to be invoked when the view is updated.
-     */
-    @OptIn(ExperimentalForeignApi::class)
-    @Composable
-    private fun ComposeInUIView(
-        content: @Composable () -> Unit,
-        modifier: Modifier = Modifier,
-        update: (UIView) -> Unit = {}
-    ) {
-        val parentController = LocalUIViewController.current
-
-        // 1. Create and remember a UIViewController that will host the Compose content.
-        val composeController = remember { ComposeUIViewController { content() } }
-
-        // 2. Manage the lifecycle of the child view controller.
-        DisposableEffect(parentController, composeController) {
-            parentController.addChildViewController(composeController)
-            composeController.didMoveToParentViewController(parentController)
-            onDispose {
-                composeController.willMoveToParentViewController(null)
-                composeController.view.removeFromSuperview()
-                composeController.removeFromParentViewController()
-            }
-        }
-
-        // 3. Use UIKitView to get the underlying UIView and add it to the composition.
-        UIKitView(
-            factory = {
-                // The composeController.view is the UIView that renders your content.
-                composeController.view
-            },
-            modifier = modifier,
-            update = {
-                // Re-run the update block if the view needs to be reconfigured.
-                update(it)
-            }
-        )
-    }
-
-    /**
-     * A composable that embeds a UIView in a Compose view.
-     *
-     * @param modifier The modifier to be applied to the view.
-     * @param update A callback to be invoked when the view is updated.
-     */
-    @OptIn(ExperimentalForeignApi::class)
-    @Composable
-    private fun ViewInUIView(
-        modifier: Modifier = Modifier,
-        update: (UIView) -> Unit = {}
-    ) {
-        val parentController = LocalUIViewController.current
-
-        // 1. Create and remember a UIViewController that will host the Compose content.
-        val composeController = remember { ComposeUIViewController { } }
-
-        // 2. Manage the lifecycle of the child view controller.
-        DisposableEffect(parentController, composeController) {
-            parentController.addChildViewController(composeController)
-            composeController.didMoveToParentViewController(parentController)
-            onDispose {
-                composeController.willMoveToParentViewController(null)
-                composeController.view.removeFromSuperview()
-                composeController.removeFromParentViewController()
-            }
-        }
-
-        // 3. Use UIKitView to get the underlying UIView and add it to the composition.
-        UIKitView(
-            factory = {
-                // The composeController.view is the UIView that renders your content.
-                composeController.view
-            },
-            modifier = modifier,
-            update = {
-                // Re-run the update block if the view needs to be reconfigured.
-                update(it)
-            }
-        )
     }
 }
