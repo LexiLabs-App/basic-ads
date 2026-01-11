@@ -20,12 +20,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.graphics.drawable.toBitmap
-import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import com.google.android.gms.ads.nativead.AdChoicesView
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAdView
 
-@ExperimentalBasicAdsFeature
 public actual abstract class NativeAdTemplate public actual constructor(
     public actual override val nativeAdData: NativeAdData?
 ): NativeAdScope {

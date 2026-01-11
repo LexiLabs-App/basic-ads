@@ -5,9 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 
-@ExperimentalBasicAdsFeature
 public expect abstract class NativeAdTemplate public constructor(
     nativeAdData: NativeAdData?
 ): NativeAdScope {

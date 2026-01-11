@@ -10,10 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import app.lexilabs.basic.logging.Log
 
-@ExperimentalBasicAdsFeature
 public class NativeAdDefault public constructor(
     override val nativeAdData: NativeAdData? = null
 ): NativeAdTemplate(nativeAdData) {

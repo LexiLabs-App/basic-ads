@@ -10,13 +10,10 @@ import androidx.compose.ui.viewinterop.UIKitView
 import androidx.compose.ui.window.ComposeUIViewController
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
-import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 import app.lexilabs.basic.ads.nativead.NativeAdTemplate
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
 import kotlinx.cinterop.ExperimentalForeignApi
-import platform.UIKit.NSLayoutConstraint
 import platform.UIKit.addChildViewController
 import platform.UIKit.didMoveToParentViewController
 import platform.UIKit.removeFromParentViewController
@@ -33,7 +30,6 @@ import platform.UIKit.willMoveToParentViewController
  * @param onFailure a callback that will be invoked when the ad fails to load
  * @param onLoad a callback that will be invoked when the ad has loaded
  */
-@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Composable
 public actual fun NativeAd(
@@ -73,7 +69,6 @@ public actual fun NativeAd(
  * @param onFailure a callback that will be invoked when the ad fails to load
  * @param onLoad a callback that will be invoked when the ad has loaded
  */
-@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Deprecated("The `activity` argument is no longer required as of v1.1.0-beta01")
 @Composable
@@ -109,7 +104,6 @@ public actual fun NativeAd(
  * @param nativeAdTemplate the composable that will be used to display the native ad
  */
 @OptIn(ExperimentalForeignApi::class)
-@ExperimentalBasicAdsFeature
 @DependsOnGoogleMobileAds
 @Composable
 public actual fun NativeAd(
@@ -123,7 +117,6 @@ public actual fun NativeAd(
     }
 
     val adData = loadedAd.render()
-    val nativeAd = adData.ios
 
     // By keying this composable against the ad handler, we ensure that if a new ad is loaded,
     // the entire UIKitView is recomposed, correctly displaying the new ad.
@@ -146,30 +139,11 @@ public actual fun NativeAd(
             }
         }
 
+        // The UIKitView now simply hosts the view from the ad template controller.
+        // The template itself is now responsible for creating the GADNativeAdView.
         UIKitView(
             factory = {
-                Log.i("NativeAd", "Creating UIKitView")
-
-                val nativeAdView = GADNativeAdView()
-                val adTemplate = adTemplateController.view
-
-                adTemplate.translatesAutoresizingMaskIntoConstraints = false
-                nativeAdView.addSubview(adTemplate)
-
-                NSLayoutConstraint.activateConstraints(
-                    listOf(
-                        adTemplate.leadingAnchor.constraintEqualToAnchor(nativeAdView.leadingAnchor),
-                        adTemplate.trailingAnchor.constraintEqualToAnchor(nativeAdView.trailingAnchor),
-                        adTemplate.topAnchor.constraintEqualToAnchor(nativeAdView.topAnchor),
-                        adTemplate.bottomAnchor.constraintEqualToAnchor(nativeAdView.bottomAnchor)
-                    )
-                )
-                nativeAdView
-            },
-            update = { nativeAdView ->
-                Log.i("NativeAd", "Updating UIKitView")
-                // Associate the GADNativeAd with the GADNativeAdView. This is crucial for tracking.
-                nativeAdView.nativeAd = nativeAd
+                adTemplateController.view
             }
         )
     }

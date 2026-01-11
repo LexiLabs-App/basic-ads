@@ -5,18 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.uikit.LocalUIView
 import androidx.compose.ui.viewinterop.UIKitView
 import app.lexilabs.basic.ads.AdException
-import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import cocoapods.Google_Mobile_Ads_SDK.GADAdChoicesView
 import cocoapods.Google_Mobile_Ads_SDK.GADMediaContent
 import cocoapods.Google_Mobile_Ads_SDK.GADMediaView
@@ -27,7 +23,6 @@ import platform.UIKit.UIControlStateNormal
 import platform.UIKit.UIImageView
 import platform.UIKit.UILabel
 
-@ExperimentalBasicAdsFeature
 public actual abstract class NativeAdTemplate public actual constructor(
     public actual override val nativeAdData: NativeAdData?
 ): NativeAdScope {
@@ -53,21 +48,17 @@ public actual abstract class NativeAdTemplate public actual constructor(
         content: @Composable SupervisorScope.() -> Unit
     ) {
         require(nativeAdData != null) { "nativeAdData cannot be null" }
-        val parentView = LocalUIView.current
-        val nativeAdView = remember(parentView) {
-            var p = parentView.superview
-            while (p != null && p !is GADNativeAdView) {
-                p = p.superview
-            }
-            p
-        }
-        DisposableEffect(nativeAdView, nativeAdData) {
-            // By the time this effect runs, the child AndroidViews have been composed
-            // and their update blocks have run, registering the views. Now it's safe
-            // to associate the ad with the view.
-            nativeAdView?.setNativeAd(nativeAdData!!.ios)
-            onDispose {}
-        }
+
+        UIKitView(
+            factory = { nativeAdView },
+            update = { view ->
+                nativeAdView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).setActive(true)
+                nativeAdView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).setActive(true)
+                nativeAdView.topAnchor.constraintEqualToAnchor(view.topAnchor).setActive(true)
+                nativeAdView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).setActive(true)
+            },
+            modifier = modifier)
+
         SupervisorScopeInstance.content()
     }
 
