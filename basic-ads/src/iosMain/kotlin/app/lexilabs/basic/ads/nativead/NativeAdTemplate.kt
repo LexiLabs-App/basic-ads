@@ -35,7 +35,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     public actual operator fun invoke(nativeAdData: NativeAdData?): NativeAdTemplate = this
 
-    public actual fun copy(nativeAdData: NativeAdData?): NativeAdTemplate = this(nativeAdData)
+    public actual abstract fun copy(nativeAdData: NativeAdData?): NativeAdTemplate
 
     @OptIn(ExperimentalForeignApi::class)
     private val nativeAdView: GADNativeAdView = GADNativeAdView.new() ?:
@@ -78,7 +78,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
     public actual fun SupervisorScope.AdChoices(
         modifier: Modifier
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ViewInUIView(
             modifier = modifier,
             update = {
@@ -93,7 +92,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -109,7 +107,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         text: String,
         modifier: Modifier
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         Box(
             modifier = modifier.background(Color.Yellow).clip(RectangleShape)
         ) {
@@ -123,7 +120,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -138,7 +134,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -155,7 +150,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -170,7 +164,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         adIcon: NativeAdData.AdIcon
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         adIcon.image?.let {
             ComposeInUIView(
                 content = { it },
@@ -187,11 +180,10 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         scaleType: ScaleType?
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ViewInUIView(
             modifier = modifier,
             update = { _ ->
-                nativeAdView.mediaView?.mediaContent = nativeAdData!!.ios.mediaContent
+                nativeAdView.mediaView?.mediaContent = nativeAdData?.ios?.mediaContent
                 scaleType?.let { nativeAdView.mediaView?.contentMode = it.toIos() }
             }
         )
@@ -202,7 +194,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -217,7 +208,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -232,7 +222,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         modifier: Modifier,
         content: @Composable () -> Unit
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         ComposeInUIView(
             content = content,
             modifier = modifier,
@@ -250,7 +239,6 @@ public actual abstract class NativeAdTemplate public actual constructor(
         backgroundColor: Color,
         shape: Shape
     ) {
-        require(nativeAdData != null) { "nativeAdData cannot be null" }
         Box(
             modifier = modifier.background(backgroundColor, shape)
         ) {

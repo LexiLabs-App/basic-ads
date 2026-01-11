@@ -13,6 +13,7 @@ import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.ExperimentalBasicAdsFeature
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 import app.lexilabs.basic.ads.nativead.NativeAdTemplate
+import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.NSLayoutConstraint
@@ -115,6 +116,8 @@ public actual fun NativeAd(
     loadedAd: NativeAdHandler,
     nativeAdTemplate: NativeAdTemplate
 ) {
+    Log.i("NativeAd", "Starting NativeAd")
+
     if (loadedAd.state != AdState.READY) {
         return
     }
@@ -145,6 +148,8 @@ public actual fun NativeAd(
 
         UIKitView(
             factory = {
+                Log.i("NativeAd", "Creating UIKitView")
+
                 val nativeAdView = GADNativeAdView()
                 val composeView = composeController.view
 
@@ -162,6 +167,7 @@ public actual fun NativeAd(
                 nativeAdView
             },
             update = { nativeAdView ->
+                Log.i("NativeAd", "Updating UIKitView")
                 // Associate the GADNativeAd with the GADNativeAdView. This is crucial for tracking.
                 nativeAdView.nativeAd = nativeAd
             }

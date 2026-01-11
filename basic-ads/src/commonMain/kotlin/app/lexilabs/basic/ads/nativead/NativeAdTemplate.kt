@@ -16,8 +16,7 @@ public expect abstract class NativeAdTemplate public constructor(
 
     public operator fun invoke(nativeAdData: NativeAdData?): NativeAdTemplate
 
-    @Suppress("unused")
-    public fun copy(nativeAdData: NativeAdData?): NativeAdTemplate
+    public abstract fun copy(nativeAdData: NativeAdData?): NativeAdTemplate
     @Composable
     public abstract fun Show(modifier: Modifier = Modifier)
 

@@ -22,7 +22,7 @@ public class AdLoader(
         didFailToReceiveAdWithError: NSError
     ) {
         superclass
-        Log.i(tag, "failure: ${didFailToReceiveAdWithError.localizedDescription}")
+        Log.e(tag, "failure: ${didFailToReceiveAdWithError.localizedDescription}")
         onFailure(AdException(didFailToReceiveAdWithError.localizedDescription))
     }
 

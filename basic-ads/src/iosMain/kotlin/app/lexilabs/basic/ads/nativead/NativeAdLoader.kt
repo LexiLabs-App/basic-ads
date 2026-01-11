@@ -79,6 +79,7 @@ public class NativeAdLoader(
             onShown = onShown,
             onDismissed = onDismissed
         )
+        continuation?.invoke(Result.success(didReceiveNativeAd))
     }
 
     override fun adLoader(
@@ -86,7 +87,9 @@ public class NativeAdLoader(
         didFailToReceiveAdWithError: NSError
     ) {
         Log.e(tag, "failure: ${didFailToReceiveAdWithError.localizedDescription}")
-        onFailure(AdException(didFailToReceiveAdWithError.localizedDescription))
+        val error = AdException(didFailToReceiveAdWithError.localizedDescription)
+        onFailure(error)
+        continuation?.invoke(Result.failure(error))
     }
 
 }
