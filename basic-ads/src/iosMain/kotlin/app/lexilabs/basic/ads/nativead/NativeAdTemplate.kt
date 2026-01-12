@@ -81,8 +81,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
     @OptIn(ExperimentalForeignApi::class)
     @Composable
     public actual fun SupervisorScope.Advertiser(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         UIKitView(
             factory = {
@@ -115,8 +114,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
     @OptIn(ExperimentalForeignApi::class)
     @Composable
     public actual fun SupervisorScope.Body(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         UIKitView(
             factory = {
@@ -136,8 +134,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.CallToAction(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         UIKitView(
             factory = {
@@ -161,8 +158,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Headline(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         UIKitView(
             factory = {
@@ -181,19 +177,18 @@ public actual abstract class NativeAdTemplate public actual constructor(
     }
 
     @Composable
-    public actual fun SupervisorScope.AdIcon(
-        modifier: Modifier,
-        adIcon: NativeAdData.AdIcon
+    public actual fun SupervisorScope.Icon(
+        modifier: Modifier
     ) {
         UIKitView(
             factory = {
                 UIImageView.new() ?: throw AdException("UIImageView is null")
             },
             update = { icon ->
-                if (nativeAdData?.headline.isNullOrEmpty()) {
-                    icon.hidden = true
+                if (nativeAdData?.ios?.icon != null) {
+                    icon.image = nativeAdData?.ios?.icon?.image
                 } else {
-                    icon.image = adIcon.image
+                    icon.hidden = true
                 }
                 nativeAdView.iconView = icon
             },
@@ -225,8 +220,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Price(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         UIKitView(
             factory = {
@@ -247,28 +241,14 @@ public actual abstract class NativeAdTemplate public actual constructor(
     @Composable
     public actual fun SupervisorScope.StarRating(
         modifier: Modifier,
-        content: @Composable () -> Unit
+        stars: @Composable (Double) -> Unit
     ) {
-        UIKitView(
-            factory = {
-                UILabel.new() ?: throw AdException("UILabel is null")
-            },
-            update = { starRating ->
-                if (nativeAdData?.ios?.starRating != null) {
-                    starRating.text = nativeAdData?.ios?.starRating.toString()
-                } else {
-                    starRating.hidden = true
-                }
-                nativeAdView.starRatingView = starRating
-            },
-            modifier = modifier
-        )
+        nativeAdData?.starRating?.let{ stars(it) }
     }
 
     @Composable
     public actual fun SupervisorScope.Store(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         UIKitView(
             factory = {

@@ -29,13 +29,13 @@ public class NativeAdDefault public constructor(
                 Column(Modifier.align(Alignment.TopStart).wrapContentHeight(Alignment.Top)) {
                     Media()
                     Attribution(text = "ad")
-                    Row { nativeAdData.icon?.let { AdIcon(adIcon = it) } }
+                    Row { nativeAdData.icon?.let { Icon() } }
                     Column {
-                        nativeAdData.headline?.let { Headline { BasicText(it) } }
+                        nativeAdData.headline?.let { Headline() }
                         nativeAdData.starRating?.let { BasicText("Rated $it") }
                     }
 
-                    nativeAdData.body?.let { Body { BasicText(it) } }
+                    nativeAdData.body?.let { Body() }
 
                     Row(Modifier.align(Alignment.End).padding(5.dp)) {
                         nativeAdData.price?.let { BasicText(it) }

@@ -35,8 +35,7 @@ public expect abstract class NativeAdTemplate public constructor(
 
     @Composable
     public fun SupervisorScope.Advertiser(
-        modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier = Modifier
     )
 
     @Composable
@@ -47,26 +46,22 @@ public expect abstract class NativeAdTemplate public constructor(
 
     @Composable
     public fun SupervisorScope.Body(
-        modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier = Modifier
     )
 
     @Composable
     public fun SupervisorScope.CallToAction(
-        modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier = Modifier
     )
 
     @Composable
     public fun SupervisorScope.Headline(
-        modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier = Modifier
     )
 
     @Composable
-    public fun SupervisorScope.AdIcon(
-        modifier: Modifier = Modifier,
-        adIcon: NativeAdData.AdIcon
+    public fun SupervisorScope.Icon(
+        modifier: Modifier = Modifier
     )
 
     @Composable
@@ -77,21 +72,18 @@ public expect abstract class NativeAdTemplate public constructor(
 
     @Composable
     public fun SupervisorScope.Price(
-        modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier = Modifier
     )
 
-    // TODO: Convert to a picture of stars
     @Composable
     public fun SupervisorScope.StarRating(
         modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        stars: @Composable (Double) -> Unit
     )
 
     @Composable
     public fun SupervisorScope.Store(
-        modifier: Modifier = Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier = Modifier
     )
 
     @Composable

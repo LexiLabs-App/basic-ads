@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads.nativead
 
 import android.view.View
-import androidx.compose.foundation.Image
 import android.widget.ImageView
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.text.BasicText
@@ -83,20 +83,17 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Advertiser(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         AndroidView(
             factory = { context ->
                 ComposeView(context).apply {
                     id = View.generateViewId()
-                    setContent(content)
                     nativeAdView.advertiserView = this
                 }
             },
             modifier = modifier,
-            update = { view -> view.setContent(content) },
         )
     }
 
@@ -114,8 +111,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Body(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
@@ -123,7 +119,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
         AndroidView(
             factory = {
                 nativeAdView.bodyView = localComposeView
-                localComposeView.apply { setContent(content) }
+                localComposeView
             },
             modifier = modifier,
         )
@@ -131,8 +127,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.CallToAction(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
@@ -140,7 +135,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
         AndroidView(
             factory = {
                 nativeAdView.callToActionView = localComposeView
-                localComposeView.apply { setContent(content) }
+                localComposeView
             },
             modifier = modifier,
         )
@@ -148,8 +143,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Headline(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
@@ -157,21 +151,20 @@ public actual abstract class NativeAdTemplate public actual constructor(
         AndroidView(
             factory = {
                 nativeAdView.headlineView = localComposeView
-                localComposeView.apply { setContent(content) }
+                localComposeView
             },
             modifier = modifier,
         )
     }
 
     @Composable
-    public actual fun SupervisorScope.AdIcon(
-        modifier: Modifier,
-        adIcon: NativeAdData.AdIcon
+    public actual fun SupervisorScope.Icon(
+        modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
         val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
-        adIcon.drawable?.let { image ->
+        nativeAdData?.android?.icon?.drawable?.let { image ->
             AndroidView(
                 factory = {
                     nativeAdView.iconView = localComposeView
@@ -205,8 +198,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Price(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
@@ -214,7 +206,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
         AndroidView(
             factory = {
                 nativeAdView.priceView = localComposeView
-                localComposeView.apply { setContent(content) }
+                localComposeView
             },
             modifier = modifier,
         )
@@ -223,24 +215,14 @@ public actual abstract class NativeAdTemplate public actual constructor(
     @Composable
     public actual fun SupervisorScope.StarRating(
         modifier: Modifier,
-        content: @Composable () -> Unit
+        stars: @Composable (Double) -> Unit
     ) {
-        val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
-        val localContext = LocalContext.current
-        val localComposeView = remember { ComposeView(localContext).apply { id = View.generateViewId() } }
-        AndroidView(
-            factory = {
-                nativeAdView.starRatingView = localComposeView
-                localComposeView.apply { setContent(content) }
-            },
-            modifier = modifier,
-        )
+        nativeAdData?.starRating?.let{ stars(it) }
     }
 
     @Composable
     public actual fun SupervisorScope.Store(
-        modifier: Modifier,
-        content: @Composable () -> Unit
+        modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
         val localContext = LocalContext.current
@@ -248,7 +230,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
         AndroidView(
             factory = {
                 nativeAdView.storeView = localComposeView
-                localComposeView.apply { setContent(content) }
+                localComposeView
             },
             modifier = modifier,
         )
