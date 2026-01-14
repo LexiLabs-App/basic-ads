@@ -3,6 +3,7 @@ package app.lexilabs.basic.ads.nativead
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -57,7 +58,8 @@ public actual abstract class NativeAdTemplate public actual constructor(
                 nativeAdView.topAnchor.constraintEqualToAnchor(view.topAnchor).setActive(true)
                 nativeAdView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).setActive(true)
             },
-            modifier = modifier)
+            modifier = modifier.fillMaxSize()
+        )
 
         SupervisorScopeInstance.content()
     }
