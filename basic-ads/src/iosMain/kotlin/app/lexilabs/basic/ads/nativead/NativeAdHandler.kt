@@ -6,7 +6,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
+import app.lexilabs.basic.logging.Log
 import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
 
 @DependsOnGoogleMobileAds
 public actual class NativeAdHandler actual constructor(activity: Any?) {
@@ -39,6 +44,7 @@ public actual class NativeAdHandler actual constructor(activity: Any?) {
             onFailure = {
                 _state.value = AdState.FAILING
                 onFailure(it)
+                Log.e("NativeAdHandler", "Failure: ${it.message}")
             },
             onDismissed = {
                 _state.value = AdState.DISMISSED
@@ -56,6 +62,9 @@ public actual class NativeAdHandler actual constructor(activity: Any?) {
                 onClick()
             }
         )
+        CoroutineScope(Dispatchers.IO).launch {
+            adLoader?.loadAd()
+        }
     }
 
     /**

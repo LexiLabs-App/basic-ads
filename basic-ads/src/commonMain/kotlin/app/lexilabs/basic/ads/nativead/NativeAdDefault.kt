@@ -1,87 +1,51 @@
 package app.lexilabs.basic.ads.nativead
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import app.lexilabs.basic.logging.Log
 
-public expect class NativeAdDefault : NativeAdTemplate {
+public class NativeAdDefault public constructor(
+    override val nativeAdData: NativeAdData? = null
+): NativeAdTemplate(nativeAdData) {
 
-    override val nativeAdData: NativeAdData?
-
-    public constructor(nativeAdData: NativeAdData? = null)
-
-    override operator fun invoke(nativeAdData: NativeAdData?): NativeAdTemplate
-
-    override fun copy(nativeAdData: NativeAdData?): NativeAdTemplate
-
+    public override fun copy(nativeAdData: NativeAdData?): NativeAdTemplate = NativeAdDefault(nativeAdData)
+    
     @Composable
-    override fun Show(modifier: Modifier)
-
-    @Composable
-    public fun Supervisor(
-        modifier: Modifier,
-        content: @Composable () -> Unit
-    )
-
-    @Composable
-    override fun Advertiser(
-        modifier: Modifier,
-        content: @Composable (() -> Unit)
-    )
-
-    @Composable
-    override fun Body(
-        modifier: Modifier,
-        content: @Composable (() -> Unit)
-    )
-
-    @Composable
-    override fun CallToAction(
-        modifier: Modifier,
-        content: @Composable (() -> Unit)
-    )
-
-    @Composable
-    override fun AdChoices(modifier: Modifier)
-
-    @Composable
-    override fun Headline(
-        modifier: Modifier,
-        content: @Composable (() -> Unit)
-    )
-
-    @Composable
-    override fun Icon(
-        modifier: Modifier,
-        content: @Composable () -> Unit
-    )
-
-    @Composable
-    override fun Media(
-        modifier: Modifier,
-        scaleType: ScaleType?
-    )
-
-    @Composable
-    override fun Price(
-        modifier: Modifier,
-        content: @Composable (() -> Unit)
-    )
-
-    @Composable
-    override fun StarRating(
-        modifier: Modifier,
-        content: @Composable (() -> Unit)
-    )
-
-    @Composable
-    override fun Store(
-        modifier: Modifier,
-        content: @Composable (() -> Unit)
-    )
-
-    @Composable
-    override fun Attribution(
-        text: String,
+    public override fun Show(
         modifier: Modifier
-    )
+    ) {
+        Log.i("NativeAdDefault", "Starting Show")
+        require(nativeAdData != null) { "nativeAdData cannot be null" }
+        Supervisor(modifier) {
+            Box(modifier = Modifier.padding(8.dp).wrapContentHeight(Alignment.Top)) {
+                Column(Modifier.align(Alignment.TopStart).wrapContentHeight(Alignment.Top)) {
+                    Media()
+                    Attribution(text = "ad")
+                    Row { nativeAdData.icon?.let { Icon() } }
+                    Column {
+                        nativeAdData.headline?.let { Headline() }
+                        nativeAdData.starRating?.let { BasicText("Rated $it") }
+                    }
+
+                    nativeAdData.body?.let { Body() }
+
+                    Row(Modifier.align(Alignment.End).padding(5.dp)) {
+                        nativeAdData.price?.let { BasicText(it) }
+                        nativeAdData.store?.let { BasicText(it) }
+                        nativeAdData.callToAction?.let {
+                            NativeAdButton(it)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -18,7 +18,7 @@ public actual class NativeAdData (
         get() = android.callToAction
     public actual val headline: String?
         get() = android.headline
-    public actual val icon: Image?
+    public actual val icon: AdIcon?
         get() = android.icon?.toCommon()
     public actual val mediaContent: MediaContent?
         get() = android.mediaContent?.toCommon()
@@ -33,10 +33,10 @@ public actual class NativeAdData (
     public actual val store: String?
         get() = android.store
     public actual class AdChoicesInfo (
-        public val images: List<Image>,
+        public val adIcons: List<AdIcon>,
         public val text: CharSequence
     )
-    public actual class Image (
+    public actual class AdIcon (
         public val drawable: Drawable?,
         public val scale: Double,
         public val uri: Uri?
