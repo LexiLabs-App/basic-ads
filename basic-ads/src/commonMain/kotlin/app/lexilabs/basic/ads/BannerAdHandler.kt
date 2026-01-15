@@ -54,6 +54,8 @@ package app.lexilabs.basic.ads
  * ```
  *
  * @param activity The platform-specific activity or context required for displaying the ad (e.g., an Android `Activity`).
+ * @property state The current [AdState] of the banner ad.
+ * @property adSize The active [AdSize] of the banner ad.
  */
 @DependsOnGoogleMobileAds
 public expect class BannerAdHandler(activity: Any?) {

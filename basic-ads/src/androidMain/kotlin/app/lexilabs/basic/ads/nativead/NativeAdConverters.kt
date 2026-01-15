@@ -6,13 +6,13 @@ import com.google.android.gms.ads.nativead.NativeAd
 
 public fun NativeAd.AdChoicesInfo.toCommon(): NativeAdData.AdChoicesInfo {
     return NativeAdData.AdChoicesInfo(
-        images = this.images.map { it.toCommon() },
+        adIcons = this.images.map { it.toCommon() },
         text = this.text
     )
 }
 
-public fun NativeAd.Image.toCommon(): NativeAdData.Image {
-    return NativeAdData.Image(
+public fun NativeAd.Image.toCommon(): NativeAdData.AdIcon {
+    return NativeAdData.AdIcon(
         drawable = this.drawable,
         scale = this.scale,
         uri = this.uri

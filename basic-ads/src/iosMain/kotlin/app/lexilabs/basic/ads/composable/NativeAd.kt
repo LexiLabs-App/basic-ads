@@ -1,10 +1,12 @@
 package app.lexilabs.basic.ads.composable
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.uikit.LocalUIViewController
 import androidx.compose.ui.viewinterop.UIKitView
 import androidx.compose.ui.window.ComposeUIViewController
@@ -12,9 +14,8 @@ import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.nativead.NativeAdHandler
 import app.lexilabs.basic.ads.nativead.NativeAdTemplate
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
+import app.lexilabs.basic.logging.Log
 import kotlinx.cinterop.ExperimentalForeignApi
-import platform.UIKit.NSLayoutConstraint
 import platform.UIKit.addChildViewController
 import platform.UIKit.didMoveToParentViewController
 import platform.UIKit.removeFromParentViewController
@@ -111,12 +112,13 @@ public actual fun NativeAd(
     loadedAd: NativeAdHandler,
     nativeAdTemplate: NativeAdTemplate
 ) {
+    Log.i("NativeAd", "Starting NativeAd")
+
     if (loadedAd.state != AdState.READY) {
         return
     }
 
     val adData = loadedAd.render()
-    val nativeAd = adData.ios
 
     // By keying this composable against the ad handler, we ensure that if a new ad is loaded,
     // the entire UIKitView is recomposed, correctly displaying the new ad.
@@ -124,43 +126,28 @@ public actual fun NativeAd(
         val parentController = LocalUIViewController.current
 
         // We create and remember a ComposeUIViewController to host our custom ad template.
-        val composeController = remember {
+        val adTemplateController = remember {
             ComposeUIViewController { nativeAdTemplate.copy(adData).Show() }
         }
 
         // This effect correctly manages the lifecycle of the child view controller.
-        DisposableEffect(parentController, composeController) {
-            parentController.addChildViewController(composeController)
-            composeController.didMoveToParentViewController(parentController)
+        DisposableEffect(parentController, adTemplateController) {
+            parentController.addChildViewController(adTemplateController)
+            adTemplateController.didMoveToParentViewController(parentController)
             onDispose {
-                composeController.willMoveToParentViewController(null)
-                composeController.view.removeFromSuperview()
-                composeController.removeFromParentViewController()
+                adTemplateController.willMoveToParentViewController(null)
+                adTemplateController.view.removeFromSuperview()
+                adTemplateController.removeFromParentViewController()
             }
         }
 
+        // The UIKitView now simply hosts the view from the ad template controller.
+        // The template itself is now responsible for creating the GADNativeAdView.
         UIKitView(
             factory = {
-                val nativeAdView = GADNativeAdView()
-                val composeView = composeController.view
-
-                composeView.translatesAutoresizingMaskIntoConstraints = false
-                nativeAdView.addSubview(composeView)
-
-                NSLayoutConstraint.activateConstraints(
-                    listOf(
-                        composeView.leadingAnchor.constraintEqualToAnchor(nativeAdView.leadingAnchor),
-                        composeView.trailingAnchor.constraintEqualToAnchor(nativeAdView.trailingAnchor),
-                        composeView.topAnchor.constraintEqualToAnchor(nativeAdView.topAnchor),
-                        composeView.bottomAnchor.constraintEqualToAnchor(nativeAdView.bottomAnchor)
-                    )
-                )
-                nativeAdView
+                adTemplateController.view
             },
-            update = { nativeAdView ->
-                // Associate the GADNativeAd with the GADNativeAdView. This is crucial for tracking.
-                nativeAdView.nativeAd = nativeAd
-            }
+            modifier = Modifier.fillMaxSize()
         )
     }
 }
