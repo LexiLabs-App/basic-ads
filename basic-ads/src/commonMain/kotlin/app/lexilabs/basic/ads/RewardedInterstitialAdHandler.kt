@@ -32,6 +32,7 @@ package app.lexilabs.basic.ads
  * ad.show()
  * ```
  *
+ * @property state The current [AdState] of the rewarded interstitial ad.
  * @see load
  * @see setListeners
  * @see show

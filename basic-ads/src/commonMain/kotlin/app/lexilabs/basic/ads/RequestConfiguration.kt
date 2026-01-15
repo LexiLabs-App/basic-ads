@@ -37,16 +37,27 @@ public data class RequestConfiguration(
     }
 
     public companion object {
+        /** Indicates that the child-directed status is not specified. */
         public const val TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED: Int = -1
+        /** Indicates that the app is not child-directed. */
         public const val TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE: Int = 0
+        /** Indicates that the app is child-directed. */
         public const val TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE: Int = 1
+        /** Indicates that the user is under the age of consent. */
         public const val TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE: Int = 1
+        /** Indicates that the user is not under the age of consent. */
         public const val TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE: Int = 0
+        /** Indicates that the under-age-of-consent status is not specified. */
         public const val TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED: Int = -1
+        /** Indicates that the maximum ad content rating is not specified. */
         public const val MAX_AD_CONTENT_RATING_UNSPECIFIED: String = ""
+        /** Content suitable for all audiences. */
         public const val MAX_AD_CONTENT_RATING_G: String = "G"
+        /** Content suitable for most audiences with parental guidance. */
         public const val MAX_AD_CONTENT_RATING_PG: String = "PG"
+        /** Content suitable for teen and older audiences. */
         public const val MAX_AD_CONTENT_RATING_T: String = "T"
+        /** Content suitable only for mature audiences. */
         public const val MAX_AD_CONTENT_RATING_MA: String = "MA"
 
     }

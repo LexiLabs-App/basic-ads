@@ -34,6 +34,7 @@ import androidx.annotation.MainThread
  * ad.show()
  * ```
  *
+ * @property state The current [AdState] of the interstitial ad.
  * @see load
  * @see setListeners
  * @see show
