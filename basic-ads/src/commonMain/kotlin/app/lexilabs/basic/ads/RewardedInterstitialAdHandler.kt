@@ -46,10 +46,10 @@ public expect class RewardedInterstitialAdHandler(activity: Any?) {
     public val state: AdState
 
     /**
-     * Loads an RewardedInterstitial Ad.
+     * Loads a RewardedInterstitial Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *
-     * To load an RewardedInterstitial ad, call [RewardedInterstitialAdHandler.load] method
+     * To load a RewardedInterstitial ad, call [RewardedInterstitialAdHandler.load] method
      * and pass in an [AdUnitId] as a [String] to receive the loaded ad, the [onLoad]
      * callback, and any possible [Exception] from the [onFailure] callback.
      * @param adUnitId Your RewardedInterstitial Ad AdUnitId [String] from AdMob
@@ -60,6 +60,29 @@ public expect class RewardedInterstitialAdHandler(activity: Any?) {
      */
     public fun load(
         adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
+        onLoad: () -> Unit,
+        onFailure: (Exception) -> Unit
+    )
+
+    /**
+     * Loads a RewardedInterstitial Ad.
+     * Note: Make all calls to the Mobile Ads SDK on the main thread.
+     *
+     * To load a Rewarded ad, call [RewardedAdHandler.load] method
+     * and pass in an [AdUnitId] as a [String] to receive the loaded ad, the [onLoad]
+     * callback, and any possible [Exception] from the [onFailure] callback.
+     * @param adUnitId Your Rewarded Ad AdUnitId [String] from AdMob
+     * @param userId Used for Server-Side Verification
+     * @param customData Used for Server-Side Verification
+     * @param onLoad Callback after the ad loads
+     * @param onFailure Callback sharing the [Exception] when the ad fail to load
+     * @see [AdUnitId.autoSelect]
+     * @see [AdUnitId.REWARDED_INTERSTITIAL_DEFAULT]
+     */
+    public fun load(
+        adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
+        userId: String,
+        customData: String,
         onLoad: () -> Unit,
         onFailure: (Exception) -> Unit
     )
