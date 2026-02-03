@@ -46,6 +46,7 @@ public expect abstract class NativeAdTemplate public constructor(
 
     @Composable
     public fun SupervisorScope.Body(
+        body: String,
         modifier: Modifier = Modifier
     )
 
@@ -56,6 +57,7 @@ public expect abstract class NativeAdTemplate public constructor(
 
     @Composable
     public fun SupervisorScope.Headline(
+        headline: String,
         modifier: Modifier = Modifier
     )
 

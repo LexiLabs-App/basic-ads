@@ -111,6 +111,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Body(
+        body: String,
         modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
@@ -119,7 +120,11 @@ public actual abstract class NativeAdTemplate public actual constructor(
         AndroidView(
             factory = {
                 nativeAdView.bodyView = localComposeView
-                localComposeView
+                localComposeView.apply {
+                    setContent {
+                        BasicText(body)
+                    }
+                }
             },
             modifier = modifier,
         )
@@ -143,6 +148,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Headline(
+        headline: String,
         modifier: Modifier
     ) {
         val nativeAdView = LocalNativeAdView.current ?: throw IllegalStateException("NativeAdView null")
@@ -151,7 +157,11 @@ public actual abstract class NativeAdTemplate public actual constructor(
         AndroidView(
             factory = {
                 nativeAdView.headlineView = localComposeView
-                localComposeView
+                localComposeView.apply {
+                    setContent {
+                        BasicText(headline)
+                    }
+                }
             },
             modifier = modifier,
         )
