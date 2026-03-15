@@ -145,7 +145,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
         Log.d(tag, "setListeners: Loading")
         require(rewardedAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedAdHandler.load()) before displaying the RewardedAd composable."
         }
         rewardedAd?.let {
             rewardedAd?.fullScreenContentCallback = FullscreenContentDelegate(
@@ -187,7 +187,7 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
         }
         require(rewardedAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedAdHandler.load()) before displaying the RewardedAd composable."
         }
         rewardedAd?.show(activity) { reward ->
             Log.d(tag, "A reward was earned")

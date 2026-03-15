@@ -88,7 +88,7 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
         Log.d(tag, "setListeners:starting")
         require(rewardedAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedAdHandler.load()) before displaying the RewardedAd composable."
         }
         delegate = FullScreenContentDelegate(
             onClick = onClick,
@@ -116,11 +116,11 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
         Log.d(tag, "show:starting")
         require(rewardedAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedAdHandler.load()) before displaying the RewardedAd composable."
         }
         require(delegate != null) {
             _state.value = AdState.FAILING
-            "RewardedAd listeners not set yet. `RewardedAd.setListeners()` must be called first"
+            "The provided RewardedAdHandler listeners are not set yet. You must call .setListeners() on your handler instance (e.g., rewardedAdHandler.setListeners()) before displaying the RewardedAd composable."
         }
         rewardedAd?.let { ad ->
             ad.presentFromRootViewController(

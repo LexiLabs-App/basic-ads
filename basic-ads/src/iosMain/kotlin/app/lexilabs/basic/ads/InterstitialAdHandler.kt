@@ -60,7 +60,7 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
         Log.d(tag, "setListeners:starting")
         require(interstitialAd != null) {
             _state.value = AdState.FAILING
-            "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
+            "The provided InterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., interstitialAdHandler.load()) before displaying the InterstitialAd composable."
         }
         delegate = FullScreenContentDelegate(
             onClick = onClick,
@@ -87,11 +87,11 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
         Log.d(tag, "show:starting")
         require(interstitialAd != null) {
             _state.value = AdState.FAILING
-            "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
+            "The provided InterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., interstitialAdHandler.load()) before displaying the InterstitialAd composable."
         }
         require(delegate != null) {
             _state.value = AdState.FAILING
-            "InterstitialAd listeners not set yet. `InterstitialAd.setListeners()` must be called first"
+            "The provided InterstitialAdHandler listeners are not set yet. You must call .setListeners() on your handler instance (e.g., interstitialAdHandler.setListeners()) before displaying the InterstitialAd composable."
         }
         interstitialAd?.presentFromRootViewController(null)
     }
@@ -102,11 +102,11 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
         Log.d(tag, "show:starting")
         require(interstitialAd != null) {
             _state.value = AdState.FAILING
-            "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
+            "The provided InterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., interstitialAdHandler.load()) before displaying the InterstitialAd composable."
         }
         require(delegate != null) {
             _state.value = AdState.FAILING
-            "InterstitialAd listeners not set yet. `InterstitialAd.setListeners()` must be called first"
+            "The provided InterstitialAdHandler listeners are not set yet. You must call .setListeners() on your handler instance (e.g., interstitialAdHandler.setListeners()) before displaying the InterstitialAd composable."
         }
         interstitialAd?.presentFromRootViewController(viewController)
     }
