@@ -452,9 +452,9 @@ public abstract class app/lexilabs/basic/ads/nativead/NativeAdTemplate : app/lex
 	public final fun AdChoices (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 	public final fun Advertiser (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 	public final fun Attribution (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
-	public final fun Body (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public final fun Body (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 	public final fun CallToAction (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
-	public final fun Headline (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public final fun Headline (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 	public final fun Icon (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 	public final fun Media (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Landroidx/compose/ui/Modifier;Lapp/lexilabs/basic/ads/nativead/ScaleType;Landroidx/compose/runtime/Composer;II)V
 	public final fun NativeAdButton-jB83MbM (Lapp/lexilabs/basic/ads/nativead/NativeAdTemplate$SupervisorScope;Ljava/lang/String;Landroidx/compose/ui/Modifier;JJLandroidx/compose/ui/graphics/Shape;Landroidx/compose/runtime/Composer;II)V
