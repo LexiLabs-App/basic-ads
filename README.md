@@ -36,7 +36,7 @@ For **iOS**, complete the steps in AdMob's instructions:
 
 ## Installation
 * [![Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
