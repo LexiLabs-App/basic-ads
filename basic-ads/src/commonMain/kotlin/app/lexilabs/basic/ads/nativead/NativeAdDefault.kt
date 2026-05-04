@@ -31,11 +31,11 @@ public class NativeAdDefault public constructor(
                     Attribution(text = "ad")
                     Row { nativeAdData.icon?.let { Icon() } }
                     Column {
-                        nativeAdData.headline?.let { Headline() }
+                        nativeAdData.headline?.let { Headline(it) }
                         nativeAdData.starRating?.let { BasicText("Rated $it") }
                     }
 
-                    nativeAdData.body?.let { Body() }
+                    nativeAdData.body?.let { Body(it) }
 
                     Row(Modifier.align(Alignment.End).padding(5.dp)) {
                         nativeAdData.price?.let { BasicText(it) }

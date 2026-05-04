@@ -116,6 +116,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
     @OptIn(ExperimentalForeignApi::class)
     @Composable
     public actual fun SupervisorScope.Body(
+        body: String,
         modifier: Modifier
     ) {
         UIKitView(
@@ -160,6 +161,7 @@ public actual abstract class NativeAdTemplate public actual constructor(
 
     @Composable
     public actual fun SupervisorScope.Headline(
+        headline: String,
         modifier: Modifier
     ) {
         UIKitView(
