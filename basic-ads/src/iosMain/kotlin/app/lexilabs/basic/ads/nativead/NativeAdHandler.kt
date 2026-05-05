@@ -74,7 +74,7 @@ public actual class NativeAdHandler actual constructor(activity: Any?) {
     @MainThread
     public actual fun render(): NativeAdData {
         require(adLoader?.nativeAd != null) {
-            "NativeAd is null"
+            "The provided NativeAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., nativeAdHandler.load()) before displaying the NativeAd composable."
         }
         return NativeAdData(adLoader!!.nativeAd!!)
     }

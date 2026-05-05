@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
 import cocoapods.Google_Mobile_Ads_SDK.GADRequest
 import cocoapods.Google_Mobile_Ads_SDK.GADRewardedInterstitialAd
+import cocoapods.Google_Mobile_Ads_SDK.GADServerSideVerificationOptions
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 
@@ -45,6 +46,38 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
         )
     }
 
+    public actual fun load(
+        adUnitId: String,
+        userId: String,
+        customData: String,
+        onLoad: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        _state.value = AdState.LOADING
+        Log.d(tag, "load:starting")
+        GADRewardedInterstitialAd.loadWithAdUnitID(
+            adUnitID = adUnitId,
+            request = GADRequest(),
+            completionHandler = { ad: GADRewardedInterstitialAd?, error: NSError? ->
+                ad?.let {
+                    Log.d(tag, "load:success")
+                    rewardedInterstitialAd = it
+                    val options = GADServerSideVerificationOptions()
+                    options.userIdentifier = userId
+                    options.customRewardString = customData
+                    it.serverSideVerificationOptions = options
+                    _state.value = AdState.READY
+                    onLoad()
+                }
+                error?.let {
+                    Log.e(tag, "load:failure:$it")
+                    _state.value = AdState.FAILING
+                    onFailure(AdException())
+                }
+            }
+        )
+    }
+
     public actual fun setListeners(
         onFailure: (Exception) -> Unit,
         onDismissed: () -> Unit,
@@ -55,7 +88,7 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
         Log.d(tag, "setListeners:starting")
         require(rewardedInterstitialAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedInterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedInterstitialAdHandler.load()) before displaying the RewardedInterstitialAd composable."
         }
         delegate = FullScreenContentDelegate(
             onClick = onClick,
@@ -81,11 +114,11 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
         Log.d(tag, "show:starting")
         require(rewardedInterstitialAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedInterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedInterstitialAdHandler.load()) before displaying the RewardedInterstitialAd composable."
         }
         require(delegate != null) {
             _state.value = AdState.FAILING
-            "RewardedAd listeners not set yet. `RewardedAd.setListeners()` must be called first"
+            "The provided RewardedInterstitialAdHandler listeners are not set yet. You must call .setListeners() on your handler instance (e.g., rewardedInterstitialAdHandler.setListeners()) before displaying the RewardedInterstitialAd composable."
         }
         rewardedInterstitialAd?.presentFromRootViewController(
             viewController = null,

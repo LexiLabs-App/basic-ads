@@ -94,7 +94,7 @@ public actual class InterstitialAdHandler actual constructor(
         Log.d(tag, "setListeners: Loading")
         require(interstitialAd != null) {
             _state.value = AdState.FAILING
-            "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
+            "The provided InterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., interstitialAdHandler.load()) before displaying the InterstitialAd composable."
         }
         interstitialAd?.let {
             interstitialAd?.fullScreenContentCallback = FullscreenContentDelegate(
@@ -133,7 +133,7 @@ public actual class InterstitialAdHandler actual constructor(
         }
         require(interstitialAd != null) {
             _state.value = AdState.FAILING
-            "InterstitialAd not loaded yet. `InterstitialAd.load()` must be called first"
+            "The provided InterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., interstitialAdHandler.load()) before displaying the InterstitialAd composable."
         }
         interstitialAd?.show(activity)
     }

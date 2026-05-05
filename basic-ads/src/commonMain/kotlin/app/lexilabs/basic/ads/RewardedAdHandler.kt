@@ -47,10 +47,10 @@ public expect class RewardedAdHandler(activity: Any?) {
     public val state: AdState
 
     /**
-     * Loads an Rewarded Ad.
+     * Loads a Rewarded Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *
-     * To load an Rewarded ad, call [RewardedAdHandler.load] method
+     * To load a Rewarded ad, call [RewardedAdHandler.load] method
      * and pass in an [AdUnitId] as a [String] to receive the loaded ad, the [onLoad]
      * callback, and any possible [Exception] from the [onFailure] callback.
      * @param adUnitId Your Rewarded Ad AdUnitId [String] from AdMob
@@ -66,10 +66,10 @@ public expect class RewardedAdHandler(activity: Any?) {
     )
 
     /**
-     * Loads an Rewarded Ad.
+     * Loads a Rewarded Ad.
      * Note: Make all calls to the Mobile Ads SDK on the main thread.
      *
-     * To load an Rewarded ad, call [RewardedAdHandler.load] method
+     * To load a Rewarded ad, call [RewardedAdHandler.load] method
      * and pass in an [AdUnitId] as a [String] to receive the loaded ad, the [onLoad]
      * callback, and any possible [Exception] from the [onFailure] callback.
      * @param adUnitId Your Rewarded Ad AdUnitId [String] from AdMob
