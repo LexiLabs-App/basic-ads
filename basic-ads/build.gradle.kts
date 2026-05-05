@@ -1,4 +1,3 @@
-import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
@@ -112,8 +111,7 @@ kotlin {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 
-    @Suppress("UnstableApiUsage")
-    androidLibrary{
+    android {
         namespace = "app.lexilabs.basic.ads"
         compileSdk = libs.versions.build.sdk.compile.get().toInt()
         minSdk = libs.versions.build.sdk.min.get().toInt()

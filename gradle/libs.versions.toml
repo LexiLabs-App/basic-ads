@@ -1,12 +1,12 @@
 [versions]
 # BUILD INFO
 ads = "1.2.0-beta01"
-build-sdk-compile = "36"
+build-sdk-compile = "37"
 build-sdk-min = "24"
-build-sdk-target = "36"
+build-sdk-target = "37"
 build-ios-target-deployment = "13.0"
 kotlin = "2.3.21"
-agp = "8.13.2"
+agp = "9.2.1"
 # COCOAPODS DEPENDENCIES
 cocoapods-admob = "13.3.0"
 cocoapods-ump = "3.1.0"
