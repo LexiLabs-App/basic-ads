@@ -28,7 +28,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Check for Invisible Characters
-        uses: hakz/hidden-characters@v1.0-beta02
+        uses: hakz/hidden-characters@v1.0-beta03
         with:
           path: "./basic-ads"
 
