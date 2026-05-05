@@ -1,23 +1,23 @@
 [versions]
 # BUILD INFO
-ads = "1.1.1"
+ads = "1.2.0-beta01"
 build-sdk-compile = "36"
 build-sdk-min = "24"
 build-sdk-target = "36"
 build-ios-target-deployment = "13.0"
-kotlin = "2.3.0"
+kotlin = "2.3.21"
 agp = "8.13.2"
 # COCOAPODS DEPENDENCIES
-cocoapods-admob = "12.14.0"
+cocoapods-admob = "13.3.0"
 cocoapods-ump = "3.1.0"
 # DEPENDENCIES
 bcv = "0.18.1"
-dokka = "2.1.0" #"2.0.0"
-compose = "1.10.0"
-google-play-services-ads = "24.9.0"
-android-core = "1.17.0"
-annotations = "1.9.1"
-kover = "0.9.4"
+dokka = "2.2.0"
+compose = "1.10.3"
+google-play-services-ads = "25.2.0"
+android-core = "1.18.0"
+annotations = "1.9.1" # DO NOT UPDATE. Version 1.10.0 removes iosX64 build
+kover = "0.9.8"
 logging = "0.2.6"
 android-ump = "4.0.0"
 maven-publish = "0.36.0"
@@ -54,6 +54,6 @@ kotlinx-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-co
 kotlinx-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
 native-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.3.21" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish"}
