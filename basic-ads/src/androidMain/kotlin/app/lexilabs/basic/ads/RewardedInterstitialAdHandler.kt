@@ -89,7 +89,7 @@ public actual class RewardedInterstitialAdHandler actual constructor(
         Log.d(tag, "setListeners: Loading")
         require(rewardedInterstitialAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedInterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedInterstitialAdHandler.load()) before displaying the RewardedInterstitialAd composable."
         }
         rewardedInterstitialAd?.let {
             rewardedInterstitialAd?.fullScreenContentCallback = FullscreenContentDelegate(
@@ -129,7 +129,7 @@ public actual class RewardedInterstitialAdHandler actual constructor(
         }
         require(rewardedInterstitialAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedInterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedInterstitialAdHandler.load()) before displaying the RewardedInterstitialAd composable."
         }
         rewardedInterstitialAd?.show(activity) {
             Log.d(tag, "A reward was earned")

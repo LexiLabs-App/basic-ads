@@ -55,7 +55,7 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
         Log.d(tag, "setListeners:starting")
         require(rewardedInterstitialAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedInterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedInterstitialAdHandler.load()) before displaying the RewardedInterstitialAd composable."
         }
         delegate = FullScreenContentDelegate(
             onClick = onClick,
@@ -81,11 +81,11 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
         Log.d(tag, "show:starting")
         require(rewardedInterstitialAd != null) {
             _state.value = AdState.FAILING
-            "RewardedAd not loaded yet. `RewardedAd.load()` must be called first"
+            "The provided RewardedInterstitialAdHandler is not loaded yet. You must call .load() on your handler instance (e.g., rewardedInterstitialAdHandler.load()) before displaying the RewardedInterstitialAd composable."
         }
         require(delegate != null) {
             _state.value = AdState.FAILING
-            "RewardedAd listeners not set yet. `RewardedAd.setListeners()` must be called first"
+            "The provided RewardedInterstitialAdHandler listeners are not set yet. You must call .setListeners() on your handler instance (e.g., rewardedInterstitialAdHandler.setListeners()) before displaying the RewardedInterstitialAd composable."
         }
         rewardedInterstitialAd?.presentFromRootViewController(
             viewController = null,
