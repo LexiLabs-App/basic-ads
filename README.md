@@ -199,14 +199,12 @@ if (consent.canRequestAds) {
 }
 ```
 
-### Building this Garbage
+## Star History
 
-> [!CAUTION] 
-> Advanced Users Only
-
-1. Find a large cup. It must exist in the real world.
-2. Fill said cup to the brim with some sort of caffeinated beverage.
-3. Click `File` > `Invalidate Caches...`, check all boxes and hit `invalidate and restart`
-4. Click `Sync` for gradle if banner exists. Ignore the flood of warning lights and klaxons.
-5. Click `Build` > `Clean Cache`.  Ignore the plethora of errors
-6. Once complete, click `Build` > `Rebuild Project`. NOTE: Despite religious preference, prayer is encouraged.
+<a href="https://www.star-history.com/?repos=lexilabs-app%2Fbasic-ads&type=date&logscale=&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=lexilabs-app/basic-ads&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=lexilabs-app/basic-ads&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=lexilabs-app/basic-ads&type=date&legend=top-left" />
+ </picture>
+</a>
