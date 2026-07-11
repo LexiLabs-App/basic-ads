@@ -2,9 +2,13 @@
 
 ## Supported Versions
 
-|   Version    |      Supported       |
-|:------------:|:--------------------:|
-| 1.0.0 and up |  :white_check_mark:  |
+|    Version     |     Supported      |
+|:--------------:|:------------------:|
+|  1.2.0 and up  | :white_check_mark: |
+| < 1.2.0-beta02 |        :X:         |
+
+> [!CRITICAL]
+> Use version 1.2.0 or higher due to dependency on okhttp (CVE-2021-0341)
 
 ## Reporting a Vulnerability
 
