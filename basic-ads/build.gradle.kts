@@ -57,7 +57,6 @@ kotlin {
     explicitApi()
 
     listOf(
-        iosX64(), // mobile
         iosArm64(), // mobile
         iosSimulatorArm64(), // mobile
     ).forEach {
