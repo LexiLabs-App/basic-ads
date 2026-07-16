@@ -18,7 +18,7 @@ google-play-services-ads = "25.4.0"
 android-core = "1.19.0"
 annotations = "1.10.0"
 kover = "0.9.8"
-logging = "0.2.6"
+logging = "0.3.0"
 android-ump = "4.0.0"
 maven-publish = "0.37.0"
 
