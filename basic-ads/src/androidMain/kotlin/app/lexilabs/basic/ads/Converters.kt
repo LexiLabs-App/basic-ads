@@ -7,14 +7,12 @@ import android.content.ContextWrapper
 /**
  * Converts a common [AdSize] to a [com.google.android.gms.ads.AdSize].
  */
-public fun AdSize.toAndroid(): com.google.android.gms.ads.AdSize =
-    com.google.android.gms.ads.AdSize(this.width, this.height)
+public fun AdSize.toAndroid(): com.google.android.gms.ads.AdSize = this.toNative()
 
 /**
  * Converts a [com.google.android.gms.ads.AdSize] to a common [AdSize].
  */
-public fun com.google.android.gms.ads.AdSize.toCommon(): AdSize =
-    AdSize(width = this.width, height = this.height)
+public fun com.google.android.gms.ads.AdSize.toCommon(): AdSize = AdSize(this)
 
 /**
  * Converts a common [RequestConfiguration] to a [com.google.android.gms.ads.RequestConfiguration].
