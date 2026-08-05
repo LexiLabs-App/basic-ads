@@ -48,8 +48,10 @@ public class FullScreenContentDelegate(
 
     override fun adWillDismissFullScreenContent(ad: GADFullScreenPresentingAdProtocol) {
         superclass
+        // Deliberately does not call onDismissed(). iOS splits dismissal into a will/did pair
+        // while Android reports it once, via onAdDismissedFullScreenContent, which corresponds to
+        // adDidDismissFullScreenContent above. Calling it here too fired the callback twice.
         Log.d(tag, "ad being dismissed soon")
-        onDismissed()
     }
 
     override fun adWillPresentFullScreenContent(ad: GADFullScreenPresentingAdProtocol) {
