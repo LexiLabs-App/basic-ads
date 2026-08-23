@@ -7,14 +7,12 @@ import android.content.ContextWrapper
 /**
  * Converts a common [AdSize] to a [com.google.android.gms.ads.AdSize].
  */
-public fun AdSize.toAndroid(): com.google.android.gms.ads.AdSize =
-    com.google.android.gms.ads.AdSize(this.width, this.height)
+public fun AdSize.toAndroid(): com.google.android.gms.ads.AdSize = this.toNative()
 
 /**
  * Converts a [com.google.android.gms.ads.AdSize] to a common [AdSize].
  */
-public fun com.google.android.gms.ads.AdSize.toCommon(): AdSize =
-    AdSize(width = this.width, height = this.height)
+public fun com.google.android.gms.ads.AdSize.toCommon(): AdSize = AdSize(this)
 
 /**
  * Converts a common [RequestConfiguration] to a [com.google.android.gms.ads.RequestConfiguration].
@@ -72,11 +70,14 @@ public fun com.google.android.gms.ads.RequestConfiguration.PublisherPrivacyPerso
  */
 public fun Context.getActivity(): Activity? {
     var context = this
-    var i = 5
-    while (context is ContextWrapper && i > 0) {
+    while (context is ContextWrapper) {
         if (context is Activity) return context
-        context = context.baseContext
-        i -= 1
+        val base = context.baseContext
+        // A wrapper whose base is itself would otherwise spin forever. This replaces a previous
+        // fixed limit of five unwraps, which gave up before reaching the Activity on deeply
+        // wrapped chains and returned null as though no Activity existed.
+        if (base === context) return null
+        context = base
     }
     return null
 }

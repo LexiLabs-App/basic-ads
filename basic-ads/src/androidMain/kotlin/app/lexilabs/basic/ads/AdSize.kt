@@ -10,9 +10,35 @@ import android.content.Context
  */
 public actual class AdSize public actual constructor(public actual val width: Int, public actual val height: Int) {
 
+    /**
+     * The size handed over by the Google Mobile Ads SDK, when this instance came from one of its
+     * factories rather than from a pair of dimensions.
+     */
+    private var nativeAdSize: com.google.android.gms.ads.AdSize? = null
+
+    /**
+     * Wraps a size produced by the Google Mobile Ads SDK.
+     *
+     * The adaptive factories return sizes carrying request metadata that goes beyond width and
+     * height, and the SDK exposes no public constructor accepting it. Rebuilding such a size from
+     * its dimensions alone silently turns an adaptive request into a fixed-size one, so the
+     * original instance is kept here and handed back unchanged by [toNative].
+     */
+    internal constructor(nativeAdSize: com.google.android.gms.ads.AdSize) :
+        this(nativeAdSize.width, nativeAdSize.height) {
+        this.nativeAdSize = nativeAdSize
+    }
+
     init {
         com.google.android.gms.ads.AdSize(width, height)
     }
+
+    /**
+     * Returns the Google Mobile Ads size this represents, preserving the original instance when
+     * there is one.
+     */
+    internal fun toNative(): com.google.android.gms.ads.AdSize =
+        nativeAdSize ?: com.google.android.gms.ads.AdSize(width, height)
 
     public actual companion object {
         /** A constant for full-width ads. */

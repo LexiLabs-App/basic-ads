@@ -49,6 +49,9 @@ kotlin {
             implementation(libs.annotations)
             implementation(libs.lexilabs.basic.logging)
         }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
         androidMain.dependencies {
             compileOnly(libs.google.play.services.ads)
             compileOnly(libs.android.core)
@@ -76,9 +79,10 @@ kotlin {
         compileSdk = libs.versions.build.sdk.compile.get().toInt()
         minSdk = libs.versions.build.sdk.min.get().toInt()
         withJava()
+        withHostTest {}
 
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_26)
         }
     }
 }
