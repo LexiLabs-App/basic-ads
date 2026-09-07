@@ -6,7 +6,7 @@ build-sdk-min = "24"
 build-sdk-target = "37"
 build-ios-target-deployment = "13.0"
 kotlin = "2.4.10"
-agp = "9.5.0-alpha02"
+agp = "9.5.0-alpha04"
 # COCOAPODS DEPENDENCIES
 cocoapods-admob = "13.8.0"
 cocoapods-ump = "3.1.0"
