@@ -7,8 +7,6 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   check:
@@ -89,9 +87,7 @@ jobs:
     runs-on: macos-latest
     needs:
       - check
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    environment: ads.basic.lexilabs.app
     steps:
       - uses: actions/checkout@v3
 
@@ -115,6 +111,9 @@ jobs:
         with:
           path: docs
 
-      - name: Release to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v4.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy docs --project-name=dokka-basic-ads

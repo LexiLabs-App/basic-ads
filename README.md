@@ -139,6 +139,50 @@ if (showBannerAd){
 }
 ```
 
+## Banner Ad Sizes
+You can configure banner ad dimensions using standard size constants or responsive adaptive banner functions:
+
+### Standard Sizes
+```kotlin
+BannerAd(adSize = AdSize.BANNER)           // 320x50
+BannerAd(adSize = AdSize.LARGE_BANNER)     // 320x100
+BannerAd(adSize = AdSize.MEDIUM_RECTANGLE) // 300x250
+BannerAd(adSize = AdSize.FULL_BANNER)      // 468x60 (Default)
+BannerAd(adSize = AdSize.LEADERBOARD)      // 728x90
+BannerAd(adSize = AdSize.WIDE_SKYSCRAPER)  // 160x600
+BannerAd(adSize = AdSize.FLUID)            // Dynamic height matching creative
+```
+
+### Adaptive Banner Sizes
+AdMob Adaptive Banners dynamically determine the optimal ad dimensions based on screen orientation and available container width. Basic-Ads provides `@Composable` helper functions to calculate the appropriate size:
+
+```kotlin
+// Inline Adaptive Banners (for scrollable feeds and lists)
+BannerAd(
+    adSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(
+    adSize = AdSize.getPortraitInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(
+    adSize = AdSize.getLandscapeInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(
+    adSize = AdSize.getInlineAdaptiveBannerAdSize(width = 320, maxHeight = 150)
+)
+
+// Large Anchored Adaptive Banners (for fixed top/bottom placement)
+BannerAd(
+    adSize = AdSize.getLargeAnchoredAdaptiveBannerAdSize(width = 320)
+)
+
+// Preloaded banner ads with adaptive sizing
+val bannerAd by rememberBannerAd(
+    adSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(bannerAd)
+```
+
 ## Creating Full Screen Ads
 You can also build other Ad types.
 
