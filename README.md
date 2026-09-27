@@ -4,7 +4,7 @@
 ![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
 ![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
 [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
@@ -25,7 +25,10 @@ For **Android**, complete the steps in AdMob's instructions:
 
 For **iOS**, complete the steps in AdMob's instructions:
 
-* [Import the Mobile Ads SDK](https://developers.google.com/admob/ios/quick-start#import_the_mobile_ads_sdk)
+> [!WARNING]
+> Starting with v1.3.0, Basic-Ads uses Swift Package Manager (SPM) instead of CocoaPods. For architectural details on downstream SPM consumption and linker setup, see the [CocoaPods to SPM Conversion Guide](COCOAPODS-TO-SPM-CONVERSION.md).
+
+* [Import the Mobile Ads SDK](https://developers.google.com/admob/ios/quick-start#import_the_mobile_ads_sdk) (using Swift Package Manager)
 
 * [For GDPR Compliance Only] [Import the User Messaging Platform SDK](https://developers.google.com/admob/ios/privacy)
 
@@ -36,10 +39,10 @@ For **iOS**, complete the steps in AdMob's instructions:
 
 ## Installation
 * [![Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 > [!IMPORTANT] 
 > Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.

@@ -4,9 +4,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADRequest
-import cocoapods.Google_Mobile_Ads_SDK.GADRewardedAd
-import cocoapods.Google_Mobile_Ads_SDK.GADServerSideVerificationOptions
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequest
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRewardedAd
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADServerSideVerificationOptions
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 

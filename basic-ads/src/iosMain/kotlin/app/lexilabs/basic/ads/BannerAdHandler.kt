@@ -4,8 +4,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADBannerView
-import cocoapods.Google_Mobile_Ads_SDK.GADRequest
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADBannerView
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequest
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)

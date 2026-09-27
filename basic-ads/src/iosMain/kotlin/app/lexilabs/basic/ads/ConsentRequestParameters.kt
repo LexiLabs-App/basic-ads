@@ -1,6 +1,6 @@
 package app.lexilabs.basic.ads
 
-import cocoapods.GoogleUserMessagingPlatform.UMPRequestParameters
+import swiftPMImport.app.lexilabs.basic.basic.ads.UMPRequestParameters
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)

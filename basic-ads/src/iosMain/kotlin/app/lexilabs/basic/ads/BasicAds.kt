@@ -4,10 +4,10 @@ package app.lexilabs.basic.ads
 
 import androidx.annotation.MainThread
 import androidx.compose.runtime.Composable
-import cocoapods.Google_Mobile_Ads_SDK.GADErrorDomain
-import cocoapods.Google_Mobile_Ads_SDK.GADMobileAds
-import cocoapods.Google_Mobile_Ads_SDK.GADPublisherPrivacyPersonalizationState
-import cocoapods.Google_Mobile_Ads_SDK.GADRequestConfiguration
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADErrorDomain
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADMobileAds
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADPublisherPrivacyPersonalizationState
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequestConfiguration
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import platform.Foundation.NSNumber

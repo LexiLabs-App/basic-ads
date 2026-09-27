@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.multiplatform).apply(false)
     alias(libs.plugins.multiplatform.library).apply(false)
     alias(libs.plugins.kotlinx.serialization.plugin)
-    alias(libs.plugins.native.cocoapods)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kover)
 }

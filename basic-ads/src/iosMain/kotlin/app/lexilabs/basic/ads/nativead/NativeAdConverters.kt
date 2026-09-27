@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads.nativead
 
-import cocoapods.Google_Mobile_Ads_SDK.GADMediaContent
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdImage
-import cocoapods.Google_Mobile_Ads_SDK.mainImage
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADMediaContent
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAdImage
+import swiftPMImport.app.lexilabs.basic.basic.ads.mainImage
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)

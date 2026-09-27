@@ -1,7 +1,7 @@
 package app.lexilabs.basic.ads.nativead
 
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAd
-import cocoapods.Google_Mobile_Ads_SDK.GADVideoController
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAd
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADVideoController
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.CoreGraphics.CGFloat
 import platform.Foundation.NSURL

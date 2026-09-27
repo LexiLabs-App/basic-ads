@@ -14,10 +14,10 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.viewinterop.UIKitView
 import app.lexilabs.basic.ads.AdException
-import cocoapods.Google_Mobile_Ads_SDK.GADAdChoicesView
-import cocoapods.Google_Mobile_Ads_SDK.GADMediaContent
-import cocoapods.Google_Mobile_Ads_SDK.GADMediaView
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdView
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADAdChoicesView
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADMediaContent
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADMediaView
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAdView
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.UIKit.UIButton
 import platform.UIKit.UIControlStateNormal

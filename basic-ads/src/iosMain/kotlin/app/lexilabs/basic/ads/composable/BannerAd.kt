@@ -9,8 +9,8 @@ import app.lexilabs.basic.ads.AdSize
 import app.lexilabs.basic.ads.BannerAdHandler
 import app.lexilabs.basic.ads.getCurrentViewController
 import app.lexilabs.basic.ads.toCGRectCValue
-import cocoapods.Google_Mobile_Ads_SDK.GADBannerView
-import cocoapods.Google_Mobile_Ads_SDK.GADRequest
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADBannerView
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequest
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)

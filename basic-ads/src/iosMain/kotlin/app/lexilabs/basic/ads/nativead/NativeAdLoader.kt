@@ -3,11 +3,11 @@ package app.lexilabs.basic.ads.nativead
 import app.lexilabs.basic.ads.AdException
 import app.lexilabs.basic.ads.getRootViewController
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADAdLoader
-import cocoapods.Google_Mobile_Ads_SDK.GADAdLoaderAdTypeNative
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAd
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdLoaderDelegateProtocol
-import cocoapods.Google_Mobile_Ads_SDK.GADRequest
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADAdLoader
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADAdLoaderAdTypeNative
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAd
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAdLoaderDelegateProtocol
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequest
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
