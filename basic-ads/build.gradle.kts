@@ -1,9 +1,9 @@
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalAbiValidation::class, ExperimentalBCVApi::class)
 
-import jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyles
+import kotlinx.validation.ExperimentalBCVApi
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.idea.proto.com.google.protobuf.api
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
@@ -18,8 +18,15 @@ plugins {
 kotlin {
 
     // FORCES CHECK OF PUBLIC API DECLARATIONS
-    // DON'T FORGET TO RUN `./gradlew apiDump`
     explicitApi()
+    // REMEMBER TO RUN `./gradlew updateKotlinAbi` then `./gradlew checkKotlinAbi`
+    abiValidation {}
+    // REMEMBER TO RUN `./gradlew apiDump` then `./gradlew apiCheck`
+    apiValidation {
+        klib {
+            enabled = true
+        }
+    }
 
     listOf(
         iosArm64(), // mobile
