@@ -4,9 +4,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADRequest
-import cocoapods.Google_Mobile_Ads_SDK.GADRewardedAd
-import cocoapods.Google_Mobile_Ads_SDK.GADServerSideVerificationOptions
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequest
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRewardedAd
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADServerSideVerificationOptions
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 
@@ -23,13 +23,17 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
+        val request = GADRequest()
+        request.setCustomTargeting(customTargeting?.toIos())
+
         _state.value = AdState.LOADING
         Log.d(tag, "load:starting")
         GADRewardedAd.loadWithAdUnitID(
             adUnitID = adUnitId,
-            request = GADRequest(),
+            request = request,
             completionHandler = { ad: GADRewardedAd?, error: NSError? ->
                 ad?.let {
                     Log.d(tag, "load:success")
@@ -51,7 +55,8 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _state.value = AdState.LOADING
         Log.d(tag, "load:starting")

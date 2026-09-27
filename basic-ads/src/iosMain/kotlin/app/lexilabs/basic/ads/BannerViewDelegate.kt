@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads
 
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADBannerView
-import cocoapods.Google_Mobile_Ads_SDK.GADBannerViewDelegateProtocol
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADBannerView
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADBannerViewDelegateProtocol
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError

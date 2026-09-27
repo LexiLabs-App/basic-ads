@@ -1,0 +1,642 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <app.lexilabs.basic:basic-ads>
+open annotation class app.lexilabs.basic.ads/DependsOnGoogleMobileAds : kotlin/Annotation { // app.lexilabs.basic.ads/DependsOnGoogleMobileAds|null[0]
+    constructor <init>() // app.lexilabs.basic.ads/DependsOnGoogleMobileAds.<init>|<init>(){}[0]
+}
+
+open annotation class app.lexilabs.basic.ads/DependsOnGoogleUserMessagingPlatform : kotlin/Annotation { // app.lexilabs.basic.ads/DependsOnGoogleUserMessagingPlatform|null[0]
+    constructor <init>() // app.lexilabs.basic.ads/DependsOnGoogleUserMessagingPlatform.<init>|<init>(){}[0]
+}
+
+final enum class app.lexilabs.basic.ads.nativead/ScaleType : kotlin/Enum<app.lexilabs.basic.ads.nativead/ScaleType> { // app.lexilabs.basic.ads.nativead/ScaleType|null[0]
+    enum entry Bottom // app.lexilabs.basic.ads.nativead/ScaleType.Bottom|null[0]
+    enum entry BottomLeft // app.lexilabs.basic.ads.nativead/ScaleType.BottomLeft|null[0]
+    enum entry BottomRight // app.lexilabs.basic.ads.nativead/ScaleType.BottomRight|null[0]
+    enum entry CENTER // app.lexilabs.basic.ads.nativead/ScaleType.CENTER|null[0]
+    enum entry CENTER_CROP // app.lexilabs.basic.ads.nativead/ScaleType.CENTER_CROP|null[0]
+    enum entry CENTER_INSIDE // app.lexilabs.basic.ads.nativead/ScaleType.CENTER_INSIDE|null[0]
+    enum entry FIT_CENTER // app.lexilabs.basic.ads.nativead/ScaleType.FIT_CENTER|null[0]
+    enum entry FIT_END // app.lexilabs.basic.ads.nativead/ScaleType.FIT_END|null[0]
+    enum entry FIT_START // app.lexilabs.basic.ads.nativead/ScaleType.FIT_START|null[0]
+    enum entry FIT_XY // app.lexilabs.basic.ads.nativead/ScaleType.FIT_XY|null[0]
+    enum entry Left // app.lexilabs.basic.ads.nativead/ScaleType.Left|null[0]
+    enum entry MATRIX // app.lexilabs.basic.ads.nativead/ScaleType.MATRIX|null[0]
+    enum entry Redraw // app.lexilabs.basic.ads.nativead/ScaleType.Redraw|null[0]
+    enum entry Right // app.lexilabs.basic.ads.nativead/ScaleType.Right|null[0]
+    enum entry ScaleAspectFill // app.lexilabs.basic.ads.nativead/ScaleType.ScaleAspectFill|null[0]
+    enum entry ScaleAspectFit // app.lexilabs.basic.ads.nativead/ScaleType.ScaleAspectFit|null[0]
+    enum entry ScaleToFill // app.lexilabs.basic.ads.nativead/ScaleType.ScaleToFill|null[0]
+    enum entry Top // app.lexilabs.basic.ads.nativead/ScaleType.Top|null[0]
+    enum entry TopLeft // app.lexilabs.basic.ads.nativead/ScaleType.TopLeft|null[0]
+    enum entry TopRight // app.lexilabs.basic.ads.nativead/ScaleType.TopRight|null[0]
+
+    final val entries // app.lexilabs.basic.ads.nativead/ScaleType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<app.lexilabs.basic.ads.nativead/ScaleType> // app.lexilabs.basic.ads.nativead/ScaleType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): app.lexilabs.basic.ads.nativead/ScaleType // app.lexilabs.basic.ads.nativead/ScaleType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<app.lexilabs.basic.ads.nativead/ScaleType> // app.lexilabs.basic.ads.nativead/ScaleType.values|values#static(){}[0]
+}
+
+final enum class app.lexilabs.basic.ads/AdState : kotlin/Enum<app.lexilabs.basic.ads/AdState> { // app.lexilabs.basic.ads/AdState|null[0]
+    enum entry DISMISSED // app.lexilabs.basic.ads/AdState.DISMISSED|null[0]
+    enum entry FAILING // app.lexilabs.basic.ads/AdState.FAILING|null[0]
+    enum entry LOADING // app.lexilabs.basic.ads/AdState.LOADING|null[0]
+    enum entry NONE // app.lexilabs.basic.ads/AdState.NONE|null[0]
+    enum entry READY // app.lexilabs.basic.ads/AdState.READY|null[0]
+    enum entry SHOWING // app.lexilabs.basic.ads/AdState.SHOWING|null[0]
+    enum entry SHOWN // app.lexilabs.basic.ads/AdState.SHOWN|null[0]
+
+    final val entries // app.lexilabs.basic.ads/AdState.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<app.lexilabs.basic.ads/AdState> // app.lexilabs.basic.ads/AdState.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): app.lexilabs.basic.ads/AdState // app.lexilabs.basic.ads/AdState.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<app.lexilabs.basic.ads/AdState> // app.lexilabs.basic.ads/AdState.values|values#static(){}[0]
+}
+
+abstract interface app.lexilabs.basic.ads.nativead/NativeAdScope { // app.lexilabs.basic.ads.nativead/NativeAdScope|null[0]
+    abstract val nativeAdData // app.lexilabs.basic.ads.nativead/NativeAdScope.nativeAdData|{}nativeAdData[0]
+        abstract fun <get-nativeAdData>(): app.lexilabs.basic.ads.nativead/NativeAdData? // app.lexilabs.basic.ads.nativead/NativeAdScope.nativeAdData.<get-nativeAdData>|<get-nativeAdData>(){}[0]
+}
+
+abstract class app.lexilabs.basic.ads.nativead/NativeAdTemplate : app.lexilabs.basic.ads.nativead/NativeAdScope { // app.lexilabs.basic.ads.nativead/NativeAdTemplate|null[0]
+    constructor <init>(app.lexilabs.basic.ads.nativead/NativeAdData?) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.<init>|<init>(app.lexilabs.basic.ads.nativead.NativeAdData?){}[0]
+
+    open val nativeAdData // app.lexilabs.basic.ads.nativead/NativeAdTemplate.nativeAdData|{}nativeAdData[0]
+        open fun <get-nativeAdData>(): app.lexilabs.basic.ads.nativead/NativeAdData? // app.lexilabs.basic.ads.nativead/NativeAdTemplate.nativeAdData.<get-nativeAdData>|<get-nativeAdData>(){}[0]
+
+    abstract fun Show(androidx.compose.ui/Modifier, androidx.compose.runtime/Composer?, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Show|Show(androidx.compose.ui.Modifier;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+    abstract fun copy(app.lexilabs.basic.ads.nativead/NativeAdData?): app.lexilabs.basic.ads.nativead/NativeAdTemplate // app.lexilabs.basic.ads.nativead/NativeAdTemplate.copy|copy(app.lexilabs.basic.ads.nativead.NativeAdData?){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).AdChoices(androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.AdChoices|AdChoices@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Advertiser(androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Advertiser|Advertiser@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Attribution(kotlin/String?, androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Attribution|Attribution@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(kotlin.String?;androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Body(kotlin/String, androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Body|Body@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(kotlin.String;androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).CallToAction(androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.CallToAction|CallToAction@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Headline(kotlin/String, androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Headline|Headline@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(kotlin.String;androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Icon(androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Icon|Icon@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Media(androidx.compose.ui/Modifier?, app.lexilabs.basic.ads.nativead/ScaleType?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Media|Media@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;app.lexilabs.basic.ads.nativead.ScaleType?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).NativeAdButton(kotlin/String, androidx.compose.ui/Modifier?, androidx.compose.ui.graphics/Color, androidx.compose.ui.graphics/Color, androidx.compose.ui.graphics/Shape?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.NativeAdButton|NativeAdButton@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(kotlin.String;androidx.compose.ui.Modifier?;androidx.compose.ui.graphics.Color;androidx.compose.ui.graphics.Color;androidx.compose.ui.graphics.Shape?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Price(androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Price|Price@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).StarRating(androidx.compose.ui/Modifier?, kotlin/Function3<kotlin/Double, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.StarRating|StarRating@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;kotlin.Function3<kotlin.Double,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun (app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope).Store(androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Store|Store@app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope(androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun Supervisor(androidx.compose.ui/Modifier?, kotlin/Function3<app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.Supervisor|Supervisor(androidx.compose.ui.Modifier?;kotlin.Function3<app.lexilabs.basic.ads.nativead.NativeAdTemplate.SupervisorScope,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    final fun invoke(app.lexilabs.basic.ads.nativead/NativeAdData?): app.lexilabs.basic.ads.nativead/NativeAdTemplate // app.lexilabs.basic.ads.nativead/NativeAdTemplate.invoke|invoke(app.lexilabs.basic.ads.nativead.NativeAdData?){}[0]
+
+    abstract interface SupervisorScope // app.lexilabs.basic.ads.nativead/NativeAdTemplate.SupervisorScope|null[0]
+
+    final class ComposeDefaultImpls { // app.lexilabs.basic.ads.nativead/NativeAdTemplate.ComposeDefaultImpls|null[0]
+        final fun Show$default(androidx.compose.ui/Modifier?, app.lexilabs.basic.ads.nativead/NativeAdTemplate, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdTemplate.ComposeDefaultImpls.Show$default|Show$default#static(androidx.compose.ui.Modifier?;app.lexilabs.basic.ads.nativead.NativeAdTemplate;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    }
+}
+
+final class app.lexilabs.basic.ads.nativead/NativeAdData { // app.lexilabs.basic.ads.nativead/NativeAdData|null[0]
+    constructor <init>(swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd) // app.lexilabs.basic.ads.nativead/NativeAdData.<init>|<init>(swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAd){}[0]
+
+    final val adChoicesInfo // app.lexilabs.basic.ads.nativead/NativeAdData.adChoicesInfo|{}adChoicesInfo[0]
+        final fun <get-adChoicesInfo>(): app.lexilabs.basic.ads.nativead/NativeAdData.AdChoicesInfo? // app.lexilabs.basic.ads.nativead/NativeAdData.adChoicesInfo.<get-adChoicesInfo>|<get-adChoicesInfo>(){}[0]
+    final val advertiser // app.lexilabs.basic.ads.nativead/NativeAdData.advertiser|{}advertiser[0]
+        final fun <get-advertiser>(): kotlin/String? // app.lexilabs.basic.ads.nativead/NativeAdData.advertiser.<get-advertiser>|<get-advertiser>(){}[0]
+    final val body // app.lexilabs.basic.ads.nativead/NativeAdData.body|{}body[0]
+        final fun <get-body>(): kotlin/String? // app.lexilabs.basic.ads.nativead/NativeAdData.body.<get-body>|<get-body>(){}[0]
+    final val callToAction // app.lexilabs.basic.ads.nativead/NativeAdData.callToAction|{}callToAction[0]
+        final fun <get-callToAction>(): kotlin/String? // app.lexilabs.basic.ads.nativead/NativeAdData.callToAction.<get-callToAction>|<get-callToAction>(){}[0]
+    final val headline // app.lexilabs.basic.ads.nativead/NativeAdData.headline|{}headline[0]
+        final fun <get-headline>(): kotlin/String? // app.lexilabs.basic.ads.nativead/NativeAdData.headline.<get-headline>|<get-headline>(){}[0]
+    final val icon // app.lexilabs.basic.ads.nativead/NativeAdData.icon|{}icon[0]
+        final fun <get-icon>(): app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon? // app.lexilabs.basic.ads.nativead/NativeAdData.icon.<get-icon>|<get-icon>(){}[0]
+    final val ios // app.lexilabs.basic.ads.nativead/NativeAdData.ios|{}ios[0]
+        final fun <get-ios>(): swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd // app.lexilabs.basic.ads.nativead/NativeAdData.ios.<get-ios>|<get-ios>(){}[0]
+    final val mediaContent // app.lexilabs.basic.ads.nativead/NativeAdData.mediaContent|{}mediaContent[0]
+        final fun <get-mediaContent>(): app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent? // app.lexilabs.basic.ads.nativead/NativeAdData.mediaContent.<get-mediaContent>|<get-mediaContent>(){}[0]
+    final val muteThisAdReasons // app.lexilabs.basic.ads.nativead/NativeAdData.muteThisAdReasons|{}muteThisAdReasons[0]
+        final fun <get-muteThisAdReasons>(): kotlin.collections/List<app.lexilabs.basic.ads.nativead/NativeAdData.MuteThisAdReason> // app.lexilabs.basic.ads.nativead/NativeAdData.muteThisAdReasons.<get-muteThisAdReasons>|<get-muteThisAdReasons>(){}[0]
+    final val placementId // app.lexilabs.basic.ads.nativead/NativeAdData.placementId|{}placementId[0]
+        final fun <get-placementId>(): kotlin/Long? // app.lexilabs.basic.ads.nativead/NativeAdData.placementId.<get-placementId>|<get-placementId>(){}[0]
+    final val price // app.lexilabs.basic.ads.nativead/NativeAdData.price|{}price[0]
+        final fun <get-price>(): kotlin/String? // app.lexilabs.basic.ads.nativead/NativeAdData.price.<get-price>|<get-price>(){}[0]
+    final val starRating // app.lexilabs.basic.ads.nativead/NativeAdData.starRating|{}starRating[0]
+        final fun <get-starRating>(): kotlin/Double? // app.lexilabs.basic.ads.nativead/NativeAdData.starRating.<get-starRating>|<get-starRating>(){}[0]
+    final val store // app.lexilabs.basic.ads.nativead/NativeAdData.store|{}store[0]
+        final fun <get-store>(): kotlin/String? // app.lexilabs.basic.ads.nativead/NativeAdData.store.<get-store>|<get-store>(){}[0]
+
+    final class AdChoicesInfo { // app.lexilabs.basic.ads.nativead/NativeAdData.AdChoicesInfo|null[0]
+        constructor <init>(kotlin.collections/List<app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon>, kotlin/CharSequence) // app.lexilabs.basic.ads.nativead/NativeAdData.AdChoicesInfo.<init>|<init>(kotlin.collections.List<app.lexilabs.basic.ads.nativead.NativeAdData.AdIcon>;kotlin.CharSequence){}[0]
+
+        final val images // app.lexilabs.basic.ads.nativead/NativeAdData.AdChoicesInfo.images|{}images[0]
+            final fun <get-images>(): kotlin.collections/List<app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon> // app.lexilabs.basic.ads.nativead/NativeAdData.AdChoicesInfo.images.<get-images>|<get-images>(){}[0]
+        final val text // app.lexilabs.basic.ads.nativead/NativeAdData.AdChoicesInfo.text|{}text[0]
+            final fun <get-text>(): kotlin/CharSequence // app.lexilabs.basic.ads.nativead/NativeAdData.AdChoicesInfo.text.<get-text>|<get-text>(){}[0]
+    }
+
+    final class AdIcon { // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon|null[0]
+        constructor <init>(platform.UIKit/UIImage?, kotlin/Double, platform.Foundation/NSURL?) // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon.<init>|<init>(platform.UIKit.UIImage?;kotlin.Double;platform.Foundation.NSURL?){}[0]
+
+        final val image // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon.image|{}image[0]
+            final fun <get-image>(): platform.UIKit/UIImage? // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon.image.<get-image>|<get-image>(){}[0]
+        final val imageUrl // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon.imageUrl|{}imageUrl[0]
+            final fun <get-imageUrl>(): platform.Foundation/NSURL? // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon.imageUrl.<get-imageUrl>|<get-imageUrl>(){}[0]
+        final val scale // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon.scale|{}scale[0]
+            final fun <get-scale>(): kotlin/Double // app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon.scale.<get-scale>|<get-scale>(){}[0]
+    }
+
+    final class MediaContent { // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent|null[0]
+        constructor <init>(kotlin/Double, kotlin/Double, kotlin/Double, platform.UIKit/UIImage?, swiftPMImport.app.lexilabs.basic.basic.ads/GADVideoController) // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.<init>|<init>(kotlin.Double;kotlin.Double;kotlin.Double;platform.UIKit.UIImage?;swiftPMImport.app.lexilabs.basic.basic.ads.GADVideoController){}[0]
+
+        final val aspectRatio // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.aspectRatio|{}aspectRatio[0]
+            final fun <get-aspectRatio>(): kotlin/Double // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.aspectRatio.<get-aspectRatio>|<get-aspectRatio>(){}[0]
+        final val currentTime // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.currentTime|{}currentTime[0]
+            final fun <get-currentTime>(): kotlin/Double // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.currentTime.<get-currentTime>|<get-currentTime>(){}[0]
+        final val duration // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.duration|{}duration[0]
+            final fun <get-duration>(): kotlin/Double // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.duration.<get-duration>|<get-duration>(){}[0]
+        final val mainImage // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.mainImage|{}mainImage[0]
+            final fun <get-mainImage>(): platform.UIKit/UIImage? // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.mainImage.<get-mainImage>|<get-mainImage>(){}[0]
+        final val videoController // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.videoController|{}videoController[0]
+            final fun <get-videoController>(): swiftPMImport.app.lexilabs.basic.basic.ads/GADVideoController // app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent.videoController.<get-videoController>|<get-videoController>(){}[0]
+    }
+
+    final class MuteThisAdReason { // app.lexilabs.basic.ads.nativead/NativeAdData.MuteThisAdReason|null[0]
+        constructor <init>(kotlin/String) // app.lexilabs.basic.ads.nativead/NativeAdData.MuteThisAdReason.<init>|<init>(kotlin.String){}[0]
+
+        final val description // app.lexilabs.basic.ads.nativead/NativeAdData.MuteThisAdReason.description|{}description[0]
+            final fun <get-description>(): kotlin/String // app.lexilabs.basic.ads.nativead/NativeAdData.MuteThisAdReason.description.<get-description>|<get-description>(){}[0]
+    }
+}
+
+final class app.lexilabs.basic.ads.nativead/NativeAdDefault : app.lexilabs.basic.ads.nativead/NativeAdTemplate { // app.lexilabs.basic.ads.nativead/NativeAdDefault|null[0]
+    constructor <init>(app.lexilabs.basic.ads.nativead/NativeAdData? = ...) // app.lexilabs.basic.ads.nativead/NativeAdDefault.<init>|<init>(app.lexilabs.basic.ads.nativead.NativeAdData?){}[0]
+
+    final val nativeAdData // app.lexilabs.basic.ads.nativead/NativeAdDefault.nativeAdData|{}nativeAdData[0]
+        final fun <get-nativeAdData>(): app.lexilabs.basic.ads.nativead/NativeAdData? // app.lexilabs.basic.ads.nativead/NativeAdDefault.nativeAdData.<get-nativeAdData>|<get-nativeAdData>(){}[0]
+
+    final fun Show(androidx.compose.ui/Modifier, androidx.compose.runtime/Composer?, kotlin/Int) // app.lexilabs.basic.ads.nativead/NativeAdDefault.Show|Show(androidx.compose.ui.Modifier;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+    final fun copy(app.lexilabs.basic.ads.nativead/NativeAdData?): app.lexilabs.basic.ads.nativead/NativeAdTemplate // app.lexilabs.basic.ads.nativead/NativeAdDefault.copy|copy(app.lexilabs.basic.ads.nativead.NativeAdData?){}[0]
+}
+
+final class app.lexilabs.basic.ads.nativead/NativeAdDelegate : platform.darwin/NSObject, swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAdDelegateProtocol { // app.lexilabs.basic.ads.nativead/NativeAdDelegate|null[0]
+    constructor <init>(kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>) // app.lexilabs.basic.ads.nativead/NativeAdDelegate.<init>|<init>(onImpression:kotlin.Function0<kotlin.Unit>;onClick:kotlin.Function0<kotlin.Unit>;onShown:kotlin.Function0<kotlin.Unit>;onDismissed:kotlin.Function0<kotlin.Unit>){}[0]
+
+    final fun nativeAdDidDismissScreen(swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd) // app.lexilabs.basic.ads.nativead/NativeAdDelegate.nativeAdDidDismissScreen|objc:nativeAdDidDismissScreen:[0]
+    final fun nativeAdDidRecordClick(swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd) // app.lexilabs.basic.ads.nativead/NativeAdDelegate.nativeAdDidRecordClick|objc:nativeAdDidRecordClick:[0]
+    final fun nativeAdDidRecordImpression(swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd) // app.lexilabs.basic.ads.nativead/NativeAdDelegate.nativeAdDidRecordImpression|objc:nativeAdDidRecordImpression:[0]
+    final fun nativeAdWillDismissScreen(swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd) // app.lexilabs.basic.ads.nativead/NativeAdDelegate.nativeAdWillDismissScreen|objc:nativeAdWillDismissScreen:[0]
+    final fun nativeAdWillPresentScreen(swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd) // app.lexilabs.basic.ads.nativead/NativeAdDelegate.nativeAdWillPresentScreen|objc:nativeAdWillPresentScreen:[0]
+}
+
+final class app.lexilabs.basic.ads.nativead/NativeAdHandler { // app.lexilabs.basic.ads.nativead/NativeAdHandler|null[0]
+    constructor <init>(kotlin/Any?) // app.lexilabs.basic.ads.nativead/NativeAdHandler.<init>|<init>(kotlin.Any?){}[0]
+
+    final val state // app.lexilabs.basic.ads.nativead/NativeAdHandler.state|{}state[0]
+        final fun <get-state>(): app.lexilabs.basic.ads/AdState // app.lexilabs.basic.ads.nativead/NativeAdHandler.state.<get-state>|<get-state>(){}[0]
+
+    final fun destroy() // app.lexilabs.basic.ads.nativead/NativeAdHandler.destroy|destroy(){}[0]
+    final fun load(kotlin/String = ..., kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>, kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ...) // app.lexilabs.basic.ads.nativead/NativeAdHandler.load|load(kotlin.String;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>){}[0]
+    final fun render(): app.lexilabs.basic.ads.nativead/NativeAdData // app.lexilabs.basic.ads.nativead/NativeAdHandler.render|render(){}[0]
+}
+
+final class app.lexilabs.basic.ads.nativead/NativeAdLoader : platform.darwin/NSObject, swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAdLoaderDelegateProtocol { // app.lexilabs.basic.ads.nativead/NativeAdLoader|null[0]
+    constructor <init>(kotlin/String, kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>) // app.lexilabs.basic.ads.nativead/NativeAdLoader.<init>|<init>(adUnitId:kotlin.String;onLoad:kotlin.Function0<kotlin.Unit>;onFailure:kotlin.Function1<kotlin.Exception,kotlin.Unit>;onDismissed:kotlin.Function0<kotlin.Unit>;onShown:kotlin.Function0<kotlin.Unit>;onImpression:kotlin.Function0<kotlin.Unit>;onClick:kotlin.Function0<kotlin.Unit>){}[0]
+
+    final val onClick // app.lexilabs.basic.ads.nativead/NativeAdLoader.onClick|{}onClick[0]
+        final fun <get-onClick>(): kotlin/Function0<kotlin/Unit> // app.lexilabs.basic.ads.nativead/NativeAdLoader.onClick.<get-onClick>|<get-onClick>(){}[0]
+    final val onDismissed // app.lexilabs.basic.ads.nativead/NativeAdLoader.onDismissed|{}onDismissed[0]
+        final fun <get-onDismissed>(): kotlin/Function0<kotlin/Unit> // app.lexilabs.basic.ads.nativead/NativeAdLoader.onDismissed.<get-onDismissed>|<get-onDismissed>(){}[0]
+    final val onFailure // app.lexilabs.basic.ads.nativead/NativeAdLoader.onFailure|{}onFailure[0]
+        final fun <get-onFailure>(): kotlin/Function1<kotlin/Exception, kotlin/Unit> // app.lexilabs.basic.ads.nativead/NativeAdLoader.onFailure.<get-onFailure>|<get-onFailure>(){}[0]
+    final val onImpression // app.lexilabs.basic.ads.nativead/NativeAdLoader.onImpression|{}onImpression[0]
+        final fun <get-onImpression>(): kotlin/Function0<kotlin/Unit> // app.lexilabs.basic.ads.nativead/NativeAdLoader.onImpression.<get-onImpression>|<get-onImpression>(){}[0]
+    final val onLoad // app.lexilabs.basic.ads.nativead/NativeAdLoader.onLoad|{}onLoad[0]
+        final fun <get-onLoad>(): kotlin/Function0<kotlin/Unit> // app.lexilabs.basic.ads.nativead/NativeAdLoader.onLoad.<get-onLoad>|<get-onLoad>(){}[0]
+    final val onShown // app.lexilabs.basic.ads.nativead/NativeAdLoader.onShown|{}onShown[0]
+        final fun <get-onShown>(): kotlin/Function0<kotlin/Unit> // app.lexilabs.basic.ads.nativead/NativeAdLoader.onShown.<get-onShown>|<get-onShown>(){}[0]
+
+    final var nativeAd // app.lexilabs.basic.ads.nativead/NativeAdLoader.nativeAd|{}nativeAd[0]
+        final fun <get-nativeAd>(): swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd? // app.lexilabs.basic.ads.nativead/NativeAdLoader.nativeAd.<get-nativeAd>|<get-nativeAd>(){}[0]
+        final fun <set-nativeAd>(swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd?) // app.lexilabs.basic.ads.nativead/NativeAdLoader.nativeAd.<set-nativeAd>|<set-nativeAd>(<set-?>:swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAd?){}[0]
+
+    final fun adLoader(swiftPMImport.app.lexilabs.basic.basic.ads/GADAdLoader, platform.Foundation/NSError) // app.lexilabs.basic.ads.nativead/NativeAdLoader.adLoader|objc:adLoader:didFailToReceiveAdWithError:[0]
+    final fun adLoader(swiftPMImport.app.lexilabs.basic.basic.ads/GADAdLoader, swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd) // app.lexilabs.basic.ads.nativead/NativeAdLoader.adLoader|objc:adLoader:didReceiveNativeAd:[0]
+    final suspend fun loadAd(): kotlin/Result<swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAd> // app.lexilabs.basic.ads.nativead/NativeAdLoader.loadAd|loadAd(){}[0]
+}
+
+final class app.lexilabs.basic.ads/AdException : kotlin/Exception { // app.lexilabs.basic.ads/AdException|null[0]
+    constructor <init>(kotlin/String? = ...) // app.lexilabs.basic.ads/AdException.<init>|<init>(kotlin.String?){}[0]
+}
+
+final class app.lexilabs.basic.ads/AdSize { // app.lexilabs.basic.ads/AdSize|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads/AdSize.<init>|<init>(kotlin.Int;kotlin.Int){}[0]
+
+    final val height // app.lexilabs.basic.ads/AdSize.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // app.lexilabs.basic.ads/AdSize.height.<get-height>|<get-height>(){}[0]
+    final val width // app.lexilabs.basic.ads/AdSize.width|{}width[0]
+        final fun <get-width>(): kotlin/Int // app.lexilabs.basic.ads/AdSize.width.<get-width>|<get-width>(){}[0]
+
+    final fun toIos(): swiftPMImport.app.lexilabs.basic.basic.ads/GADAdSize // app.lexilabs.basic.ads/AdSize.toIos|toIos(){}[0]
+
+    final object Companion { // app.lexilabs.basic.ads/AdSize.Companion|null[0]
+        final val AUTO_HEIGHT // app.lexilabs.basic.ads/AdSize.Companion.AUTO_HEIGHT|{}AUTO_HEIGHT[0]
+            final fun <get-AUTO_HEIGHT>(): kotlin/Int // app.lexilabs.basic.ads/AdSize.Companion.AUTO_HEIGHT.<get-AUTO_HEIGHT>|<get-AUTO_HEIGHT>(){}[0]
+        final val BANNER // app.lexilabs.basic.ads/AdSize.Companion.BANNER|{}BANNER[0]
+            final fun <get-BANNER>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.BANNER.<get-BANNER>|<get-BANNER>(){}[0]
+        final val FLUID // app.lexilabs.basic.ads/AdSize.Companion.FLUID|{}FLUID[0]
+            final fun <get-FLUID>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.FLUID.<get-FLUID>|<get-FLUID>(){}[0]
+        final val FULL_BANNER // app.lexilabs.basic.ads/AdSize.Companion.FULL_BANNER|{}FULL_BANNER[0]
+            final fun <get-FULL_BANNER>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.FULL_BANNER.<get-FULL_BANNER>|<get-FULL_BANNER>(){}[0]
+        final val FULL_WIDTH // app.lexilabs.basic.ads/AdSize.Companion.FULL_WIDTH|{}FULL_WIDTH[0]
+            final fun <get-FULL_WIDTH>(): kotlin/Int // app.lexilabs.basic.ads/AdSize.Companion.FULL_WIDTH.<get-FULL_WIDTH>|<get-FULL_WIDTH>(){}[0]
+        final val INVALID // app.lexilabs.basic.ads/AdSize.Companion.INVALID|{}INVALID[0]
+            final fun <get-INVALID>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.INVALID.<get-INVALID>|<get-INVALID>(){}[0]
+        final val LARGE_BANNER // app.lexilabs.basic.ads/AdSize.Companion.LARGE_BANNER|{}LARGE_BANNER[0]
+            final fun <get-LARGE_BANNER>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.LARGE_BANNER.<get-LARGE_BANNER>|<get-LARGE_BANNER>(){}[0]
+        final val LEADERBOARD // app.lexilabs.basic.ads/AdSize.Companion.LEADERBOARD|{}LEADERBOARD[0]
+            final fun <get-LEADERBOARD>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.LEADERBOARD.<get-LEADERBOARD>|<get-LEADERBOARD>(){}[0]
+        final val MEDIUM_RECTANGLE // app.lexilabs.basic.ads/AdSize.Companion.MEDIUM_RECTANGLE|{}MEDIUM_RECTANGLE[0]
+            final fun <get-MEDIUM_RECTANGLE>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.MEDIUM_RECTANGLE.<get-MEDIUM_RECTANGLE>|<get-MEDIUM_RECTANGLE>(){}[0]
+        final val WIDE_SKYSCRAPER // app.lexilabs.basic.ads/AdSize.Companion.WIDE_SKYSCRAPER|{}WIDE_SKYSCRAPER[0]
+            final fun <get-WIDE_SKYSCRAPER>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.WIDE_SKYSCRAPER.<get-WIDE_SKYSCRAPER>|<get-WIDE_SKYSCRAPER>(){}[0]
+
+        final fun autoSelect(app.lexilabs.basic.ads/AdSize, app.lexilabs.basic.ads/AdSize): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.autoSelect|autoSelect(app.lexilabs.basic.ads.AdSize;app.lexilabs.basic.ads.AdSize){}[0]
+        final fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(kotlin/Any?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getCurrentOrientationAnchoredAdaptiveBannerAdSize|getCurrentOrientationAnchoredAdaptiveBannerAdSize(kotlin.Any?;kotlin.Int){}[0]
+        final fun getCurrentOrientationInlineAdaptiveBannerAdSize(kotlin/Any?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getCurrentOrientationInlineAdaptiveBannerAdSize|getCurrentOrientationInlineAdaptiveBannerAdSize(kotlin.Any?;kotlin.Int){}[0]
+        final fun getCurrentOrientationInlineAdaptiveBannerAdSize(kotlin/Int, androidx.compose.runtime/Composer?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getCurrentOrientationInlineAdaptiveBannerAdSize|getCurrentOrientationInlineAdaptiveBannerAdSize(kotlin.Int;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+        final fun getInlineAdaptiveBannerAdSize(kotlin/Int, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getInlineAdaptiveBannerAdSize|getInlineAdaptiveBannerAdSize(kotlin.Int;kotlin.Int){}[0]
+        final fun getLandscapeAnchoredAdaptiveBannerAdSize(kotlin/Any?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getLandscapeAnchoredAdaptiveBannerAdSize|getLandscapeAnchoredAdaptiveBannerAdSize(kotlin.Any?;kotlin.Int){}[0]
+        final fun getLandscapeInlineAdaptiveBannerAdSize(kotlin/Any?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getLandscapeInlineAdaptiveBannerAdSize|getLandscapeInlineAdaptiveBannerAdSize(kotlin.Any?;kotlin.Int){}[0]
+        final fun getLandscapeInlineAdaptiveBannerAdSize(kotlin/Int, androidx.compose.runtime/Composer?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getLandscapeInlineAdaptiveBannerAdSize|getLandscapeInlineAdaptiveBannerAdSize(kotlin.Int;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+        final fun getLargeAnchoredAdaptiveBannerAdSize(kotlin/Int, androidx.compose.runtime/Composer?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getLargeAnchoredAdaptiveBannerAdSize|getLargeAnchoredAdaptiveBannerAdSize(kotlin.Int;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+        final fun getPortraitAnchoredAdaptiveBannerAdSize(kotlin/Any?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getPortraitAnchoredAdaptiveBannerAdSize|getPortraitAnchoredAdaptiveBannerAdSize(kotlin.Any?;kotlin.Int){}[0]
+        final fun getPortraitInlineAdaptiveBannerAdSize(kotlin/Any?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getPortraitInlineAdaptiveBannerAdSize|getPortraitInlineAdaptiveBannerAdSize(kotlin.Any?;kotlin.Int){}[0]
+        final fun getPortraitInlineAdaptiveBannerAdSize(kotlin/Int, androidx.compose.runtime/Composer?, kotlin/Int): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/AdSize.Companion.getPortraitInlineAdaptiveBannerAdSize|getPortraitInlineAdaptiveBannerAdSize(kotlin.Int;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+    }
+}
+
+final class app.lexilabs.basic.ads/BannerAdHandler { // app.lexilabs.basic.ads/BannerAdHandler|null[0]
+    constructor <init>(kotlin/Any?) // app.lexilabs.basic.ads/BannerAdHandler.<init>|<init>(kotlin.Any?){}[0]
+
+    final val adSize // app.lexilabs.basic.ads/BannerAdHandler.adSize|{}adSize[0]
+        final fun <get-adSize>(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/BannerAdHandler.adSize.<get-adSize>|<get-adSize>(){}[0]
+    final val state // app.lexilabs.basic.ads/BannerAdHandler.state|{}state[0]
+        final fun <get-state>(): app.lexilabs.basic.ads/AdState // app.lexilabs.basic.ads/BannerAdHandler.state.<get-state>|<get-state>(){}[0]
+
+    final var bannerView // app.lexilabs.basic.ads/BannerAdHandler.bannerView|{}bannerView[0]
+        final fun <get-bannerView>(): swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView // app.lexilabs.basic.ads/BannerAdHandler.bannerView.<get-bannerView>|<get-bannerView>(){}[0]
+        final fun <set-bannerView>(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView) // app.lexilabs.basic.ads/BannerAdHandler.bannerView.<set-bannerView>|<set-bannerView>(swiftPMImport.app.lexilabs.basic.basic.ads.GADBannerView){}[0]
+
+    final fun load(kotlin/String = ..., app.lexilabs.basic.ads/AdSize = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function1<kotlin/Exception, kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., app.lexilabs.basic.ads/CustomTargeting? = ...) // app.lexilabs.basic.ads/BannerAdHandler.load|load(kotlin.String;app.lexilabs.basic.ads.AdSize;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;app.lexilabs.basic.ads.CustomTargeting?){}[0]
+}
+
+final class app.lexilabs.basic.ads/BannerViewDelegate : platform.darwin/NSObject, swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerViewDelegateProtocol { // app.lexilabs.basic.ads/BannerViewDelegate|null[0]
+    constructor <init>(kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>) // app.lexilabs.basic.ads/BannerViewDelegate.<init>|<init>(onLoad:kotlin.Function0<kotlin.Unit>;onWillDismiss:kotlin.Function0<kotlin.Unit>;onDismissed:kotlin.Function0<kotlin.Unit>;onShown:kotlin.Function0<kotlin.Unit>;onImpression:kotlin.Function0<kotlin.Unit>;onClick:kotlin.Function0<kotlin.Unit>;onFailure:kotlin.Function1<kotlin.Exception,kotlin.Unit>){}[0]
+
+    final fun bannerView(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView, platform.Foundation/NSError) // app.lexilabs.basic.ads/BannerViewDelegate.bannerView|objc:bannerView:didFailToReceiveAdWithError:[0]
+    final fun bannerViewDidDismissScreen(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView) // app.lexilabs.basic.ads/BannerViewDelegate.bannerViewDidDismissScreen|objc:bannerViewDidDismissScreen:[0]
+    final fun bannerViewDidReceiveAd(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView) // app.lexilabs.basic.ads/BannerViewDelegate.bannerViewDidReceiveAd|objc:bannerViewDidReceiveAd:[0]
+    final fun bannerViewDidRecordClick(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView) // app.lexilabs.basic.ads/BannerViewDelegate.bannerViewDidRecordClick|objc:bannerViewDidRecordClick:[0]
+    final fun bannerViewDidRecordImpression(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView) // app.lexilabs.basic.ads/BannerViewDelegate.bannerViewDidRecordImpression|objc:bannerViewDidRecordImpression:[0]
+    final fun bannerViewWillDismissScreen(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView) // app.lexilabs.basic.ads/BannerViewDelegate.bannerViewWillDismissScreen|objc:bannerViewWillDismissScreen:[0]
+    final fun bannerViewWillPresentScreen(swiftPMImport.app.lexilabs.basic.basic.ads/GADBannerView) // app.lexilabs.basic.ads/BannerViewDelegate.bannerViewWillPresentScreen|objc:bannerViewWillPresentScreen:[0]
+}
+
+final class app.lexilabs.basic.ads/Consent { // app.lexilabs.basic.ads/Consent|null[0]
+    constructor <init>(kotlin/Any?) // app.lexilabs.basic.ads/Consent.<init>|<init>(kotlin.Any?){}[0]
+
+    final val canRequestAds // app.lexilabs.basic.ads/Consent.canRequestAds|{}canRequestAds[0]
+        final fun <get-canRequestAds>(): kotlin/Boolean // app.lexilabs.basic.ads/Consent.canRequestAds.<get-canRequestAds>|<get-canRequestAds>(){}[0]
+    final val privacyOptionsRequired // app.lexilabs.basic.ads/Consent.privacyOptionsRequired|{}privacyOptionsRequired[0]
+        final fun <get-privacyOptionsRequired>(): kotlin/Boolean // app.lexilabs.basic.ads/Consent.privacyOptionsRequired.<get-privacyOptionsRequired>|<get-privacyOptionsRequired>(){}[0]
+
+    final fun canRequestAds(): kotlin/Boolean // app.lexilabs.basic.ads/Consent.canRequestAds|canRequestAds(){}[0]
+    final fun isPrivacyOptionsRequired(): kotlin/Boolean // app.lexilabs.basic.ads/Consent.isPrivacyOptionsRequired|isPrivacyOptionsRequired(){}[0]
+    final fun loadAndShowConsentForm(kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function1<kotlin/Exception, kotlin/Unit> = ...) // app.lexilabs.basic.ads/Consent.loadAndShowConsentForm|loadAndShowConsentForm(kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>){}[0]
+    final fun requestConsentInfoUpdate(app.lexilabs.basic.ads/ConsentRequestParameters, kotlin/Function0<kotlin/Unit> = ..., kotlin/Function1<kotlin/Exception, kotlin/Unit> = ...) // app.lexilabs.basic.ads/Consent.requestConsentInfoUpdate|requestConsentInfoUpdate(app.lexilabs.basic.ads.ConsentRequestParameters;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>){}[0]
+    final fun requestConsentInfoUpdate(kotlin/Function0<kotlin/Unit> = ..., kotlin/Function1<kotlin/Exception, kotlin/Unit> = ...) // app.lexilabs.basic.ads/Consent.requestConsentInfoUpdate|requestConsentInfoUpdate(kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>){}[0]
+    final fun reset() // app.lexilabs.basic.ads/Consent.reset|reset(){}[0]
+    final fun showPrivacyOptionsForm(kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit> = ...) // app.lexilabs.basic.ads/Consent.showPrivacyOptionsForm|showPrivacyOptionsForm(kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>){}[0]
+}
+
+final class app.lexilabs.basic.ads/ConsentDebugSettings { // app.lexilabs.basic.ads/ConsentDebugSettings|null[0]
+    final val debugGeography // app.lexilabs.basic.ads/ConsentDebugSettings.debugGeography|{}debugGeography[0]
+        final fun <get-debugGeography>(): app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography // app.lexilabs.basic.ads/ConsentDebugSettings.debugGeography.<get-debugGeography>|<get-debugGeography>(){}[0]
+    final val isTestDevice // app.lexilabs.basic.ads/ConsentDebugSettings.isTestDevice|{}isTestDevice[0]
+        final fun <get-isTestDevice>(): kotlin/Boolean // app.lexilabs.basic.ads/ConsentDebugSettings.isTestDevice.<get-isTestDevice>|<get-isTestDevice>(){}[0]
+
+    final enum class DebugGeography : kotlin/Enum<app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography> { // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography|null[0]
+        enum entry DEBUG_GEOGRAPHY_DISABLED // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_DISABLED|null[0]
+        enum entry DEBUG_GEOGRAPHY_EEA // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA|null[0]
+        enum entry DEBUG_GEOGRAPHY_NOT_EEA // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA|null[0]
+        enum entry DEBUG_GEOGRAPHY_OTHER // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER|null[0]
+        enum entry DEBUG_GEOGRAPHY_REGULATED_US_STATE // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE|null[0]
+
+        final val entries // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography> // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.entries.<get-entries>|<get-entries>#static(){}[0]
+        final val value // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.value|{}value[0]
+            final fun <get-value>(): kotlin/Long // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.value.<get-value>|<get-value>(){}[0]
+
+        final fun valueOf(kotlin/String): app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography> // app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography.values|values#static(){}[0]
+    }
+
+    final class Builder { // app.lexilabs.basic.ads/ConsentDebugSettings.Builder|null[0]
+        constructor <init>(kotlin/Any?) // app.lexilabs.basic.ads/ConsentDebugSettings.Builder.<init>|<init>(kotlin.Any?){}[0]
+
+        final fun addTestDeviceHashedId(kotlin/String): app.lexilabs.basic.ads/ConsentDebugSettings.Builder // app.lexilabs.basic.ads/ConsentDebugSettings.Builder.addTestDeviceHashedId|addTestDeviceHashedId(kotlin.String){}[0]
+        final fun build(): app.lexilabs.basic.ads/ConsentDebugSettings // app.lexilabs.basic.ads/ConsentDebugSettings.Builder.build|build(){}[0]
+        final fun setDebugGeography(app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography): app.lexilabs.basic.ads/ConsentDebugSettings.Builder // app.lexilabs.basic.ads/ConsentDebugSettings.Builder.setDebugGeography|setDebugGeography(app.lexilabs.basic.ads.ConsentDebugSettings.DebugGeography){}[0]
+        final fun setForceTesting(kotlin/Boolean): app.lexilabs.basic.ads/ConsentDebugSettings.Builder // app.lexilabs.basic.ads/ConsentDebugSettings.Builder.setForceTesting|setForceTesting(kotlin.Boolean){}[0]
+    }
+
+    final object Companion { // app.lexilabs.basic.ads/ConsentDebugSettings.Companion|null[0]
+        final fun builder(app.lexilabs.basic.ads/ConsentDebugSettings.DebugGeography?, kotlin/String?, kotlin/Boolean?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): app.lexilabs.basic.ads/ConsentDebugSettings // app.lexilabs.basic.ads/ConsentDebugSettings.Companion.builder|builder(app.lexilabs.basic.ads.ConsentDebugSettings.DebugGeography?;kotlin.String?;kotlin.Boolean?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+    }
+}
+
+final class app.lexilabs.basic.ads/ConsentException : kotlin/Exception { // app.lexilabs.basic.ads/ConsentException|null[0]
+    constructor <init>(kotlin/String?) // app.lexilabs.basic.ads/ConsentException.<init>|<init>(kotlin.String?){}[0]
+}
+
+final class app.lexilabs.basic.ads/ConsentRequestParameters { // app.lexilabs.basic.ads/ConsentRequestParameters|null[0]
+    final val consentDebugSettings // app.lexilabs.basic.ads/ConsentRequestParameters.consentDebugSettings|{}consentDebugSettings[0]
+        final fun <get-consentDebugSettings>(): app.lexilabs.basic.ads/ConsentDebugSettings? // app.lexilabs.basic.ads/ConsentRequestParameters.consentDebugSettings.<get-consentDebugSettings>|<get-consentDebugSettings>(){}[0]
+    final val isTagForUnderAgeOfConsent // app.lexilabs.basic.ads/ConsentRequestParameters.isTagForUnderAgeOfConsent|{}isTagForUnderAgeOfConsent[0]
+        final fun <get-isTagForUnderAgeOfConsent>(): kotlin/Boolean // app.lexilabs.basic.ads/ConsentRequestParameters.isTagForUnderAgeOfConsent.<get-isTagForUnderAgeOfConsent>|<get-isTagForUnderAgeOfConsent>(){}[0]
+
+    final class Builder { // app.lexilabs.basic.ads/ConsentRequestParameters.Builder|null[0]
+        constructor <init>() // app.lexilabs.basic.ads/ConsentRequestParameters.Builder.<init>|<init>(){}[0]
+
+        final fun build(): app.lexilabs.basic.ads/ConsentRequestParameters // app.lexilabs.basic.ads/ConsentRequestParameters.Builder.build|build(){}[0]
+        final fun setAdMobAppId(kotlin/String): app.lexilabs.basic.ads/ConsentRequestParameters.Builder // app.lexilabs.basic.ads/ConsentRequestParameters.Builder.setAdMobAppId|setAdMobAppId(kotlin.String){}[0]
+        final fun setConsentDebugSettings(app.lexilabs.basic.ads/ConsentDebugSettings): app.lexilabs.basic.ads/ConsentRequestParameters.Builder // app.lexilabs.basic.ads/ConsentRequestParameters.Builder.setConsentDebugSettings|setConsentDebugSettings(app.lexilabs.basic.ads.ConsentDebugSettings){}[0]
+        final fun setTagForUnderAgeOfConsent(kotlin/Boolean): app.lexilabs.basic.ads/ConsentRequestParameters.Builder // app.lexilabs.basic.ads/ConsentRequestParameters.Builder.setTagForUnderAgeOfConsent|setTagForUnderAgeOfConsent(kotlin.Boolean){}[0]
+    }
+}
+
+final class app.lexilabs.basic.ads/CustomTargeting { // app.lexilabs.basic.ads/CustomTargeting|null[0]
+    constructor <init>(kotlin/String, kotlin.collections/List<kotlin/String>) // app.lexilabs.basic.ads/CustomTargeting.<init>|<init>(kotlin.String;kotlin.collections.List<kotlin.String>){}[0]
+
+    final val key // app.lexilabs.basic.ads/CustomTargeting.key|{}key[0]
+        final fun <get-key>(): kotlin/String // app.lexilabs.basic.ads/CustomTargeting.key.<get-key>|<get-key>(){}[0]
+    final val value // app.lexilabs.basic.ads/CustomTargeting.value|{}value[0]
+        final fun <get-value>(): kotlin.collections/List<kotlin/String> // app.lexilabs.basic.ads/CustomTargeting.value.<get-value>|<get-value>(){}[0]
+
+    final fun component1(): kotlin/String // app.lexilabs.basic.ads/CustomTargeting.component1|component1(){}[0]
+    final fun component2(): kotlin.collections/List<kotlin/String> // app.lexilabs.basic.ads/CustomTargeting.component2|component2(){}[0]
+    final fun copy(kotlin/String = ..., kotlin.collections/List<kotlin/String> = ...): app.lexilabs.basic.ads/CustomTargeting // app.lexilabs.basic.ads/CustomTargeting.copy|copy(kotlin.String;kotlin.collections.List<kotlin.String>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // app.lexilabs.basic.ads/CustomTargeting.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // app.lexilabs.basic.ads/CustomTargeting.hashCode|hashCode(){}[0]
+    final fun toIos(): kotlin.collections/Map<kotlin/Any?, kotlin/Any> // app.lexilabs.basic.ads/CustomTargeting.toIos|toIos(){}[0]
+    final fun toString(): kotlin/String // app.lexilabs.basic.ads/CustomTargeting.toString|toString(){}[0]
+}
+
+final class app.lexilabs.basic.ads/FullScreenContentDelegate : platform.darwin/NSObject, swiftPMImport.app.lexilabs.basic.basic.ads/GADFullScreenContentDelegateProtocol { // app.lexilabs.basic.ads/FullScreenContentDelegate|null[0]
+    constructor <init>(kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>) // app.lexilabs.basic.ads/FullScreenContentDelegate.<init>|<init>(onDismissed:kotlin.Function0<kotlin.Unit>;onShown:kotlin.Function0<kotlin.Unit>;onImpression:kotlin.Function0<kotlin.Unit>;onClick:kotlin.Function0<kotlin.Unit>;onFailure:kotlin.Function1<kotlin.Exception,kotlin.Unit>){}[0]
+
+    final fun ad(swiftPMImport.app.lexilabs.basic.basic.ads/GADFullScreenPresentingAdProtocol, platform.Foundation/NSError) // app.lexilabs.basic.ads/FullScreenContentDelegate.ad|objc:ad:didFailToPresentFullScreenContentWithError:[0]
+    final fun adDidDismissFullScreenContent(swiftPMImport.app.lexilabs.basic.basic.ads/GADFullScreenPresentingAdProtocol) // app.lexilabs.basic.ads/FullScreenContentDelegate.adDidDismissFullScreenContent|objc:adDidDismissFullScreenContent:[0]
+    final fun adDidRecordClick(swiftPMImport.app.lexilabs.basic.basic.ads/GADFullScreenPresentingAdProtocol) // app.lexilabs.basic.ads/FullScreenContentDelegate.adDidRecordClick|objc:adDidRecordClick:[0]
+    final fun adDidRecordImpression(swiftPMImport.app.lexilabs.basic.basic.ads/GADFullScreenPresentingAdProtocol) // app.lexilabs.basic.ads/FullScreenContentDelegate.adDidRecordImpression|objc:adDidRecordImpression:[0]
+    final fun adWillDismissFullScreenContent(swiftPMImport.app.lexilabs.basic.basic.ads/GADFullScreenPresentingAdProtocol) // app.lexilabs.basic.ads/FullScreenContentDelegate.adWillDismissFullScreenContent|objc:adWillDismissFullScreenContent:[0]
+    final fun adWillPresentFullScreenContent(swiftPMImport.app.lexilabs.basic.basic.ads/GADFullScreenPresentingAdProtocol) // app.lexilabs.basic.ads/FullScreenContentDelegate.adWillPresentFullScreenContent|objc:adWillPresentFullScreenContent:[0]
+}
+
+final class app.lexilabs.basic.ads/InterstitialAdHandler { // app.lexilabs.basic.ads/InterstitialAdHandler|null[0]
+    constructor <init>(kotlin/Any?) // app.lexilabs.basic.ads/InterstitialAdHandler.<init>|<init>(kotlin.Any?){}[0]
+
+    final val state // app.lexilabs.basic.ads/InterstitialAdHandler.state|{}state[0]
+        final fun <get-state>(): app.lexilabs.basic.ads/AdState // app.lexilabs.basic.ads/InterstitialAdHandler.state.<get-state>|<get-state>(){}[0]
+
+    final fun load(kotlin/String = ..., kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>, app.lexilabs.basic.ads/CustomTargeting? = ...) // app.lexilabs.basic.ads/InterstitialAdHandler.load|load(kotlin.String;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>;app.lexilabs.basic.ads.CustomTargeting?){}[0]
+    final fun setListeners(kotlin/Function1<kotlin/Exception, kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ...) // app.lexilabs.basic.ads/InterstitialAdHandler.setListeners|setListeners(kotlin.Function1<kotlin.Exception,kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>){}[0]
+    final fun show() // app.lexilabs.basic.ads/InterstitialAdHandler.show|show(){}[0]
+    final fun show(platform.UIKit/UIViewController) // app.lexilabs.basic.ads/InterstitialAdHandler.show|show(platform.UIKit.UIViewController){}[0]
+}
+
+final class app.lexilabs.basic.ads/RequestConfiguration { // app.lexilabs.basic.ads/RequestConfiguration|null[0]
+    constructor <init>(kotlin/String?, app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState, kotlin/Int, kotlin/Int, kotlin.collections/List<kotlin/String?>?) // app.lexilabs.basic.ads/RequestConfiguration.<init>|<init>(kotlin.String?;app.lexilabs.basic.ads.RequestConfiguration.PublisherPrivacyPersonalizationState;kotlin.Int;kotlin.Int;kotlin.collections.List<kotlin.String?>?){}[0]
+
+    final val maxAdContentRating // app.lexilabs.basic.ads/RequestConfiguration.maxAdContentRating|{}maxAdContentRating[0]
+        final fun <get-maxAdContentRating>(): kotlin/String? // app.lexilabs.basic.ads/RequestConfiguration.maxAdContentRating.<get-maxAdContentRating>|<get-maxAdContentRating>(){}[0]
+    final val publisherPrivacyPersonalizationState // app.lexilabs.basic.ads/RequestConfiguration.publisherPrivacyPersonalizationState|{}publisherPrivacyPersonalizationState[0]
+        final fun <get-publisherPrivacyPersonalizationState>(): app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState // app.lexilabs.basic.ads/RequestConfiguration.publisherPrivacyPersonalizationState.<get-publisherPrivacyPersonalizationState>|<get-publisherPrivacyPersonalizationState>(){}[0]
+    final val tagForChildDirectedTreatment // app.lexilabs.basic.ads/RequestConfiguration.tagForChildDirectedTreatment|{}tagForChildDirectedTreatment[0]
+        final fun <get-tagForChildDirectedTreatment>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.tagForChildDirectedTreatment.<get-tagForChildDirectedTreatment>|<get-tagForChildDirectedTreatment>(){}[0]
+    final val tagForUnderAgeOfConsent // app.lexilabs.basic.ads/RequestConfiguration.tagForUnderAgeOfConsent|{}tagForUnderAgeOfConsent[0]
+        final fun <get-tagForUnderAgeOfConsent>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.tagForUnderAgeOfConsent.<get-tagForUnderAgeOfConsent>|<get-tagForUnderAgeOfConsent>(){}[0]
+    final val testDeviceIds // app.lexilabs.basic.ads/RequestConfiguration.testDeviceIds|{}testDeviceIds[0]
+        final fun <get-testDeviceIds>(): kotlin.collections/List<kotlin/String?>? // app.lexilabs.basic.ads/RequestConfiguration.testDeviceIds.<get-testDeviceIds>|<get-testDeviceIds>(){}[0]
+
+    final fun component1(): kotlin/String? // app.lexilabs.basic.ads/RequestConfiguration.component1|component1(){}[0]
+    final fun component2(): app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState // app.lexilabs.basic.ads/RequestConfiguration.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.component4|component4(){}[0]
+    final fun component5(): kotlin.collections/List<kotlin/String?>? // app.lexilabs.basic.ads/RequestConfiguration.component5|component5(){}[0]
+    final fun copy(kotlin/String? = ..., app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin.collections/List<kotlin/String?>? = ...): app.lexilabs.basic.ads/RequestConfiguration // app.lexilabs.basic.ads/RequestConfiguration.copy|copy(kotlin.String?;app.lexilabs.basic.ads.RequestConfiguration.PublisherPrivacyPersonalizationState;kotlin.Int;kotlin.Int;kotlin.collections.List<kotlin.String?>?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // app.lexilabs.basic.ads/RequestConfiguration.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // app.lexilabs.basic.ads/RequestConfiguration.toString|toString(){}[0]
+
+    final enum class PublisherPrivacyPersonalizationState : kotlin/Enum<app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState> { // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState|null[0]
+        enum entry DEFAULT // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.DEFAULT|null[0]
+        enum entry DISABLED // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.DISABLED|null[0]
+        enum entry ENABLED // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.ENABLED|null[0]
+
+        final val entries // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState> // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState> // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.values|values#static(){}[0]
+
+        final object Companion { // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.Companion|null[0]
+            final fun fromInt(kotlin/Int): app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState // app.lexilabs.basic.ads/RequestConfiguration.PublisherPrivacyPersonalizationState.Companion.fromInt|fromInt(kotlin.Int){}[0]
+        }
+    }
+
+    final object Companion { // app.lexilabs.basic.ads/RequestConfiguration.Companion|null[0]
+        final const val MAX_AD_CONTENT_RATING_G // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_G|{}MAX_AD_CONTENT_RATING_G[0]
+            final fun <get-MAX_AD_CONTENT_RATING_G>(): kotlin/String // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_G.<get-MAX_AD_CONTENT_RATING_G>|<get-MAX_AD_CONTENT_RATING_G>(){}[0]
+        final const val MAX_AD_CONTENT_RATING_MA // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_MA|{}MAX_AD_CONTENT_RATING_MA[0]
+            final fun <get-MAX_AD_CONTENT_RATING_MA>(): kotlin/String // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_MA.<get-MAX_AD_CONTENT_RATING_MA>|<get-MAX_AD_CONTENT_RATING_MA>(){}[0]
+        final const val MAX_AD_CONTENT_RATING_PG // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_PG|{}MAX_AD_CONTENT_RATING_PG[0]
+            final fun <get-MAX_AD_CONTENT_RATING_PG>(): kotlin/String // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_PG.<get-MAX_AD_CONTENT_RATING_PG>|<get-MAX_AD_CONTENT_RATING_PG>(){}[0]
+        final const val MAX_AD_CONTENT_RATING_T // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_T|{}MAX_AD_CONTENT_RATING_T[0]
+            final fun <get-MAX_AD_CONTENT_RATING_T>(): kotlin/String // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_T.<get-MAX_AD_CONTENT_RATING_T>|<get-MAX_AD_CONTENT_RATING_T>(){}[0]
+        final const val MAX_AD_CONTENT_RATING_UNSPECIFIED // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_UNSPECIFIED|{}MAX_AD_CONTENT_RATING_UNSPECIFIED[0]
+            final fun <get-MAX_AD_CONTENT_RATING_UNSPECIFIED>(): kotlin/String // app.lexilabs.basic.ads/RequestConfiguration.Companion.MAX_AD_CONTENT_RATING_UNSPECIFIED.<get-MAX_AD_CONTENT_RATING_UNSPECIFIED>|<get-MAX_AD_CONTENT_RATING_UNSPECIFIED>(){}[0]
+        final const val TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE|{}TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE[0]
+            final fun <get-TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE.<get-TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE>|<get-TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE>(){}[0]
+        final const val TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE|{}TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE[0]
+            final fun <get-TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE.<get-TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE>|<get-TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE>(){}[0]
+        final const val TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED|{}TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED[0]
+            final fun <get-TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED.<get-TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED>|<get-TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED>(){}[0]
+        final const val TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE|{}TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE[0]
+            final fun <get-TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE.<get-TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE>|<get-TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE>(){}[0]
+        final const val TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE|{}TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE[0]
+            final fun <get-TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE.<get-TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE>|<get-TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE>(){}[0]
+        final const val TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED|{}TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED[0]
+            final fun <get-TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED>(): kotlin/Int // app.lexilabs.basic.ads/RequestConfiguration.Companion.TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED.<get-TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED>|<get-TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED>(){}[0]
+    }
+}
+
+final class app.lexilabs.basic.ads/RewardItem { // app.lexilabs.basic.ads/RewardItem|null[0]
+    constructor <init>(swiftPMImport.app.lexilabs.basic.basic.ads/GADAdReward) // app.lexilabs.basic.ads/RewardItem.<init>|<init>(swiftPMImport.app.lexilabs.basic.basic.ads.GADAdReward){}[0]
+
+    final val amount // app.lexilabs.basic.ads/RewardItem.amount|{}amount[0]
+        final fun <get-amount>(): kotlin/Int // app.lexilabs.basic.ads/RewardItem.amount.<get-amount>|<get-amount>(){}[0]
+    final val type // app.lexilabs.basic.ads/RewardItem.type|{}type[0]
+        final fun <get-type>(): kotlin/String // app.lexilabs.basic.ads/RewardItem.type.<get-type>|<get-type>(){}[0]
+}
+
+final class app.lexilabs.basic.ads/RewardedAdHandler { // app.lexilabs.basic.ads/RewardedAdHandler|null[0]
+    constructor <init>(kotlin/Any?) // app.lexilabs.basic.ads/RewardedAdHandler.<init>|<init>(kotlin.Any?){}[0]
+
+    final val state // app.lexilabs.basic.ads/RewardedAdHandler.state|{}state[0]
+        final fun <get-state>(): app.lexilabs.basic.ads/AdState // app.lexilabs.basic.ads/RewardedAdHandler.state.<get-state>|<get-state>(){}[0]
+
+    final fun load(kotlin/String = ..., kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>, app.lexilabs.basic.ads/CustomTargeting? = ...) // app.lexilabs.basic.ads/RewardedAdHandler.load|load(kotlin.String;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>;app.lexilabs.basic.ads.CustomTargeting?){}[0]
+    final fun load(kotlin/String = ..., kotlin/String, kotlin/String, kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>, app.lexilabs.basic.ads/CustomTargeting? = ...) // app.lexilabs.basic.ads/RewardedAdHandler.load|load(kotlin.String;kotlin.String;kotlin.String;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>;app.lexilabs.basic.ads.CustomTargeting?){}[0]
+    final fun setListeners(kotlin/Function1<kotlin/Exception, kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ...) // app.lexilabs.basic.ads/RewardedAdHandler.setListeners|setListeners(kotlin.Function1<kotlin.Exception,kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>){}[0]
+    final fun show(kotlin/Function1<app.lexilabs.basic.ads/RewardItem, kotlin/Unit>) // app.lexilabs.basic.ads/RewardedAdHandler.show|show(kotlin.Function1<app.lexilabs.basic.ads.RewardItem,kotlin.Unit>){}[0]
+}
+
+final class app.lexilabs.basic.ads/RewardedInterstitialAdHandler { // app.lexilabs.basic.ads/RewardedInterstitialAdHandler|null[0]
+    constructor <init>(kotlin/Any?) // app.lexilabs.basic.ads/RewardedInterstitialAdHandler.<init>|<init>(kotlin.Any?){}[0]
+
+    final val state // app.lexilabs.basic.ads/RewardedInterstitialAdHandler.state|{}state[0]
+        final fun <get-state>(): app.lexilabs.basic.ads/AdState // app.lexilabs.basic.ads/RewardedInterstitialAdHandler.state.<get-state>|<get-state>(){}[0]
+
+    final fun load(kotlin/String = ..., kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>, app.lexilabs.basic.ads/CustomTargeting? = ...) // app.lexilabs.basic.ads/RewardedInterstitialAdHandler.load|load(kotlin.String;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>;app.lexilabs.basic.ads.CustomTargeting?){}[0]
+    final fun load(kotlin/String = ..., kotlin/String, kotlin/String, kotlin/Function0<kotlin/Unit>, kotlin/Function1<kotlin/Exception, kotlin/Unit>, app.lexilabs.basic.ads/CustomTargeting? = ...) // app.lexilabs.basic.ads/RewardedInterstitialAdHandler.load|load(kotlin.String;kotlin.String;kotlin.String;kotlin.Function0<kotlin.Unit>;kotlin.Function1<kotlin.Exception,kotlin.Unit>;app.lexilabs.basic.ads.CustomTargeting?){}[0]
+    final fun setListeners(kotlin/Function1<kotlin/Exception, kotlin/Unit>, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ..., kotlin/Function0<kotlin/Unit> = ...) // app.lexilabs.basic.ads/RewardedInterstitialAdHandler.setListeners|setListeners(kotlin.Function1<kotlin.Exception,kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>){}[0]
+    final fun show(kotlin/Function0<kotlin/Unit>) // app.lexilabs.basic.ads/RewardedInterstitialAdHandler.show|show(kotlin.Function0<kotlin.Unit>){}[0]
+}
+
+final object app.lexilabs.basic.ads/AdUnitId { // app.lexilabs.basic.ads/AdUnitId|null[0]
+    final const val BANNER_DEFAULT // app.lexilabs.basic.ads/AdUnitId.BANNER_DEFAULT|{}BANNER_DEFAULT[0]
+        final fun <get-BANNER_DEFAULT>(): kotlin/String // app.lexilabs.basic.ads/AdUnitId.BANNER_DEFAULT.<get-BANNER_DEFAULT>|<get-BANNER_DEFAULT>(){}[0]
+    final const val INTERSTITIAL_DEFAULT // app.lexilabs.basic.ads/AdUnitId.INTERSTITIAL_DEFAULT|{}INTERSTITIAL_DEFAULT[0]
+        final fun <get-INTERSTITIAL_DEFAULT>(): kotlin/String // app.lexilabs.basic.ads/AdUnitId.INTERSTITIAL_DEFAULT.<get-INTERSTITIAL_DEFAULT>|<get-INTERSTITIAL_DEFAULT>(){}[0]
+    final const val NATIVE_DEFAULT // app.lexilabs.basic.ads/AdUnitId.NATIVE_DEFAULT|{}NATIVE_DEFAULT[0]
+        final fun <get-NATIVE_DEFAULT>(): kotlin/String // app.lexilabs.basic.ads/AdUnitId.NATIVE_DEFAULT.<get-NATIVE_DEFAULT>|<get-NATIVE_DEFAULT>(){}[0]
+    final const val REWARDED_DEFAULT // app.lexilabs.basic.ads/AdUnitId.REWARDED_DEFAULT|{}REWARDED_DEFAULT[0]
+        final fun <get-REWARDED_DEFAULT>(): kotlin/String // app.lexilabs.basic.ads/AdUnitId.REWARDED_DEFAULT.<get-REWARDED_DEFAULT>|<get-REWARDED_DEFAULT>(){}[0]
+    final const val REWARDED_INTERSTITIAL_DEFAULT // app.lexilabs.basic.ads/AdUnitId.REWARDED_INTERSTITIAL_DEFAULT|{}REWARDED_INTERSTITIAL_DEFAULT[0]
+        final fun <get-REWARDED_INTERSTITIAL_DEFAULT>(): kotlin/String // app.lexilabs.basic.ads/AdUnitId.REWARDED_INTERSTITIAL_DEFAULT.<get-REWARDED_INTERSTITIAL_DEFAULT>|<get-REWARDED_INTERSTITIAL_DEFAULT>(){}[0]
+
+    final fun autoSelect(kotlin/String? = ..., kotlin/String? = ...): kotlin/String // app.lexilabs.basic.ads/AdUnitId.autoSelect|autoSelect(kotlin.String?;kotlin.String?){}[0]
+}
+
+final object app.lexilabs.basic.ads/BasicAds { // app.lexilabs.basic.ads/BasicAds|null[0]
+    final val errorDomain // app.lexilabs.basic.ads/BasicAds.errorDomain|{}errorDomain[0]
+        final fun <get-errorDomain>(): kotlin/String? // app.lexilabs.basic.ads/BasicAds.errorDomain.<get-errorDomain>|<get-errorDomain>(){}[0]
+    final val initialized // app.lexilabs.basic.ads/BasicAds.initialized|{}initialized[0]
+        final fun <get-initialized>(): kotlin/Boolean // app.lexilabs.basic.ads/BasicAds.initialized.<get-initialized>|<get-initialized>(){}[0]
+    final val version // app.lexilabs.basic.ads/BasicAds.version|{}version[0]
+        final fun <get-version>(): kotlin/String // app.lexilabs.basic.ads/BasicAds.version.<get-version>|<get-version>(){}[0]
+
+    final var configuration // app.lexilabs.basic.ads/BasicAds.configuration|{}configuration[0]
+        final fun <get-configuration>(): app.lexilabs.basic.ads/RequestConfiguration // app.lexilabs.basic.ads/BasicAds.configuration.<get-configuration>|<get-configuration>(){}[0]
+        final fun <set-configuration>(app.lexilabs.basic.ads/RequestConfiguration) // app.lexilabs.basic.ads/BasicAds.configuration.<set-configuration>|<set-configuration>(app.lexilabs.basic.ads.RequestConfiguration){}[0]
+
+    final fun DisableMediationAdapterInitialization(androidx.compose.runtime/Composer?, kotlin/Int) // app.lexilabs.basic.ads/BasicAds.DisableMediationAdapterInitialization|DisableMediationAdapterInitialization(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+    final fun Initialize(androidx.compose.runtime/Composer?, kotlin/Int) // app.lexilabs.basic.ads/BasicAds.Initialize|Initialize(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+    final fun OpenDebugMenu(kotlin/String, androidx.compose.runtime/Composer?, kotlin/Int) // app.lexilabs.basic.ads/BasicAds.OpenDebugMenu|OpenDebugMenu(kotlin.String;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+    final fun setAppMuted(kotlin/Boolean) // app.lexilabs.basic.ads/BasicAds.setAppMuted|setAppMuted(kotlin.Boolean){}[0]
+    final fun setAppVolume(kotlin/Float) // app.lexilabs.basic.ads/BasicAds.setAppVolume|setAppVolume(kotlin.Float){}[0]
+}
+
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdData$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdChoicesInfo$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdChoicesInfo$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdData_AdChoicesInfo$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdIcon$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdIcon$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdData_AdIcon$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MediaContent$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MediaContent$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdData_MediaContent$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MuteThisAdReason$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MuteThisAdReason$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdData_MuteThisAdReason$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDefault$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDefault$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdDefault$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDelegate$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDelegate$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdDelegate$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdHandler$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdHandler$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdHandler$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdLoader$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdLoader$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdLoader$stableprop[0]
+final val app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdTemplate$stableprop // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdTemplate$stableprop|#static{}app_lexilabs_basic_ads_nativead_NativeAdTemplate$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdException$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdException$stableprop|#static{}app_lexilabs_basic_ads_AdException$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdSize$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdSize$stableprop|#static{}app_lexilabs_basic_ads_AdSize$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdUnitId$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdUnitId$stableprop|#static{}app_lexilabs_basic_ads_AdUnitId$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerAdHandler$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerAdHandler$stableprop|#static{}app_lexilabs_basic_ads_BannerAdHandler$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerViewDelegate$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerViewDelegate$stableprop|#static{}app_lexilabs_basic_ads_BannerViewDelegate$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_BasicAds$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_BasicAds$stableprop|#static{}app_lexilabs_basic_ads_BasicAds$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_Consent$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_Consent$stableprop|#static{}app_lexilabs_basic_ads_Consent$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings$stableprop|#static{}app_lexilabs_basic_ads_ConsentDebugSettings$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings_Builder$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings_Builder$stableprop|#static{}app_lexilabs_basic_ads_ConsentDebugSettings_Builder$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentException$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentException$stableprop|#static{}app_lexilabs_basic_ads_ConsentException$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters$stableprop|#static{}app_lexilabs_basic_ads_ConsentRequestParameters$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters_Builder$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters_Builder$stableprop|#static{}app_lexilabs_basic_ads_ConsentRequestParameters_Builder$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_CustomTargeting$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_CustomTargeting$stableprop|#static{}app_lexilabs_basic_ads_CustomTargeting$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_FullScreenContentDelegate$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_FullScreenContentDelegate$stableprop|#static{}app_lexilabs_basic_ads_FullScreenContentDelegate$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_InterstitialAdHandler$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_InterstitialAdHandler$stableprop|#static{}app_lexilabs_basic_ads_InterstitialAdHandler$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_RequestConfiguration$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RequestConfiguration$stableprop|#static{}app_lexilabs_basic_ads_RequestConfiguration$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardItem$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardItem$stableprop|#static{}app_lexilabs_basic_ads_RewardItem$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedAdHandler$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedAdHandler$stableprop|#static{}app_lexilabs_basic_ads_RewardedAdHandler$stableprop[0]
+final val app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedInterstitialAdHandler$stableprop // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedInterstitialAdHandler$stableprop|#static{}app_lexilabs_basic_ads_RewardedInterstitialAdHandler$stableprop[0]
+
+final fun (app.lexilabs.basic.ads.nativead/ScaleType).app.lexilabs.basic.ads.nativead/toIos(): platform.UIKit/UIViewContentMode // app.lexilabs.basic.ads.nativead/toIos|toIos@app.lexilabs.basic.ads.nativead.ScaleType(){}[0]
+final fun (app.lexilabs.basic.ads/AdSize).app.lexilabs.basic.ads/toCGRectCValue(): kotlinx.cinterop/CValue<platform.CoreGraphics/CGRect> // app.lexilabs.basic.ads/toCGRectCValue|toCGRectCValue@app.lexilabs.basic.ads.AdSize(){}[0]
+final fun (kotlinx.cinterop/CValue<platform.CoreGraphics/CGRect>).app.lexilabs.basic.ads/height(): kotlin/Int // app.lexilabs.basic.ads/height|height@kotlinx.cinterop.CValue<platform.CoreGraphics.CGRect>(){}[0]
+final fun (kotlinx.cinterop/CValue<platform.CoreGraphics/CGRect>).app.lexilabs.basic.ads/toAdSize(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/toAdSize|toAdSize@kotlinx.cinterop.CValue<platform.CoreGraphics.CGRect>(){}[0]
+final fun (kotlinx.cinterop/CValue<platform.CoreGraphics/CGRect>).app.lexilabs.basic.ads/width(): kotlin/Int // app.lexilabs.basic.ads/width|width@kotlinx.cinterop.CValue<platform.CoreGraphics.CGRect>(){}[0]
+final fun (kotlinx.cinterop/CValue<swiftPMImport.app.lexilabs.basic.basic.ads/GADAdSize>).app.lexilabs.basic.ads/toAdSize(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/toAdSize|toAdSize@kotlinx.cinterop.CValue<swiftPMImport.app.lexilabs.basic.basic.ads.GADAdSize>(){}[0]
+final fun (platform.UIKit/UIViewContentMode).app.lexilabs.basic.ads.nativead/toCommon(): app.lexilabs.basic.ads.nativead/ScaleType // app.lexilabs.basic.ads.nativead/toCommon|toCommon@platform.UIKit.UIViewContentMode(){}[0]
+final fun (swiftPMImport.app.lexilabs.basic.basic.ads/GADAdSize).app.lexilabs.basic.ads/toCGRectCValue(): kotlinx.cinterop/CValue<platform.CoreGraphics/CGRect> // app.lexilabs.basic.ads/toCGRectCValue|toCGRectCValue@swiftPMImport.app.lexilabs.basic.basic.ads.GADAdSize(){}[0]
+final fun (swiftPMImport.app.lexilabs.basic.basic.ads/GADAdSize).app.lexilabs.basic.ads/toCommon(): app.lexilabs.basic.ads/AdSize // app.lexilabs.basic.ads/toCommon|toCommon@swiftPMImport.app.lexilabs.basic.basic.ads.GADAdSize(){}[0]
+final fun (swiftPMImport.app.lexilabs.basic.basic.ads/GADMediaContent).app.lexilabs.basic.ads.nativead/toCommon(): app.lexilabs.basic.ads.nativead/NativeAdData.MediaContent // app.lexilabs.basic.ads.nativead/toCommon|toCommon@swiftPMImport.app.lexilabs.basic.basic.ads.GADMediaContent(){}[0]
+final fun (swiftPMImport.app.lexilabs.basic.basic.ads/GADNativeAdImage).app.lexilabs.basic.ads.nativead/toCommon(): app.lexilabs.basic.ads.nativead/NativeAdData.AdIcon // app.lexilabs.basic.ads.nativead/toCommon|toCommon@swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAdImage(){}[0]
+final fun app.lexilabs.basic.ads.composable/BannerAd(app.lexilabs.basic.ads/BannerAdHandler, androidx.compose.runtime/Composer?, kotlin/Int) // app.lexilabs.basic.ads.composable/BannerAd|BannerAd(app.lexilabs.basic.ads.BannerAdHandler;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/BannerAd(kotlin/String?, app.lexilabs.basic.ads/AdSize?, kotlin/Function0<kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/BannerAd|BannerAd(kotlin.String?;app.lexilabs.basic.ads.AdSize?;kotlin.Function0<kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/ConsentPopup(app.lexilabs.basic.ads/Consent, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/ConsentPopup|ConsentPopup(app.lexilabs.basic.ads.Consent;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/ConsentPopup(kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/ConsentPopup|ConsentPopup(kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/InterstitialAd(app.lexilabs.basic.ads/InterstitialAdHandler, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/InterstitialAd|InterstitialAd(app.lexilabs.basic.ads.InterstitialAdHandler;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/InterstitialAd(kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/InterstitialAd|InterstitialAd(kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/NativeAd(app.lexilabs.basic.ads.nativead/NativeAdHandler, app.lexilabs.basic.ads.nativead/NativeAdTemplate?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/NativeAd|NativeAd(app.lexilabs.basic.ads.nativead.NativeAdHandler;app.lexilabs.basic.ads.nativead.NativeAdTemplate?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/NativeAd(app.lexilabs.basic.ads.nativead/NativeAdTemplate?, kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/NativeAd|NativeAd(app.lexilabs.basic.ads.nativead.NativeAdTemplate?;kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/RewardedAd(app.lexilabs.basic.ads/RewardedAdHandler, kotlin/Function1<app.lexilabs.basic.ads/RewardItem, kotlin/Unit>, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/RewardedAd|RewardedAd(app.lexilabs.basic.ads.RewardedAdHandler;kotlin.Function1<app.lexilabs.basic.ads.RewardItem,kotlin.Unit>;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/RewardedAd(kotlin/String, kotlin/String, kotlin/String?, kotlin/Function1<app.lexilabs.basic.ads/RewardItem, kotlin/Unit>, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/RewardedAd|RewardedAd(kotlin.String;kotlin.String;kotlin.String?;kotlin.Function1<app.lexilabs.basic.ads.RewardItem,kotlin.Unit>;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/RewardedAd(kotlin/String?, kotlin/Function1<app.lexilabs.basic.ads/RewardItem, kotlin/Unit>, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/RewardedAd|RewardedAd(kotlin.String?;kotlin.Function1<app.lexilabs.basic.ads.RewardItem,kotlin.Unit>;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/RewardedInterstitialAd(app.lexilabs.basic.ads/RewardedInterstitialAdHandler, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/RewardedInterstitialAd|RewardedInterstitialAd(app.lexilabs.basic.ads.RewardedInterstitialAdHandler;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/RewardedInterstitialAd(kotlin/String?, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // app.lexilabs.basic.ads.composable/RewardedInterstitialAd|RewardedInterstitialAd(kotlin.String?;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberBannerAd(kotlin/String?, app.lexilabs.basic.ads/AdSize?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/BannerAdHandler> // app.lexilabs.basic.ads.composable/rememberBannerAd|rememberBannerAd(kotlin.String?;app.lexilabs.basic.ads.AdSize?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberConsent(androidx.compose.runtime/Composer?, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/Consent> // app.lexilabs.basic.ads.composable/rememberConsent|rememberConsent(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberConsent(app.lexilabs.basic.ads/ConsentDebugSettings, androidx.compose.runtime/Composer?, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/Consent> // app.lexilabs.basic.ads.composable/rememberConsent|rememberConsent(app.lexilabs.basic.ads.ConsentDebugSettings;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberConsent(app.lexilabs.basic.ads/ConsentRequestParameters, androidx.compose.runtime/Composer?, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/Consent> // app.lexilabs.basic.ads.composable/rememberConsent|rememberConsent(app.lexilabs.basic.ads.ConsentRequestParameters;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberInterstitialAd(kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/InterstitialAdHandler> // app.lexilabs.basic.ads.composable/rememberInterstitialAd|rememberInterstitialAd(kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberNativeAd(kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, kotlin/Function0<kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads.nativead/NativeAdHandler> // app.lexilabs.basic.ads.composable/rememberNativeAd|rememberNativeAd(kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;kotlin.Function0<kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberRewardedAd(kotlin/String, kotlin/String, kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/RewardedAdHandler> // app.lexilabs.basic.ads.composable/rememberRewardedAd|rememberRewardedAd(kotlin.String;kotlin.String;kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberRewardedAd(kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/RewardedAdHandler> // app.lexilabs.basic.ads.composable/rememberRewardedAd|rememberRewardedAd(kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberRewardedInterstitialAd(kotlin/String, kotlin/String, kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/RewardedAdHandler> // app.lexilabs.basic.ads.composable/rememberRewardedInterstitialAd|rememberRewardedInterstitialAd(kotlin.String;kotlin.String;kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.composable/rememberRewardedInterstitialAd(kotlin/String?, kotlin/Function0<kotlin/Unit>?, kotlin/Function1<kotlin/Exception, kotlin/Unit>?, app.lexilabs.basic.ads/CustomTargeting?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int): androidx.compose.runtime/MutableState<app.lexilabs.basic.ads/RewardedInterstitialAdHandler> // app.lexilabs.basic.ads.composable/rememberRewardedInterstitialAd|rememberRewardedInterstitialAd(kotlin.String?;kotlin.Function0<kotlin.Unit>?;kotlin.Function1<kotlin.Exception,kotlin.Unit>?;app.lexilabs.basic.ads.CustomTargeting?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdData$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdChoicesInfo$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdChoicesInfo$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdData_AdChoicesInfo$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdIcon$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_AdIcon$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdData_AdIcon$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MediaContent$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MediaContent$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdData_MediaContent$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MuteThisAdReason$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdData_MuteThisAdReason$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdData_MuteThisAdReason$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDefault$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDefault$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdDefault$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDelegate$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdDelegate$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdDelegate$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdHandler$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdHandler$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdHandler$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdLoader$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdLoader$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdLoader$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdTemplate$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads.nativead/app_lexilabs_basic_ads_nativead_NativeAdTemplate$stableprop_getter|app_lexilabs_basic_ads_nativead_NativeAdTemplate$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdException$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdException$stableprop_getter|app_lexilabs_basic_ads_AdException$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdSize$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdSize$stableprop_getter|app_lexilabs_basic_ads_AdSize$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdUnitId$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_AdUnitId$stableprop_getter|app_lexilabs_basic_ads_AdUnitId$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerAdHandler$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerAdHandler$stableprop_getter|app_lexilabs_basic_ads_BannerAdHandler$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerViewDelegate$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_BannerViewDelegate$stableprop_getter|app_lexilabs_basic_ads_BannerViewDelegate$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_BasicAds$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_BasicAds$stableprop_getter|app_lexilabs_basic_ads_BasicAds$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_Consent$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_Consent$stableprop_getter|app_lexilabs_basic_ads_Consent$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings$stableprop_getter|app_lexilabs_basic_ads_ConsentDebugSettings$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings_Builder$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentDebugSettings_Builder$stableprop_getter|app_lexilabs_basic_ads_ConsentDebugSettings_Builder$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentException$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentException$stableprop_getter|app_lexilabs_basic_ads_ConsentException$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters$stableprop_getter|app_lexilabs_basic_ads_ConsentRequestParameters$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters_Builder$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_ConsentRequestParameters_Builder$stableprop_getter|app_lexilabs_basic_ads_ConsentRequestParameters_Builder$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_CustomTargeting$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_CustomTargeting$stableprop_getter|app_lexilabs_basic_ads_CustomTargeting$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_FullScreenContentDelegate$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_FullScreenContentDelegate$stableprop_getter|app_lexilabs_basic_ads_FullScreenContentDelegate$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_InterstitialAdHandler$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_InterstitialAdHandler$stableprop_getter|app_lexilabs_basic_ads_InterstitialAdHandler$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_RequestConfiguration$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RequestConfiguration$stableprop_getter|app_lexilabs_basic_ads_RequestConfiguration$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardItem$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardItem$stableprop_getter|app_lexilabs_basic_ads_RewardItem$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedAdHandler$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedAdHandler$stableprop_getter|app_lexilabs_basic_ads_RewardedAdHandler$stableprop_getter(){}[0]
+final fun app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedInterstitialAdHandler$stableprop_getter(): kotlin/Int // app.lexilabs.basic.ads/app_lexilabs_basic_ads_RewardedInterstitialAdHandler$stableprop_getter|app_lexilabs_basic_ads_RewardedInterstitialAdHandler$stableprop_getter(){}[0]

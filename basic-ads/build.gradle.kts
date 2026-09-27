@@ -1,4 +1,9 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalAbiValidation::class, ExperimentalBCVApi::class)
+
+import kotlinx.validation.ExperimentalBCVApi
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
@@ -6,7 +11,6 @@ plugins {
     alias(libs.plugins.multiplatform.library)
     alias(libs.plugins.kotlinx.binary.compatibility.validator)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.native.cocoapods)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kover)
 }
@@ -14,8 +18,15 @@ plugins {
 kotlin {
 
     // FORCES CHECK OF PUBLIC API DECLARATIONS
-    // DON'T FORGET TO RUN `./gradlew apiDump`
     explicitApi()
+    // REMEMBER TO RUN `./gradlew updateKotlinAbi` then `./gradlew checkKotlinAbi`
+    abiValidation {}
+    // REMEMBER TO RUN `./gradlew apiDump` then `./gradlew apiCheck`
+    apiValidation {
+        klib {
+            enabled = true
+        }
+    }
 
     listOf(
         iosArm64(), // mobile
@@ -27,19 +38,18 @@ kotlin {
         }
     }
 
-    cocoapods {
-        ios.deploymentTarget = libs.versions.build.ios.target.deployment.get()
-        noPodspec()
-        pod("Google-Mobile-Ads-SDK") {
-            moduleName = "GoogleMobileAds"
-            version = libs.versions.cocoapods.admob.get()
-            extraOpts += listOf("-compiler-option", "-fmodules")
-        }
-        pod("GoogleUserMessagingPlatform") {
-            moduleName = "UserMessagingPlatform"
-            version = libs.versions.cocoapods.ump.get()
-            extraOpts += listOf("-compiler-option", "-fmodules")
-        }
+    swiftPMDependencies {
+        iosMinimumDeploymentTarget = libs.versions.build.ios.target.deployment.get()
+        swiftPackage(
+            url = url("https://github.com/googleads/swift-package-manager-google-mobile-ads.git"),
+            version = from(libs.versions.spm.admob.get()),
+            products = listOf(product("GoogleMobileAds")),
+        )
+        swiftPackage(
+            url = url("https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git"),
+            version = from(libs.versions.spm.ump.get()),
+            products = listOf(product("GoogleUserMessagingPlatform"))
+        )
     }
 
     sourceSets {

@@ -80,6 +80,7 @@ public expect class BannerAdHandler(activity: Any?) {
      * @param onShown A callback invoked when the ad is shown on screen.
      * @param onImpression A callback invoked when an ad impression has been recorded.
      * @param onClick A callback invoked when the user clicks on the ad.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     @Suppress("Unused Parameter")
     public fun load(
@@ -90,6 +91,7 @@ public expect class BannerAdHandler(activity: Any?) {
         onDismissed: () -> Unit = {},
         onShown: () -> Unit = {},
         onImpression: () -> Unit = {},
-        onClick: () -> Unit = {}
+        onClick: () -> Unit = {},
+        customTargeting: CustomTargeting? = null
     )
 }

@@ -1,6 +1,6 @@
 package app.lexilabs.basic.ads
 
-import cocoapods.Google_Mobile_Ads_SDK.GADAdReward
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADAdReward
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @Suppress("CanBeParameter")

@@ -36,11 +36,13 @@ public actual class InterstitialAdHandler actual constructor(
      * @param adUnitId The ad unit ID.
      * @param onLoad A callback invoked when the ad is loaded.
      * @param onFailure A callback invoked when the ad fails to load.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _state.value = AdState.LOADING
         Log.d(tag, "loadInterstitialAd: Loading")
@@ -52,10 +54,14 @@ public actual class InterstitialAdHandler actual constructor(
             _state.value = AdState.FAILING
             "activity variable must be of the Android `Activity` type"
         }
+        val requestBuilder = AdRequest.Builder()
+        if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+            requestBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+        }
         AndroidInterstitialAd.load(
             activity,
             adUnitId,
-            AdRequest.Builder().build(),
+            requestBuilder.build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     super.onAdFailedToLoad(adError)

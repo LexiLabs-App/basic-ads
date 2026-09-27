@@ -13,6 +13,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import app.lexilabs.basic.ads.AdSize
 import app.lexilabs.basic.ads.BannerAdHandler
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.toAndroid
 import com.google.android.gms.ads.AdRequest
@@ -27,6 +28,7 @@ import com.google.android.gms.ads.AdView
  * @param adUnitId The ad unit ID for the banner ad.
  * @param adSize The size of the banner ad.
  * @param onLoad A callback invoked when the ad has finished loading.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  */
 @OptIn(DependsOnGoogleMobileAds::class)
 @RequiresPermission("android.permission.INTERNET")
@@ -34,15 +36,20 @@ import com.google.android.gms.ads.AdView
 public actual fun BannerAd(
     adUnitId: String,
     adSize: AdSize,
-    onLoad: () -> Unit
+    onLoad: () -> Unit,
+    customTargeting: CustomTargeting?
 ) {
+    val requestBuilder = AdRequest.Builder()
+    if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+        requestBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+    }
     AndroidView(
         factory = { context ->
             val bannerView = AdView(context)
             bannerView.apply {
                 this.setAdSize(adSize.toAndroid())
                 this.adUnitId = adUnitId
-                this.loadAd(AdRequest.Builder().build())
+                this.loadAd(requestBuilder.build())
                 if (!this.isLoading) { onLoad() }
             }
         }

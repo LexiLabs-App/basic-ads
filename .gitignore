@@ -37,3 +37,4 @@ google-services.json
 # Kotlin Multiplatform specific
 .kotlin/
 docs/
+.swiftpm-locks/

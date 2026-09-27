@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads
 
-import cocoapods.GoogleUserMessagingPlatform.UMPConsentForm
-import cocoapods.GoogleUserMessagingPlatform.UMPConsentInformation
-import cocoapods.GoogleUserMessagingPlatform.UMPPrivacyOptionsRequirementStatusRequired
+import swiftPMImport.app.lexilabs.basic.basic.ads.UMPConsentForm
+import swiftPMImport.app.lexilabs.basic.basic.ads.UMPConsentInformation
+import swiftPMImport.app.lexilabs.basic.basic.ads.UMPPrivacyOptionsRequirementStatusRequired
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 

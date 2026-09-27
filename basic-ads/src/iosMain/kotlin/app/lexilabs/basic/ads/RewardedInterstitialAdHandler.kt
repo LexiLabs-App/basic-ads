@@ -4,9 +4,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADRequest
-import cocoapods.Google_Mobile_Ads_SDK.GADRewardedInterstitialAd
-import cocoapods.Google_Mobile_Ads_SDK.GADServerSideVerificationOptions
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequest
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRewardedInterstitialAd
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADServerSideVerificationOptions
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError
 
@@ -23,13 +23,17 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
+        val request = GADRequest()
+        request.setCustomTargeting(customTargeting?.toIos())
+
         _state.value = AdState.LOADING
         Log.d(tag, "load:starting")
         GADRewardedInterstitialAd.loadWithAdUnitID(
             adUnitID = adUnitId,
-            request = GADRequest(),
+            request = request,
             completionHandler = { ad: GADRewardedInterstitialAd?, error: NSError? ->
                 ad?.let {
                     Log.d(tag, "load:success")
@@ -51,13 +55,17 @@ public actual class RewardedInterstitialAdHandler actual constructor(activity: A
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
+        val request = GADRequest()
+        request.setCustomTargeting(customTargeting?.toIos())
+
         _state.value = AdState.LOADING
         Log.d(tag, "load:starting")
         GADRewardedInterstitialAd.loadWithAdUnitID(
             adUnitID = adUnitId,
-            request = GADRequest(),
+            request = request,
             completionHandler = { ad: GADRewardedInterstitialAd?, error: NSError? ->
                 ad?.let {
                     Log.d(tag, "load:success")

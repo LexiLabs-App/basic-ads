@@ -4,10 +4,10 @@ package app.lexilabs.basic.ads
 
 import androidx.annotation.MainThread
 import androidx.compose.runtime.Composable
-import cocoapods.Google_Mobile_Ads_SDK.GADErrorDomain
-import cocoapods.Google_Mobile_Ads_SDK.GADMobileAds
-import cocoapods.Google_Mobile_Ads_SDK.GADPublisherPrivacyPersonalizationState
-import cocoapods.Google_Mobile_Ads_SDK.GADRequestConfiguration
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADErrorDomain
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADMobileAds
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADPublisherPrivacyPersonalizationState
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADRequestConfiguration
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import platform.Foundation.NSNumber
@@ -35,12 +35,6 @@ public actual object BasicAds {
         GADMobileAds.sharedInstance().startWithCompletionHandler(null)
     }
 
-    @MainThread
-    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
-    public actual fun initialize(context: Any?) {
-        GADMobileAds.sharedInstance().startWithCompletionHandler(null)
-    }
-
 //    @OptIn(ExperimentalForeignApi::class)
 //    public actual fun getInitializationStatus(): InitializationStatus? =
 //        GADMobileAds.sharedInstance().initializationStatus
@@ -51,22 +45,8 @@ public actual object BasicAds {
         GADMobileAds.sharedInstance().disableMediationInitialization()
     }
 
-    @OptIn(ExperimentalForeignApi::class)
-    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
-    public actual fun disableMediationAdapterInitialization(context: Any?) {
-        GADMobileAds.sharedInstance().disableMediationInitialization()
-    }
-
     @Composable
     public actual fun OpenDebugMenu(adUnitId: String) {
-        GADMobileAds.sharedInstance.presentAdInspectorFromViewController(
-            viewController = getCurrentViewController(),
-            completionHandler = { it?.let { error -> throw AdException(error.localizedDescription) } }
-        )
-    }
-
-    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
-    public actual fun openDebugMenu(context: Any?, adUnitId: String) {
         GADMobileAds.sharedInstance.presentAdInspectorFromViewController(
             viewController = getCurrentViewController(),
             completionHandler = { it?.let { error -> throw AdException(error.localizedDescription) } }

@@ -2,7 +2,7 @@ package app.lexilabs.basic.ads
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
-import cocoapods.GoogleUserMessagingPlatform.UMPDebugSettings
+import swiftPMImport.app.lexilabs.basic.basic.ads.UMPDebugSettings
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)

@@ -45,41 +45,11 @@ public actual object BasicAds {
     }
 
     /**
-     * Initializes the Mobile Ads SDK.
-     *
-     * @param context The context to use for initialization. Must be an `Activity` on Android.
-     */
-    @MainThread
-    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
-    @RequiresPermission("android.permission.INTERNET")
-    public actual fun initialize(context: Any?) {
-        require(context != null) {
-            "Context must be set to non-null value in Android"
-        }
-        CoroutineScope(Dispatchers.IO).launch {
-            com.google.android.gms.ads.MobileAds.initialize(context as Activity)
-        }
-    }
-
-    /**
      * Disables the initialization of mediation adapters.
      */
     @Composable
     public actual fun DisableMediationAdapterInitialization() {
         com.google.android.gms.ads.MobileAds.disableMediationAdapterInitialization(LocalContext.current)
-    }
-
-    /**
-     * Disables the initialization of mediation adapters.
-     *
-     * @param context The context to use. Must be an `Activity` on Android.
-     */
-    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
-    public actual fun disableMediationAdapterInitialization(context: Any?) {
-        require(context != null) {
-            "Context must be set to non-null value in Android"
-        }
-        com.google.android.gms.ads.MobileAds.disableMediationAdapterInitialization(context as Activity)
     }
 
     /**
@@ -90,20 +60,6 @@ public actual object BasicAds {
     @Composable
     public actual fun OpenDebugMenu(adUnitId: String) {
         com.google.android.gms.ads.MobileAds.openDebugMenu(LocalContext.current, adUnitId)
-    }
-
-    /**
-     * Opens the ad inspector.
-     *
-     * @param context The context to use. Must be an `Activity` on Android.
-     * @param adUnitId The ad unit ID to use.
-     */
-    @Deprecated("The `context` argument is no longer required as of v1.1.0-beta01")
-    public actual fun openDebugMenu(context: Any?, adUnitId: String) {
-        require(context != null) {
-            "Context must be set to non-null value in Android"
-        }
-        com.google.android.gms.ads.MobileAds.openDebugMenu(context as Activity, adUnitId)
     }
 
     /**

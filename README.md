@@ -4,7 +4,7 @@
 ![GitHub License](https://img.shields.io/github/license/lexilabs-app/basic-ads)
 ![GitHub Release Date](https://img.shields.io/github/release-date/lexilabs-app/basic-ads)
 [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=blue&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 A Kotlin Multiplatform library to rapidly get Google AdMob running on Android and iOS
 
@@ -25,7 +25,11 @@ For **Android**, complete the steps in AdMob's instructions:
 
 For **iOS**, complete the steps in AdMob's instructions:
 
-* [Import the Mobile Ads SDK](https://developers.google.com/admob/ios/quick-start#import_the_mobile_ads_sdk)
+> [!WARNING]
+> Starting with v1.3.0, Basic-Ads uses Swift Package Manager (SPM) instead of CocoaPods. For architectural details on downstream SPM consumption and linker setup, see the [CocoaPods to SPM Conversion Guide](COCOAPODS-TO-SPM-CONVERSION.md).
+> For instructions for added SPM dependencies instead of using cocoapods, see the [Cocoapods to SPM Migration Instructions](https://kotlinlang.org/docs/multiplatform/multiplatform-cocoapods-spm-migration.html).
+
+* [Import the Mobile Ads SDK](https://developers.google.com/admob/ios/quick-start#import_the_mobile_ads_sdk) (using Swift Package Manager)
 
 * [For GDPR Compliance Only] [Import the User Messaging Platform SDK](https://developers.google.com/admob/ios/privacy)
 
@@ -36,10 +40,10 @@ For **iOS**, complete the steps in AdMob's instructions:
 
 ## Installation
 * [![Stable Release](https://img.shields.io/github/v/release/LexiLabs-App/basic-ads?filter=!*.*.*-*&label=stable&color=65c663)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 * [![Latest Release](https://img.shields.io/maven-central/v/app.lexilabs.basic/basic-ads?color=yellow&label=latest)](https://central.sonatype.com/artifact/app.lexilabs.basic/basic-ads)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.0-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.20-7f52ff.svg?style=flat&logo=kotlin)](https://kotlinlang.org)
 
 > [!IMPORTANT] 
 > Don't forget to [check the list of transitive dependencies and versions](VERSIONS.md) to ensure compatibility.
@@ -135,6 +139,50 @@ if (showBannerAd){
 }
 ```
 
+## Banner Ad Sizes
+You can configure banner ad dimensions using standard size constants or responsive adaptive banner functions:
+
+### Standard Sizes
+```kotlin
+BannerAd(adSize = AdSize.BANNER)           // 320x50
+BannerAd(adSize = AdSize.LARGE_BANNER)     // 320x100
+BannerAd(adSize = AdSize.MEDIUM_RECTANGLE) // 300x250
+BannerAd(adSize = AdSize.FULL_BANNER)      // 468x60 (Default)
+BannerAd(adSize = AdSize.LEADERBOARD)      // 728x90
+BannerAd(adSize = AdSize.WIDE_SKYSCRAPER)  // 160x600
+BannerAd(adSize = AdSize.FLUID)            // Dynamic height matching creative
+```
+
+### Adaptive Banner Sizes
+AdMob Adaptive Banners dynamically determine the optimal ad dimensions based on screen orientation and available container width. Basic-Ads provides `@Composable` helper functions to calculate the appropriate size:
+
+```kotlin
+// Inline Adaptive Banners (for scrollable feeds and lists)
+BannerAd(
+    adSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(
+    adSize = AdSize.getPortraitInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(
+    adSize = AdSize.getLandscapeInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(
+    adSize = AdSize.getInlineAdaptiveBannerAdSize(width = 320, maxHeight = 150)
+)
+
+// Large Anchored Adaptive Banners (for fixed top/bottom placement)
+BannerAd(
+    adSize = AdSize.getLargeAnchoredAdaptiveBannerAdSize(width = 320)
+)
+
+// Preloaded banner ads with adaptive sizing
+val bannerAd by rememberBannerAd(
+    adSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(width = 320)
+)
+BannerAd(bannerAd)
+```
+
 ## Creating Full Screen Ads
 You can also build other Ad types.
 
@@ -173,6 +221,28 @@ if (showInterstitialAd){
     // Shows Composable Ad
     InterstitialAd(interstitialAd)
 }
+```
+
+## Custom Targeting
+You can supply custom key-value targeting parameters to ad requests using `CustomTargeting`:
+
+```kotlin
+val targeting = CustomTargeting(
+    key = "category",
+    value = listOf("sports", "fitness")
+)
+
+// In a direct composable
+BannerAd(customTargeting = targeting)
+InterstitialAd(custom = targeting)
+RewardedAd(customTargeting = targeting, onRewardEarned = { /** do something **/ })
+RewardedInterstitialAd(customTargeting = targeting, onRewardEarned = { /** do something **/ })
+
+// Or with preloaded ads
+val bannerAd by rememberBannerAd(customTargeting = targeting)
+val interstitialAd by rememberInterstitialAd(customTargeting = targeting)
+val rewardedAd by rememberRewardedAd(customTargeting = targeting)
+val rewardedInterstitialAd by rememberRewardedInterstitialAd(customTargeting = targeting)
 ```
 
 ## Consent Requests

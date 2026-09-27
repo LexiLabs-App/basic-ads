@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads
 
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADFullScreenContentDelegateProtocol
-import cocoapods.Google_Mobile_Ads_SDK.GADFullScreenPresentingAdProtocol
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADFullScreenContentDelegateProtocol
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADFullScreenPresentingAdProtocol
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSError

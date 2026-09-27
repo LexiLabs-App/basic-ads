@@ -7,7 +7,7 @@ package app.lexilabs.basic.ads
  * @param tagForChildDirectedTreatment Should ads be appropriate for children
  * @param tagForUnderAgeOfConsent Should ads be limited to content for children under the age of consent
  * @param testDeviceIds A [List] of id [String] for testing devices
- * @see BasicAds.initialize
+ * @see BasicAds.Initialize
  * @see BasicAds.configuration
  * @see DependsOnGoogleMobileAds
  */

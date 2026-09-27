@@ -1,8 +1,8 @@
 package app.lexilabs.basic.ads.nativead
 
 import app.lexilabs.basic.logging.Log
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAd
-import cocoapods.Google_Mobile_Ads_SDK.GADNativeAdDelegateProtocol
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAd
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADNativeAdDelegateProtocol
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.darwin.NSObject
