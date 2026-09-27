@@ -55,13 +55,15 @@ public expect class RewardedInterstitialAdHandler(activity: Any?) {
      * @param adUnitId Your RewardedInterstitial Ad AdUnitId [String] from AdMob
      * @param onLoad Callback after the ad loads
      * @param onFailure Callback sharing the [Exception] when the ad fail to load
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting
      * @see [AdUnitId.autoSelect]
      * @see [AdUnitId.REWARDED_INTERSTITIAL_DEFAULT]
      */
     public fun load(
         adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting? = null
     )
 
     /**
@@ -76,6 +78,7 @@ public expect class RewardedInterstitialAdHandler(activity: Any?) {
      * @param customData Used for Server-Side Verification
      * @param onLoad Callback after the ad loads
      * @param onFailure Callback sharing the [Exception] when the ad fail to load
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting
      * @see [AdUnitId.autoSelect]
      * @see [AdUnitId.REWARDED_INTERSTITIAL_DEFAULT]
      */
@@ -84,7 +87,8 @@ public expect class RewardedInterstitialAdHandler(activity: Any?) {
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting? = null
     )
 
     /**

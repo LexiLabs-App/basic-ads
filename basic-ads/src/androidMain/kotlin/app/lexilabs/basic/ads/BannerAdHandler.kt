@@ -62,6 +62,7 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
      * @param onShown A callback invoked when the ad is shown.
      * @param onImpression A callback invoked when an impression is recorded for the ad.
      * @param onClick A callback invoked when the ad is clicked.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     @RequiresPermission("android.permission.INTERNET")
     public actual fun load(
@@ -72,7 +73,8 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
         onDismissed: () -> Unit,
         onShown: () -> Unit,
         onImpression: () -> Unit,
-        onClick: () -> Unit
+        onClick: () -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _adSize.value = adSize
         _state.value = AdState.LOADING
@@ -106,7 +108,11 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
                     onClick()
                 }
             )
-            this.loadAd(AdRequest.Builder().build())
+            val adBuilder = AdRequest.Builder()
+            if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+                adBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+            }
+            this.loadAd(adBuilder.build())
         }
     }
 }

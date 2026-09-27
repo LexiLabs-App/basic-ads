@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import app.lexilabs.basic.ads.AdException
 import app.lexilabs.basic.ads.AdState
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.logging.Log
 import com.google.android.gms.ads.AdListener

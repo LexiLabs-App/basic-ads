@@ -10,6 +10,7 @@ import app.lexilabs.basic.ads.AdSize
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.BannerAdHandler
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.getActivity
 
@@ -32,6 +33,7 @@ import app.lexilabs.basic.ads.getActivity
  * @param onShown A callback invoked when the ad is shown on the screen.
  * @param onImpression A callback invoked when an impression is recorded for the ad.
  * @param onClick A callback invoked when the ad is clicked by the user.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [BannerAdHandler]. You can use this state to
  *         interact with the ad (e.g., to display it in your UI).
  */
@@ -46,7 +48,8 @@ public actual fun rememberBannerAd(
     onDismissed: () -> Unit,
     onShown: () -> Unit,
     onImpression: () -> Unit,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    customTargeting: CustomTargeting?
 ): MutableState<BannerAdHandler> {
     val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(BannerAdHandler(activity)) }
@@ -61,7 +64,8 @@ public actual fun rememberBannerAd(
                 onDismissed = onDismissed,
                 onShown = onShown,
                 onImpression = onImpression,
-                onClick = onClick
+                onClick = onClick,
+                customTargeting = customTargeting
             )
         }
         else -> { /** DO NOTHING **/ }

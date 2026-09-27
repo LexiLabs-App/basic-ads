@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
 
@@ -16,6 +17,7 @@ import app.lexilabs.basic.ads.InterstitialAdHandler
  * @param adUnitId The ad unit ID for the interstitial ad. Defaults to [AdUnitId.INTERSTITIAL_DEFAULT].
  * @param onLoad A callback function invoked when the ad is successfully loaded.
  * @param onFailure A callback function invoked when ad loading fails, providing the [Exception] that occurred.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [InterstitialAdHandler]. You can use this to control and observe the ad's state (e.g., to show the ad).
  */
 @DependsOnGoogleMobileAds
@@ -23,5 +25,6 @@ import app.lexilabs.basic.ads.InterstitialAdHandler
 public expect fun rememberInterstitialAd(
     adUnitId: String = AdUnitId.INTERSTITIAL_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<InterstitialAdHandler>

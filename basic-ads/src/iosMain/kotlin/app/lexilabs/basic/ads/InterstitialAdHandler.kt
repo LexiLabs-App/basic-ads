@@ -27,13 +27,16 @@ public actual class InterstitialAdHandler actual constructor(activity: Any?) {
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _state.value = AdState.LOADING
         Log.d(tag, "load:starting")
+        val request = GADRequest()
+        request.setCustomTargeting(customTargeting?.toIos())
         GADInterstitialAd.loadWithAdUnitID(
             adUnitID = adUnitId,
-            request = GADRequest(),
+            request = request,
             completionHandler = { ad: GADInterstitialAd?, error: NSError? ->
                 ad?.let {
                     Log.d(tag, "load:success")

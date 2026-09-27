@@ -8,6 +8,7 @@ import app.lexilabs.basic.ads.AdSize
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.BannerAdHandler
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 
 /**
@@ -42,7 +43,8 @@ public actual fun rememberBannerAd(
     onDismissed: () -> Unit,
     onShown: () -> Unit,
     onImpression: () -> Unit,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    customTargeting: CustomTargeting?
 ): MutableState<BannerAdHandler> {
     val ad = remember(null) { mutableStateOf(BannerAdHandler(null)) }
     when(ad.value.state){
@@ -56,7 +58,8 @@ public actual fun rememberBannerAd(
                 onDismissed = onDismissed,
                 onShown = onShown,
                 onImpression = onImpression,
-                onClick = onClick
+                onClick = onClick,
+                customTargeting = customTargeting
             )
         }
         else -> { /** DO NOTHING **/ }

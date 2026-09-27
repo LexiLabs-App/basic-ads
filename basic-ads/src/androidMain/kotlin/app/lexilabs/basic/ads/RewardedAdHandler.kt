@@ -32,11 +32,13 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
      * @param adUnitId The ad unit ID.
      * @param onLoad A callback invoked when the ad is loaded.
      * @param onFailure A callback invoked when the ad fails to load.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ){
         _state.value = AdState.LOADING
         Log.d(tag, "loadRewardedAd: Loading")
@@ -48,10 +50,14 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
             _state.value = AdState.FAILING
             "activity variable must be of the Android `Activity` type"
         }
+        val requestBuilder = AndroidAdRequest.Builder()
+        if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+            requestBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+        }
         AndroidRewardedAd.load(
             activity,
             adUnitId,
-            AndroidAdRequest.Builder().build(),
+            requestBuilder.build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     super.onAdFailedToLoad(adError)
@@ -79,13 +85,15 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
      * @param customData Used for Server-Side Verification
      * @param onLoad A callback invoked when the ad is loaded.
      * @param onFailure A callback invoked when the ad fails to load.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     public actual fun load(
         adUnitId: String,
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _state.value = AdState.LOADING
         Log.d(tag, "loadRewardedAd: Loading")
@@ -97,10 +105,14 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
             _state.value = AdState.FAILING
             "activity variable must be of the Android `Activity` type"
         }
+        val requestBuilder = AndroidAdRequest.Builder()
+        if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+            requestBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+        }
         AndroidRewardedAd.load(
             activity,
             adUnitId,
-            AndroidAdRequest.Builder().build(),
+            requestBuilder.build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     super.onAdFailedToLoad(adError)

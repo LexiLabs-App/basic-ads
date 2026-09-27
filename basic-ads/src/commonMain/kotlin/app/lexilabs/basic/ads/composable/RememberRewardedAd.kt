@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.RewardedAdHandler
 
@@ -16,6 +17,7 @@ import app.lexilabs.basic.ads.RewardedAdHandler
  * @param adUnitId The ad unit ID to use for loading the ad. Defaults to [AdUnitId.REWARDED_DEFAULT].
  * @param onLoad A callback that will be invoked when the ad has successfully loaded.
  * @param onFailure A callback that will be invoked if the ad fails to load, providing an [Exception] with details of the failure.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [RewardedAdHandler]. You can observe this state to react to changes in the ad's lifecycle.
  */
 @DependsOnGoogleMobileAds
@@ -23,7 +25,8 @@ import app.lexilabs.basic.ads.RewardedAdHandler
 public expect fun rememberRewardedAd(
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<RewardedAdHandler>
 
 /**
@@ -37,6 +40,7 @@ public expect fun rememberRewardedAd(
  * @param adUnitId The ad unit ID to use for loading the ad. Defaults to [AdUnitId.REWARDED_DEFAULT].
  * @param onLoad A callback that will be invoked when the ad has successfully loaded.
  * @param onFailure A callback that will be invoked if the ad fails to load, providing an [Exception] with details of the failure.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [RewardedAdHandler]. You can observe this state to react to changes in the ad's lifecycle.
  */
 @DependsOnGoogleMobileAds
@@ -46,5 +50,6 @@ public expect fun rememberRewardedAd(
     customData: String,
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<RewardedAdHandler>

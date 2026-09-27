@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.RewardedAdHandler
 import app.lexilabs.basic.ads.getActivity
@@ -20,6 +21,7 @@ import app.lexilabs.basic.ads.getActivity
  * @param adUnitId The ad unit ID to use for loading the ad. Defaults to [AdUnitId.REWARDED_DEFAULT].
  * @param onLoad A callback that will be invoked when the ad has successfully loaded.
  * @param onFailure A callback that will be invoked if the ad fails to load, providing an [Exception] with details of the failure.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [RewardedAdHandler]. You can observe this state to react to changes in the ad's lifecycle.
  */
 @DependsOnGoogleMobileAds
@@ -27,7 +29,8 @@ import app.lexilabs.basic.ads.getActivity
 public actual fun rememberRewardedAd(
     adUnitId: String,
     onLoad: () -> Unit,
-    onFailure: (Exception) -> Unit
+    onFailure: (Exception) -> Unit,
+    customTargeting: CustomTargeting?
 ): MutableState<RewardedAdHandler> {
     val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(RewardedAdHandler(activity)) }
@@ -37,7 +40,8 @@ public actual fun rememberRewardedAd(
             ad.value.load(
                 adUnitId = adUnitId,
                 onLoad = onLoad,
-                onFailure = onFailure
+                onFailure = onFailure,
+                customTargeting = customTargeting
             )
         }
         else -> { /** DO NOTHING **/ }
@@ -56,6 +60,7 @@ public actual fun rememberRewardedAd(
  * @param adUnitId The ad unit ID to use for loading the ad. Defaults to [AdUnitId.REWARDED_DEFAULT].
  * @param onLoad A callback that will be invoked when the ad has successfully loaded.
  * @param onFailure A callback that will be invoked if the ad fails to load, providing an [Exception] with details of the failure.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [RewardedAdHandler]. You can observe this state to react to changes in the ad's lifecycle.
  */
 @DependsOnGoogleMobileAds
@@ -65,7 +70,8 @@ public actual fun rememberRewardedAd(
     customData: String,
     adUnitId: String,
     onLoad: () -> Unit,
-    onFailure: (Exception) -> Unit
+    onFailure: (Exception) -> Unit,
+    customTargeting: CustomTargeting?
 ): MutableState<RewardedAdHandler> {
     val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(RewardedAdHandler(activity)) }
@@ -77,7 +83,8 @@ public actual fun rememberRewardedAd(
                 userId = userId,
                 customData = customData,
                 onLoad = onLoad,
-                onFailure = onFailure
+                onFailure = onFailure,
+                customTargeting = customTargeting
             )
         }
         else -> { /** DO NOTHING **/ }

@@ -7,6 +7,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.UIKitView
 import app.lexilabs.basic.ads.AdSize
 import app.lexilabs.basic.ads.BannerAdHandler
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.getCurrentViewController
 import app.lexilabs.basic.ads.toCGRectCValue
 import swiftPMImport.app.lexilabs.basic.basic.ads.GADBannerView
@@ -18,8 +19,12 @@ import kotlinx.cinterop.ExperimentalForeignApi
 public actual fun BannerAd(
     adUnitId: String,
     adSize: AdSize,
-    onLoad: () -> Unit
+    onLoad: () -> Unit,
+    customTargeting: CustomTargeting?
 ) {
+    val request = GADRequest()
+    request.setCustomTargeting(customTargeting?.toIos())
+
     UIKitView(
         factory = {
             val viewController = getCurrentViewController() //UIApplication.sharedApplication.keyWindow?.rootViewController
@@ -28,7 +33,7 @@ public actual fun BannerAd(
             val bannerView = GADBannerView(adSize.toCGRectCValue()).apply {
                 adUnitID = adUnitId
                 this.rootViewController = viewController
-                loadRequest(GADRequest())
+                loadRequest(request)
                 if (viewController.viewLoaded) { onLoad() }
             }
             bannerView
