@@ -23,13 +23,17 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
+        val request = GADRequest()
+        request.setCustomTargeting(customTargeting?.toIos())
+
         _state.value = AdState.LOADING
         Log.d(tag, "load:starting")
         GADRewardedAd.loadWithAdUnitID(
             adUnitID = adUnitId,
-            request = GADRequest(),
+            request = request,
             completionHandler = { ad: GADRewardedAd?, error: NSError? ->
                 ad?.let {
                     Log.d(tag, "load:success")
@@ -51,7 +55,8 @@ public actual class RewardedAdHandler actual constructor(activity: Any?) {
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _state.value = AdState.LOADING
         Log.d(tag, "load:starting")

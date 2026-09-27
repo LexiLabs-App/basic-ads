@@ -6,6 +6,7 @@ import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdState.DISMISSED
 import app.lexilabs.basic.ads.AdState.NONE
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.RewardedAdHandler
 import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
@@ -32,7 +33,8 @@ import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
 public expect fun rememberRewardedInterstitialAd(
     adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<RewardedInterstitialAdHandler>
 
 /**
@@ -55,5 +57,6 @@ public expect fun rememberRewardedInterstitialAd(
     customData: String,
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<RewardedAdHandler>

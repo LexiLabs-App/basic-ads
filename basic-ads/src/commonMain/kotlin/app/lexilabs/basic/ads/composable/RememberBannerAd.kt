@@ -6,6 +6,7 @@ import app.lexilabs.basic.ads.AdSize
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
 import app.lexilabs.basic.ads.BannerAdHandler
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 
 /**
@@ -40,5 +41,6 @@ public expect fun rememberBannerAd(
     onDismissed: () -> Unit = {},
     onShown: () -> Unit = {},
     onImpression: () -> Unit = {},
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<BannerAdHandler>

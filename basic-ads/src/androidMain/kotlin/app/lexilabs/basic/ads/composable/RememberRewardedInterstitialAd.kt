@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.RewardedAdHandler
 import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
@@ -34,7 +35,8 @@ import app.lexilabs.basic.ads.getActivity
 public actual fun rememberRewardedInterstitialAd(
     adUnitId: String,
     onLoad: () -> Unit,
-    onFailure: (Exception) -> Unit
+    onFailure: (Exception) -> Unit,
+    customTargeting: CustomTargeting?
 ): MutableState<RewardedInterstitialAdHandler> {
     val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(RewardedInterstitialAdHandler(activity)) }
@@ -44,7 +46,8 @@ public actual fun rememberRewardedInterstitialAd(
             ad.value.load(
                 adUnitId = adUnitId,
                 onLoad = onLoad,
-                onFailure = onFailure
+                onFailure = onFailure,
+                customTargeting = customTargeting
             )
         }
         else -> { /** DO NOTHING **/ }
@@ -72,7 +75,8 @@ public actual fun rememberRewardedInterstitialAd(
     customData: String,
     adUnitId: String,
     onLoad: () -> Unit,
-    onFailure: (Exception) -> Unit
+    onFailure: (Exception) -> Unit,
+    customTargeting: CustomTargeting?
 ): MutableState<RewardedAdHandler> {
     val activity = LocalContext.current.getActivity()
     val ad = remember(activity) { mutableStateOf(RewardedAdHandler(activity)) }
@@ -84,7 +88,8 @@ public actual fun rememberRewardedInterstitialAd(
                 userId = userId,
                 customData = customData,
                 onLoad = onLoad,
-                onFailure = onFailure
+                onFailure = onFailure,
+                customTargeting = customTargeting
             )
         }
         else -> { /** DO NOTHING **/ }

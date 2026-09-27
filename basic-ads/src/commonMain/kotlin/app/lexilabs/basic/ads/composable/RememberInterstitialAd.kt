@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
 
@@ -23,5 +24,6 @@ import app.lexilabs.basic.ads.InterstitialAdHandler
 public expect fun rememberInterstitialAd(
     adUnitId: String = AdUnitId.INTERSTITIAL_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<InterstitialAdHandler>

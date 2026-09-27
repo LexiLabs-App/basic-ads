@@ -3,6 +3,7 @@ package app.lexilabs.basic.ads.composable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
 
@@ -26,7 +27,8 @@ public fun InterstitialAd(
     onImpression: () -> Unit = {},
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
-    onLoad: () -> Unit = {}
+    onLoad: () -> Unit = {},
+    custom: CustomTargeting? = null
 ) {
     val ad by rememberInterstitialAd(
         adUnitId = adUnitId,

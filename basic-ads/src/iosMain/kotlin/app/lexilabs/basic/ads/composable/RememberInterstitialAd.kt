@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
 
@@ -25,7 +26,8 @@ import app.lexilabs.basic.ads.InterstitialAdHandler
 public actual fun rememberInterstitialAd(
     adUnitId: String,
     onLoad: () -> Unit,
-    onFailure: (Exception) -> Unit
+    onFailure: (Exception) -> Unit,
+    customTargeting: CustomTargeting?
 ): MutableState<InterstitialAdHandler> {
     val ad = remember(null) { mutableStateOf(InterstitialAdHandler(null)) }
     when(ad.value.state){
@@ -34,7 +36,8 @@ public actual fun rememberInterstitialAd(
             ad.value.load(
                 adUnitId = adUnitId,
                 onLoad = onLoad,
-                onFailure = onFailure
+                onFailure = onFailure,
+                customTargeting = customTargeting
             )
         }
         else -> { /** DO NOTHING **/ }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.RewardedAdHandler
 
@@ -23,7 +24,8 @@ import app.lexilabs.basic.ads.RewardedAdHandler
 public expect fun rememberRewardedAd(
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<RewardedAdHandler>
 
 /**
@@ -46,5 +48,6 @@ public expect fun rememberRewardedAd(
     customData: String,
     adUnitId: String = AdUnitId.REWARDED_DEFAULT,
     onLoad: () -> Unit = {},
-    onFailure: (Exception) -> Unit = {}
+    onFailure: (Exception) -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ): MutableState<RewardedAdHandler>

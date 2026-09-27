@@ -36,7 +36,8 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
     public actual fun load(
         adUnitId: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ){
         _state.value = AdState.LOADING
         Log.d(tag, "loadRewardedAd: Loading")
@@ -48,10 +49,14 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
             _state.value = AdState.FAILING
             "activity variable must be of the Android `Activity` type"
         }
+        val requestBuilder = AndroidAdRequest.Builder()
+        if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+            requestBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+        }
         AndroidRewardedAd.load(
             activity,
             adUnitId,
-            AndroidAdRequest.Builder().build(),
+            requestBuilder.build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     super.onAdFailedToLoad(adError)
@@ -85,7 +90,8 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _state.value = AdState.LOADING
         Log.d(tag, "loadRewardedAd: Loading")
@@ -97,10 +103,14 @@ public actual class RewardedAdHandler actual constructor(private val activity: A
             _state.value = AdState.FAILING
             "activity variable must be of the Android `Activity` type"
         }
+        val requestBuilder = AndroidAdRequest.Builder()
+        if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+            requestBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+        }
         AndroidRewardedAd.load(
             activity,
             adUnitId,
-            AndroidAdRequest.Builder().build(),
+            requestBuilder.build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     super.onAdFailedToLoad(adError)

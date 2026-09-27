@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
 import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
@@ -29,14 +30,16 @@ import app.lexilabs.basic.ads.RewardedInterstitialAdHandler
     onImpression: () -> Unit = {},
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
-    onLoad: () -> Unit = {}
+    onLoad: () -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ) {
     val ad by rememberRewardedInterstitialAd()
     LaunchedEffect(ad){
         ad.load(
             adUnitId = adUnitId,
             onLoad = onLoad,
-            onFailure = onFailure
+            onFailure = onFailure,
+            customTargeting = customTargeting
         )
         ad.setListeners(
             onFailure = onFailure,

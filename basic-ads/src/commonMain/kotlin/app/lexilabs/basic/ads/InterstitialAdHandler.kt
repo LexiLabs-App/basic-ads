@@ -63,7 +63,8 @@ public expect class InterstitialAdHandler(activity: Any?) {
     public fun load(
         adUnitId: String = AdUnitId.INTERSTITIAL_DEFAULT,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting? = null
     )
 
     /**

@@ -61,7 +61,8 @@ public expect class RewardedInterstitialAdHandler(activity: Any?) {
     public fun load(
         adUnitId: String = AdUnitId.REWARDED_INTERSTITIAL_DEFAULT,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting? = null
     )
 
     /**
@@ -84,7 +85,8 @@ public expect class RewardedInterstitialAdHandler(activity: Any?) {
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting? = null
     )
 
     /**

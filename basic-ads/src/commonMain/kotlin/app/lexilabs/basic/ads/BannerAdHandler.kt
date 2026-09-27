@@ -90,6 +90,7 @@ public expect class BannerAdHandler(activity: Any?) {
         onDismissed: () -> Unit = {},
         onShown: () -> Unit = {},
         onImpression: () -> Unit = {},
-        onClick: () -> Unit = {}
+        onClick: () -> Unit = {},
+        customTargeting: CustomTargeting? = null
     )
 }

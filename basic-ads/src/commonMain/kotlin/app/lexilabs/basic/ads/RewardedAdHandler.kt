@@ -62,7 +62,8 @@ public expect class RewardedAdHandler(activity: Any?) {
     public fun load(
         adUnitId: String = AdUnitId.REWARDED_DEFAULT,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting? = null
     )
 
     /**
@@ -85,7 +86,8 @@ public expect class RewardedAdHandler(activity: Any?) {
         userId: String,
         customData: String,
         onLoad: () -> Unit,
-        onFailure: (Exception) -> Unit
+        onFailure: (Exception) -> Unit,
+        customTargeting: CustomTargeting? = null
     )
 
     /**

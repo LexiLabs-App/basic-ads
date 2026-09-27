@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import app.lexilabs.basic.ads.AdState
 import app.lexilabs.basic.ads.AdUnitId
+import app.lexilabs.basic.ads.CustomTargeting
 import app.lexilabs.basic.ads.DependsOnGoogleMobileAds
 import app.lexilabs.basic.ads.InterstitialAdHandler
 import app.lexilabs.basic.ads.RewardItem
@@ -31,7 +32,8 @@ public fun RewardedAd(
     onImpression: () -> Unit = {},
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
-    onLoad: () -> Unit = {}
+    onLoad: () -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ) {
     val ad by rememberRewardedAd(
         adUnitId = adUnitId,
@@ -76,14 +78,16 @@ public fun RewardedAd(
     onImpression: () -> Unit = {},
     onClick: () -> Unit = {},
     onFailure: (Exception) -> Unit = {},
-    onLoad: () -> Unit = {}
+    onLoad: () -> Unit = {},
+    customTargeting: CustomTargeting? = null
 ) {
     val ad by rememberRewardedAd(
         adUnitId = adUnitId,
         userId = userId,
         customData = customData,
         onLoad = onLoad,
-        onFailure = onFailure
+        onFailure = onFailure,
+        customTargeting = customTargeting
     )
     if (ad.state == AdState.READY) {
         ad.setListeners(

@@ -37,7 +37,8 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
         onDismissed: () -> Unit,
         onShown: () -> Unit,
         onImpression: () -> Unit,
-        onClick: () -> Unit
+        onClick: () -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _adSize.value = adSize
         _state.value = AdState.LOADING
@@ -45,6 +46,9 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
 
         val viewController = getCurrentViewController()
         checkNotNull(viewController) { "Root ViewController is null" }
+
+        val request = GADRequest()
+        request.setCustomTargeting(customTargeting?.toIos())
 
         bannerView = BannerView(adSize.toCGRectCValue()).apply {
             setAdUnitID(adUnitId)
@@ -72,7 +76,7 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
                     onShown()
                 }
             )
-            loadRequest(GADRequest())
+            loadRequest(request)
             rootViewController = viewController
         }
     }

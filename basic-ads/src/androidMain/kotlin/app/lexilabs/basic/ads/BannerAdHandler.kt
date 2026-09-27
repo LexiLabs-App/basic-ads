@@ -72,7 +72,8 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
         onDismissed: () -> Unit,
         onShown: () -> Unit,
         onImpression: () -> Unit,
-        onClick: () -> Unit
+        onClick: () -> Unit,
+        customTargeting: CustomTargeting?
     ) {
         _adSize.value = adSize
         _state.value = AdState.LOADING
@@ -106,7 +107,11 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
                     onClick()
                 }
             )
-            this.loadAd(AdRequest.Builder().build())
+            val adBuilder = AdRequest.Builder()
+            if (customTargeting != null && customTargeting.value.isNotEmpty()) {
+                adBuilder.addCustomTargeting(customTargeting.key, customTargeting.value)
+            }
+            this.loadAd(adBuilder.build())
         }
     }
 }
