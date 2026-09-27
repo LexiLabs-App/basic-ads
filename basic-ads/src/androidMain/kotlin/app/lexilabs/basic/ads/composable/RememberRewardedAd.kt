@@ -21,6 +21,7 @@ import app.lexilabs.basic.ads.getActivity
  * @param adUnitId The ad unit ID to use for loading the ad. Defaults to [AdUnitId.REWARDED_DEFAULT].
  * @param onLoad A callback that will be invoked when the ad has successfully loaded.
  * @param onFailure A callback that will be invoked if the ad fails to load, providing an [Exception] with details of the failure.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [RewardedAdHandler]. You can observe this state to react to changes in the ad's lifecycle.
  */
 @DependsOnGoogleMobileAds
@@ -59,6 +60,7 @@ public actual fun rememberRewardedAd(
  * @param adUnitId The ad unit ID to use for loading the ad. Defaults to [AdUnitId.REWARDED_DEFAULT].
  * @param onLoad A callback that will be invoked when the ad has successfully loaded.
  * @param onFailure A callback that will be invoked if the ad fails to load, providing an [Exception] with details of the failure.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [RewardedAdHandler]. You can observe this state to react to changes in the ad's lifecycle.
  */
 @DependsOnGoogleMobileAds

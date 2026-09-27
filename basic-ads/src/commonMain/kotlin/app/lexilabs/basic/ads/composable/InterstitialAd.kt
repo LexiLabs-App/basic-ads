@@ -16,6 +16,7 @@ import app.lexilabs.basic.ads.InterstitialAdHandler
  * @param onClick Lambda expression that executes after the user clicks the ad
  * @param onFailure Lambda expression that executes after the ad fails to load or redirect
  * @param onLoad Lambda expression that executes after the [InterstitialAdHandler] has fully loaded
+ * @param custom Optional [CustomTargeting] parameters for ad targeting
  * @see AdUnitId.autoSelect
  */
 @DependsOnGoogleMobileAds

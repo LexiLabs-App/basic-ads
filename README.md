@@ -179,6 +179,28 @@ if (showInterstitialAd){
 }
 ```
 
+## Custom Targeting
+You can supply custom key-value targeting parameters to ad requests using `CustomTargeting`:
+
+```kotlin
+val targeting = CustomTargeting(
+    key = "category",
+    value = listOf("sports", "fitness")
+)
+
+// In a direct composable
+BannerAd(customTargeting = targeting)
+InterstitialAd(custom = targeting)
+RewardedAd(customTargeting = targeting, onRewardEarned = { /** do something **/ })
+RewardedInterstitialAd(customTargeting = targeting, onRewardEarned = { /** do something **/ })
+
+// Or with preloaded ads
+val bannerAd by rememberBannerAd(customTargeting = targeting)
+val interstitialAd by rememberInterstitialAd(customTargeting = targeting)
+val rewardedAd by rememberRewardedAd(customTargeting = targeting)
+val rewardedInterstitialAd by rememberRewardedInterstitialAd(customTargeting = targeting)
+```
+
 ## Consent Requests
 
 > [!TIP] 

@@ -57,6 +57,7 @@ public expect class InterstitialAdHandler(activity: Any?) {
      * @param adUnitId Your Interstitial Ad AdUnitId [String] from AdMob
      * @param onLoad Callback after the ad loads
      * @param onFailure Callback sharing the [Exception] when the ad fail to load
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting
      * @see [AdUnitId.autoSelect]
      * @see [AdUnitId.INTERSTITIAL_DEFAULT]
      */

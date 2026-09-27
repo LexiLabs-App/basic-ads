@@ -32,6 +32,7 @@ public actual class RewardedInterstitialAdHandler actual constructor(
      * @param adUnitId The ad unit ID.
      * @param onLoad A callback invoked when the ad is loaded.
      * @param onFailure A callback invoked when the ad fails to load.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     public actual fun load(
         adUnitId: String,
@@ -84,6 +85,7 @@ public actual class RewardedInterstitialAdHandler actual constructor(
      * @param customData Used for Server-Side Verification
      * @param onLoad A callback invoked when the ad is loaded.
      * @param onFailure A callback invoked when the ad fails to load.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     public actual fun load(
         adUnitId: String,

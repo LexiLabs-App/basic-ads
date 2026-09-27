@@ -33,6 +33,7 @@ import app.lexilabs.basic.ads.getActivity
  * @param onShown A callback invoked when the ad is shown on the screen.
  * @param onImpression A callback invoked when an impression is recorded for the ad.
  * @param onClick A callback invoked when the ad is clicked by the user.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [BannerAdHandler]. You can use this state to
  *         interact with the ad (e.g., to display it in your UI).
  */

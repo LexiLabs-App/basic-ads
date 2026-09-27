@@ -21,6 +21,7 @@ import app.lexilabs.basic.ads.getActivity
  * @param adUnitId The ad unit ID for the interstitial ad. Defaults to [AdUnitId.INTERSTITIAL_DEFAULT].
  * @param onLoad A callback function invoked when the ad is successfully loaded.
  * @param onFailure A callback function invoked when ad loading fails, providing the [Exception] that occurred.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  * @return A [MutableState] holding the [InterstitialAdHandler]. You can use this to control and observe the ad's state (e.g., to show the ad).
  */
 @DependsOnGoogleMobileAds

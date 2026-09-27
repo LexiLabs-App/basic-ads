@@ -56,6 +56,7 @@ public expect class RewardedAdHandler(activity: Any?) {
      * @param adUnitId Your Rewarded Ad AdUnitId [String] from AdMob
      * @param onLoad Callback after the ad loads
      * @param onFailure Callback sharing the [Exception] when the ad fail to load
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting
      * @see [AdUnitId.autoSelect]
      * @see [AdUnitId.REWARDED_DEFAULT]
      */
@@ -78,6 +79,7 @@ public expect class RewardedAdHandler(activity: Any?) {
      * @param customData Used for Server-Side Verification
      * @param onLoad Callback after the ad loads
      * @param onFailure Callback sharing the [Exception] when the ad fail to load
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting
      * @see [AdUnitId.autoSelect]
      * @see [AdUnitId.REWARDED_DEFAULT]
      */

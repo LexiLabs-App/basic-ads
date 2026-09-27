@@ -62,6 +62,7 @@ public actual class BannerAdHandler actual constructor(activity: Any?) {
      * @param onShown A callback invoked when the ad is shown.
      * @param onImpression A callback invoked when an impression is recorded for the ad.
      * @param onClick A callback invoked when the ad is clicked.
+     * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
      */
     @RequiresPermission("android.permission.INTERNET")
     public actual fun load(

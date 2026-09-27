@@ -28,6 +28,7 @@ import com.google.android.gms.ads.AdView
  * @param adUnitId The ad unit ID for the banner ad.
  * @param adSize The size of the banner ad.
  * @param onLoad A callback invoked when the ad has finished loading.
+ * @param customTargeting Optional [CustomTargeting] parameters for ad targeting.
  */
 @OptIn(DependsOnGoogleMobileAds::class)
 @RequiresPermission("android.permission.INTERNET")
