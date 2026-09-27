@@ -63,21 +63,52 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
         public actual fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize =
             GADLandscapeInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
 
+        /**
+         * Gets an inline adaptive banner ad size.
+         *
+         * @param width The width of the ad.
+         * @param maxHeight The maximum height of the ad.
+         * @return The inline adaptive banner ad size.
+         */
         public actual fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize =
             GADInlineAdaptiveBannerAdSizeWithWidthAndMaxHeight(width.toDouble(), maxHeight.toDouble()).toAdSize()
 
+        /**
+         * Gets an inline adaptive banner ad size for the current orientation.
+         *
+         * @param width The width of the ad.
+         * @return The inline adaptive banner ad size.
+         */
         @Composable
         public actual fun getCurrentOrientationInlineAdaptiveBannerAdSize(width: Int): AdSize =
             GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
 
+        /**
+         * Gets an inline adaptive banner ad size for portrait orientation.
+         *
+         * @param width The width of the ad.
+         * @return The inline adaptive banner ad size.
+         */
         @Composable
         public actual fun getPortraitInlineAdaptiveBannerAdSize(width: Int): AdSize =
             GADPortraitInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
 
+        /**
+         * Gets an inline adaptive banner ad size for landscape orientation.
+         *
+         * @param width The width of the ad.
+         * @return The inline adaptive banner ad size.
+         */
         @Composable
         public actual fun getLandscapeInlineAdaptiveBannerAdSize(width: Int): AdSize =
             GADLandscapeInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
 
+        /**
+         * Gets a large anchored adaptive banner ad size for the current orientation.
+         *
+         * @param width The width of the ad.
+         * @return The large anchored adaptive banner ad size.
+         */
         @Composable
         public actual fun getLargeAnchoredAdaptiveBannerAdSize(width: Int): AdSize =
             GADLargeAnchoredAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()

@@ -203,6 +203,12 @@ public actual class AdSize public actual constructor(public actual val width: In
         public actual fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize =
             com.google.android.gms.ads.AdSize.getInlineAdaptiveBannerAdSize(width, maxHeight).toCommon()
 
+        /**
+         * Gets a large anchored adaptive banner ad size for the current orientation.
+         *
+         * @param width The width of the ad.
+         * @return The large anchored adaptive banner ad size.
+         */
         @Composable
         public actual fun getLargeAnchoredAdaptiveBannerAdSize(width: Int): AdSize =
             com.google.android.gms.ads.AdSize.getLargeAnchoredAdaptiveBannerAdSize(LocalContext.current, width).toCommon()

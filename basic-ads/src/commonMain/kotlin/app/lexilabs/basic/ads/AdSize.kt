@@ -130,6 +130,11 @@ public expect class AdSize public constructor(width: Int, height: Int) {
          */
         public fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize
 
+        /**
+         * Gets a large anchored adaptive banner ad size for the current orientation.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
         @Composable
         public fun getLargeAnchoredAdaptiveBannerAdSize(width: Int): AdSize
     }

@@ -10,7 +10,7 @@ package app.lexilabs.basic.ads
  *
  * ***NOTE: For Xcode 13+, you can update your [Custom iOS Target Properties](https://useyourloaf.com/blog/xcode-13-missing-info.plist/).***
  *
- * Once complete, you'll need to call [BasicAds.initialize] in your `commonMain` before calling for ads.
+ * Once complete, you'll need to call [BasicAds.Initialize] in your `commonMain` before calling for ads.
  *
  * ***NOTE: You do not need to initialize within each platform.***
  */
