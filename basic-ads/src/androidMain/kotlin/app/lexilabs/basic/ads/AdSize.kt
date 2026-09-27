@@ -1,6 +1,8 @@
 package app.lexilabs.basic.ads
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 
 /**
  * Represents the size of an ad.
@@ -78,6 +80,7 @@ public actual class AdSize public actual constructor(public actual val width: In
          * @param width The width of the ad.
          * @return The anchored adaptive banner ad size.
          */
+        @Deprecated("'static fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(context: Context, width: Int): AdSize' is deprecated. Deprecated in Java.")
         public actual fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
             require(context != null && context is Context) {
                 "`getCurrentOrientationAnchoredAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
@@ -92,12 +95,14 @@ public actual class AdSize public actual constructor(public actual val width: In
          * @param width The width of the ad.
          * @return The portrait anchored adaptive banner ad size.
          */
+        @Deprecated("'static fun getPortraitAnchoredAdaptiveBannerAdSize(context: Context, width: Int): AdSize' is deprecated. Deprecated in Java.")
         public actual fun getPortraitAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
             require(context != null && context is Context) {
                 "`getPortraitAnchoredAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
             }
             return com.google.android.gms.ads.AdSize.getPortraitAnchoredAdaptiveBannerAdSize(context, width).toCommon()
         }
+
         /**
          * Gets the landscape anchored adaptive banner ad size.
          *
@@ -105,6 +110,7 @@ public actual class AdSize public actual constructor(public actual val width: In
          * @param width The width of the ad.
          * @return The landscape anchored adaptive banner ad size.
          */
+        @Deprecated("'static fun getLandscapeAnchoredAdaptiveBannerAdSize(context: Context, width: Int): AdSize' is deprecated. Deprecated in Java.")
         public actual fun getLandscapeAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
             require(context != null && context is Context) {
                 "`getLandscapeAnchoredAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
@@ -119,6 +125,7 @@ public actual class AdSize public actual constructor(public actual val width: In
          * @param width The width of the ad.
          * @return The inline adaptive banner ad size.
          */
+        @Deprecated("Use @Composable version of same function instead.")
         public actual fun getCurrentOrientationInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
             require(context != null && context is Context) {
                 "`getCurrentOrientationInlineAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
@@ -127,12 +134,23 @@ public actual class AdSize public actual constructor(public actual val width: In
         }
 
         /**
+         * Gets the inline adaptive banner ad size for the current orientation.
+         *
+         * @param width The width of the ad.
+         * @return The inline adaptive banner ad size.
+         */
+        @Composable
+        public actual fun getCurrentOrientationInlineAdaptiveBannerAdSize(width: Int): AdSize =
+            com.google.android.gms.ads.AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(LocalContext.current, width).toCommon()
+
+        /**
          * Gets the portrait inline adaptive banner ad size.
          *
          * @param context The context.
          * @param width The width of the ad.
          * @return The portrait inline adaptive banner ad size.
          */
+        @Deprecated("Use @Composable version of same function instead.")
         public actual fun getPortraitInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
             require(context != null && context is Context) {
                 "`getPortraitInlineAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
@@ -141,18 +159,39 @@ public actual class AdSize public actual constructor(public actual val width: In
         }
 
         /**
+         * Gets the portrait inline adaptive banner ad size.
+         *
+         * @param width The width of the ad.
+         * @return The portrait inline adaptive banner ad size.
+         */
+        @Composable
+        public actual fun getPortraitInlineAdaptiveBannerAdSize(width: Int): AdSize =
+            com.google.android.gms.ads.AdSize.getPortraitInlineAdaptiveBannerAdSize(LocalContext.current, width).toCommon()
+
+        /**
          * Gets the landscape inline adaptive banner ad size.
          *
          * @param context The context.
          * @param width The width of the ad.
          * @return The landscape inline adaptive banner ad size.
          */
+        @Deprecated("Use @Composable version of same function instead.")
         public actual fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize {
             require(context != null && context is Context) {
                 "`getLandscapeInlineAdaptiveBannerAdSize` requires argument `context` to be an Android `Context` type"
             }
             return com.google.android.gms.ads.AdSize.getLandscapeInlineAdaptiveBannerAdSize(context, width).toCommon()
         }
+
+        /**
+         * Gets the landscape inline adaptive banner ad size.
+         *
+         * @param width The width of the ad.
+         * @return The landscape inline adaptive banner ad size.
+         */
+        @Composable
+        public actual fun getLandscapeInlineAdaptiveBannerAdSize(width: Int): AdSize =
+            com.google.android.gms.ads.AdSize.getLandscapeInlineAdaptiveBannerAdSize(LocalContext.current, width).toCommon()
 
         /**
          * Gets the inline adaptive banner ad size.
@@ -163,5 +202,9 @@ public actual class AdSize public actual constructor(public actual val width: In
          */
         public actual fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize =
             com.google.android.gms.ads.AdSize.getInlineAdaptiveBannerAdSize(width, maxHeight).toCommon()
+
+        @Composable
+        public actual fun getLargeAnchoredAdaptiveBannerAdSize(width: Int): AdSize =
+            com.google.android.gms.ads.AdSize.getLargeAnchoredAdaptiveBannerAdSize(LocalContext.current, width).toCommon()
     }
 }

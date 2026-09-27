@@ -75,10 +75,10 @@ Because `basic-ads` is distributed as a multiplatform library producing `.klib` 
 
 ### Potential Failure Modes and Mitigations
 
-| Scenario | Consequence | Optimal Mitigation |
-| :--- | :--- | :--- |
-| **Consumer omits SPM packages in Xcode** | The build fails during Xcode linking with: `Undefined symbols for architecture ...: "_OBJC_CLASS_$_GADBannerView"` | Enforced via `@DependsOnGoogleMobileAds` opt-in requirements and explicit onboarding documentation in `README.md`. |
-| **Major SDK version incompatibility** | If Google introduces breaking symbol renames across major versions, runtime selector errors or link failures occur. | Maintaining clear version compatibility matrices in `VERSIONS.md` to ensure predictable builds across major releases. |
+| Scenario                                                 | Consequence                                                                                                                                                        | Optimal Mitigation                                                                                                                                       |
+|:---------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Consumer omits SPM packages in Xcode**                 | The build fails during Xcode linking with: `Undefined symbols for architecture ...: "_OBJC_CLASS_$_GADBannerView"`                                                 | Enforced via `@DependsOnGoogleMobileAds` opt-in requirements and explicit onboarding documentation in `README.md`.                                       |
+| **Major SDK version incompatibility**                    | If Google introduces breaking symbol renames across major versions, runtime selector errors or link failures occur.                                                | Maintaining clear version compatibility matrices in `VERSIONS.md` to ensure predictable builds across major releases.                                    |
 | **Direct cinterop usage in consumer's Kotlin `iosMain`** | If the consumer writes custom Kotlin code in their own `iosMain` expecting direct access to `swiftPMImport...`, those packages are internal to the library's klib. | Consumers should use `basic-ads` common abstractions or configure their own local cinterop if direct access to native Google APIs in Kotlin is required. |
 
 ---

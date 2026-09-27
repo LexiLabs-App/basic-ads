@@ -1,5 +1,7 @@
 package app.lexilabs.basic.ads
 
+import androidx.compose.runtime.Composable
+
 /**
  * Represents the size of an ad in density-independent pixels (dp).
  * This is a multiplatform representation of the AdMob AdSize.
@@ -53,6 +55,7 @@ public expect class AdSize public constructor(width: Int, height: Int) {
          * @param width The width of the ad container.
          * @return The adaptive [AdSize].
          */
+        @Deprecated("'static fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(context: Context, width: Int): AdSize' is deprecated. Deprecated in Java.")
         public fun getCurrentOrientationAnchoredAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
 
         /**
@@ -80,12 +83,28 @@ public expect class AdSize public constructor(width: Int, height: Int) {
         public fun getCurrentOrientationInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
 
         /**
+         * Gets an inline adaptive banner ad size for the current orientation.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        @Composable
+        public fun getCurrentOrientationInlineAdaptiveBannerAdSize(width: Int): AdSize
+
+        /**
          * Gets an inline adaptive banner ad size for portrait orientation.
          * @param context Not used on iOS. Can be null.
          * @param width The width of the ad container.
          * @return The adaptive [AdSize].
          */
         public fun getPortraitInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
+
+        /**
+         * Gets an inline adaptive banner ad size for portrait orientation.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        @Composable
+        public fun getPortraitInlineAdaptiveBannerAdSize(width: Int): AdSize
 
         /**
          * Gets an inline adaptive banner ad size for landscape orientation.
@@ -96,11 +115,22 @@ public expect class AdSize public constructor(width: Int, height: Int) {
         public fun getLandscapeInlineAdaptiveBannerAdSize(context: Any?, width: Int): AdSize
 
         /**
+         * Gets an inline adaptive banner ad size for landscape orientation.
+         * @param width The width of the ad container.
+         * @return The adaptive [AdSize].
+         */
+        @Composable
+        public fun getLandscapeInlineAdaptiveBannerAdSize(width: Int): AdSize
+
+        /**
          * Gets an inline adaptive banner ad size for any orientation.
          * @param width The width of the ad container.
          * @param maxHeight The maximum height of the ad container.
          * @return The adaptive [AdSize].
          */
         public fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize
+
+        @Composable
+        public fun getLargeAnchoredAdaptiveBannerAdSize(width: Int): AdSize
     }
 }

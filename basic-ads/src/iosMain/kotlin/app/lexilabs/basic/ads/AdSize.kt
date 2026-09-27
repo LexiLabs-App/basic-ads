@@ -1,5 +1,6 @@
 package app.lexilabs.basic.ads
 
+import androidx.compose.runtime.Composable
 import swiftPMImport.app.lexilabs.basic.basic.ads.GADAdSize
 import swiftPMImport.app.lexilabs.basic.basic.ads.GADAdSizeBanner
 import swiftPMImport.app.lexilabs.basic.basic.ads.GADAdSizeFluid
@@ -22,6 +23,7 @@ import kotlinx.cinterop.useContents
 import platform.CoreGraphics.CGRect
 import platform.CoreGraphics.CGRectMake
 import platform.UIKit.UIScreen
+import swiftPMImport.app.lexilabs.basic.basic.ads.GADLargeAnchoredAdaptiveBannerAdSizeWithWidth
 
 /**
  * The iOS implementation of [AdSize].
@@ -63,6 +65,22 @@ public actual class AdSize actual constructor(public actual val width: Int, publ
 
         public actual fun getInlineAdaptiveBannerAdSize(width: Int, maxHeight: Int): AdSize =
             GADInlineAdaptiveBannerAdSizeWithWidthAndMaxHeight(width.toDouble(), maxHeight.toDouble()).toAdSize()
+
+        @Composable
+        public actual fun getCurrentOrientationInlineAdaptiveBannerAdSize(width: Int): AdSize =
+            GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        @Composable
+        public actual fun getPortraitInlineAdaptiveBannerAdSize(width: Int): AdSize =
+            GADPortraitInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        @Composable
+        public actual fun getLandscapeInlineAdaptiveBannerAdSize(width: Int): AdSize =
+            GADLandscapeInlineAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
+
+        @Composable
+        public actual fun getLargeAnchoredAdaptiveBannerAdSize(width: Int): AdSize =
+            GADLargeAnchoredAdaptiveBannerAdSizeWithWidth(width.toDouble()).toAdSize()
     }
 
     /**
