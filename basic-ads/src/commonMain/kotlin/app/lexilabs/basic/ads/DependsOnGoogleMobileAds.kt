@@ -14,6 +14,7 @@ package app.lexilabs.basic.ads
  *
  * ***NOTE: You do not need to initialize within each platform.***
  */
+@Suppress("ExperimentalAnnotationRetention")
 @RequiresOptIn(message = "Depends on Google Mobile Ads library for Android and iOS")
 @Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY)
