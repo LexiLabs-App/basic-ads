@@ -27,6 +27,7 @@ For **iOS**, complete the steps in AdMob's instructions:
 
 > [!WARNING]
 > Starting with v1.3.0, Basic-Ads uses Swift Package Manager (SPM) instead of CocoaPods. For architectural details on downstream SPM consumption and linker setup, see the [CocoaPods to SPM Conversion Guide](COCOAPODS-TO-SPM-CONVERSION.md).
+> For instructions for added SPM dependencies instead of using cocoapods, see the [Cocoapods to SPM Migration Instructions](https://kotlinlang.org/docs/multiplatform/multiplatform-cocoapods-spm-migration.html).
 
 * [Import the Mobile Ads SDK](https://developers.google.com/admob/ios/quick-start#import_the_mobile_ads_sdk) (using Swift Package Manager)
 
