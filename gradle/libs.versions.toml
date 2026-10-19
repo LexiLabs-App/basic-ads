@@ -13,7 +13,7 @@ spm-ump = "3.1.0"
 # DEPENDENCIES
 bcv = "0.18.2"
 dokka = "2.2.0"
-compose = "1.12.1"
+compose = "1.12.2"
 google-play-services-ads = "25.5.0"
 android-core = "1.19.1"
 annotations = "1.11.0"
